@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Crayner\\Doctrine\\": "/src/"
+            "Kookaburra\\SystemAdmin\\": "/src/"
         },
         "exclude-from-classmap": [
             "/tests/"
@@ -35,7 +35,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Crayner\\Doctrine\\Tests\\": "tests/"
+            "Kookaburra\\SystemAdmin\\Tests\\": "tests/"
         }
     }
 }
