@@ -1,0 +1,41 @@
+{
+    "name": "kookaburra/system-admin",
+    "type": "symfony-bundle",
+    "description": "Kookaburra System Administration",
+    "keywords": [
+        "doctrine"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Craig Rayner",
+            "email": "craig@craigrayner.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "symfony/orm-pack": "^1.0"
+    },
+    "require-dev": {
+        "symfony/flex": "^1.2"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Crayner\\Doctrine\\": "/src/"
+        },
+        "exclude-from-classmap": [
+            "/tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Crayner\\Doctrine\\Tests\\": "tests/"
+        }
+    }
+}

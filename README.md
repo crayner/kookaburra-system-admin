@@ -1,2 +1,2 @@
-# kookaburra-system-admin
+# Kookaburra System Admin
 System Administration Module for Kookaburra
