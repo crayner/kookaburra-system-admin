@@ -1,0 +1,71 @@
+details:
+    name: markbookTargets
+    title: Mark book Targets
+    table: MarkbookTarget
+    modes: { update: true, insert: true, export: false }
+    alias: mt
+security:
+    module: Markbook
+    action: Edit Markbook_everything
+uniqueKeys:
+    coursePerson:
+        fields: [ courseClass, student ]
+        label: Course Class - Student
+join:
+    CourseClass:
+        alias: cc
+        table: MarkbookTarget
+    Course:
+        alias: c
+        table: CourseClass
+    SchoolYear:
+        alias: sy
+        table: Course
+    Student:
+        alias: p
+        table: MarkbookTarget
+        targetTable: Person
+    ScaleGrade:
+        alias: sg
+        table: MarkbookTarget
+    Scale:
+        alias: s
+        table: ScaleGrade
+fields:
+    schoolYear:
+        label: "School Year"
+        desc: "School year name, as set in School Admin. Must already exist."
+        args: { filter: schoolyear, required: true, custom: true, readonly: true }
+        relationship: { table: SchoolYear, field: name  }
+        select: sy.name
+    course:
+        label: "Course"
+        desc: "Short Name"
+        args: { filter: string, required: true, custom: true, readonly: true }
+        relationship: { table: Course, field: [ nameShort, schoolYear ] }
+        select: c.nameShort
+    courseClass:
+        label: "Class"
+        desc: "Short Name"
+        args: { filter: string, required: true, custom: true }
+        relationship: { table: CourseClass, field: [ nameShort, course ] }
+        select: cc.nameShort
+    student:
+        label: "Student"
+        desc: "Username"
+        args: { filter: string, required: true }
+        relationship: { table: Person, field: username }
+        select: p.username
+    scale:
+        label: "Grade Scale"
+        desc: "Short Name"
+        args: { filter: string, required: true, custom: true }
+        relationship: { table: Scale, field: nameShort  }
+        select: s.nameShort
+    scaleGrade:
+        label: "Target Grade"
+        desc: "Value"
+        args: { filter: string, required: true, custom: true }
+        relationship: { table: ScaleGrade, field: value  }
+        select: sg.value
+

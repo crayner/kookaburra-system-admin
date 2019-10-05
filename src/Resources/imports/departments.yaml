@@ -1,0 +1,45 @@
+details:
+    name: departments
+    title: Departments
+    table: Department
+    modes: { update: true, insert: true, export: true }
+    alias: d
+security:
+    module: School Admin
+    action: Manage Departments
+uniqueKeys:
+    nameShort:
+        label: Short Name
+    name:
+        label: Name
+fields:
+    type: 
+        label: "Type"
+        desc: "Use one of 'Learning Area', 'Administration'"
+        args: { filter: string, required: true, custom: true }
+        select: d.type
+    name:
+        label: "Name"
+        desc: "Must be unique"
+        args: { filter: string, required: true }
+        select: d.name
+    nameShort: 
+        label: "Short Name"
+        desc: "Must be unique"
+        args: { filter: string, required: true }
+        select: d.nameShort
+    subjectListing: 
+        label: "Subject Listing"
+        desc: ""
+        args: { filter: string }
+        select: d.subjectListing
+    blurb: 
+        label: "Blurb"
+        desc: ""
+        args: { filter: html }
+        select: d.blurb
+    logo: 
+        label: "Logo"
+        desc: "125x125px jpg/png/gif"
+        args: { filter: string, custom: true }
+        select: d.logo

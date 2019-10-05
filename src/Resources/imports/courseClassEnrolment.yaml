@@ -1,0 +1,61 @@
+details:
+    name: courseClassEnrolment
+    title: Course Enrolment by Class
+    table: CourseClassPerson
+    modes: { update: true, insert: true, export: true }
+    alias: ccp
+security:
+    module: Timetable Admin
+    action: Course Enrolment by Class
+uniqueKeys:
+    courseClassPerson:
+        label: Person in Course Class
+        fields: [ courseClass, person ]
+join:
+    CourseClass:
+        table: CourseClassPerson
+        alias: cc
+    Course:
+        table: CourseClass
+        alias: c
+    SchoolYear:
+        table: Course
+        alias: sy
+    Person:
+        table: CourseClassPerson
+        alias: p
+fields:
+    schoolYear:
+        label: "School Year"
+        desc: "School year name, as set in School Admin. Must already exist."
+        args: { filter: schoolyear, required: true, readonly: true, custom: true }
+        relationship: { table: SchoolYear, key: id, field: name }
+        select: sy.name
+    course:
+        label: "Course"
+        desc: "Short Name"
+        args: { filter: string, required: true, readonly: true }
+        relationship: { table: Course, key: id, field: [ nameShort, schoolYear ]  }
+        select: c.nameShort
+    courseClass:
+        label: "Class"
+        desc: "Short Name"
+        args: { filter: string, required: true }
+        relationship: { table: CourseClass, key: id, field: [ nameShort, course ]  }
+        select: cc.nameShort
+    person:
+        label: "Participant"
+        desc: "Username"
+        args: { filter: string, required: true }
+        relationship: { table: Person, field: username  }
+        select: p.username
+    role:
+        label: "Role"
+        desc: "Use one of 'Student','Teacher','Assistant','Technician','Parent','Student - Left' or 'Teacher - Left'"
+        args: { filter: string, required: true }
+        select: ccp.role
+    reportable:
+        label: "Reportable"
+        desc: "Should this class show in reports?"
+        args: { filter: yesno, custom: true }
+        select: ccp.reportable

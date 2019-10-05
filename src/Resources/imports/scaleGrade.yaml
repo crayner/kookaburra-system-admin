@@ -1,0 +1,47 @@
+details:
+    name: scaleGrade
+    title: Grade Scale
+    table: ScaleGrade
+    modes: { update: true, insert: true, export: true }
+    alias: sg
+security:
+    module: School Admin
+    action: Manage Grade Scales
+uniqueKeys:
+    scaleValue:
+        fields: [ scale, value ]
+        label: Scale - Value
+    scaleSequence:
+        fields: [ scale, sequenceNumber ]
+        label: Scale - Sequence
+join:
+    Scale:
+        table: ScaleGrade
+        alias: s
+fields:
+    scale:
+        label: "Grade Scale"
+        desc: "Short Name"
+        args: { filter: string, required: true }
+        relationship: { table: Scale, field: nameShort }
+        select: s.nameShort
+    value: 
+        label: "Value"
+        desc: "Must be unique for this grade scale."
+        args: { filter: string, required: true }
+        select: sg.value
+    descriptor: 
+        label: "Descriptor"
+        desc: ""
+        args: { filter: string, required: true }
+        select: sg.descriptor
+    sequenceNumber:
+        label: "Sequence Number"
+        desc: "Must be unique for this grade scale."
+        args: { filter: numeric, required: true }
+        select: sg.sequenceNumber
+    isDefault:
+        label: "Is Default?"
+        desc: "Preselects this option when using this grade scale in appropriate contexts."
+        args: { filter: yesno, custom: true }
+        select: sg.isDefault

@@ -1,0 +1,60 @@
+<ul class="multiPartForm"><li class="step active">{{ 'Select File'|trans }}</li><li class="step ">{{ 'Confirm Data'|trans }}</li><li class="step ">{{ 'Dry Run'|trans }}</li><li class="step ">{{ 'Live Run'|trans }}</li></ul>
+
+<h3>{{ 'Step {number}'|trans({'{number}': step}) ~ ' - ' ~ 'Select File'|trans }}</h3>
+<div class="info">{{ "Always backup your database before performing any imports. You will have the opportunity to review the data on the next step, however there's no guarantee the import won't change or overwrite important data."|trans }}</div>
+{{ form_start(form) }}
+<table class="smallIntBorder fullWidth standardForm relative">
+    <tbody>
+        {{ form_row(form.mode) }}
+        {{ form_row(form.file) }}
+        {{ form_row(form.fieldDelimiter) }}
+        {{ form_row(form.stringEnclosure) }}
+        {{ form_row(form.submit) }}
+    </tbody>
+</table>
+
+<h3>{{ 'Notes'|trans }}</h3>
+<ol>
+    <li class="text-red-500 font-bold">{{ 'Always include a header row in the uploaded file.'|trans }}</li>
+    <li>{{ 'Imports cannot be run concurrently (e.g. make sure you are the only person importing at any one time).'|trans }}</li>
+    {% if report.usesDates() %}
+        <li>{{ "Dates are converted based on the separator used: American mm/dd/yy or mm/dd/yyyy, European dd.mm.yy, dd.mm.yyyy or dd-mm-yyyy. To avoid potential ambiguity, it's best to use ISO 8601 YYYY-MM-DD."|trans }}<a href="http://php.net/manual/en/function.strtotime.php#refsect1-function.strtotime-notes" target="_blank">{{ 'More Info'|trans }}</a></li>
+    {% endif %}
+</ol>
+<header class="relative">
+    <div class="linkTop">
+        <a href="{{ path('system_admin__export_run', {report: report.getDetail('name'), data: 0, all: 0}) }}" title="{{ 'Export Columns'|trans }}"><span class="fas fa-file-export fa-fw fa-1-5x text-gray-600"></span></a>
+    </div>
+</header>
+<table class="w-full striped" >
+    <thead>
+        <tr class="head text-xs">
+            <th class="column" style="width: auto">
+                #
+            </th>
+            <th class="column" style="width: auto">
+                {{'Name'|trans}}
+            </th>
+            <th class="column hidden sm:table-cell" style="width: auto">
+                {{'Description'|trans}}
+            </th>
+            <th class="column hidden md:table-cell" style="width: 20%">
+                {{'Type'|trans}}
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for field in report.fields %}
+            {% if field.fieldHidden() is not same as (true) %}
+                <tr>
+                    <td class="p-2 sm:p-3">{{ loop.index0 + 1 }}</td>
+                    <td class="p-2 sm:p-3">{{ field.label|trans }}{{ field.isRequired() ? ' <strong class="highlight">*</strong>' : '' }}</td>
+                    <td class="p-2 sm:p-3 hidden sm:table-cell">{{ field.desc|trans(field.descParams|default({})) }}</td>
+                    <td class="p-2 sm:p-3 hidden sm:table-cell">{% include 'modules/system_admin/field_type_component.html.twig' with {type: field.readableFieldType} %}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{{ form_end(form) }}

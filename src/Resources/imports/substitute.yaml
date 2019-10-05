@@ -1,0 +1,45 @@
+details:
+    name: substitute
+    category: Substitute
+    title: Substitutes
+    table: Substitute
+    modes: { update: true, insert: true, export: true }
+    alias: s
+security:
+    module: Staff
+    action: Manage Substitutes
+uniqueKeys:
+    person:
+        fields: [ person ]
+        label:
+join:
+    Person:
+        table: Substitute
+        alias: p
+fields:
+    person:
+        label: "Substitute User"
+        desc: "Username"
+        args: { filter: string, required: true }
+        relationship: { table: Person, key: PersonID, field: username }
+        select: p.username
+    active:
+        label: "Active"
+        desc: ""
+        args: { filter: yesno, custom: true }
+        select: s.active
+    type:
+        label: "Type"
+        desc: ""
+        args: { filter: string, custom: true }
+        select: s.type
+    details:
+        label: "Details"
+        desc: ""
+        args: { filter: string, custom: true }
+        select: s.details
+    priority:
+        label: "Priority"
+        desc: ""
+        args: { filter: numeric, custom: true }
+        select: s.priority

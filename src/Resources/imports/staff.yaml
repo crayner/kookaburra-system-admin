@@ -1,0 +1,80 @@
+details:
+    name: staff
+    category: Staff Management
+    title: Staff
+    table: Staff
+    modes: { update: true, insert: true, export: true }
+    alias: s
+security:
+    module: Staff
+    action: Manage Staff_confidential
+uniqueKeys:
+    staff:
+        fields: [ person ]
+        label: Person
+join:
+    Person:
+        alias: p
+        table: Staff
+fields:
+    person:
+        label: "Person"
+        desc: "Username"
+        args: { filter: string, required: true }
+        relationship: { table: Person, field: username  }
+        select: p.username
+    initials:
+        label: "Initials"
+        desc: "Must be unique if set."
+        args: {filter: string}
+        select: s.initials
+    type:
+        label: "Type"
+        desc: ""
+        args: {filter: enum, required: true, custom: true}
+        select: s.type
+    jobTitle:
+        label: "Job Title"
+        desc: ""
+        args: {filter: string, custom: true}
+        select: s.jobTitle
+    smartWorkflowHelp:
+        label: "Display smart work flow help?"
+        desc: ""
+        args: {filter: yesno, custom: true }
+        select: s.smartWorkflowHelp
+    firstAidQualified:
+        label: "First Aid Qualified?"
+        desc: ""
+        args: {filter: yesno, custom: true }
+        select: s.firstAidQualified
+    firstAidExpiry:
+        label: "First Aid Expiry"
+        desc: ""
+        args: {filter: date, custom: true }
+        select: s.firstAidExpiry
+    countryOfOrigin:
+        label: "Country Of Origin"
+        desc: ""
+        args: {filter: country, custom: true }
+        select: s.countryOfOrigin
+    qualifications:
+        label: "Qualifications"
+        desc: ""
+        args: {filter: string, custom: true }
+        select: s.qualifications
+    biographicalGrouping:
+        label: "Grouping"
+        desc: ""
+        args: {filter: string, custom: true }
+        select: s.biographicalGrouping
+    biographicalGroupingPriority:
+        label: "Grouping Priority"
+        desc: "Higher numbers move teachers up the order within their grouping."
+        args: {filter: string, custom: true }
+        select: s.biographicalGroupingPriority
+    biography:
+        label: "Biography"
+        desc: ""
+        args: {filter: string}
+        select: s.biography

@@ -1,0 +1,30 @@
+details:
+    name: houses
+    title: Houses
+    table: House
+    modes: { update: true, insert: true, export: true }
+    alias: h
+security:
+    module: School Admin
+    action: Manage Houses
+uniqueKeys:
+    name:
+        label: Name
+    nameShort:
+        label: Short Name
+fields:
+    name: 
+        label: "Name"
+        desc: "Must be unique."
+        args: { filter: string, required: true }
+        select: h.name
+    nameShort: 
+        label: "Short Name"
+        desc: "Must be unique."
+        args: { filter: string, required: true }
+        select: h.nameShort
+    logo:
+        label: "Logo"
+        desc: ""
+        args: { filter: string, custom: true }
+        select: h.logo

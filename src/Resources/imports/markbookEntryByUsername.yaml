@@ -1,0 +1,114 @@
+details:
+    name: markbookEntryByUsername
+    title: Mark book - Marks - by Student Username
+    table: MarkbookEntry
+    modes: { update: true, insert: true, export: true }
+    alias: me
+security:
+    module: Markbook
+    action: Edit Markbook_everything
+uniqueKeys:
+    studentMarkbookColumn:
+        fields: [ markbookColumn, student ]
+        label: Student in Markbook Column
+orderBy:
+    'p.surname': ASC
+    'p.preferredName': ASC
+join:
+    MarkbookColumn:
+        table: MarkbookEntry
+        alias: mc
+    CourseClass:
+        alias: cc
+        table: MarkbookColumn
+    Course:
+        alias: c
+        table: CourseClass
+    SchoolYear:
+        alias: sy
+        table: Course
+    Student:
+        alias: p
+        table: MarkbookEntry
+        targetTable: Person
+    ScaleAttainment:
+        table: MarkbookColumn
+        alias: sa
+        targetTable: Scale
+    ScaleGradeAttainment:
+        table: ScaleAttainment
+        alias: sga
+        targetTable: ScaleGrade
+        reference: scaleGrades
+    ScaleEffort:
+        table: MarkbookColumn
+        alias: se
+        targetTable: Scale
+    ScaleGradeEffort:
+        table: ScaleEffort
+        targetTable: ScaleGrade
+        alias: sge
+        reference: scaleGrades
+fields:
+    schoolYear:
+        label: "School Year"
+        desc: "School year name, as set in School Admin. Must already exist."
+        args: { filter: schoolyear, required: true, custom: true, readonly: true }
+        relationship: { table: SchoolYear, key: id, field: name  }
+        select: sy.name
+    course:
+        label: "Course"
+        desc: "Short Name"
+        args: { filter: string, required: true, custom: true, readonly: true }
+        relationship: { table: Course, field: [ nameShort, schoolYear ]  }
+        select: c.nameShort
+    courseClass:
+        label: "Class"
+        desc: "Short Name"
+        args: { filter: string, required: true, custom: true, readonly: true }
+        relationship: { table: CourseClass, field: [ nameShort, course ]  }
+        select: cc.nameShort
+    markbookColumn:
+        label: "Markbook Column"
+        desc: "Name"
+        args: { filter: string, required: true }
+        relationship: { table: MarkbookColumn, field: [ name, courseClass ]  }
+        select: mc.name
+    student:
+        label: "Student"
+        desc: "Username"
+        args: { filter: string, required: true }
+        relationship: { table: Person,  field: [ username ] }
+        select: p.username
+    attainmentValue:
+        label: "Attainment Value"
+        desc: ""
+        args: { filter: string, custom: true }
+        select: me.attainmentValue
+    attainmentValueRaw:
+        label: "Attainment Raw Value"
+        desc: ""
+        args: { filter: string, custom: true }
+        select: me.attainmentValueRaw
+    attainmentDescriptor:
+        label: "Attainment Descriptor"
+        desc: ""
+        args: { filter: string, linked: attainmentValue }
+        relationship: { table: ScaleGrade, field: [ value ] }
+        select: sga.value
+    effortValue:
+        label: "Effort Value"
+        desc: ""
+        args: { filter: string, custom: true }
+        select: me.effortValue
+    effortDescriptor:
+        label: "Effort Descriptor"
+        desc: ""
+        args: { filter: string, linked: effortValue }
+        relationship: { table: ScaleGrade, field: [ value ] }
+        select: sge.value
+    comment:
+        label: "Comment"
+        desc: ""
+        args: { filter: string, custom: true }
+        select: me.comment

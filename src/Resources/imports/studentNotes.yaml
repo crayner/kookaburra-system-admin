@@ -1,0 +1,55 @@
+details:
+    name: studentNotes
+    category: Students
+    title: Student Notes
+    table: StudentNote
+    modes: { update: false, insert: true }
+    alias: sn
+security:
+    module: Students
+    action: Student Enrolment
+join:
+    Person:
+        table: StudentNote
+        alias: p
+    Creator:
+        table: StudentNote
+        alias: c
+        targetTable: Person
+    StudentNoteCategory:
+        table: StudentNote
+        alias: snc
+fields:
+    person:
+        label: "Student"
+        desc: "Username"
+        args: { filter: string, required: true }
+        relationship: { table: Person, field: username }
+        select: p.username
+    studentNoteCategory:
+        label: "Category"
+        desc: ""
+        args: { filter: string, required: true, custom: true }
+        relationship: { table: StudentNoteCategory, field: name }
+        select: snc.name
+    title:
+        label: "Title"
+        desc: ""
+        args: { filter: string, required: true }
+        select: sn.title
+    note:
+        label: "Note"
+        desc: ""
+        args: { filter: html, required: true }
+        select: sn.note
+    creator:
+        label: "Created By"
+        desc: "Username"
+        args: { filter: string, custom: true }
+        relationship: { table: Person, field: username }
+        select: c.username
+    timestamp:
+        label: "Timestamp"
+        desc: ""
+        args: { filter: datetime, hidden: true, function: timestamp }
+        select: sn.timestamp

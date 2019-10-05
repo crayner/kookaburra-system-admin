@@ -1,0 +1,91 @@
+details:
+    name: timetableClasses
+    title: Classes in Period
+    table: TTDayRowClass
+    modes: { update: true, insert: true, export: true }
+    alias: ttdrc
+security:
+    module: Timetable Admin
+    action: Manage Timetables
+uniqueKeys:
+    courseDayRow:
+        fields: [ courseClass, TTDay, TTColumnRow ]
+        label: Course in Period on Day
+join:
+    TTDay:
+        table: TTDayRowClass
+        alias: ttd
+        reference: TTDay
+    TTColumnRow:
+        table: TTDayRowClass
+        alias: ttcr
+        reference: TTColumnRow
+    CourseClass:
+        table: TTDayRowClass
+        alias: cc
+    Space:
+        table: TTDayRowClass
+        alias: s
+    TT:
+        table: TTDay
+        alias: tt
+        reference: TT
+    TTColumn:
+        table: TTDay
+        alias: ttc
+        reference: TTColumn
+    Course:
+        table: CourseClass
+        alias: c
+    SchoolYear:
+        table: Course
+        alias: sy
+fields:
+    schoolYear:
+        label: "School Year"
+        desc: "School year name, as set in School Admin. Must already exist."
+        args: { filter: schoolyear, required: true, custom: true, readonly: true }
+        relationship: { table: SchoolYear, field: name }
+        select: sy.name
+    TT:
+        label: "Timetable"
+        desc: "Short Name"
+        args: { filter: string, required: true, custom: true, readonly: true }
+        relationship: { table: TT, key: id, field: [nameShort, schoolYear] }
+        select: tt.nameShort
+    TTColumn:
+        label: "Timetable Column"
+        desc: "Short Name"
+        args: { filter: string, required: true, custom: true, readonly: true }
+        relationship: { table: TTColumn, field: nameShort }
+        select: ttc.nameShort
+    course:
+        label: "Course"
+        desc: "Short Name"
+        args: { filter: string, required: true, readonly: true }
+        relationship: { table: Course, field: [ nameShort, schoolYear ] }
+        select: c.nameShort
+    courseClass:
+        label: "Class"
+        desc: "Short Name"
+        args: { filter: string, required: true }
+        relationship: { table: CourseClass, field: [ nameShort, course ] }
+        select: cc.nameShort
+    TTDay:
+        label: "Timetable Day"
+        desc: "Short Name"
+        args: { filter: string, required: true, custom: true }
+        relationship: { table: TTDay, field: [ nameShort, TTColumn, TT ] }
+        select: ttd.nameShort
+    TTColumnRow:
+        label: "Column Row"
+        desc: "Short Name"
+        args: { filter: string, required: true, custom: true }
+        relationship: { table: TTColumnRow, field: [ nameShort, TTColumn ]  }
+        select: ttcr.nameShort
+    space:
+        label: "Facility"
+        desc: "Name"
+        args: { filter: string, required: false, custom: true }
+        relationship: { table: Space,field: name }
+        select: s.name

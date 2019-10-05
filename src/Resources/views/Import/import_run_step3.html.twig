@@ -1,0 +1,176 @@
+<ul class="multiPartForm"><li class="step active">{{ 'Select File'|trans }}</li><li class="step active">{{ 'Confirm Data'|trans }}</li><li class="step active">{{ 'Dry Run'|trans }}</li><li class="step {{ step is same as(4) ? ' active' : '' }}">{{ 'Live Run'|trans }}</li></ul>
+
+<h3>{{ 'Step {number}'|trans({'{number}': step}) ~ ' - ' ~ (step is same as(4) ? 'Live Run' : 'Dry Run'|trans) }}</h3>
+
+{% if manager.importer.violations|length > 0 %}
+<div class="overflow-x-auto overflow-y-visible">
+    <table class="w-full">
+        <thead>
+            <tr class="head text-xs">
+                <th class="column" style="width: 5%">
+                    {{ 'Row'|trans }}
+                </th>
+                <th class="column" style="width: 40%">
+                    {{ 'Field'|trans }}
+                </th>
+                <th class="column hidden sm:table-cell" colspan="1" rowspan="1" style="width: auto">
+                    {{ 'Message'|trans }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set errorsOnly = ['error', 'warning'] %}
+        {% if manager.importer.processedErrors > 0 %}
+                {% set errorsOnly = ['error'] %}
+            {% endif %}
+            {% for violation in manager.importer.violations %}
+                {% dump(violation) %}
+                {% if violation.parameters.level in errorsOnly %}
+                    <tr class="{{ violation.parameters.level }}">
+                        <td class="p-2 sm:p-3">
+                            {{ violation.parameters.line }}
+                        </td>
+                        <td class="p-2 sm:p-3">
+                            {{ violation.propertyPath }} ({{ violation.invalidValue.__toString is defined ? violation.invalidValue.__toString : violation.invalidValue is iterable ? violation.invalidValue|join(',') : violation.invalidValue }})
+                        </td>
+                        <td class="p-2 sm:p-3 hidden sm:table-cell">
+                            {{ violation.message|trans(violation.parameters) }}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="info">{{ 'system_admin.importer.log_details'|trans({'{path}': logPath}, 'kookaburra') }}</div>
+</div>
+    <br/>
+{% endif %}
+<table class="smallIntBorder" cellspacing="0" style="margin: 0 auto; width: 60%;">
+    <tbody>
+        <tr class="{{ manager.importer.importSuccess ? 'success' : 'error' }}">
+            <td class="right" width="50%">
+                {{'Reading File'|trans}}:
+            </td>
+            <td>
+                {{ manager.importer.importSuccess ? 'Success'|trans : 'Failed'|trans }}
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                {{ 'Execution Time'|trans }}:
+            </td>
+            <td>
+                {{ executionTime }}&nbsp;{{ 'sec'|trans }}
+            </td>
+        </tr>
+        <tr>
+            <td class="right">
+                {{ 'Memory Usage'|trans }}:
+            </td>
+            <td>
+                {{ memoryUsage }}
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br/>
+<table class='smallIntBorder'style="margin: 0 auto; width: 60%;">
+    <tr class="{{ manager.importer.buildSuccess ? "success" : "error" }}">
+        <td class="right" width="50%">
+            {{ 'Validating Data'|trans }}:
+        </td>
+        <td>
+            {{ manager.importer.buildSuccess ? 'Success'|trans : 'Failed'|trans }}
+        </td>
+    </tr>
+    <tr>
+        <td class="right">
+            {{ 'Rows Processed'|trans }}:
+        </td>
+        <td>
+            {{ manager.importer.processedRows }}
+        </td>
+    </tr>
+    <tr>
+        <td class="right">
+            {{ 'Rows with Errors'|trans }}:
+        </td>
+        <td>
+            {{ manager.importer.processedErrorRows }}
+        </td>
+    </tr>
+    <tr>
+        <td class="right">
+            {{ 'Total Errors' }}:
+        </td>
+        <td>
+            {{ manager.importer.processedErrors }}
+        </td>
+    </tr>
+    {% if manager.importer.processedWarnings > 0 %}
+        <tr>
+            <td class="right">
+                {{ 'Total Warnings'|trans }}:
+            </td>
+            <td>
+                {{ manager.importer.processedWarnings }}
+            </td>
+        </tr>
+    {% endif %}
+</table>
+<br/>
+<table class='smallIntBorder' style="margin: 0 auto; width: 60%;">
+    <tr class="{{ manager.importer.databaseSuccess ? "success" : "error" }}">
+        <td class="right" width="50%">
+            {{ 'Querying Database'|trans }}:
+        </td>
+        <td>
+            {{ manager.importer.databaseSuccess ? 'Success'|trans : 'Failed'|trans }}
+        </td>
+    </tr>
+    <tr>
+        <td class="right">
+            {{ step == 3 ? 'Simulated'|trans }} {{ 'Database Inserts'|trans }}:
+        </td>
+        <td>
+            {{  manager.importer.inserts }}
+            {% if  manager.importer.insertsSkipped > 0 %}({{  manager.importer.insertsSkipped }} {{ 'skipped'|trans }}){% endif %}
+        </td>
+    </tr>
+
+    <tr>
+        <td class="right">
+            {{ step == 3 ? 'Simulated'|trans }}  {{ 'Database Updates'|trans }}:
+        </td>
+        <td>
+            {{ manager.importer.updates }}
+            {% if manager.importer.updatesSkipped > 0 %}({{  manager.importer.updatesSkipped }} {{ 'skipped'|trans }}){% endif %}
+        </td>
+    </tr>
+
+</table>
+<br/>
+{% if step is same as(3) %}
+    {{ form_start(form) }}
+        <table class="w-full blank relative">
+            <tbody>
+                <tr>
+                    <td class="px-2 border-b-0 sm:border-b border-t-0 smallIntBorder fullWidth">
+                        <table class="smallIntBorder fullWidth">
+                            <tbody>
+                                {{ form_row(form.csvData) }}
+                                {% if manager.importer.processedErrors is same as(0) %}
+                                    {% do form.ignoreErrors.setRendered %}
+                                    {{ form_row(form.submit) }}
+                                {% else %}
+                                    {{ form_row(form.ignoreErrors) }}
+                                    {{ form_row(form.submit, {label: 'Failed'}) }}
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    {{ form_end(form) }}
+{% endif %}

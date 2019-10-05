@@ -1,0 +1,39 @@
+details:
+    name: familyChild
+    title: Family Children
+    category: Family
+    table: FamilyChild
+    modes: { update: true, insert: true, export: true }
+    alias: fc
+security:
+    module: User Admin
+    action: Manage Families
+uniqueKeys:
+    familyMember:
+        label: Family Member
+        fields: [ family, person ]
+join:
+    Family:
+        table: FamilyChild
+        alias: f
+    Person:
+        table: FamilyChild
+        alias: p
+fields:
+    family:
+        label: "Family Sync Key"
+        desc: "Unique ID for family, according to source system."
+        args: { filter: string, required: true }
+        relationship: { table: Family, field: familySync  }
+        select: f.familySync
+    person:
+        label: "Child"
+        desc: "Username"
+        args: { filter: string, required: true }
+        relationship: { table: Person, field: username  }
+        select: p.username
+    comment:
+        label: "Comment"
+        desc: ""
+        args: { filter: string }
+        select: fc.comment

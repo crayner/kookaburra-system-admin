@@ -1,0 +1,114 @@
+details:
+    name: usersBasic
+    title: User - Data - Basic
+    category: User
+    table: Person
+    modes: { update: true, insert: true, export: true }
+    alias: p
+security:
+    module: User Admin
+    action: Manage Users_edit
+uniqueKeys:
+    username:
+        fields: [ username ]
+        label: Username
+join:
+    PrimaryRole:
+        table: Person
+        alias: r
+        targetTable: Role
+fields:
+    title:
+        label: "Title"
+        desc: "e.g. Ms., Miss, Mr., Mrs., Dr."
+        args: {filter: enum}
+        select: p.title
+    surname:
+        label: "Surname"
+        desc: "Family Name"
+        args: {filter: string, required: true}
+        select: p.surname
+    firstName:
+        label: "First Name"
+        desc: "Given name"
+        args: {filter: string, required: true}
+        select: p.firstName
+    preferredName:
+        label: "Preferred Name"
+        desc: "Most common name, alias, nickname, handle, etc"
+        args: {filter: string, required: true}
+        select: p.preferredName
+    officialName:
+        label: "Official Name"
+        desc: "Full name as shown in ID documents."
+        args: {filter: string, required: true}
+        select: p.officialName
+    nameInCharacters:
+        label: "Name In Characters"
+        desc: "Chinese or other character-based name."
+        args: {filter: string}
+        select: p.nameInCharacters
+    gender:
+        label: "Gender"
+        desc: ""
+        args: {filter: enum, required: true}
+        select: p.gender
+    dob:
+        label: "Date of Birth"
+        desc: ""
+        args: {filter: date}
+        select: p.dob
+    primaryRole:
+        label: "Primary Role"
+        desc: "Name"
+        args: {filter: string, required: true, custom: true }
+        relationship: { table: Role, key: id, field: name  }
+        select: r.name
+    allRoles:
+        label: "All Roles"
+        desc: "Role Names, Comma separated"
+        args: {filter: role_list, required: true, custom: true }
+        relationship: { table: Role, key: id, field: name }
+        select: p.allRoles
+    username:
+        label: "Username"
+        desc: "Must be unique."
+        args: {filter: string, required: true}
+        select: p.username
+    passwordStrong:
+        label: "Password"
+        desc: ""
+        args: {filter: string, required: true, custom: true, function: generatePassword}
+        select: p.passwordStrong
+    passwordForceReset:
+        label: "Force Reset Password?"
+        desc: ""
+        args: {filter: yesno, custom: true}
+        select: p.passwordForceReset
+    status:
+        label: "Status"
+        desc: ""
+        args: {filter: enum, custom: true}
+        select: p.status
+    canLogin:
+        label: "Can Login?"
+        desc: ""
+        args: {filter: yesno, custom: true}
+        select: p.canLogin
+    email:
+        label: "Email"
+        desc: ""
+        args: {filter: string}
+        select: p.email
+    studentID:
+        label: "Student ID"
+        desc: "Must be unique if set."
+        args: {filter: string}
+        select: p.studentID
+    image240:
+        label: "User Photo"
+        desc: "path from /uploads/ to medium portrait image (240px by 320px)"
+        args: {filter: string}
+        select: p.image_240
+
+

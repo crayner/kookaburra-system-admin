@@ -1,0 +1,42 @@
+details:
+    name: schoolYears
+    title: School Years
+    table: SchoolYear
+    modes: { update: true, insert: true, export: true }
+    alias: sy
+security:
+    module: School Admin
+    action: Manage School Years
+uniqueKeys:
+    name:
+        fields: [ name ]
+        label: School Year Name
+    sequence:
+        fields: [ sequenceNumber ]
+        label: Sequence Number
+fields:
+    name:
+        label: "School Year Name"
+        desc: ""
+        args: { filter: schoolyear, required: true }
+        select: sy.name
+    status: 
+        label: "Status"
+        desc: ""
+        args: { filter: enum, required: true }
+        select: sy.status
+    sequenceNumber:
+        label: "Sequence Number"
+        desc: "Must be unique. Controls chronological ordering."
+        args: { filter: numeric, required: true }
+        select: sy.sequenceNumber
+    firstDay:
+        label: "First Day"
+        desc: ""
+        args: { filter: date, required: true }
+        select: sy.firstDay
+    lastDay:
+        label: "Last Day"
+        desc: ""
+        args: { filter: date, required: true }
+        select: sy.lastDay

@@ -1,0 +1,196 @@
+details:
+    name: libraryRecordOptical
+    title: Records - Optical Media
+    table: LibraryItem
+    modes: { update: true, insert: true, export: true }
+    alias: li
+security:
+    module: Library
+    action: Manage Catalog
+uniqueKeys:
+    identifier:
+        label: Identifier
+fixedData:
+    itemType: Optical Media
+join:
+    LibraryType:
+        table: LibraryItem
+        alias: lt
+        with: lt.name = :itemType
+    Space:
+        table: LibraryItem
+        alias: s
+        with: "(li.space = s.id OR li.space IS NULL)"
+        joinType: leftJoin
+    Ownership:
+        table: LibraryItem
+        alias: o
+        targetTable: Person
+        with: "(li.ownership = o.id OR li.ownership IS NULL)"
+        joinType: leftJoin
+    Department:
+        table: LibraryItem
+        alias: d
+        with: "(li.department = d.id OR li.department IS NULL)"
+        joinType: leftJoin
+    ReplacementYear:
+        table: LibraryItem
+        alias: ry
+        targetTable: SchoolYear
+        with: "(li.replacementYear = ry.id OR li.replacementYear IS NULL)"
+        joinType: leftJoin
+fields:
+    libraryType:
+        label: "Type"
+        desc: ""
+        args: { filter: string, required: true, custom: true, hidden: true }
+        relationship: { table: LibraryType, key: id, field: name  }
+        select: lt.name
+    name:
+        label: "Name"
+        desc: "Volume or product name."
+        args: { filter: string, required: true }
+        select: li.name
+    identifier:
+        label: "Identifier"
+        desc: "Must be unique, or will lead to update not insert."
+        args: { filter: string, required: true }
+        select: li.identifier
+    producer:
+        label: "Author/Brand"
+        desc: "Who created the item?"
+        args: { filter: string, required: true, custom: true }
+        select: li.producer
+    vendor:
+        label: "Vendor"
+        desc: "Who supplied the item?"
+        args: { filter: string, custom: true }
+        select: li.vendor
+    purchaseDate:
+        label: "Purchase Date"
+        desc: ""
+        args: { filter: date, custom: true }
+        select: li.purchaseDate
+    invoiceNumber:
+        label: "Invoice Number"
+        desc: ""
+        args: { filter: string, custom: true }
+        select: li.invoiceNumber
+    space:
+        label: "Location"
+        desc: "Name"
+        args: { filter: string, custom: true }
+        relationship: { table: Space, key: SpaceID, field: name }
+        select: s.name
+    locationDetail:
+        label: "Location Detail"
+        desc: "Shelf, cabinet, sector, etc"
+        args: { filter: string, custom: true }
+        select: li.locationDetail
+    ownershipType:
+        label: "Ownership Type"
+        desc: ""
+        args: { filter: string, custom: true }
+        select: li.ownershipType
+    ownership:
+        label: "Main User"
+        desc: "Username of person the device is assigned to."
+        args: { filter: string, custom: true }
+        relationship: { table: Person, key: id, field: username  }
+        select: o.username
+    department:
+        label: "Department"
+        desc: "Short Name"
+        args: { filter: string, custom: true }
+        relationship: { table: Department, key: id, field: nameShort  }
+        select: d.nameShort
+    borrowable:
+        label: "Borrowable?"
+        desc: "Is item available for loan?"
+        args: { filter: yesno, custom: true }
+        select: li.borrowable
+    status:
+        label: "Status?"
+        desc: ""
+        args: { filter: string, custom: true }
+        select: li.status
+    replacement:
+        label: "Replacement?"
+        desc: ""
+        args: { filter: yesno, custom: true }
+        select: li.replacement
+    replacementCost:
+        label: "Replacement Cost"
+        desc: ""
+        args: { filter: numeric, custom: true }
+        select: li.replacementCost
+    replacementYear :
+        label: "Replacement Year"
+        desc: "School year name, as set in School Admin. Must already exist."
+        args: { filter: schoolyear, custom: true }
+        relationship: { table: SchoolYear, key: SchoolYearID, field: name  }
+        select: ry.name
+    comment:
+        label: "Comments/Notes"
+        desc: ""
+        args: { filter: string, custom: true  }
+        select: li.comment
+
+    # Type-Specific Serializable Fields
+
+    fieldType: 
+        label: "Type"
+        desc: "What type of optical media is this?"
+        args: { filter: string, required: true, custom: true, readonly: true, serialise: fields  }
+        select: lt.fields
+    fieldFormat: 
+        label: "Format"
+        desc: "Technical details of media formatting."
+        args: { filter: string, custom: true, readonly: true, serialise: fields  }
+        select: lt.fields
+    fieldLanguage: 
+        label: "Language"
+        desc: ""
+        args: { filter: string, custom: true, readonly: true, serialise: fields  }
+        select: lt.fields
+    fieldSubtitles: 
+        label: "Subtitles"
+        desc: ""
+        args: { filter: string, custom: true, readonly: true, serialise: fields  }
+        select: lt.fields
+    fieldAspectRatio: 
+        label: "Aspect Ratio"
+        desc: ""
+        args: { filter: string, custom: true, readonly: true, serialise: fields  }
+        select: lt.fields
+    fieldNumberofDiscs: 
+        label: "Number of Discs"
+        desc: ""
+        args: { filter: string, custom: true, readonly: true, serialise: fields  }
+        select: lt.fields
+    fieldContentRating: 
+        label: "Content Rating"
+        desc: "Details of age guidance or retrictions."
+        args: { filter: string, custom: true, readonly: true, serialise: fields  }
+        select: lt.fields
+    fieldStudio: 
+        label: "Studio"
+        desc: "Name of originating studio."
+        args: { filter: string, custom: true, readonly: true, serialise: fields  }
+        select: lt.fields
+    fieldReleaseDate: 
+        label: "Release Date"
+        desc: ""
+        args: { filter: date, custom: true, readonly: true, serialise: fields  }
+        select: lt.fields
+    fieldRunTime: 
+        label: "Run Time"
+        desc: "In minutes."
+        args: { filter: string, custom: true, readonly: true, serialise: fields  }
+        select: lt.fields
+
+    fields:
+        label: "Type-Specific Details"
+        desc: ""
+        args: { filter: string, serialise: fields, hidden: true, custom: true }
+        select: li.fields

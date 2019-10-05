@@ -1,0 +1,85 @@
+<ul class="multiPartForm"><li class="step active">{{ 'Select File'|trans }}</li><li class="step active">{{ 'Confirm Data'|trans }}</li><li class="step ">{{ 'Dry Run'|trans }}</li><li class="step ">{{ 'Live Run'|trans }}</li></ul>
+
+<h3>{{ 'Step {number}'|trans({'{number}': step}) ~ ' - ' ~ 'Confirm Data'|trans }}</h3>
+{% if manager.importer.emptyData %}
+    <div class="warning">{{ 'Import cannot proceed, as the file contains no data.' }}</div>
+{% endif %}
+{{ form_start(form) }}
+<table class="smallIntBorder fullWidth relative">
+    <tbody>
+        {{ form_row(form.syncField) }}
+        {{ form_row(form.syncKey) }}
+        {% if 'toggle' in form.syncField.vars.block_prefixes %}
+        <tr><td class="px-2 border-b-0 sm:border-b border-t-0 " colspan="2">&nbsp;</td></tr>
+        {% endif %}
+        <tr>
+            <td class="px-2 border-b-0 sm:border-b border-t-0 fullWidth" colspan="2">
+                <table class="striped fullWidth">
+                    <thead>
+                    <tr>
+                        <th class="text-xxs sm:text-xs p-2 sm:py-3">{{'Field Name'|trans}}</th>
+                        <th class="text-xxs sm:text-xs p-2 sm:py-3">{{'Type'|trans}}</th>
+                        <th class="text-xxs sm:text-xs p-2 sm:py-3">{{'Column'|trans}}</th>
+                        <th class="text-xxs sm:text-xs p-2 sm:py-3">{{'Example'|trans}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for child in form.columns.children %}
+                        {% set value = child.vars.data %}
+                        {% if value.fieldType|length > 0 %}
+                        <tr>
+                            <td>
+                                {% if value.flags.unique is defined %}
+                                    <span class="far fa-dot-circle fa-fw text-gray-600" style="float: right;" title="{{ 'Must be Unique'|trans }}"></span>
+                                {% endif %}
+                                {% if value.flags.relational is defined %}
+                                    <span class="fas fa-sync fa-fw text-gray-600" style="float: right;" title="{{ 'Relationship: {field} of {table}'|trans(value.fieldType.titleParams) }}"></span>
+                                {% endif %}
+                                {{ value.label|trans }}
+                                <input type="hidden" id="import_step2_columns_{{ child.vars.name }}_name" name="import_step2[columns][{{ loop.index0 }}][name]" value="{{ value.name }}" />
+                                {% if value.flags.required is defined %}
+                                <strong class="highlight">&nbsp;*</strong>
+                                {% endif %}
+                            </td>
+                            <td>{% include 'modules/system_admin/field_type_component.html.twig' with {type: value.fieldType} %}</td>
+                            <td class="columnOrder mediumWidth">
+                                <div class="flex-1 relative">
+                                    <select id="import_step2_columns_{{ child.vars.name }}_order" name="import_step2[columns][{{ loop.index0 }}][order]" class="columnOrder mediumWidth" required>
+                                        <option >{{ 'Please select...'|trans }}</option>
+                                        {% for option,prompt in value.columnChoices %}
+                                            <option value="{{ option }}"{{ value.label is same as(prompt) ? ' selected' : '' }}{{ option < 0 ? ' class="text-red-500"' : '' }}>{{ prompt|trans }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </td>
+                            <td class="shortWidth columnText">
+                                <div class="flex-1 relative text-gray-600">
+                                    <input type="hidden" id="import_step2_columns_{{ child.vars.name }}_text" name="import_step2[columns][{{ loop.index0 }}][text]" value="{{ value.text }}" />
+                                    {{ value.text }}
+                                </div>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    {% do form.columns.setRendered %}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr><td class=" px-2 border-b-0 sm:border-b border-t-0 " colspan="2">&nbsp;</td></tr>
+        <tr>
+            <td class=" px-2 border-b-0 sm:border-b border-t-0 smallIntBorder fullWidth" colspan="2">
+                <table class="smallIntBorder fullWidth">
+                    <tbody>
+                        <tr>
+                            <td>{{ form_label(form.csvData) }}<br/>{{ form_help(form.csvData) }}</td>
+                            <td>{{ form_widget(form.csvData) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        {{ form_row(form.submit, (manager.importer.emptyData ? {disabled: true} : {})) }}
+    </tbody>
+</table>
+{{ form_end(form) }}

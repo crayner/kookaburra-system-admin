@@ -1,0 +1,73 @@
+details:
+    name: schoolYearsSpecialDays
+    title: Special Days
+    table: SchoolYearSpecialDay
+    modes: { update: true, insert: true, export: true }
+    alias: sysd
+security:
+    module: School Admin
+    action: Manage Special Days
+uniqueKeys:
+    date:
+        fields: [ date ]
+        label: Date
+join:
+    SchoolYearTerm:
+        table: SchoolYearSpecialDay
+        alias: syt
+    SchoolYear:
+        table: SchoolYearTerm
+        alias: sy
+fields:
+    schoolYear:
+        label: "School Year"
+        desc: "School year name, as set in School Admin. Must already exist."
+        args: { filter: schoolyear, required: true, readonly: true }
+        relationship: { table: SchoolYear, field: name }
+        select: sy.name
+    schoolYearTerm:
+        label: "Term"
+        desc: "Short Name"
+        args: { filter: string, required: true }
+        relationship: { table: SchoolYearTerm, field: [ nameShort, schoolYear ]  }
+        select: syt.nameShort
+    date:
+        label: "Date"
+        desc: "Must be unique."
+        args: { filter: date, required: true }
+        select: sysd.date
+    type:
+        label: "Type"
+        desc: 'Use one of "{list}"'
+        args: { filter: enum, required: true }
+        select: sysd.type
+    name:
+        label: "Name"
+        desc: ""
+        args: { filter: string, required: true }
+        select: sysd.name
+    description:
+        label: "Description"
+        desc: ""
+        args: { filter: string }
+        select: sysd.description
+    schoolOpen:
+        label: "School Opens"
+        desc: ""
+        args: { filter: time }
+        select: sysd.schoolOpen
+    schoolStart:
+        label: "School Starts"
+        desc: ""
+        args: { filter: time }
+        select: sysd.schoolStart
+    schoolEnd:
+        label: "School Ends"
+        desc: ""
+        args: { filter: time }
+        select: sysd.schoolEnd
+    schoolClose:
+        label: "School Closes"
+        desc: ""
+        args: { filter: time }
+        select: sysd.schoolClose

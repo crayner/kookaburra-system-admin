@@ -1,0 +1,103 @@
+details:
+    name: staffAbsence
+    category: Substitute
+    title: Staff Absences
+    table: StaffAbsence
+    modes: { update: true, insert: true, export: true }
+    alias: sa
+security:
+    module: Staff
+    action: Manage Staff Absences
+join:
+    SchoolYear:
+        table: StaffAbsence
+        alias: sy
+    Person:
+        table: StaffAbsence
+        alias: p
+    StaffAbsenceType:
+        table: StaffAbsence
+        alias: sat
+    StaffAbsenceDate:
+        table: StaffAbsence
+        alias: sad
+    CreatedBy:
+        table: StaffAbsence
+        alias: cb
+        targetTable: Person
+fields:
+    schoolYear:
+        label: "School Year"
+        desc: "School year name, as set in School Admin. Must already exist."
+        args: { filter: schoolyear, required: true, custom: true, readonly: [StaffAbsenceDate]  }
+        relationship: { table: SchoolYear, field: name  }
+        select: sy.name
+    person:
+        label: "Staff Member"
+        desc: "Username"
+        args: { filter: string, required: true, readonly: [StaffAbsenceDate]  }
+        relationship: { table: Person, field: username  }
+        select: p.username
+    staffAbsenceType:
+        label: "Type"
+        desc: ""
+        args: { filter: string, custom: true, required: true }
+        relationship: { table: StaffAbsenceType, field: name  }
+        select: sat.name
+    reason:
+        label: "Reason"
+        desc: ""
+        args: { filter: string, custom: true }
+        select: sa.reason
+    comment:
+        label: "Comment"
+        desc: ""
+        args: { filter: string, custom: true, readonly: [StaffAbsenceDate] }
+        select: sa.comment
+    status:
+        label: "Status"
+        desc: ""
+        args: { filter: string, custom: true }
+        select: sa.status
+    date:
+        label: "Date"
+        desc: "Must be unique. Format: YYYY-MM-DD"
+        args: { filter: date, required: true }
+        select: sad.date
+    allDay:
+        label: "All Day"
+        desc: ""
+        args: { filter: yesno, custom: true, required: true }
+        select: sad.allDay
+    start:
+        label: "Start Time"
+        desc: "Format: hh:mm (24hr)"
+        args: { filter: time, custom: true }
+        select: sad.start
+    end:
+        label: "End Time"
+        desc: "Format: hh:mm (24hr)"
+        args: { filter: time, custom: true }
+        select: sad.end
+    value:
+        label: "Value"
+        desc: ""
+        args: { filter: numeric, custom: true, required: true }
+        select: sad.value
+    createdWhen:
+        label: "Created On"
+        desc: ""
+        args: { filter: datetime, readonly: true, custom: true }
+        select: sa.createdWhen
+    createdBy:
+        label: "Created By"
+        desc: "Username"
+        args: { filter: string, custom: true, required: true }
+        relationship: { table: Person, field: username  }
+        select: cb.username
+    id:
+        label: "Absence ID"
+        desc: ""
+        args: { filter: string, linked: comment, readonly: [StaffAbsence] }
+        relationship: { table: StaffAbsence, field: [comment, person, schoolYear] }
+        select: sa.id

@@ -1,0 +1,76 @@
+details:
+    name: medicalConditions
+    title: Medical Conditions
+    table: PersonMedicalCondition
+    modes: { update: true, insert: true, export: true }
+    alias: pmc
+security:
+    module: Students
+    action: Manage Medical Forms
+uniqueKeys:
+    personConditionLevelTrigger:
+        fields: [ personMedical, name, alertLevel, triggers ]
+        label: Person - Condition - Level - Triggers
+join:
+    PersonMedical:
+        table: PersonMedicalCondition
+        alias: pm
+    AlertLevel:
+        table: PersonMedicalCondition
+        alias: al
+    Person:
+        table: PersonMedical
+        alias: p
+fields:
+    personMedical:
+        label: "Student"
+        desc: "Username"
+        args: { filter: string, required: true }
+        relationship: { table: PersonMedical, field: username  }
+        select: p.username
+    name:
+        label: "Condition Name"
+        desc: ""
+        args: {filter: string, required: true}
+        select: pmc.name
+    alertLevel:
+        label: "Risk"
+        desc: ""
+        args: {filter: string, required: true}
+        relationship: { table: AlertLevel, field: name  }
+        select: al.name
+    triggers: 
+        label: "Triggers"
+        desc: ""
+        args: {filter: string}
+        select: pmc.triggers
+    reaction:
+        label: "Reaction"
+        desc: ""
+        args: {filter: string}
+        select: pmc.reaction
+    response:
+        label: "Response"
+        desc: ""
+        args: {filter: string}
+        select: pmc.response
+    medication:
+        label: "Medication"
+        desc: ""
+        args: {filter: string}
+        select: pmc.medication
+    lastEpisode:
+        label: "Last Episode"
+        desc: ""
+        args: {filter: date}
+        select: pmc.lastEpisode
+    lastEpisodeTreatment:
+        label: "Last Episode Treatment"
+        desc: ""
+        args: {filter: string}
+        select: pmc.lastEpisodeTreatment
+    comment:
+        label: "Comment"
+        desc: ""
+        args: {filter: string}
+        select: pmc.comment

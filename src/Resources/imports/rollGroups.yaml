@@ -1,0 +1,135 @@
+details:
+    name: rollGroups
+    title: Roll Groups
+    table: RollGroup
+    modes: { update: true, insert: true, export: true }
+    alias: rg
+security:
+    module: School Admin
+    action: Manage Roll Groups
+uniqueKeys:
+    nameSchoolYear:
+        fields: [ name, schoolYear ]
+        label: Name - School Year
+    nameShortSchoolYear:
+        fields: [ nameShort, schoolYear ]
+        label: Short Name - School Year
+join:
+    SchoolYear:
+        table: RollGroup
+        alias: sy
+    Space:
+        table: RollGroup
+        alias: s
+    Tutor1:
+        table: RollGroup
+        alias: t1
+        targetTable: Person
+        reference: tutor
+        joinType: leftJoin
+    Tutor2:
+        table: RollGroup
+        alias: t2
+        targetTable: Person
+        joinType: leftJoin
+    Tutor3:
+        table: RollGroup
+        alias: t3
+        targetTable: Person
+        joinType: leftJoin
+    Assistant1:
+        table: RollGroup
+        alias: a1
+        targetTable: Person
+        reference: assistant
+        joinType: leftJoin
+    Assistant2:
+        table: RollGroup
+        alias: a2
+        targetTable: Person
+        joinType: leftJoin
+    Assistant3:
+        table: RollGroup
+        alias: a3
+        joinType: leftJoin
+        targetTable: Person
+    NextRollGroup:
+        table: RollGroup
+        alias: n
+        joinType: leftJoin
+        targetTable: RollGroup
+fields:
+    schoolYear: 
+        label: "School Year"
+        desc: "School year name, as set in School Admin. Must already exist."
+        args: { filter: schoolyear,  required: true }
+        relationship: { table: SchoolYear, field: name  }
+        select: sy.name
+    name:
+        label: "Name"
+        desc: "Needs to be unique in school year."
+        args: { filter: string, required: true }
+        select: rg.name
+    nameShort: 
+        label: "Short Name"
+        desc: "Needs to be unique in school year."
+        args: { filter: string, required: true }
+        select: rg.nameShort
+    tutor:
+        label: "Tutor 1"
+        desc: "Up to 3 per roll group. The first-listed will be marked as \"Main Tutor\"."
+        args: { filter: string }
+        relationship: { table: Person, field: username }
+        select: t1.username
+    tutor2:
+        label: "Tutor 2"
+        desc: ""
+        args: { filter: string }
+        relationship: { table: Person, field: username }
+        select: t2.username
+    tutor3:
+        label: "Tutor 3"
+        desc: ""
+        args: { filter: string }
+        relationship: { table: Person, field: username }
+        select: t3.username
+    assistant:
+        label: "Assistant 1"
+        desc: "Up to 3 per roll group. The first-listed will be marked as \"Main Assistant\"."
+        args: { filter: string }
+        relationship: { table: Person, field: username }
+        select: a1.username
+    assistant2:
+        label: "Assistant 2"
+        desc: ""
+        args: { filter: string }
+        relationship: { table: Person, field: username }
+        select: a2.username
+    assistant3:
+        label: "Assistant 3"
+        desc: ""
+        args: { filter: string }
+        relationship: { table: Person, field: username }
+        select: a3.username
+    space: 
+        label: "Location"
+        desc: "Name"
+        relationship: { table: Space, field: name }
+        args: { filter: string }
+        select: s.name
+    nextRollGroup: 
+        label: "Next Roll Group"
+        desc: "Short Name"
+        relationship: { table: RollGroup, field: nameShort }
+        args: { filter: string }
+        select: n.nameShort
+    attendance:
+        label: "Track Attendance?"
+        desc: "Should this class allow attendance to be taken?"
+        args: { filter: yesno, custom: true }
+        select: rg.attendance
+    website: 
+        label: "Website"
+        desc: "Include http://"
+        args: { filter: url, custom: true }
+        select: rg.website

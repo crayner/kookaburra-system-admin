@@ -1,0 +1,53 @@
+details:
+    name: timetableColumnRows
+    title: Timetable - Column Rows
+    table: TTColumnRow
+    modes: { update: true, insert: true, export: true }
+    alias: ttcr
+security:
+    module: Timetable Admin
+    action: Manage Timetables
+uniqueKeys:
+    columnRowName:
+        fields: [ TTColumn, name ]
+        label: Row Name in Column
+    columnRowShortName:
+        fields: [ TTColumn, nameShort ]
+        label: Row Short Name in Column
+join:
+    TTColumn:
+        table: TTColumnRow
+        alias: ttc
+        reference: TTColumn
+fields:
+    TTColumn:
+        label: "Timetable Column"
+        desc: "Short Name"
+        args: { filter: string, required: true, custom: true }
+        relationship: { table: TTColumn, key: id, field: nameShort }
+        select: ttc.nameShort
+    name:
+        label: "Name"
+        desc: "Must be unique for this column."
+        args: { filter: string, required: true }
+        select: ttcr.name
+    nameShort:
+        label: "Short Name"
+        desc: "Must be unique for this column."
+        args: { filter: string, required: true }
+        select: ttcr.nameShort
+    timeStart:
+        label: "Start Time"
+        desc: "Format: hh:mm (24hr)"
+        args: { filter: time, required: true }
+        select: ttcr.timeStart
+    timeEnd:
+        label: "End Time"
+        desc: "Format: hh:mm (24hr)"
+        args: { filter: time, required: true }
+        select: ttcr.timeEnd
+    type:
+        label: "Type"
+        desc: ""
+        args: { filter: string, required: true, custom: true }
+        select: ttcr.type

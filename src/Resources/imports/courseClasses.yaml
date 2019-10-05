@@ -1,0 +1,56 @@
+details:
+    name: courseClasses
+    title: Classes
+    table: CourseClass
+    modes: { update: true, insert: true, export: true }
+    alias: cc
+security:
+    module: Timetable Admin
+    action: Manage Courses & Classes
+uniqueKeys:
+    nameCourse:
+        label: Name - Course
+        fields: [ name, course ]
+    nameShortCourse:
+        label: Short Name - Course
+        fields: [ nameShort, course ]
+join:
+    Course:
+        table: CourseClass
+        alias: c
+    SchoolYear:
+        table: Course
+        alias: sy
+fields:
+    schoolYear:
+        label: "School Year"
+        desc: "School year name, as set in School Admin. Must already exist."
+        args: { filter: schoolyear, required: true, readonly: true, custom: true }
+        relationship: { table: SchoolYear, key: id, field: name  }
+        select: sy.name
+    course:
+        label: "Course"
+        desc: "Short Name"
+        args: { filter: string, required: true }
+        relationship: { table: Course, key: id, field: [ nameShort, schoolYear ]  }
+        select: c.nameShort
+    name:
+        label: "Name"
+        desc: "Must be unique for this course."
+        args: { filter: string, required: true }
+        select: cc.name
+    nameShort:
+        label: "Short Name"
+        desc: "Must be unique for this course."
+        args: { filter: string, required: true }
+        select: cc.nameShort
+    reportable:
+        label: "Reportable"
+        desc: "Should this class show in reports?"
+        args: { filter: yesno, custom: true }
+        select: cc.reportable
+    attendance:
+        label: "Track Attendance"
+        desc: "Should this class allow attendance to be taken?"
+        args: { filter: yesno, custom: true }
+        select: cc.attendance

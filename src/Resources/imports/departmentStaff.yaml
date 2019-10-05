@@ -1,0 +1,38 @@
+details:
+    name: departmentStaff
+    title: Departments - Staff
+    table: DepartmentStaff
+    modes: { update: true, insert: true, export: true }
+    alias: ds
+security:
+    module: School Admin
+    action: Manage Departments
+uniqueKeys:
+    departmentPerson:
+        fields: [ department, person ]
+        label: Department - Person
+join:
+    Department:
+        table: DepartmentStaff
+        alias: d
+    Person:
+        table: DepartmentStaff
+        alias: p
+fields:
+    department:
+        label: "Department"
+        desc: "Short Name"
+        args: { filter: string, required: true }
+        relationship: { table: Department, field: nameShort  }
+        select: d.nameShort
+    person:
+        label: "Staff"
+        desc: "Username"
+        args: { filter: string, required: true }
+        relationship: { table: Person, field: username  }
+        select: p.username
+    role:
+        label: "Role"
+        desc: "Use one of 'Coordinator','Assistant Coordinator','Teacher (Curriculum)','Teacher','Director','Manager','Administrator' or 'Other'"
+        args: { filter: string, required: true, custom: true }
+        select: ds.role

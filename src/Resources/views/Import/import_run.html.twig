@@ -1,0 +1,29 @@
+{% extends 'kookaburra.html.twig' %}
+
+{% form_theme form
+    'form/kookaburra_form.html.twig'
+%}
+
+{% set moduleName = 'System Admin' %}
+{% set module = {
+    baseURL: 'system_admin',
+    crumbs: [
+        {uri: 'system_admin__system_settings', name: 'System Admin'},
+        {uri: 'system_admin__import_manage', name: 'Import From File'},
+        {uri: 'system_admin__import_run', name: report.detail('title'), uri_params: {report: report.detail('name')}},
+    ],
+    title: 'Step {number}',
+    trans_params: {"{number}": step}
+} %}
+{% set breadcrumbs = 'new' %}
+{% block content %}
+    {% if step is same as (1) %}
+        {% include '@KookaburraSystemAdmin/Import/import_run_step1.html.twig' %}
+    {% endif %}
+    {% if step is same as (2) %}
+        {% include '@KookaburraSystemAdmin/Import/import_run_step2.html.twig' %}
+    {% endif %}
+    {% if step >= 3 %}
+        {% include '@KookaburraSystemAdmin/Import/import_run_step3.html.twig' %}
+    {% endif %}
+{% endblock content %}

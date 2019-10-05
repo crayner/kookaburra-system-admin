@@ -1,0 +1,50 @@
+details:
+    name: familyRelationship
+    title: Relationships
+    category: Family
+    table: FamilyRelationship
+    modes: { update: true, insert: true, export: true }
+    alias: fr
+security:
+    module: User Admin
+    action: Manage Families
+uniqueKeys:
+    familyAdultChild:
+        fields: [ family, person1, person2 ]
+        label: Adult - Child in Family
+join:
+    Family:
+        table: FamilyRelationship
+        alias: f
+    Person1:
+        table: FamilyRelationship
+        alias: p1
+        targetTable: Person
+    Person2:
+        table: FamilyRelationship
+        alias: p2
+        targetTable: Person
+fields:
+    family:
+        label: "Family Sync Key"
+        desc: "Unique ID for family, according to source system."
+        args: { filter: string, required: true }
+        relationship: { table: Family, key: id, field: familySync }
+        select: f.familySync
+    person1:
+        label: "Adult"
+        desc: "Username"
+        args: { filter: string, required: true }
+        relationship: { table: Person, key: id, field: username }
+        select: p1.username
+    person2:
+        label: "Child"
+        desc: "Username"
+        args: { filter: string, required: true }
+        relationship: { table: Person, key: id, field: username }
+        select: p2.username
+    relationship: 
+        label: "Relationship"
+        desc: 'Use one of "{list}"'
+        args: { filter: enum, required: true, custom: true }
+        select: fr.relationship

@@ -1,0 +1,74 @@
+details:
+    name: plannerOutcomes
+    title: Outcomes
+    table: Outcome
+    modes: { update: true, insert: true, export: true }
+    alias: o
+security:
+    module: Planner
+    action: Manage Outcomes_viewEditAll
+uniqueKeys:
+    nameDepartment:
+        fields: [ name, department ]
+        label: Name in Department
+    nameShortDepartment:
+        fields: [ nameShort, department ]
+        label: Short Name in Department
+join:
+    Department:
+        table: Outcome
+        alias: d
+        joinType: leftJoin
+    PersonCreator:
+        table: Outcome
+        alias: p
+        targetTable: Person
+fields:
+    scope: 
+        label: "Scope"
+        desc: ""
+        args: { filter: string, required: true, custom: true }
+        select: o.scope
+    department:
+        label: "Learning Area"
+        desc: "Short Name"
+        args: { filter: string, custom: true }
+        relationship: { table: Department, field: nameShort  }
+        select: d.nameShort
+    name:
+        label: "Name"
+        desc: ""
+        args: { filter: string, required: true }
+        select: o.name
+    nameShort:
+        label: "Short Name"
+        desc: ""
+        args: { filter: string, required: true }
+        select: o.nameShort
+    active:
+        label: "Active"
+        desc: ""
+        args: { filter: yesno, required: true, custom: true }
+        select: o.active
+    category:
+        label: "Category"
+        desc: ""
+        args: { filter: string, custom: true }
+        select: o.category
+    description:
+        label: "Description"
+        desc: ""
+        args: { filter: html }
+        select: o.description
+    yearGroupList:
+        label: "Year Groups"
+        desc: "Relevant student year groups"
+        args: { filter: year_group_list, custom: true }
+        relationship: { table: YearGroup, field: nameShort }
+        select: o.yearGroupList
+    personCreator:
+        label: "Created By"
+        desc: "Username"
+        args: { filter: string, custom: true }
+        relationship: { table: Person, field: username }
+        select: p.username

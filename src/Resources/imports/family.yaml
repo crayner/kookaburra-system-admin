@@ -1,0 +1,61 @@
+details:
+    name: family
+    title: Family
+    category: Family
+    table: Family
+    modes: { update: true, insert: true, export: true }
+    alias: f
+security:
+    module: User Admin
+    action: Manage Families
+uniqueKeys:
+    name:
+        label: Family Name
+    familySync:
+        label: Family Sync
+fields:
+    name:
+        label: "Family Name"
+        desc: "Must be Unique"
+        args: { filter: string, required: true }
+        select: f.name
+    status:
+        label: "Marital Status"
+        desc: "Use one of 'Married','Separated','Divorced','De Facto' or 'Other'"
+        args: { filter: string, custom: true }
+        select: f.status
+    languageHomePrimary: 
+        label: "Home Language - Primary"
+        desc: ""
+        args: { filter: enum, enum: { class: \App\Entity\Person, method: getLanguageList } }
+        select: f.languageHomePrimary
+    languageHomeSecondary: 
+        label: "Home Language - Secondary"
+        desc: ""
+        args: { filter: enum, enum: { class: \App\Entity\Person, method: getLanguageList } }
+        select: f.languageHomeSecondary
+    nameAddress:
+        label: "Address Name"
+        desc: "Formal name to address parents with."
+        args: { filter: string, required: true }
+        select: f.nameAddress
+    homeAddress:
+        label: "Home Address"
+        desc: "Unit, Building, Street"
+        args: { filter: string }
+        select: f.homeAddress
+    homeAddressDistrict:
+        label: "Home Address (District)"
+        desc: "County, State, District"
+        args: { filter: string }
+        select: f.homeAddressDistrict
+    homeAddressCountry:
+        label: "Home Address (Country)"
+        desc: ""
+        args: { filter: country }
+        select: f.homeAddressCountry
+    familySync:
+        label: "Family Sync Key"
+        desc: "Unique ID for family, according to source system."
+        args: { filter: string, custom: true, required: true }
+        select: f.familySync

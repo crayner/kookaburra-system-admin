@@ -1,0 +1,59 @@
+details:
+    name: studentEnrolment
+    title: Student Enrolment
+    table: StudentEnrolment
+    modes: { update: true, insert: true, export: true }
+    alias: se
+security:
+    module: Students
+    action: Student Enrolment
+uniqueKeys:
+    yearGroupPerson:
+        fields: [ schoolYear, yearGroup, person ]
+        label: Student in Year Group / School Year
+    rollGroupPerson:
+        label: Student in Roll Group / School Year
+        fields: [ schoolYear, rollGroup, person ]
+join:
+    SchoolYear:
+        table: StudentEnrolment
+        alias: sy
+    YearGroup:
+        table: StudentEnrolment
+        alias: yg
+    RollGroup:
+        table: StudentEnrolment
+        alias: rg
+    Person:
+        table: StudentEnrolment
+        alias: p
+fields:
+    schoolYear:
+        label: "School Year"
+        desc: "School year name, as set in School Admin. Must already exist."
+        args: { filter: schoolyear, required: true, custom: true }
+        relationship: { table: SchoolYear, field: name }
+        select: sy.name
+    yearGroup:
+        label: "Year Group"
+        desc: "Short Name"
+        args: { filter: string, required: true }
+        relationship: { table: YearGroup, field: nameShort  }
+        select: yg.nameShort
+    rollGroup:
+        label: "Roll Group"
+        desc: "Short Name"
+        args: { filter: string, required: true }
+        relationship: { table: RollGroup, field: [ nameShort, schoolYear ] }
+        select: rg.nameShort
+    person:
+        label: "Student"
+        desc: "Username"
+        args: { filter: string, required: true }
+        relationship: { table: Person, field: username  }
+        select: p.username
+    rollOrder:
+        label: "Roll Order"
+        desc: ""
+        args: { filter: numeric, custom: true }
+        select: se.rollOrder
