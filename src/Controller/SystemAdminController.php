@@ -31,9 +31,18 @@ use App\Util\UserHelper;
 use Doctrine\DBAL\Driver\PDOException;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Query\QueryException;
+use Kookaburra\SystemAdmin\Form\DisplaySettingsType;
 use Kookaburra\SystemAdmin\Form\EmailSettingsType;
 use Kookaburra\SystemAdmin\Form\GoogleIntegationType;
+use Kookaburra\SystemAdmin\Form\ImportStep1Type;
+use Kookaburra\SystemAdmin\Form\ImportStep2Type;
+use Kookaburra\SystemAdmin\Form\ImportStep3Type;
+use Kookaburra\SystemAdmin\Form\LocalisationSettingsType;
+use Kookaburra\SystemAdmin\Form\MiscellaneousSettingsType;
+use Kookaburra\SystemAdmin\Form\NotificationEventType;
+use Kookaburra\SystemAdmin\Form\OrganisationSettingsType;
 use Kookaburra\SystemAdmin\Form\PaypalSettingsType;
+use Kookaburra\SystemAdmin\Form\SecuritySettingsType;
 use Kookaburra\SystemAdmin\Form\SMSSettingsType;
 use Kookaburra\SystemAdmin\Form\StringReplacementType;
 use Kookaburra\SystemAdmin\Form\SystemSettingsType;
@@ -317,8 +326,7 @@ class SystemAdminController extends AbstractController
      */
     public function check(VersionManager $manager)
     {
-
-        return $this->render('modules/system_admin/check.html.twig',
+        return $this->render('@KookaburraSystemAdmin/check.html.twig',
             [
                 'manager' => $manager->setEm($this->getDoctrine()->getManager()),
             ]
@@ -354,7 +362,7 @@ class SystemAdminController extends AbstractController
 
         $manager->singlePanel($form->createView());
 
-        return $this->render('modules/system_admin/display_settings.html.twig');
+        return $this->render('@KookaburraSystemAdmin/display_settings.html.twig');
     }
 
     /**
@@ -369,11 +377,11 @@ class SystemAdminController extends AbstractController
         $langsInstalled = ProviderFactory::getRepository(I18n::class)->findBy(['installed' => 'Y'], ['code' => "ASC"]);
         $langsNotInstalled = ProviderFactory::getRepository(I18n::class)->findBy(['installed' => 'N'], ['code' => 'ASC']);
 
-        return $this->render('modules/system_admin/language_manage.html.twig', [
+        return $this->render('@KookaburraSystemAdmin/language_manage.html.twig', [
             'installed' => $langsInstalled,
             'notInstalled' => $langsNotInstalled,
             'manager' => $manager,
-            'translationPath' => realPath(__DIR__ . '/../../../translations'),
+            'translationPath' => $this->getProjectDir() . '/translations',
             'gVersion' => $this->getParameter('gibbon_version'),
         ]);
     }
@@ -394,9 +402,9 @@ class SystemAdminController extends AbstractController
         $em->persist($was);
         $em->persist($i18n);
         $em->flush();
-        $config = Yaml::parse(file_get_contents(__DIR__ . '/../../../config/packages/kookaburra.yaml'));
+        $config = Yaml::parse(file_get_contents($this->getSettingFileName()));
         $config['parameters']['locale'] = $i18n->getCode();
-        file_put_contents(__DIR__ . '/../../../config/packages/kookaburra.yaml', Yaml::dump($config, 8));
+        file_put_contents($this->getSettingFileName(), Yaml::dump($config, 8));
         $this->addFlash('success', 'Your request was completed successfully.');
         $session->set('i18n', $i18n->toArray());
         return $this->redirectToRoute('system_admin__language_manage');
@@ -450,7 +458,7 @@ class SystemAdminController extends AbstractController
     {
         $notificationProvider = ProviderFactory::create(NotificationEvent::class);
 
-        return $this->render('modules/system_admin/notification_settings.html.twig',
+        return $this->render('@KookaburraSystemAdmin/notification_settings.html.twig',
             [
                 'events' => $notificationProvider->selectAllNotificationEvents(),
             ]
@@ -503,7 +511,7 @@ class SystemAdminController extends AbstractController
 
         $manager->singlePanel($form->createView(), 'NotificationEvent');
 
-        return $this->render('/modules/system_admin/notification_edit.html.twig');
+        return $this->render('@KookaburraSystemAdmin/notification_edit.html.twig');
     }
 
     /**
@@ -596,7 +604,7 @@ class SystemAdminController extends AbstractController
 
         $manager->singlePanel($form->createView());
 
-        return $this->render('modules/system_admin/string_replacement_edit.html.twig');
+        return $this->render('@KookaburraSystemAdmin/string_replacement_edit.html.twig');
     }
 
     /**
@@ -614,7 +622,7 @@ class SystemAdminController extends AbstractController
         $content = $provider->getPaginationResults($request->query->get('search'));
         $pagination->setContent($content)
             ->setPaginationScript();
-        return $this->render('modules/system_admin/string_replacement_manage.html.twig',
+        return $this->render('@KookaburraSystemAdmin/string_replacement_manage.html.twig',
             [
                 'content' => $content,
                 'search' => $request->query->get('search') ?: '',
@@ -730,7 +738,7 @@ class SystemAdminController extends AbstractController
 
             // Add notes to column headings
             $info = ($field->isRequired()) ? "* required\n" : '';
-            $info .= $this->renderView('modules/system_admin/field_type_component.html.twig',['type' => $field->readableFieldType()]) . "\n";
+            $info .= $this->renderView('@KookaburraSystemAdmin/field_type_component.html.twig',['type' => $field->readableFieldType()]) . "\n";
             $info .= $field->getArg('desc');
             $info = strip_tags($info);
 
@@ -938,5 +946,22 @@ class SystemAdminController extends AbstractController
                 'memoryUsage' => $manager->readableFileSize(max(0, memory_get_usage() - $memoryStart)),
             ]
         );
+    }
+
+    /**
+     * getProjectDir
+     * @return string
+     */
+    private function getProjectDir(): string
+    {
+        return realpath(__DIR__ . '/../../../../..');
+    }
+    /**
+     * getSettingFileName
+     * @return string
+     */
+    private function getSettingFileName(): string
+    {
+        return realpath($this->getProjectDir() . '/config/packages/kookaburra.yaml');
     }
 }

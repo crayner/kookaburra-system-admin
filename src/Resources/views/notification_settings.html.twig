@@ -42,7 +42,7 @@
                     </td>
                     <td class="p-2 sm:p-3">
                         {{ event.event|trans }}
-                        {{ event.type is same as('CLI') ? include('modules/system_admin/cli_message.html.twig') : '' }}
+                        {{ event.type is same as('CLI') ? include('@KookaburraSystemAdmin/cli_message.html.twig') : '' }}
                     </td>
                     <td class="p-2 sm:p-3 hidden sm:table-cell">
                         {{ event.listeners.count }}

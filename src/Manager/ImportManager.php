@@ -12,15 +12,13 @@
 
 namespace Kookaburra\SystemAdmin\Manager;
 
-use App\Entity\ImportHistory;
 use App\Entity\Setting;
 use App\Form\Entity\ImportColumn;
 use App\Form\Entity\ImportControl;
-use App\Form\Modules\SystemAdmin\ImportStepColumnType;
 use App\Form\Type\ToggleType;
-use Kookaburra\SystemAdmin\ManagerImportReport;
 use App\Provider\ProviderFactory;
 use Doctrine\Common\Collections\ArrayCollection;
+use Kookaburra\SystemAdmin\Form\ImportStepColumnType;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -30,7 +28,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class ImportManager

@@ -51,7 +51,7 @@
                     <td class="p-2 sm:p-3">{{ loop.index0 + 1 }}</td>
                     <td class="p-2 sm:p-3">{{ field.label|trans }}{{ field.isRequired() ? ' <strong class="highlight">*</strong>' : '' }}</td>
                     <td class="p-2 sm:p-3 hidden sm:table-cell">{{ field.desc|trans(field.descParams|default({})) }}</td>
-                    <td class="p-2 sm:p-3 hidden sm:table-cell">{% include 'modules/system_admin/field_type_component.html.twig' with {type: field.readableFieldType} %}</td>
+                    <td class="p-2 sm:p-3 hidden sm:table-cell">{% include '@KookaburraSystemAdmin/field_type_component.html.twig' with {type: field.readableFieldType} %}</td>
                 </tr>
             {% endif %}
         {% endfor %}

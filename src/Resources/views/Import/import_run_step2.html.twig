@@ -41,7 +41,7 @@
                                 <strong class="highlight">&nbsp;*</strong>
                                 {% endif %}
                             </td>
-                            <td>{% include 'modules/system_admin/field_type_component.html.twig' with {type: value.fieldType} %}</td>
+                            <td>{% include '@KookaburraSystemAdmin/field_type_component.html.twig' with {type: value.fieldType} %}</td>
                             <td class="columnOrder mediumWidth">
                                 <div class="flex-1 relative">
                                     <select id="import_step2_columns_{{ child.vars.name }}_order" name="import_step2[columns][{{ loop.index0 }}][order]" class="columnOrder mediumWidth" required>
