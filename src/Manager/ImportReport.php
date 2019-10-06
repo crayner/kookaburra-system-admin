@@ -17,7 +17,7 @@ use App\Entity\Module;
 use App\Exception\Exception;
 use App\Exception\MissingClassException;
 use App\Provider\ProviderFactory;
-use App\Util\SecurityHelper;
+use Kookaburra\UserAdmin\Util\SecurityHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\OptionsResolver\OptionsResolver;

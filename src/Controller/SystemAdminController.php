@@ -26,7 +26,7 @@ use App\Provider\ProviderFactory;
 use App\Util\GlobalHelper;
 use App\Util\ReactFormHelper;
 use App\Util\TranslationsHelper;
-use App\Util\UserHelper;
+use Kookaburra\UserAdmin\Util\UserHelper;
 use Doctrine\DBAL\Driver\PDOException;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Query\QueryException;
@@ -376,6 +376,20 @@ class SystemAdminController extends AbstractController
     {
         $langsInstalled = ProviderFactory::getRepository(I18n::class)->findBy(['installed' => 'Y'], ['code' => "ASC"]);
         $langsNotInstalled = ProviderFactory::getRepository(I18n::class)->findBy(['installed' => 'N'], ['code' => 'ASC']);
+
+        $langFileMissing = 0;
+        foreach($langsInstalled as $q=>$lang){
+            if (! $lang->isInstalled()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($lang);
+                $em->flush();
+                unset($langsInstalled[$q]);
+                $langFileMissing++;
+            }
+        }
+
+        if ($langFileMissing > 0)
+            $langsNotInstalled = ProviderFactory::getRepository(I18n::class)->findBy(['installed' => 'N'], ['code' => 'ASC']);
 
         return $this->render('@KookaburraSystemAdmin/language_manage.html.twig', [
             'installed' => $langsInstalled,

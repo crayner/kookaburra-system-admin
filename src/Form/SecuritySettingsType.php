@@ -21,7 +21,7 @@ use App\Form\Type\ReactFormType;
 use App\Form\Type\SettingsType;
 use App\Form\Type\ToggleType;
 use App\Provider\ProviderFactory;
-use App\Util\SecurityHelper;
+use Kookaburra\UserAdmin\Util\SecurityHelper;
 use App\Validator\AlwaysInValid;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

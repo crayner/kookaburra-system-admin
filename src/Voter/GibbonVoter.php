@@ -12,7 +12,7 @@
  */
 namespace Kookaburra\SystemAdmin\Voter;
 
-use App\Util\SecurityHelper;
+use Kookaburra\UserAdmin\Util\SecurityHelper;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
