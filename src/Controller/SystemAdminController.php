@@ -21,26 +21,7 @@ use App\Entity\NotificationListener;
 use App\Entity\Setting;
 use App\Entity\StringReplacement;
 use App\Form\Entity\ImportControl;
-use App\Form\Modules\SystemAdmin\DisplaySettingsType;
-use App\Form\Modules\SystemAdmin\EmailSettingsType;
-use App\Form\Modules\SystemAdmin\GoogleIntegationType;
-use App\Form\Modules\SystemAdmin\ImportStep1Type;
-use App\Form\Modules\SystemAdmin\ImportStep2Type;
-use App\Form\Modules\SystemAdmin\ImportStep3Type;
-use App\Form\Modules\SystemAdmin\LocalisationSettingsType;
-use App\Form\Modules\SystemAdmin\MiscellaneousSettingsType;
-use App\Form\Modules\SystemAdmin\NotificationEventType;
-use App\Form\Modules\SystemAdmin\OrganisationSettingsType;
-use App\Form\Modules\SystemAdmin\PaypalSettingsType;
-use App\Form\Modules\SystemAdmin\SecuritySettingsType;
-use App\Form\Modules\SystemAdmin\SMSSettingsType;
-use App\Form\Modules\SystemAdmin\StringReplacementType;
-use App\Form\Modules\SystemAdmin\SystemSettingsType;
 use App\Manager\ExcelManager;
-use App\Manager\SystemAdmin\GoogleSettingManager;
-use App\Manager\SystemAdmin\LanguageManager;
-use App\Manager\SystemAdmin\MailerSettingsManager;
-use App\Manager\SystemAdmin\StringReplacementPagination;
 use App\Manager\VersionManager;
 use App\Provider\ProviderFactory;
 use App\Util\GlobalHelper;
@@ -50,9 +31,19 @@ use App\Util\UserHelper;
 use Doctrine\DBAL\Driver\PDOException;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Query\QueryException;
+use Kookaburra\SystemAdmin\Form\EmailSettingsType;
+use Kookaburra\SystemAdmin\Form\GoogleIntegationType;
+use Kookaburra\SystemAdmin\Form\PaypalSettingsType;
+use Kookaburra\SystemAdmin\Form\SMSSettingsType;
+use Kookaburra\SystemAdmin\Form\StringReplacementType;
+use Kookaburra\SystemAdmin\Form\SystemSettingsType;
+use Kookaburra\SystemAdmin\Manager\GoogleSettingManager;
 use Kookaburra\SystemAdmin\Manager\ImportManager;
 use Kookaburra\SystemAdmin\Manager\ImportReport;
 use Kookaburra\SystemAdmin\Manager\ImportReportField;
+use Kookaburra\SystemAdmin\Manager\LanguageManager;
+use Kookaburra\SystemAdmin\Manager\MailerSettingsManager;
+use Kookaburra\SystemAdmin\Manager\StringReplacementPagination;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -205,7 +196,7 @@ class SystemAdminController extends AbstractController
         // Finally Finished
         $manager->addContainer($container)->buildContainers();
 
-        return $this->render('modules/system_admin/system_settings.html.twig');
+        return $this->render('@KookaburraSystemAdmin/system_settings.html.twig');
     }
 
     /**
@@ -314,7 +305,7 @@ class SystemAdminController extends AbstractController
         // Finally Finished
         $manager->addContainer($container)->buildContainers();
 
-        return $this->render('modules/system_admin/third_party.html.twig');
+        return $this->render('@KookaburraSystemAdmin/third_party.html.twig');
     }
 
     /**

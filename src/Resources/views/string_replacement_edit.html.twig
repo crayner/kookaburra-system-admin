@@ -1,0 +1,16 @@
+{% extends 'kookaburra.html.twig' %}
+
+{% set moduleName = 'System Admin' %}
+{% set module = {
+    baseURL: 'system_admin',
+    crumbs: [
+        {uri: 'system_admin__system_settings', name: 'System Admin'},
+        {uri: 'system_admin__string_replacement_manage', name: 'Manage String Replacements'}
+    ],
+    title: 'Edit String'} %}
+{% set breadcrumbs = 'new' %}
+
+{% block content %}
+    <h3>{{ 'Manage String Replacements'|trans }}<button class="fas fa-plus-circle fa-fw text-gray-700" title="{{ 'Add'|trans }}" style="float:right; font-size: 1.25rem" onclick="window.open('{{ path('system_admin__string_replacement_edit', {stringReplacement: 'Add'}) }}','_self')"></button></h3>
+    <div id="formContent"></div>
+{% endblock content %}

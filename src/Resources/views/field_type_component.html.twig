@@ -1,0 +1,7 @@
+{% if type.title is not defined or type.title is same as('') %}
+    {{ type.prompt|trans(type.promptParams|default({})) }}
+{% else %}
+    <attr data-title="{{ type.title|trans(type.titleParams|default({})) }}" style="text-decoration: underline;">{{ type.prompt|trans(type.promptParams|default({})) }}
+            {{ type.extra is defined ? ' (' ~ type.extra ~ ')': '' }}
+        </attr>
+{% endif %}

@@ -1,0 +1,63 @@
+{% extends 'kookaburra.html.twig' %}
+
+{% set moduleName = 'System Admin' %}
+{% set module = {
+    baseURL: 'system_admin',
+    crumbs: [
+        {uri: 'system_admin__system_settings', name: 'System Admin'},
+    ],
+    title: 'Notification Settings'} %}
+{% set breadcrumbs = 'new' %}
+
+{% block content %}
+    <h3>{{ 'Notification Events'|trans }}</h3>
+    <p>{{ 'This section allows you to manage system-wide notifications. When a notification event occurs, any users subscribed to that event will receive a notification. Each event below can optionally be turned off to prevent all notifications of that type.'|trans }}</p>
+
+    <div class="overflow-x-auto overflow-y-visible">
+        <table class="w-full striped" style="overflow: hidden">
+            <thead>
+                <tr class="head text-xs">
+                    <th class="column" colspan="1" rowspan="1" style="width: auto">
+                        {{'Module'|trans}}
+                    </th>
+                    <th class="column" colspan="1" rowspan="1" style="width: auto">
+                        {{'Name'|trans}}
+                    </th>
+                    <th class="column hidden sm:table-cell" colspan="1" rowspan="1" style="width: auto">
+                        {{'Subscribers'|trans}}
+                    </th>
+                    <th class="column hidden md:table-cell" colspan="1" rowspan="1" style="width: auto">
+                        {{"Active"|trans}}
+                    </th>
+                    <th class="column" colspan="1" rowspan="1" style="width: 1%">
+                        {{'Actions'|trans}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                    <td class="p-2 sm:p-3">
+                        {{ event.module.name|trans }}
+                    </td>
+                    <td class="p-2 sm:p-3">
+                        {{ event.event|trans }}
+                        {{ event.type is same as('CLI') ? include('modules/system_admin/cli_message.html.twig') : '' }}
+                    </td>
+                    <td class="p-2 sm:p-3 hidden sm:table-cell">
+                        {{ event.listeners.count }}
+                    </td>
+                    <td class="p-2 sm:p-3 hidden md:table-cell">
+                        {{ event.active is same as('Y') ? 'Yes'|trans : 'No'|trans }}
+                    </td>
+                    <td class="p-2 sm:p-3 text-center">
+                        <div class=" flex -m-2 sm:m-0">
+                            <a class="p-3 sm:p-0" href="{{ path('system_admin__notification_edit', {event: event.id}) }}"><span class="far fa-edit fa-fw fa-2x text-gray-700"></span></a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

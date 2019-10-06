@@ -1,0 +1,150 @@
+{% extends 'kookaburra.html.twig' %}
+
+{% set moduleName = 'System Admin' %}
+{% set module = {
+    baseURL: 'system_admin',
+    crumbs: [
+        {uri: 'system_admin__system_settings', name: 'System Admin'},
+    ],
+    title: 'Manage Languages'} %}
+{% set breadcrumbs = 'new' %}
+
+{% block content %}
+    <h2>{{ 'Installed'|trans }}</h2>
+    <p>{{ 'Changing the default language will give strange translation results until the cache is fully rebuilt.'|trans({}, 'kookaburra') }}</p>
+    <div class="dataTable">
+        <div class="overflow-x-auto overflow-y-visible">
+            <table class="w-full striped">
+                <thead>
+                    <tr class="head text-xs">
+                        <th class="column relative pr-4" colspan="1" rowspan="1" style="width: 50%">
+                            {{ 'Name'|trans }}
+                        </th>
+                        <th class="column relative pr-4 " colspan="1" rowspan="1" style="width: 10%">
+                            {{ "Code"|trans }}
+                        </th>
+                        <th class="column hidden sm:table-cell relative pr-4" colspan="1" rowspan="1" style="width: auto">
+                            {{'Active'|trans}}
+                        </th>
+                        <th class="column hidden md:table-cell" colspan="1" rowspan="1" style="width: auto">
+                            {{'Default'|trans}}
+                        </th>
+                        <th class="column" colspan="1" rowspan="1" style="width: 1%">
+                            {{'Actions'|trans}}
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for lang in installed %}
+                        <tr >
+                            <td class="p-2 sm:p-3 px-2 border-b-0 sm:border-b border-t-0 ">
+                               {{ lang.name }}
+                            </td>
+                            <td class="p-2 sm:p-3">
+                                {{ lang.code }}
+                            </td>
+                            <td class="p-2 sm:p-3 hidden sm:table-cell">
+                                {{ lang.active is same as('Y') ? 'Yes'|trans : 'No'|trans }}
+                            </td>
+                            <td class="p-2 sm:p-3 hidden md:table-cell">
+                                <div class="flex-1 relative text-center">
+                                    {% if lang.isSystemDefault %}
+                                        <span class="fa-dot-circle far fa-fw fa-2x text-green-600"></span>
+                                    {% else %}
+                                        <a onclick="window.open('{{ path('system_admin__language_default', {i18n: lang.id }) }}','_self')" title="{{ 'Set as Default'|trans }}"><span class="fa-circle far fa-fw fa-2x text-gray-700"></span></a>
+                                    {% endif %}
+                                </div>
+                            </td>
+                            <td class="p-2 sm:p-3">
+                                {% if version_compare(lang.version, gVersion, '<') %}
+                                <div class="flex-1 relative text-center">
+                                    <a class="thickbox p-3 sm:p-0" title="{{ 'Update'|trans }}" href="#popup{{ lang.id }}"><span class="fas fa-box fa-fw fa-2x text-gray-700"></span></a>
+                                </div>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <h2>{{ 'Not Installed'|trans }}</h2>
+    <div class="dataTable">
+        <div class="overflow-x-auto overflow-y-visible">
+            <table class="w-full striped">
+                <thead>
+                <tr class="head text-xs">
+                    <th class="column relative pr-4" colspan="1" rowspan="1" style="width: 50%">
+                        {{ 'Name'|trans }}
+                    </th>
+                    <th class="column relative pr-4 " colspan="1" rowspan="1" style="width: 10%">
+                        {{ "Code"|trans }}
+                    </th>
+                    <th class="column hidden sm:table-cell relative pr-4" colspan="1" rowspan="1" style="width: auto">
+                        {{'Active'|trans}}
+                    </th>
+                    <th class="column" colspan="1" rowspan="1" style="width: 1%">
+                        {{'Actions'|trans}}
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for lang in notInstalled %}
+                    <tr class="{{ lang.active is same as('N') ? 'error' : '' }}" style="{{ lang.active is same as('N') ? 'background-color: #FED7D7;' : '' }}">
+                        <td class="p-2 sm:p-3 px-2 border-b-0 sm:border-b border-t-0 ">
+                            {{ lang.name }}
+                        </td>
+                        <td class="p-2 sm:p-3">
+                            {{ lang.code }}
+                        </td>
+                        <td class="p-2 sm:p-3 hidden sm:table-cell">
+                            {{ lang.active is same as('Y') ? 'Yes'|trans : 'No'|trans }}
+                        </td>
+                        <td class="p-2 sm:p-3">
+                            <div class="flex-1 relative text-center">
+                                {% if lang.active is same as('Y') and version_compare(lang.version, gVersion, '<') %}
+                                <a class="thickbox p-3 sm:p-0" title="{{ 'Install'|trans }}" href="#popup{{ lang.id }}"><span class="fas fa-box fa-fw fa-2x text-gray-700"></span></a>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+
+{% block popUpContent %}
+    {% for lang in installed %}
+        <div id="popup{{lang.id}}" class="overlay">
+            <div class="popup">
+                <h3>{{ lang.installed is same as('Y') ? 'Update'|trans : 'Install'|trans }} - {{ lang.name }}</h3>
+                <a class="close" title="{{ 'Close'|trans }}" href="#"><span class="far fa-times-circle fa-fw"></span></a>
+                <div class="content">
+                    <p>{{ 'This action will download the required files and place them in the {path} folder on your server. Are you sure you want to continue?'|trans({path: translationPath}) }}</p>
+                    <button class="button btn-gibbon" style="color: white; float: right;" onclick="window.open('{{ path('system_admin__language_install', {i18n: lang.id}) }}','_self')">{{ 'Yes'|trans }}</button>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% for lang in notInstalled if lang.active is same as('Y') %}
+        <div id="popup{{lang.id}}" class="overlay">
+            <div class="popup">
+                <h3>{{ lang.installed is same as('Y') ? 'Update'|trans : 'Install'|trans }} - {{ lang.name }}</h3>
+                <a class="close" title="{{ 'Close'|trans }}" href="#"><span class="far fa-times-circle fa-fw"></span></a>
+                <div class="content">
+                    <p>{{ 'This action will download the required files and place them in the {path} folder on your server. Are you sure you want to continue?'|trans({path: translationPath}) }}</p>
+                    <button class="button btn-gibbon" style="color: white; float: right;" onclick="window.open('{{ path('system_admin__language_install', {i18n: lang.id}) }}','_self')">{{ 'Yes'|trans }}</button>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock popUpContent %}

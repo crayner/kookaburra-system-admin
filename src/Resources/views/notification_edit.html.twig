@@ -1,0 +1,15 @@
+{% extends 'kookaburra.html.twig' %}
+
+{% set moduleName = 'System Admin' %}
+{% set module = {
+    baseURL: 'system_admin',
+    crumbs: [
+        {uri: 'system_admin__system_settings', name: 'System Admin'},
+        {uri: 'system_admin__notification_settings', name: 'Notification Settings'}
+    ],
+    title: 'Edit Notification Event'} %}
+{% set breadcrumbs = 'new' %}
+
+{% block content %}
+    <div id="formContent"></div>
+{% endblock content %}
