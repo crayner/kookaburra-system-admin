@@ -20,7 +20,6 @@ use App\Entity\NotificationEvent;
 use App\Entity\NotificationListener;
 use App\Entity\Setting;
 use App\Entity\StringReplacement;
-use App\Form\Entity\ImportControl;
 use App\Manager\ExcelManager;
 use App\Manager\VersionManager;
 use App\Provider\ProviderFactory;
@@ -33,6 +32,7 @@ use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Query\QueryException;
 use Kookaburra\SystemAdmin\Form\DisplaySettingsType;
 use Kookaburra\SystemAdmin\Form\EmailSettingsType;
+use Kookaburra\SystemAdmin\Form\Entity\ImportControl;
 use Kookaburra\SystemAdmin\Form\GoogleIntegationType;
 use Kookaburra\SystemAdmin\Form\ImportStep1Type;
 use Kookaburra\SystemAdmin\Form\ImportStep2Type;
@@ -842,7 +842,7 @@ class SystemAdminController extends AbstractController
                                     $excel->getActiveSheet()->setCellValue(GlobalHelper::num2alpha($i++) . $rowCount, strtolower($value) === 'y' ? 'Yes' : 'No');
                                     break;
                                 case 'year_group_list':
-                                    $excel->getActiveSheet()->setCellValue(GlobalHelper::num2alpha($i++) . $rowCount, implode(',', $report->getField($name)->transformYearGroups(explode(',', $value))));
+                                    $excel->getActiveSheet()->setCellValue(GlobalHelper::num2alpha($i++) . $rowCount, implode(',', $report->getField($name)->transformYearGroups($value)));
                                     break;
                                 case 'role_list':
                                     $excel->getActiveSheet()->setCellValue(GlobalHelper::num2alpha($i++) . $rowCount, implode(',', $report->getField($name)->transformRoles($value)));

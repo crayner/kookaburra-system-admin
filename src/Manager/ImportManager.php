@@ -13,11 +13,11 @@
 namespace Kookaburra\SystemAdmin\Manager;
 
 use App\Entity\Setting;
-use App\Form\Entity\ImportColumn;
-use App\Form\Entity\ImportControl;
 use App\Form\Type\ToggleType;
 use App\Provider\ProviderFactory;
 use Doctrine\Common\Collections\ArrayCollection;
+use Kookaburra\SystemAdmin\Form\Entity\ImportColumn;
+use Kookaburra\SystemAdmin\Form\Entity\ImportControl;
 use Kookaburra\SystemAdmin\Form\ImportStepColumnType;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

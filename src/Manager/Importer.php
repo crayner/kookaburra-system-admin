@@ -12,14 +12,12 @@
 
 namespace Kookaburra\SystemAdmin\Manager;
 
-use App\Form\Entity\ImportColumn;
-use App\Form\Entity\ImportControl;
-use Kookaburra\SystemAdmin\ManagerImportReport;
-use Kookaburra\SystemAdmin\ManagerImportReportField;
 use App\Provider\ProviderFactory;
 use App\Util\TranslationsHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Driver\PDOException;
+use Kookaburra\SystemAdmin\Form\Entity\ImportColumn;
+use Kookaburra\SystemAdmin\Form\Entity\ImportControl;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\Exception;
 use Psr\Log\LoggerInterface;
@@ -1118,7 +1116,6 @@ class Importer
                 $column->setLabel($label);
             } else {
                 $field = $this->getReport()->getFieldByLabel($label);
-dump($field,$label,$this->getReport()->getFields());
                 $column->setName($field->getName());
                 $column->setOrder($count);
                 $column->setText($w->value);

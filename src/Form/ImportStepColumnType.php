@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Form;
 
-use App\Form\Entity\ImportColumn;
+use Kookaburra\SystemAdmin\Form\Entity\ImportColumn;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;

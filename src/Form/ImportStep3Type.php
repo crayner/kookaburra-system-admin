@@ -12,8 +12,8 @@
 
 namespace Kookaburra\SystemAdmin\Form;
 
-use App\Form\Transform\ColumnsToStringTransformer;
 use App\Form\Type\ToggleType;
+use Kookaburra\SystemAdmin\Form\Transform\ColumnsToStringTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

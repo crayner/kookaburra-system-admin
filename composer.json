@@ -16,7 +16,6 @@
         "php": "^7.3"
     },
     "require-dev": {
-        "symfony/flex": "^1.2"
     },
     "config": {
         "preferred-install": {

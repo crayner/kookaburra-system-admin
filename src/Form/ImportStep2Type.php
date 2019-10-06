@@ -12,8 +12,8 @@
 
 namespace Kookaburra\SystemAdmin\Form;
 
-use App\Form\Entity\ImportControl;
-use App\Validator\SystemAdmin\ImportStep2;
+use Kookaburra\SystemAdmin\Form\Entity\ImportControl;
+use Kookaburra\SystemAdmin\Validator\ImportStep2;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\DataTransformer\BooleanToStringTransformer;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
