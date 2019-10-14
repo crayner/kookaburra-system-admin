@@ -438,7 +438,7 @@ class Importer
      */
     public function validateImport(bool $persist = false): bool
     {
-        $table = '\App\Entity\\' . $this->getReport()->getDetail('table');
+        $table = $this->getReport()->convertTableNameToClassName($this->getReport()->getDetail('table'));
 
         $line = 2;
         if ($persist) {

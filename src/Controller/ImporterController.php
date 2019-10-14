@@ -145,7 +145,7 @@ class ImporterController extends AbstractController
             $data = [];
             $tableName = ucfirst($report->getDetail('table'));
             $query = $this->getDoctrine()->getManager()->createQueryBuilder();
-            $query->from('\App\Entity\\' . $tableName, $report->getJoinAlias($tableName));
+            $query->from($report->convertTableNameToClassName($tableName), $report->getJoinAlias($tableName));
 
             foreach ($report->getJoin() as $fieldName => $join) {
                 if (!$join->isPrimary()) {

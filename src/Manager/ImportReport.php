@@ -449,8 +449,8 @@ class ImportReport
         $em = ProviderFactory::getEntityManager();
         foreach($this->getFields() as $name=>$field) {
             $select = explode('.', $field->getSelect());
-            $table = $this->getJoinAlias($select[0]);
-            $metaData = $em->getClassMetadata('\App\Entity\\' . $table);
+            $table = $this->convertTableNameToClassName($this->getJoinAlias($select[0]));
+            $metaData = $em->getClassMetadata( $table);
             if ($mapping = $metaData->getFieldMapping($select[1])) {
                 $field->setArgs(array_merge($field->getArgs(), $mapping));
             }
@@ -641,6 +641,11 @@ class ImportReport
         return $this;
     }
 
+    /**
+     * getFieldByLabel
+     * @param string $label
+     * @return ImportReportField
+     */
     public function getFieldByLabel(string $label): ImportReportField
     {
         if ($this->getFields()->containsKey($label))
@@ -649,5 +654,30 @@ class ImportReport
         return $this->getFields()->filter(function (ImportReportField $field) use ($label) {
             return $field->getLabel() === $label;
         })->first();
+    }
+
+    /**
+     * convertTableNameToClassName
+     * @param $tableName
+     * @return string
+     * @throws MissingClassException
+     */
+    public function convertTableNameToClassName($tableName): string
+    {
+        if (class_exists($tableName))
+            return $tableName;
+
+        if (class_exists('\App\Entity\\'.$tableName))
+            return '\App\Entity\\'.$tableName;
+
+        $em = ProviderFactory::getEntityManager();
+
+        $meta = $em->getMetadataFactory()->getAllMetadata();
+        foreach ($meta as $m) {
+            if (stripos($m->getName(), $tableName) !== false && strtolower(substr($m->getName(), -strlen($tableName))) === strtolower($tableName)) {
+                return $m->getName();
+            }
+        }
+        throw new MissingClassException('No entity class found for table ' . $tableName);
     }
 }
