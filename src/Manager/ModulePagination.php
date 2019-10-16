@@ -12,6 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Manager;
 
+use App\Manager\Entity\PaginationAction;
 use App\Manager\Entity\PaginationColumn;
 use App\Manager\Entity\PaginationRow;
 use App\Manager\ReactPaginationInterface;
@@ -71,6 +72,16 @@ class ModulePagination extends ReactPaginationManager
         $column->setSort(true);
         $column->setClass('column hidden md:table-cell relative pr-4 cursor-pointer');
         $row->addColumn($column);
+
+        $action = new PaginationAction();
+        $action->setTitle('Update')
+            ->setAClass('thickbox p-3 sm:p-0')
+            ->setColumnClass('p-2 sm:p-3')
+            ->setSpanClass('fas fa-wrench fa-fw fa-1-5x text-gray-700')
+            ->setRoute('system_admin__module_update')
+            ->setDisplayWhen('updateRequired')
+            ->setRouteParams(['upgrade' => 'id']);
+        $row->addAction($action);
 
         $this->setRow($row);
         return $this;

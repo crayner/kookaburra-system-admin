@@ -13,9 +13,10 @@
 namespace Kookaburra\SystemAdmin\Controller;
 
 use App\Entity\Module;
-use App\Provider\ProviderFactory;
 use Kookaburra\SystemAdmin\Manager\ModulePagination;
+use Kookaburra\SystemAdmin\Manager\ModuleUpdateManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -33,10 +34,9 @@ class ModuleController extends AbstractController
      * @Route("/module/manage/", name="module_manage")
      * @IsGranted("ROLE_ROUTE")
      */
-    public function manageModules(ModulePagination $pagination)
+    public function manageModules(ModulePagination $pagination, ModuleUpdateManager $manager)
     {
-        $provider = ProviderFactory::create(Module::class);
-        $content = $provider->getRepository()->findBy([],['name' => 'ASC']);
+        $content = $manager->getAllModules();
         $pagination->setContent($content)->setPageMax(25)
             ->setPaginationScript();
 
@@ -45,5 +45,23 @@ class ModuleController extends AbstractController
                 'content' => $content,
             ]
         );
+    }
+
+    /**
+     * updateModule
+     * @param Module $upgrade
+     * @param ModuleUpdateManager $manager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/module/{upgrade}/update/", name="module_update")
+     * @Security("is_granted('ROLE_ROUTE', ['system_admin__module_manage'])")
+     */
+    public function updateModule(Module $upgrade, ModuleUpdateManager $manager)
+    {
+        $manager->setModule($upgrade);
+        // Check for update required.
+        $manager->upgradeModule();
+        foreach($manager->getMessageManager()->getMessages() as $message)
+            $this->addFlash($message->getLevel(), $message->getMessage());
+        return $this->redirectToRoute('system_admin__module_manage');
     }
 }
