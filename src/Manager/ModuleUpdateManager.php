@@ -101,7 +101,6 @@ class ModuleUpdateManager
                 $em->flush();
             }
 
-
             $current = $this->getModule()->getUpgradeLogs()->count() > 0 ? $this->getModule()->getUpgradeLogs()->first()->getVersion() : '0';
             $finder = new Finder();
             $files = $finder->files()->in($this->getModulePath() . '/src/Resources/migration')->name(['Version*.yaml'])->depth(0)->sort(function ($a, $b) { return strcmp($a->getRealpath(), $b->getRealpath()); });
@@ -127,11 +126,11 @@ class ModuleUpdateManager
                     }
 
                     if ($ok) {
-                        $this->getMessageManager()->add('success', 'Your request was completed successfully.');
                         $upgrade = new ModuleUpgrade();
                         $upgrade->setModule($this->getModule())->setVersion($content['version']);
                         $em->persist($upgrade);
                         $em->flush();
+                        $this->getMessageManager()->add('success', 'Your request was completed successfully.');
                     }
                 }
             }
@@ -189,6 +188,9 @@ class ModuleUpdateManager
             if ($this->setModule($module)->isInstalled()) {
                 $module->setUpdateRequired($this->isUpdateRequired());
             }
+            if ($this->getModulePath() !== false && !$this->isInstalled()) {
+                $module->setUpdateRequired(true);
+            }
         }
         return $content;
     }
@@ -230,5 +232,73 @@ class ModuleUpdateManager
         foreach($files as $file){
             return str_replace(['Version','.yaml'],'', $file->getBasename());
         }
+    }
+
+    /**
+     * deleteModule
+     */
+    public function deleteModule()
+    {
+        if ($this->isInstalled()) {
+            $em = ProviderFactory::getEntityManager();
+
+            $finder = new Finder();
+            $files = $finder->files()->in($this->getModulePath() . '/src/Resources/migration')->name(['Version*.yaml'])->depth(0)->sort(function ($a, $b) { return strcmp($b->getRealpath(), $a->getRealpath()); });
+
+            $ok = true;
+            foreach($files as $file) {
+                $content = Yaml::parse(file_get_contents($file->getRealPath()));
+                try {
+                    $em->beginTransaction();
+                    foreach ($content['down'] as $sql)
+                        $em->getConnection()->exec($sql);
+                    $em->commit();
+                    dump($sql);
+                } catch (PDOException $e) {
+                    $em->rollback();
+                    $this->getMessageManager()->add('error', $e->getMessage());
+                    $ok = false;
+                } catch (DBALException $e) {
+                    $em->rollback();
+                    $this->getMessageManager()->add('error', $e->getMessage());
+                    $ok = false;
+                }
+                break;
+            }
+
+
+
+            if (is_file($this->getModulePath() . '/src/Manager/Installation.php')) {
+                $name = '\Kookaburra\\' . str_replace(' ', '', $this->getModule()->getName()) . '\Manager\Installation';
+                $installer = new $name();
+                if (class_implements($installer, ModuleInstallationInterface::class)) {
+                    $installer->down();
+                }
+            }
+            if ($ok) {
+                ProviderFactory::getRepository(ModuleUpgrade::class)->deleteModuleRecords($this->getModule());
+                $this->version['installedOn'] = false;
+                $this->writeVersionFile();
+                $em->remove($this->getModule());
+                $em->flush();
+            }
+        }
+    }
+
+    /**
+     * writeVersionFile
+     */
+    private function writeVersionFile()
+    {
+        file_put_contents($this->getModulePath(). '/src/Resources/config/version.yaml', Yaml::dump($this->getVersion(), 8));
+    }
+
+    /**
+     * isSymfonyBundle
+     * @return bool
+     */
+    public function isSymfonyBundle(): bool
+    {
+        return $this->getModulePath() ? true : false ;
     }
 }

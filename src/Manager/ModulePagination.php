@@ -83,6 +83,16 @@ class ModulePagination extends ReactPaginationManager
             ->setRouteParams(['upgrade' => 'id']);
         $row->addAction($action);
 
+        $action = new PaginationAction();
+        $action->setTitle('Delete')
+            ->setAClass('thickbox p-3 sm:p-0')
+            ->setColumnClass('p-2 sm:p-3')
+            ->setSpanClass('fas fa-trash-alt fa-fw fa-1-5x text-gray-700')
+            ->setRoute('system_admin__module_delete')
+            ->setDisplayWhen('isNotCore')
+            ->setRouteParams(['delete' => 'id']);
+        $row->addAction($action);
+
         $this->setRow($row);
         return $this;
     }

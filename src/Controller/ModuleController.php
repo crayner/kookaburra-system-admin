@@ -34,7 +34,7 @@ class ModuleController extends AbstractController
      * @Route("/module/manage/", name="module_manage")
      * @IsGranted("ROLE_ROUTE")
      */
-    public function manageModules(ModulePagination $pagination, ModuleUpdateManager $manager)
+    public function manage(ModulePagination $pagination, ModuleUpdateManager $manager)
     {
         $content = $manager->getAllModules();
         $pagination->setContent($content)->setPageMax(25)
@@ -48,20 +48,40 @@ class ModuleController extends AbstractController
     }
 
     /**
-     * updateModule
+     * update
      * @param Module $upgrade
      * @param ModuleUpdateManager $manager
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/module/{upgrade}/update/", name="module_update")
      * @Security("is_granted('ROLE_ROUTE', ['system_admin__module_manage'])")
      */
-    public function updateModule(Module $upgrade, ModuleUpdateManager $manager)
+    public function update(Module $upgrade, ModuleUpdateManager $manager)
     {
         $manager->setModule($upgrade);
         // Check for update required.
         $manager->upgradeModule();
         foreach($manager->getMessageManager()->getMessages() as $message)
             $this->addFlash($message->getLevel(), $message->getMessage());
+        return $this->redirectToRoute('system_admin__module_manage');
+    }
+
+    /**
+     * delete
+     * @param Module $delete
+     * @param ModuleUpdateManager $manager
+     * @Route("/module/{delete}/delete/", name="module_delete")
+     * @Security("is_granted('ROLE_ROUTE', ['system_admin__module_manage'])")
+     */
+    public function delete(Module $delete, ModuleUpdateManager $manager)
+    {
+        if ($manager->setModule($delete)->isSymfonyBundle() && $delete->getType() === 'Additional')
+        {
+            $manager->deleteModule();
+            $this->addFlash('success', 'Your request was completed successfully.');
+        } else {
+            $this->addFlash('error', 'Your request failed because your inputs were invalid.');
+        }
+
         return $this->redirectToRoute('system_admin__module_manage');
     }
 }

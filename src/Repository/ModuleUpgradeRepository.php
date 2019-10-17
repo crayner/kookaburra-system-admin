@@ -12,6 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Repository;
 
+use App\Entity\Module;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Kookaburra\SystemAdmin\Entity\ModuleUpgrade;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -29,5 +30,19 @@ class ModuleUpgradeRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, ModuleUpgrade::class);
+    }
+
+    /**
+     * deleteModuleRecords
+     * @param Module $module
+     */
+    public function deleteModuleRecords(Module $module)
+    {
+        return $this->createQueryBuilder('mu')
+            ->delete()
+            ->where('mu.module = :module')
+            ->setParameter('module', $module)
+            ->getQuery()
+            ->execute();
     }
 }
