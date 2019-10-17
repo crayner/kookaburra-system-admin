@@ -12,10 +12,10 @@
 
 namespace Kookaburra\SystemAdmin\Command;
 
-use App\Entity\Action;
-use App\Entity\Module;
-use App\Entity\Permission;
-use App\Entity\Role;
+use Kookaburra\SystemAdmin\Entity\Action;
+use Kookaburra\SystemAdmin\Entity\Module;
+use Kookaburra\SystemAdmin\Entity\Permission;
+use Kookaburra\SystemAdmin\Entity\Role;
 use Doctrine\DBAL\Driver\PDOException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;

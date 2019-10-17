@@ -12,8 +12,8 @@
 
 namespace Kookaburra\SystemAdmin\Manager;
 
-use App\Entity\Action;
-use App\Entity\Module;
+use Kookaburra\SystemAdmin\Entity\Action;
+use Kookaburra\SystemAdmin\Entity\Module;
 use App\Exception\Exception;
 use App\Exception\MissingClassException;
 use App\Provider\ProviderFactory;

@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Controller;
 
-use App\Entity\Module;
+use Kookaburra\SystemAdmin\Entity\Module;
 use Kookaburra\SystemAdmin\Manager\ModulePagination;
 use Kookaburra\SystemAdmin\Manager\ModuleUpdateManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;

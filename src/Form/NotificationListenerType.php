@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Form;
 
-use App\Entity\Action;
+use Kookaburra\SystemAdmin\Entity\Action;
 use App\Entity\NotificationEvent;
 use App\Entity\Person;
 use App\Form\EventSubscriber\AnyChoiceIsValidSubscriber;

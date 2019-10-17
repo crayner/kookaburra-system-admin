@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Entity;
 
-use App\Entity\Module;
+use Kookaburra\SystemAdmin\Entity\Module;
 use App\Manager\EntityInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -37,7 +37,7 @@ class ModuleUpgrade implements EntityInterface
 
     /**
      * @var Module|null
-     * @ORM\ManyToOne(targetEntity="App\Entity\Module", inversedBy="upgradeLogs")
+     * @ORM\ManyToOne(targetEntity="Kookaburra\SystemAdmin\Entity\Module", inversedBy="upgradeLogs")
      * @ORM\JoinColumn(name="module",referencedColumnName="gibbonModuleID",nullable=false)
      */
     private $module;

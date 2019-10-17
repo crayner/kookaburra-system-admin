@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Manager;
 
-use App\Entity\Module;
+use Kookaburra\SystemAdmin\Entity\Module;
 use App\Manager\MessageManager;
 use App\Provider\ProviderFactory;
 use Doctrine\DBAL\DBALException;
@@ -253,7 +253,6 @@ class ModuleUpdateManager
                     foreach ($content['down'] as $sql)
                         $em->getConnection()->exec($sql);
                     $em->commit();
-                    dump($sql);
                 } catch (PDOException $e) {
                     $em->rollback();
                     $this->getMessageManager()->add('error', $e->getMessage());

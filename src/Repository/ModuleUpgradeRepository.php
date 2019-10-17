@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Repository;
 
-use App\Entity\Module;
+use Kookaburra\SystemAdmin\Entity\Module;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Kookaburra\SystemAdmin\Entity\ModuleUpgrade;
 use Symfony\Bridge\Doctrine\RegistryInterface;

@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Controller;
 
-use App\Entity\Module;
+use Kookaburra\SystemAdmin\Entity\Module;
 use App\Manager\ExcelManager;
 use App\Provider\ProviderFactory;
 use App\Util\GlobalHelper;

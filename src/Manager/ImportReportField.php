@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Manager;
 
-use App\Entity\Role;
+use Kookaburra\SystemAdmin\Entity\Role;
 use App\Entity\YearGroup;
 use App\Provider\ProviderFactory;
 use App\Util\TranslationsHelper;
