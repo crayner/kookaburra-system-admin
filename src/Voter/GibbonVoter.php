@@ -23,7 +23,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class GibbonVoter
- * @package App\Security
+ * @package Kookaburra\SystemAdmin\Voter
  */
 class GibbonVoter implements VoterInterface
 {

@@ -66,6 +66,12 @@ EOT
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if (! $this->em->getConnection()->isConnected()) {
+            $io = new SymfonyStyle($input, $output);
+            $io->newLine();
+            $io->warning('The database is not available. Check that the database settings are available and are valid!');
+            return 1;
+        }
         $kernel = $this->getApplication()->getKernel();
 
         $finder = new Finder();
@@ -73,6 +79,11 @@ EOT
         $bundles = $finder->directories()->in($kernel->getContainer()->getParameter('kernel.project_dir') . '/vendor/kookaburra/')->depth(0);
         $exitCode = 0;
         foreach ($bundles as $bundle) {
+            // do the installation stuff
+
+
+
+            // Do Migration stuff
             if (is_file($bundle->getRealPath() . '/src/Resources/config/version.yaml')) {
                 $version = Yaml::parse(file_get_contents($bundle->getRealPath() . '/src/Resources/config/version.yaml'));
                 if (isset($version['module'])) {
