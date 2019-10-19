@@ -47,7 +47,7 @@ class GoogleIntegationType extends AbstractType
                         '{oneString}' => "<a href='https://gibbonedu.org/support/administrators/installing-gibbon/authenticating-with-google-oauth/' target='_blank'>",
                         '{twoString}' => '</a>',
                     ],
-                    'translation_domain' => 'kookaburra',
+                    'translation_domain' => 'messages',
                 ]
             )
             ->add('googleIntegrationSettings', SettingsType::class,
@@ -72,7 +72,7 @@ class GoogleIntegationType extends AbstractType
                         '%{anchor}' => "<a href='https://console.cloud.google.com/apis/credentials' target='_blank'>",
                         '%{anchorClose}' => "</a>",
                     ],
-                    'translation_domain' => 'kookaburra',
+                    'translation_domain' => 'messages',
                     'file_prefix' => 'temp',
                     'data' => '',
                 ]
@@ -90,7 +90,7 @@ class GoogleIntegationType extends AbstractType
                                     '%{anchor}' => "<a href='https://console.cloud.google.com/apis/credentials' target='_blank'>",
                                     '%{anchorClose}' => "</a>",
                                 ],
-                                'translation_domain' => 'kookaburra',
+                                'translation_domain' => 'messages',
                             ],
                         ],
                         [
