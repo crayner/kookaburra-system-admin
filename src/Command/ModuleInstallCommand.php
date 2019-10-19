@@ -66,7 +66,7 @@ EOT
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (! $this->em->getConnection()->isConnected()) {
+        if (! $this->em->getConnection()->connect()) {
             $io = new SymfonyStyle($input, $output);
             $io->newLine();
             $io->warning('The database is not available. Check that the database settings are available and are valid!');

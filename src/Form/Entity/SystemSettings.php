@@ -243,8 +243,7 @@ class SystemSettings
      */
     public function getBaseUrl(): string
     {
-        if (null === $this->baseUrl)
-            $this->setBaseUrl(null);
+        $this->setBaseUrl(null);
         return $this->baseUrl;
     }
 
@@ -254,16 +253,14 @@ class SystemSettings
      * @param string $baseUrl
      * @return SystemSettings
      */
-    public function setBaseUrl(?string $baseUrl): SystemSettings
+    public function setBaseUrl(?string $absoluteUrl): SystemSettings
     {
-        if (null === $baseUrl) {
-            $baseUrl = $this->request->server->get('REQUEST_SCHEME').'://';
-            $baseUrl .= $this->request->server->get('SERVER_NAME');
-            $port = $this->request->server->get('REQUEST_SCHEME') === 'http' && $this->request->server->get('REQUEST_PORT') !== '80' ? ':'.$this->request->server->get('REQUEST_PORT') : '';
-            $port = $this->request->server->get('REQUEST_SCHEME') === 'https' && $this->request->server->get('REQUEST_PORT') !== '443' ? ':'.$this->request->server->get('REQUEST_PORT') : '';
-            $baseUrl .= $port;
-        }
-        $this->baseUrl = $baseUrl;
+        $baseUrl = $this->request->server->get('REQUEST_SCHEME').'://';
+        $baseUrl .= $this->request->server->get('SERVER_NAME');
+        $port = $this->request->server->get('REQUEST_SCHEME') === 'http' && $this->request->server->get('SERVER_PORT') !== '80' ? ':'.$this->request->server->get('SERVER_PORT') : '';
+        $port = $this->request->server->get('REQUEST_SCHEME') === 'https' && $this->request->server->get('SERVER_PORT') !== '443' ? ':'.$this->request->server->get('SERVER_PORT') : '';
+        $baseUrl .= $port;
+        $this->baseUrl = $baseUrl ;
         return $this;
     }
 
