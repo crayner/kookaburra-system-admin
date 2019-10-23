@@ -17,7 +17,11 @@ use Kookaburra\SystemAdmin\Manager\ModulePagination;
 use Kookaburra\SystemAdmin\Manager\ModuleUpdateManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -81,6 +85,42 @@ class ModuleController extends AbstractController
         } else {
             $this->addFlash('error', 'Your request failed because your inputs were invalid.');
         }
+
+        return $this->redirectToRoute('system_admin__module_manage');
+    }
+
+    /**
+     * checkInstallation
+     * @param KernelInterface $kernel
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/module/installation/check/", name="module_installation_check")
+     * @Security("is_granted('ROLE_ROUTE', ['system_admin__module_manage'])")
+     *
+     * DOES NOT WORK
+     *
+     */
+    public function checkInstallation(KernelInterface $kernel)
+    {
+        $application = new Application($kernel);
+        $application->setAutoExit(false);
+        $input = new ArrayInput([
+            'command' => 'module:install',
+            // (optional) define the value of command arguments
+            // 'fooArgument' => 'barValue',
+            // (optional) pass options to the command
+            // '--quiet' => '--quiet',
+            // '--no-interaction' => '--no-interaction',
+        ]);
+
+        // You can use NullOutput() if you don't need the output
+        $output = new NullOutput();
+        dd($application->run($input, $output));
+
+        // return the output, don't use if you used NullOutput()
+        // $content = $output->fetch();
+
+        //if ('' !== $content)
+        //return new Response($content);
 
         return $this->redirectToRoute('system_admin__module_manage');
     }

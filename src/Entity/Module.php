@@ -114,7 +114,7 @@ class Module implements EntityInterface
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Kookaburra\SystemAdmin\Entity\ModuleUpgrade",mappedBy="module")
+     * @ORM\OneToMany(targetEntity="Kookaburra\SystemAdmin\Entity\ModuleUpgrade",mappedBy="module",orphanRemoval=true)
      * @ORM\OrderBy({"version" = "DESC"})
      */
     private $upgradeLogs;

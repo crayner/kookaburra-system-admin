@@ -19,6 +19,7 @@ use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Driver\PDOException;
 use Kookaburra\SystemAdmin\Entity\ModuleUpgrade;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Yaml\Yaml;
 
 class ModuleUpdateManager
@@ -105,11 +106,12 @@ class ModuleUpdateManager
             $finder = new Finder();
             $files = $finder->files()->in($this->getModulePath() . '/src/Resources/migration')->name(['Version*.yaml'])->depth(0)->sort(function ($a, $b) { return strcmp($a->getRealpath(), $b->getRealpath()); });
 
+            $ok = true;
+
             foreach($files as $file) {
                 $content = Yaml::parse(file_get_contents($file->getRealPath()));
                 if ($content['version'] > $current) {
                     // Do the UP
-                    $ok = true;
                     try {
                         $em->beginTransaction();
                         foreach ($content['up'] as $sql)
@@ -241,17 +243,16 @@ class ModuleUpdateManager
     {
         if ($this->isInstalled()) {
             $em = ProviderFactory::getEntityManager();
-
-            $finder = new Finder();
-            $files = $finder->files()->in($this->getModulePath() . '/src/Resources/migration')->name(['Version*.yaml'])->depth(0)->sort(function ($a, $b) { return strcmp($b->getRealpath(), $a->getRealpath()); });
-
             $ok = true;
-            foreach($files as $file) {
-                $content = Yaml::parse(file_get_contents($file->getRealPath()));
+            if (is_file($this->getModulePath() . '/src/Resources/migration/removal.sql')) {
+                $file = new File($this->getModulePath() . '/src/Resources/migration/removal.sql');
+                $content = file($file->getRealPath());
                 try {
                     $em->beginTransaction();
-                    foreach ($content['down'] as $sql)
+                    foreach ($content as $sql) {
                         $em->getConnection()->exec($sql);
+                        dump($sql);
+                    }
                     $em->commit();
                 } catch (PDOException $e) {
                     $em->rollback();
@@ -262,22 +263,10 @@ class ModuleUpdateManager
                     $this->getMessageManager()->add('error', $e->getMessage());
                     $ok = false;
                 }
-                break;
             }
-
-
-
-            if (is_file($this->getModulePath() . '/src/Manager/Installation.php')) {
-                $name = '\Kookaburra\\' . str_replace(' ', '', $this->getModule()->getName()) . '\Manager\Installation';
-                $installer = new $name();
-                if (class_implements($installer, ModuleInstallationInterface::class)) {
-                    $installer->down();
-                }
-            }
+            //Remove the module from the module/action/permission table
             if ($ok) {
                 ProviderFactory::getRepository(ModuleUpgrade::class)->deleteModuleRecords($this->getModule());
-                $this->version['installedOn'] = false;
-                $this->writeVersionFile();
                 $em->remove($this->getModule());
                 $em->flush();
             }

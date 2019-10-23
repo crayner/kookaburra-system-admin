@@ -14,6 +14,7 @@ namespace Kookaburra\SystemAdmin\Command;
 
 use Kookaburra\SystemAdmin\Entity\Action;
 use Kookaburra\SystemAdmin\Entity\Module;
+use Kookaburra\SystemAdmin\Entity\ModuleUpgrade;
 use Kookaburra\SystemAdmin\Entity\Permission;
 use Kookaburra\SystemAdmin\Entity\Role;
 use Doctrine\DBAL\Driver\PDOException;
@@ -24,6 +25,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -37,6 +40,14 @@ class ModuleInstallCommand extends Command
      */
     private $em;
 
+    /**
+     * @var array
+     */
+    private $version;
+
+    /**
+     * @var string
+     */
     protected static $defaultName = 'module:install';
 
     /**
@@ -53,9 +64,11 @@ class ModuleInstallCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Adds Symfony Bundles for Kookaburra to the Module/Action/Permission Tables.')
+            ->setDescription('Adds Symfony Bundles for Kookaburra to the Module/Action/Permission Tables and runs installation script in the module.')
             ->setHelp(<<<'EOT'
-The <info>%command.name%</info> command installs modules into the Module, Action and Permission tables as specified in the bundle <comment>version</comment> file. 
+The <info>%command.name%</info> command installs modules into the Module, Action and Permission tables as specified in the bundle <comment>version</comment> file.
+
+Executes the intsallation.sql script file in the bundle Resources/migration folder if it exists. 
 
   <info>php %command.full_name%</info>
 
@@ -66,9 +79,9 @@ EOT
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $io = new SymfonyStyle($input, $output);
+        $io->newLine();
         if (! $this->em->getConnection()->connect()) {
-            $io = new SymfonyStyle($input, $output);
-            $io->newLine();
             $io->warning('The database is not available. Check that the database settings are available and are valid!');
             return 1;
         }
@@ -79,15 +92,37 @@ EOT
         $bundles = $finder->directories()->in($kernel->getContainer()->getParameter('kernel.project_dir') . '/vendor/kookaburra/')->depth(0);
         $exitCode = 0;
         foreach ($bundles as $bundle) {
+            $this->version = null;
             // do the installation stuff
+            if (!$this->isModuleInstalled($bundle)) {
+                $io->text('Installing module <info>'.(isset($this->version['name']) ? $this->version['name'] : $bundle->getBasename()).'</info>.');
 
+                $io->newLine();
 
+                if (is_file($bundle->getRealpath() . '/src/Resources/migration/installation.sql')) {
+                    $content = file($bundle->getRealpath() . '/src/Resources/migration/installation.sql');
+                    try {
+                        $this->em->beginTransaction();
+                        foreach ($content as $sql) {
+                            if ('' !== trim($sql))
+                                $this->em->getConnection()->exec($sql);
+                        }
+                        $this->em->commit();
+                    } catch (PDOException $e) {
+                        $this->em->rollback();
+                        $io = new SymfonyStyle($input, $output);
+                        $io->newLine();
+                        $io->error($e->getMessage());
+                        return 1;
+                    }
+                }
 
-            // Do Migration stuff
-            if (is_file($bundle->getRealPath() . '/src/Resources/config/version.yaml')) {
-                $version = Yaml::parse(file_get_contents($bundle->getRealPath() . '/src/Resources/config/version.yaml'));
-                if (isset($version['module'])) {
-                    $exitCode += $this->writeModuleDetails($version['module'], $input, $output);
+                // Do Migration stuff
+                if (is_file($bundle->getRealPath() . '/src/Resources/config/version.yaml')) {
+                    $version = Yaml::parse(file_get_contents($bundle->getRealPath() . '/src/Resources/config/version.yaml'));
+                    if (isset($version['module'])) {
+                        $exitCode += $this->writeModuleDetails($version['module'], $input, $output, $io);
+                    }
                 }
             }
         }
@@ -95,15 +130,14 @@ EOT
         return $exitCode > 0 ? 1 : 0;
     }
 
-    private function writeModuleDetails(array $w, InputInterface $input, OutputInterface $output) {
-
-        $io = new SymfonyStyle($input, $output);
-        $io->newLine();
-
-        if ($this->em->getRepository(Module::class)->findOneByName($w['name']) instanceof Module) {
-            $io->warning('The module "' . $w['name'] . '" already exists in the Module table.');
-            return 0;
-        }
+    /**
+     * writeModuleDetails
+     * @param array $w
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int
+     */
+    private function writeModuleDetails(array $w, InputInterface $input, OutputInterface $output, SymfonyStyle $io) {
 
         $module = new Module();
 
@@ -155,15 +189,15 @@ EOT
             $actions[] = $action;
         }
 
-        $io->text('Installing module <info>'.$w['name'].'</info>.');
-
-        $io->newLine();
+        $mu = new ModuleUpgrade();
+        $mu->setModule($module)->setVersion('Installation');
 
         $exitCode = 0;
 
         try {
             $this->em->beginTransaction();
             $this->em->persist($module);
+            $this->em->persist($mu);
             foreach($actions as $action)
                 $this->em->persist($action);
             foreach($permissions as $permission)
@@ -172,16 +206,36 @@ EOT
             $this->em->commit();
         } catch (PDOException $e) {
             $this->em->rollback();
-            $io->error(sprintf('Some errors occurred while installing the %s bundle to the Module Table.', $w['name']));
             $io->error($e->getMessage());
             $exitCode = 1;
         }
 
-
-
         if ($exitCode === 0) {
-            $io->success('All Done for ' . $w['name']);
+            $io->success('All Done for "' . $w['name']. '"');
+        } else {
+            $io->error(sprintf('Some errors occurred while installing the "%s" bundle to the Module Table.', $w['name']));
         }
         return $exitCode;
+    }
+
+    /**
+     * isModuleInstalled
+     * @param File $bundle
+     * @return bool
+     */
+    private function isModuleInstalled(SplFileInfo $bundle): bool
+    {
+        if (!is_file($bundle->getRealPath(). '/src/Resources/config/version.yaml'))
+            return true;
+        $this->version = Yaml::parse(file_get_contents($bundle->getRealPath(). '/src/Resources/config/version.yaml'));
+        if (!isset($this->version['name']))
+            return true;
+
+        $module = $this->em->getRepository(Module::class)->findOneByName($this->version['name']);
+
+        if (null === $module || null === $this->em->getRepository(ModuleUpgrade::class)->findOneBy(['module' => $module, 'version' => 'Installation']))
+            return false;
+
+        return true;
     }
 }
