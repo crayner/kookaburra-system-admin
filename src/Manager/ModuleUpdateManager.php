@@ -12,6 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Manager;
 
+use App\Entity\NotificationEvent;
 use Kookaburra\SystemAdmin\Entity\Module;
 use App\Manager\MessageManager;
 use App\Provider\ProviderFactory;
@@ -251,7 +252,6 @@ class ModuleUpdateManager
                     $em->beginTransaction();
                     foreach ($content as $sql) {
                         $em->getConnection()->exec($sql);
-                        dump($sql);
                     }
                     $em->commit();
                 } catch (PDOException $e) {
@@ -264,9 +264,11 @@ class ModuleUpdateManager
                     $ok = false;
                 }
             }
-            //Remove the module from the module/action/permission table
+
+            // Remove the module from the Module / Action / Permission / NotificationEvent table
             if ($ok) {
                 ProviderFactory::getRepository(ModuleUpgrade::class)->deleteModuleRecords($this->getModule());
+                ProviderFactory::getRepository(NotificationEvent::class)->deleteModuleRecords($this->getModule());
                 $em->remove($this->getModule());
                 $em->flush();
             }
