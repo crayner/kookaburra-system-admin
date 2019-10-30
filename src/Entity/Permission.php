@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Class Permission
- * @package App\Entity
+ * @package Kookaburra\SystemAdmin\Entity
  * @ORM\Entity(repositoryClass="Kookaburra\SystemAdmin\Repository\PermissionRepository")
  * @ORM\Table(options={"auto_increment": 1}, name="Permission", indexes={@ORM\Index(name="gibbonRoleID", columns={"gibbonRoleID"}), @ORM\Index(name="gibbonActionID", columns={"gibbonActionID"})})
  */

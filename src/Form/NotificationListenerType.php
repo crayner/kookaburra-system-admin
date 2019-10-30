@@ -13,14 +13,13 @@
 namespace Kookaburra\SystemAdmin\Form;
 
 use Kookaburra\SystemAdmin\Entity\Action;
-use App\Entity\NotificationEvent;
+use Kookaburra\SystemAdmin\Entity\NotificationEvent;
 use App\Entity\Person;
-use App\Form\EventSubscriber\AnyChoiceIsValidSubscriber;
 use App\Form\EventSubscriber\NotificationListenerSubscriber;
 use App\Form\Type\DisplayType;
 use App\Form\Type\HiddenEntityType;
 use App\Provider\ProviderFactory;
-use App\Validator\SystemAdmin\NotificationListener;
+use Kookaburra\SystemAdmin\Entity\NotificationListener;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -57,7 +56,7 @@ class NotificationListenerType extends AbstractType
             'gibbonPersonIDStaff'   => 'Staff',
             'gibbonYearGroupID'     => 'Year Group',
         ];
-        $eventScopes = array_combine(explode(',', $options['event']->getScopes()), explode(',', trim($options['event']->getScopes())));
+        $eventScopes = array_flip($options['event']->getScopes());
         $availableScopes = array_intersect_key($allScopes, $eventScopes);
 
         $builder
@@ -74,6 +73,7 @@ class NotificationListenerType extends AbstractType
             ->add('scopeType', ChoiceType::class,
                 [
                     'label' => 'Scope',
+                    'placeholder' => 'Please select...',
                     'choices' => array_flip($availableScopes),
                     'on_change' => 'toggleScopeType',
                 ]
@@ -107,10 +107,10 @@ class NotificationListenerType extends AbstractType
         $resolver->setDefaults(
             [
                 'constraints' => [
-                    new NotificationListener(),
+                    new \Kookaburra\SystemAdmin\Validator\NotificationListener(),
                 ],
                 'allow_extra_fields' => true,
-                'data_class' => \App\Entity\NotificationListener::class,
+                'data_class' => NotificationListener::class,
                 'error_bubbling' => false,
             ]
         );

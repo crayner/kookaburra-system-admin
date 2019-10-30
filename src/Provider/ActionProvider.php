@@ -13,12 +13,12 @@
 namespace Kookaburra\SystemAdmin\Provider;
 
 use App\Provider\EntityProviderInterface;
-use Kookaburra\SystemAdmin\Entity\Action;
 use App\Manager\Traits\EntityTrait;
+use Kookaburra\SystemAdmin\Entity\Action;
 
 /**
  * Class ActionProvider
- * @package App\Provider
+ * @package Kookaburra\SystemAdmin\Provider
  */
 class ActionProvider implements EntityProviderInterface
 {
@@ -37,15 +37,6 @@ class ActionProvider implements EntityProviderInterface
      */
     public function findByURLListModuleRole(array $criteria)
     {
-        return $this->getRepository()->createQueryBuilder('a')
-            ->join('a.permissions', 'p')
-            ->join('p.role', 'r')
-            ->where('a.URLList LIKE :name')
-            ->andWhere('a.module = :module')
-            ->andWhere('p.role = :role')
-            ->andWhere('a.name LIKE :sub')
-            ->setParameters($criteria)
-            ->getQuery()
-            ->getArrayResult();
+        return $this->getRepository()->findByURLListModuleRole($criteria);
     }
 }

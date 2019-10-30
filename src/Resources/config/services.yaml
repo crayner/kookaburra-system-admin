@@ -22,4 +22,10 @@ services:
         tags:
             - { name: monolog.logger, channel: importer }
 
+    Kookaburra\SystemAdmin\Notification\NotificationSender:
+        arguments:
+            $logger: '@logger'
+        tags:
+            - { name: monolog.logger, channel: notification }
+
 

@@ -19,7 +19,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Class Module
- * @package App\Entity
+ * @package Kookaburra\SystemAdmin\Entity
  * @ORM\Entity(repositoryClass="Kookaburra\SystemAdmin\Repository\ModuleUpgradeRepository")
  * @ORM\Table(options={"auto_increment": 1}, name="ModuleUpgrade",uniqueConstraints={@ORM\UniqueConstraint(name="module_version", columns={"module","version"})})
  * @UniqueEntity(fields={"module","version"})

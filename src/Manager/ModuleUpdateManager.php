@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Manager;
 
-use App\Entity\NotificationEvent;
+use Kookaburra\SystemAdmin\Entity\NotificationEvent;
 use Kookaburra\SystemAdmin\Entity\Module;
 use App\Manager\MessageManager;
 use App\Provider\ProviderFactory;
@@ -211,7 +211,7 @@ class ModuleUpdateManager
             return false;
 
         $version = $this->getAvailableModuleUpgradeVersion();
-        if ('' === $version)
+        if ('' === $version || false === $version)
             return false;
 
         if ($this->getModule()->getUpgradeLogs()->count() === 0 || $version < $this->getModule()->getUpgradeLogs()->first()->getVersion())
@@ -267,6 +267,7 @@ class ModuleUpdateManager
 
             // Remove the module from the Module / Action / Permission / NotificationEvent table
             if ($ok) {
+                dump($this);
                 ProviderFactory::getRepository(ModuleUpgrade::class)->deleteModuleRecords($this->getModule());
                 ProviderFactory::getRepository(NotificationEvent::class)->deleteModuleRecords($this->getModule());
                 $em->remove($this->getModule());

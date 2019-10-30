@@ -32,7 +32,7 @@ class NotificationListenerValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        if (!$value instanceof \App\Entity\NotificationListener) {
+        if (!$value instanceof \Kookaburra\SystemAdmin\Entity\NotificationListener) {
             $this->context->buildViolation('Your request failed because your inputs were invalid.')
                 ->atPath('person')
                 ->setTranslationDomain('messages')

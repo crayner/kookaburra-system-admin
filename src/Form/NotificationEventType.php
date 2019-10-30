@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Form;
 
-use App\Entity\NotificationEvent;
+use Kookaburra\SystemAdmin\Entity\NotificationEvent;
 use App\Entity\Person;
 use App\Entity\YearGroup;
 use App\Form\Type\DisplayType;

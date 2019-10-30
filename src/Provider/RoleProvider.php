@@ -19,7 +19,7 @@ use App\Manager\Traits\EntityTrait;
 
 /**
  * Class RoleProvider
- * @package App\Provider
+ * @package Kookaburra\SystemAdmin\Provider
  */
 class RoleProvider implements EntityProviderInterface
 {

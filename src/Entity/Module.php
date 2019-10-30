@@ -18,10 +18,11 @@ use App\Util\TranslationsHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * Class Module
- * @package App\Entity
+ * @package Kookaburra\SystemAdmin\Entity
  * @ORM\Entity(repositoryClass="Kookaburra\SystemAdmin\Repository\ModuleRepository")
  * @ORM\Table(options={"auto_increment": 1}, name="Module", uniqueConstraints={@ORM\UniqueConstraint(name="gibbonModuleName", columns={"name"})})
  * */
@@ -120,11 +121,19 @@ class Module implements EntityInterface
     private $upgradeLogs;
 
     /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Kookaburra\SystemAdmin\Entity\NotificationEvent", mappedBy="module", orphanRemoval=true)
+     */
+    private $events;
+
+    /**
      * Module constructor.
      */
     public function __construct()
     {
         $this->upgradeLog = new ArrayCollection();
+        $this->events = new ArrayCollection();
+        $this->actions = new ArrayCollection();
     }
 
     /**
@@ -343,7 +352,13 @@ class Module implements EntityInterface
      */
     public function getActions(): Collection
     {
-        return $this->actions;
+        if (null === $this->actions)
+            $this->actions = new ArrayCollection();
+
+        if ($this->actions instanceof PersistentCollection)
+            $this->actions->initialize();
+
+        return $this->actions ;
     }
 
     /**
@@ -444,5 +459,34 @@ class Module implements EntityInterface
     {
         $this->upgradeLogs = $upgradeLogs;
         return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events = $this->events ?: new ArrayCollection();
+    }
+
+    /**
+     * Events.
+     *
+     * @param Collection $events
+     * @return Module
+     */
+    public function setEvents(Collection $events): Module
+    {
+        $this->events = $events;
+        return $this;
+    }
+
+    /**
+     * __toSting
+     * @return string|null
+     */
+    public function __toSting(): ?string
+    {
+        return $this->getName();
     }
 }

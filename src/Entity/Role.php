@@ -22,7 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Role
- * @package App\Entity
+ * @package Kookaburra\SystemAdmin\Entity
  * @ORM\Entity(repositoryClass="Kookaburra\SystemAdmin\Repository\RoleRepository")
  * @ORM\Table(options={"auto_increment": 1}, name="Role", uniqueConstraints={@ORM\UniqueConstraint(name="name", columns={"name"}), @ORM\UniqueConstraint(name="nameShort", columns={"nameShort"})})
  */

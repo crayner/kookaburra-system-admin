@@ -19,7 +19,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Class PermissionRepository
- * @package App\Repository
+ * @package Kookaburra\SystemAdmin\Repository
  */
 class PermissionRepository extends ServiceEntityRepository
 {

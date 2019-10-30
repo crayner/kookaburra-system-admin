@@ -20,7 +20,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Class ActionRepository
- * @package App\Repository
+ * @package Kookaburra\SystemAdmin\Repository
  */
 class ActionRepository extends ServiceEntityRepository
 {
@@ -103,5 +103,25 @@ class ActionRepository extends ServiceEntityRepository
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    /**
+     * findByURLListModuleRole
+     * @param array $criteria
+     * @return mixed
+     * @throws \Exception
+     */
+    public function findByURLListModuleRole(array $criteria)
+    {
+        return $this->createQueryBuilder('a')
+            ->join('a.permissions', 'p')
+            ->join('p.role', 'r')
+            ->where('a.URLList LIKE :name')
+            ->andWhere('a.module = :module')
+            ->andWhere('p.role = :role')
+            ->andWhere('a.name LIKE :sub')
+            ->setParameters($criteria)
+            ->getQuery()
+            ->getArrayResult();
     }
 }

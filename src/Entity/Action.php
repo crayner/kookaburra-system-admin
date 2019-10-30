@@ -21,7 +21,7 @@ use Doctrine\ORM\PersistentCollection;
 
 /**
  * Class Action
- * @package App\Entity
+ * @package Kookaburra\SystemAdmin\Entity
  * @ORM\Entity(repositoryClass="Kookaburra\SystemAdmin\Repository\ActionRepository")
  * @ORM\Table(options={"auto_increment": 1}, name="Action",uniqueConstraints={@ORM\UniqueConstraint(name="moduleActionName", columns={"name", "gibbonModuleID"})}, indexes={@ORM\Index(name="gibbonModuleID", columns={"gibbonModuleID"})})
  */

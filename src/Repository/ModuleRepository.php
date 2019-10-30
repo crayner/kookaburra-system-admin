@@ -20,7 +20,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Class ModuleRepository
- * @package App\Repository
+ * @package Kookaburra\SystemAdmin\Repository
  */
 class ModuleRepository extends ServiceEntityRepository
 {

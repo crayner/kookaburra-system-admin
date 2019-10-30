@@ -12,15 +12,16 @@
 
 namespace Kookaburra\SystemAdmin\Command;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Kookaburra\SystemAdmin\Entity\Action;
 use Kookaburra\SystemAdmin\Entity\Module;
 use Kookaburra\SystemAdmin\Entity\ModuleUpgrade;
+use Kookaburra\SystemAdmin\Entity\NotificationEvent;
 use Kookaburra\SystemAdmin\Entity\Permission;
 use Kookaburra\SystemAdmin\Entity\Role;
 use Doctrine\DBAL\Driver\PDOException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -46,9 +47,14 @@ class ModuleInstallCommand extends Command
     private $version;
 
     /**
+     * @var Module
+     */
+    private $module;
+
+    /**
      * @var string
      */
-    protected static $defaultName = 'module:install';
+    protected static $defaultName = 'kookaburra:module:install';
 
     /**
      * ModuleInstallCommand constructor.
@@ -93,9 +99,11 @@ EOT
         $exitCode = 0;
         foreach ($bundles as $bundle) {
             $this->version = null;
+            $io->text('Checking bundle <info>'.(isset($this->version['name']) ? $this->version['name'] : $bundle->getBasename()).'</info>.');
             // do the installation stuff
+
             if (!$this->isModuleInstalled($bundle)) {
-                $io->text('Installing module <info>'.(isset($this->version['name']) ? $this->version['name'] : $bundle->getBasename()).'</info>.');
+                $io->text('Installing database for bundle <info>'.(isset($this->version['name']) ? $this->version['name'] : $bundle->getBasename()).'</info>.');
 
                 $io->newLine();
 
@@ -120,10 +128,13 @@ EOT
                 // Do Migration stuff
                 if (is_file($bundle->getRealPath() . '/src/Resources/config/version.yaml')) {
                     $version = Yaml::parse(file_get_contents($bundle->getRealPath() . '/src/Resources/config/version.yaml'));
-                    if (isset($version['module'])) {
+                    if (isset($version['module']))
                         $exitCode += $this->writeModuleDetails($version['module'], $input, $output, $io);
-                    }
+
+                    if (isset($version['events']))
+                        $exitCode += $this->writeEventDetails($version['events'], $input, $output, $io);
                 }
+                $io->success('Installation completed and database created for bundle "' . (isset($this->version['name']) ? $this->version['name'] : $bundle->getBasename()) . '"');
             }
         }
 
@@ -140,6 +151,7 @@ EOT
     private function writeModuleDetails(array $w, InputInterface $input, OutputInterface $output, SymfonyStyle $io) {
 
         $module = new Module();
+        $io->text(sprintf('Creating Module / Action / Permission entries for <info>%s</info> bundle.', $this->version['name']));
 
         $module
             ->setName($w['name'])
@@ -210,11 +222,12 @@ EOT
             $exitCode = 1;
         }
 
-        if ($exitCode === 0) {
-            $io->success('All Done for "' . $w['name']. '"');
-        } else {
+        if ($exitCode > 0) {
             $io->error(sprintf('Some errors occurred while installing the "%s" bundle to the Module Table.', $w['name']));
         }
+
+        $this->setModule($module);
+
         return $exitCode;
     }
 
@@ -237,5 +250,70 @@ EOT
             return false;
 
         return true;
+    }
+
+    /**
+     * writeModuleDetails
+     * @param array $w
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int
+     */
+    private function writeEventDetails(array $w, InputInterface $input, OutputInterface $output, SymfonyStyle $io): int
+    {
+        $module = $this->getModule();
+        if (null === $module || !is_array($w))
+        {
+            $io->error(sprintf('Not able to create events for "%s" bundle.', $this->version['name']));
+            return 1;
+        }
+        $io->text(sprintf('Creating Notification Events for <info>%s</info> bundle.', $this->version['name']));
+        $actions = new ArrayCollection($this->em->getRepository(Action::class)->findBy(['module' => $module]));
+
+        try {
+            $this->em->beginTransaction();
+            foreach ($w as $name => $item) {
+                $event = new NotificationEvent();
+                $action = $actions->filter(function ($action) use ($item, $module) {
+                    return $action->getName() === $item['action'] && $action->getModule() === $module;
+                });
+
+                $event->setEvent($name)
+                    ->setModule($module)
+                    ->setAction($action->first())
+                    ->setType($item['type'])
+                    ->setScopes($item['scopes'])
+                    ->setActive($item['active']);
+                $this->em->persist($event);
+            }
+            $this->em->flush();
+            $this->em->commit();
+        } catch (PDOException $e) {
+            $this->em->rollback();
+            $io->error($e->getMessage());
+            return 1;
+        }
+
+        return 0;
+    }
+
+    /**
+     * @return Module|null
+     */
+    public function getModule(): ?Module
+    {
+        return $this->module;
+    }
+
+    /**
+     * Module.
+     *
+     * @param Module $module
+     * @return ModuleInstallCommand
+     */
+    public function setModule(Module $module): ModuleInstallCommand
+    {
+        $this->module = $module;
+        return $this;
     }
 }

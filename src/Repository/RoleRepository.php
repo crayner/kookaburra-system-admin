@@ -23,7 +23,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Class RoleRepository
- * @package App\Repository
+ * @package Kookaburra\SystemAdmin\Repository
  */
 class RoleRepository extends ServiceEntityRepository
 {
