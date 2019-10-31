@@ -21,7 +21,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\NamedAddress;
+use Symfony\Component\Mime\Address;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
@@ -170,8 +170,8 @@ class NotificationSender
 
                 if ($recipient->isReceiveNotificationEmails()) {
                     $email = (new TemplatedEmail())
-                        ->from(new NamedAddress($event->getOption('fromAddress'), $event->getOption('fromName')))
-                        ->to(new NamedAddress($recipient->getEmail(), $recipient->formatName()))
+                        ->from(new Address($event->getOption('fromAddress'), $event->getOption('fromName')))
+                        ->to(new Address($recipient->getEmail(), $recipient->formatName()))
                         //->cc('cc@example.com')
                         //->bcc('bcc@example.com')
                         //->replyTo('fabien@example.com')
