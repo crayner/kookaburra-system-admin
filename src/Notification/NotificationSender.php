@@ -71,6 +71,8 @@ class NotificationSender
         $this->twig = $twig;
         $this->translator = $translator;
         $this->logger = $logger;
+
+
         $this->mailer = $mailer;
     }
 
@@ -147,6 +149,7 @@ class NotificationSender
 
     /**
      * renderEvents
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
     public function renderEvents()
     {
@@ -169,6 +172,8 @@ class NotificationSender
                 $em->flush();
 
                 if ($recipient->isReceiveNotificationEmails()) {
+                    $title = $this->translate('Notification') . ' - ' . $this->translate($notif->getModule()->getName()) . ': '
+                        . $this->translate($event->getEvent()->getEvent(), [], $event->getTranslationDomain());
                     $email = (new TemplatedEmail())
                         ->from(new Address($event->getOption('fromAddress'), $event->getOption('fromName')))
                         ->to(new Address($recipient->getEmail(), $recipient->formatName()))
@@ -176,13 +181,13 @@ class NotificationSender
                         //->bcc('bcc@example.com')
                         //->replyTo('fabien@example.com')
                         //->priority(Email::PRIORITY_HIGH)
-                        ->subject($this->translate('Notification') . ' - ' . $this->translate($event->getEvent()->getEvent(), [], $event->getTranslationDomain()))
+                        ->subject($title)
                         // path of the Twig template to render
-                        ->htmlTemplate('email/notification.html.twig')
+                        ->htmlTemplate('@KookaburraSystemAdmin/email/notification.html.twig')
 
                         // pass variables (name => value) to the template
                         ->context([
-                            'title'  => $this->translate('Notification') . ' - ' . $this->translate($event->getEvent()->getEvent(), [], $event->getTranslationDomain()),
+                            'title'  => $title,
                             'body'   => $notif->getText(),
                             'button' => [
                                 'route'  => 'notification_action',

@@ -1,0 +1,28 @@
+{#<!--
+Gibbon, Flexible & Open School System
+Copyright (C) 2010, Ross Parker
+
+This is a Gibbon template file, written in HTML and Twig syntax.
+For info about editing, see: https://twig.symfony.com/doc/2.x/
+-->#}
+{%  trans_default_domain 'messages' %}
+
+{% extends "@KookaburraSystemAdmin/email/email.html.twig" %}
+
+{% block title %}
+    <h2 style="margin-top: 0px;">{{ title|trans(titleOptions|default({})) }}</h2>
+{% endblock %}
+
+{% block bodyBottom %}
+    <span style="font-size: 12px; line-height: 18px;">
+        {{ 'Login to %1$s and use the notification icon to check your new notification, or %2$sclick here%3$s.'|trans({"%1$s": systemName, '%2$s': '<a href="' ~ url('notifications_manage') ~ '" style="' ~ linkStyle ~ '">', '%3$s': '</a>' })|raw }}
+    </span>
+{% endblock %}
+
+{% block footer %}
+    {{ 'If you do not wish to receive email notifications from %1$s, please %2$sclick here%3$s to adjust your preferences:'|trans({'%1$s': systemName, '%2$s': '<a href="' ~ url('preferences') ~ '" style="' ~ linkStyle ~ '">', '%3$s': '</a>'})|raw }}
+
+    <br/><br/>
+
+    {{ 'Email sent via %1$s at %2$s.'|trans({'%1$s': systemName, '%2$s': organisationName}) }}
+{% endblock %}
