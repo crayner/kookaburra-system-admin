@@ -59,7 +59,8 @@ class SystemAdminController extends AbstractController
      * systemSettings
      * @param Request $request
      * @Route("/system/{tabName}/settings/", name="system_settings")
-     * @IsGranted("ROLE_ROUTE")
+     * @Route("/")
+     * @Security("is_granted('ROLE_ROUTE', ['system_admin__system_settings'])")
      */
     public function systemSettings(Request $request, ContainerManager $manager, TranslatorInterface $translator, string $tabName = 'System')
     {
