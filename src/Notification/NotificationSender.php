@@ -20,8 +20,11 @@ use Kookaburra\SystemAdmin\Entity\Notification;
 use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\NamedAddress;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
@@ -175,8 +178,8 @@ class NotificationSender
                     $title = $this->translate('Notification') . ' - ' . $this->translate($notif->getModule()->getName()) . ': '
                         . $this->translate($event->getEvent()->getEvent(), [], $event->getTranslationDomain());
                     $email = (new TemplatedEmail())
-                        ->from(new Address($event->getOption('fromAddress'), $event->getOption('fromName')))
-                        ->to(new Address($recipient->getEmail(), $recipient->formatName()))
+                        ->from(new NamedAddress($event->getOption('fromAddress'), $event->getOption('fromName')))
+                        ->to(new NamedAddress($recipient->getEmail(), $recipient->formatName()))
                         //->cc('cc@example.com')
                         //->bcc('bcc@example.com')
                         //->replyTo('fabien@example.com')
