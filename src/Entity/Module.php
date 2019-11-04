@@ -127,13 +127,20 @@ class Module implements EntityInterface
     private $events;
 
     /**
+     * @var Collection
+     * @ORM\OneToMany(targetEntity="Kookaburra\SystemAdmin\Entity\Notification", mappedBy="module", orphanRemoval=true)
+     */
+    private $notifications;
+
+    /**
      * Module constructor.
      */
     public function __construct()
     {
-        $this->upgradeLog = new ArrayCollection();
+        $this->upgradeLogs = new ArrayCollection();
         $this->events = new ArrayCollection();
         $this->actions = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
     /**
@@ -409,12 +416,23 @@ class Module implements EntityInterface
      */
     public function getStatus(): string
     {
+
         if (null === $this->status) {
-            if (false === is_dir($this->getModuleDir() . '/' . str_replace(' ', '-', strtolower($this->getName()))))
-            {
-                $this->status = TranslationsHelper::translate('Not Installed');
-            } else {
+            if ($this->getType() === 'Core') {
                 $this->status = TranslationsHelper::translate('Installed');
+            } else {
+                if (false === is_dir($this->getModuleDir() . '/' . str_replace(' ', '-', strtolower($this->getName()))))
+                {
+                    $this->status = TranslationsHelper::translate('Not Installed');
+                } else {
+                    $installed = $this->getUpgradeLogs()->filter(function($log) {
+                        return $log->getVersion() === 'Installation';
+                    });
+                    if ($this->getUpgradeLogs()->count() === 0 || $installed->count() === 0)
+                        $this->status = TranslationsHelper::translate('Not Installed');
+                    else
+                        $this->status = TranslationsHelper::translate('Installed');
+                }
             }
         }
         return $this->status;
@@ -478,6 +496,46 @@ class Module implements EntityInterface
     public function setEvents(Collection $events): Module
     {
         $this->events = $events;
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    /**
+     * Notifications.
+     *
+     * @param Collection $notifications
+     * @return Module
+     */
+    public function setNotifications(Collection $notifications): Module
+    {
+        $this->notifications = $notifications;
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getUpgrades(): Collection
+    {
+        return $this->upgrades;
+    }
+
+    /**
+     * Upgrades.
+     *
+     * @param Collection $upgrades
+     * @return Module
+     */
+    public function setUpgrades(Collection $upgrades): Module
+    {
+        $this->upgrades = $upgrades;
         return $this;
     }
 

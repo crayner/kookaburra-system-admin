@@ -53,7 +53,7 @@ class Notification implements EntityInterface
 
     /**
      * @var Module|null
-     * @ORM\ManyToOne(targetEntity="Kookaburra\SystemAdmin\Entity\Module")
+     * @ORM\ManyToOne(targetEntity="Kookaburra\SystemAdmin\Entity\Module", inversedBy="notifications")
      * @ORM\JoinColumn(name="gibbonModuleID",referencedColumnName="gibbonModuleID", nullable=true)
      */
     private $module;

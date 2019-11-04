@@ -90,6 +90,7 @@ class ModulePagination extends ReactPaginationManager
             ->setSpanClass('fas fa-trash-alt fa-fw fa-1-5x text-gray-700')
             ->setRoute('system_admin__module_delete')
             ->setDisplayWhen('isNotCore')
+            ->setOnClick('areYouSure')
             ->setRouteParams(['delete' => 'id']);
         $row->addAction($action);
 
