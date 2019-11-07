@@ -6,7 +6,7 @@ details:
     alias: li
 security:
     module: Library
-    action: Manage Catalog
+    action: Manage Catalogue
 uniqueKeys:
     identifier:
         label: Identifier
