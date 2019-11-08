@@ -23,11 +23,11 @@
                 </td>
                 <td class="px-2 border-b-0 sm:border-b border-t-0">
                     <div class="flex-1 relative">
-                       {{ manager.pHPVersion }}
+                       {{ manager.PHPVersion }}
                     </div>
                 </td>
                 <td class="px-2 border-b-0 sm:border-b border-t-0">
-                    {% if manager.versionValid(manager.pHPVersion, manager.configValue('php')) is same as(true) %}
+                    {% if manager.versionValid(manager.PHPVersion, manager.configValue('php')) is same as(true) %}
                         <span class="fas fa-check text-green-700 fa-fw fa-2x"></span>
                     {% else %}
                         <span class="fas fa-times text-red-700 fa-fw fa-2x"></span>
