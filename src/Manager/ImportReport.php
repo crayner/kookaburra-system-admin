@@ -341,6 +341,10 @@ class ImportReport
         if ($this->getModules()->containsKey($name))
             return $this->getModules()->get($name);
         $this->modules->set($name, ProviderFactory::getRepository(Module::class)->findOneByName($name));
+        if ($this->modules->get($name) === null)
+        {
+            throw new \InvalidArgumentException(sprintf('No module found called %s', $name));
+        }
         return $this->modules->get($name);
     }
 

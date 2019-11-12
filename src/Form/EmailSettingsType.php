@@ -119,7 +119,7 @@ class EmailSettingsType extends AbstractType
                         ],
                         'System__mailerSMTPPassword' => [
                             'label' => TranslationsHelper::translate($password->getNameDisplay()),
-                            'help' => TranslationsHelper::translate('When using GMail with two factor authentication, you will need to create an application password on your GMail account. See %{anchor}Google Account Security: App Passwords%{closeAnchor}', ['%{anchor}' => '<a target="_blank" href="https://myaccount.google.com/u/0/security">', '%{closeAnchor}' => '</a>'], 'kookaburra'),
+                            'help' => TranslationsHelper::translate('When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}', ['{anchor}' => '<a target="_blank" href="https://myaccount.google.com/u/0/security">', '{closeAnchor}' => '</a>']),
                             'visible' => true,
                         ],
                         'System__mailerSMTPHost' => [

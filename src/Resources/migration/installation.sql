@@ -60,11 +60,22 @@ CREATE TABLE gibbonModuleUpgrade (
     UNIQUE INDEX module_version (module, version),
     PRIMARY KEY(id)
     ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1;
+CREATE TABLE gibbonPermission (
+    permissionID INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT,
+    gibbonRoleID INT(3) UNSIGNED ZEROFILL,
+    gibbonActionID INT(7) UNSIGNED ZEROFILL,
+    INDEX gibbonRoleID (gibbonRoleID),
+    INDEX gibbonActionID (gibbonActionID),
+    PRIMARY KEY(permissionID)
+    ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1;
 
 ALTER TABLE gibbonModuleUpgrade
     ADD CONSTRAINT FK_3B5BDC02C242628 FOREIGN KEY (module) REFERENCES gibbonModule (gibbonModuleID);
 ALTER TABLE `gibbonAction`
     ADD CONSTRAINT `FK_88E13B92CB86AD4B` FOREIGN KEY (`gibbonModuleID`) REFERENCES `gibbonModule` (`gibbonModuleID`);
+ALTER TABLE gibbonPermission ADD CONSTRAINT FK_BA9FFF14C816A40 FOREIGN KEY (gibbonRoleID) REFERENCES gibbonRole (gibbonRoleID);
+ALTER TABLE gibbonPermission ADD CONSTRAINT FK_BA9FFF1E3AFEA67 FOREIGN KEY (gibbonActionID) REFERENCES gibbonAction (gibbonActionID);
+
 
 SET FOREIGN_KEY_CHECKS = 0;
 
