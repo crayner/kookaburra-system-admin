@@ -307,7 +307,7 @@ class SystemAdminController extends AbstractController
      * @Route("/check/", name="check")
      * @IsGranted("ROLE_ROUTE")
      */
-    public function check(VersionManager $manager, Request $request)
+    public function check(VersionManager $manager)
     {
         return $this->render('@KookaburraSystemAdmin/check.html.twig',
             [
