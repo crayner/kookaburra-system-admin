@@ -14,6 +14,7 @@ namespace Kookaburra\SystemAdmin\Form;
 
 use App\Entity\Person;
 use App\Entity\Setting;
+use App\Form\Transform\EntityToStringTransformer;
 use App\Form\Type\FilePathType;
 use App\Form\Type\HeaderType;
 use App\Form\Type\ReactFileType;
@@ -106,10 +107,12 @@ class OrganisationSettingsType extends AbstractType
                             'entry_type' => EntityType::class,
                             'entry_options' => [
                                 'class' => Person::class,
+                                'data' => ProviderFactory::create(Setting::class)->getSettingByScopeAsInteger('System', 'organisationAdministrator'),
                                 'choice_label' => 'fullName',
                                 'choice_translation_domain' => false,
                                 'query_builder' => function(EntityRepository $er){
                                     return $er->createQueryBuilder('p')
+                                        ->select(['p','s'])
                                         ->join('p.staff', 's')
                                         ->where('p.status = :full')
                                         ->andWhere('s.id IS NOT NULL')
@@ -130,6 +133,7 @@ class OrganisationSettingsType extends AbstractType
                                 'choice_translation_domain' => false,
                                 'query_builder' => function(EntityRepository $er){
                                     return $er->createQueryBuilder('p')
+                                        ->select(['p','s'])
                                         ->join('p.staff', 's')
                                         ->where('p.status = :full')
                                         ->andWhere('s.id IS NOT NULL')
@@ -150,6 +154,7 @@ class OrganisationSettingsType extends AbstractType
                                 'choice_translation_domain' => false,
                                 'query_builder' => function(EntityRepository $er){
                                     return $er->createQueryBuilder('p')
+                                        ->select(['p','s'])
                                         ->join('p.staff', 's')
                                         ->where('p.status = :full')
                                         ->andWhere('s.id IS NOT NULL')
@@ -170,6 +175,7 @@ class OrganisationSettingsType extends AbstractType
                                 'choice_translation_domain' => false,
                                 'query_builder' => function(EntityRepository $er){
                                     return $er->createQueryBuilder('p')
+                                        ->select(['p','s'])
                                         ->join('p.staff', 's')
                                         ->where('p.status = :full')
                                         ->andWhere('s.id IS NOT NULL')
@@ -183,7 +189,8 @@ class OrganisationSettingsType extends AbstractType
                     ],
                 ]
             )
-            ->add('submit', SubmitType::class);
+            ->add('submit', SubmitType::class)
+        ;
     }
 
     /**

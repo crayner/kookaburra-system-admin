@@ -65,6 +65,7 @@ class SystemAdminController extends AbstractController
     public function systemSettings(Request $request, ContainerManager $manager, TranslatorInterface $translator, string $tabName = 'System')
     {
         $settingProvider = ProviderFactory::create(Setting::class);
+        $settingProvider->getSettingsByScope('System');
         $container = new Container();
         // System Settings
         $form = $this->createForm(SystemSettingsType::class, null, ['action' => $this->generateUrl('system_admin__system_settings', ['tabName' => 'System'])]);
@@ -106,7 +107,9 @@ class SystemAdminController extends AbstractController
 
             $manager->singlePanel($form->createView());
             $data['form'] = $manager->getFormFromContainer('formContent', 'single');
-
+            $data['status'] = 'redirect';
+            $data['redirect'] = $this->generateUrl('system_admin__system_settings', ['tabName' => 'Organisation']);
+            $this->addFlash('success', 'return.success.0');
             return new JsonResponse($data, 200);
         }
 
@@ -178,6 +181,9 @@ class SystemAdminController extends AbstractController
 
             $manager->singlePanel($form->createView());
             $data['form'] = $manager->getFormFromContainer('formContent', 'single');
+            $data['status'] = 'redirect';
+            $data['redirect'] = $this->generateUrl('system_admin__system_settings', ['tabName' => 'Miscellaneous']);
+            $this->addFlash('success', 'return.success.0');
 
             return new JsonResponse($data, 200);
         }
