@@ -58,6 +58,10 @@ class SystemAdminController extends AbstractController
     /**
      * systemSettings
      * @param Request $request
+     * @param ContainerManager $manager
+     * @param TranslatorInterface $translator
+     * @param string $tabName
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/system/{tabName}/settings/", name="system_settings")
      * @Route("/")
      * @Security("is_granted('ROLE_ROUTE', ['system_admin__system_settings'])")
@@ -205,6 +209,7 @@ class SystemAdminController extends AbstractController
      * @param string $tabName
      * @Route("/third/{tabName}/party/", name="third_party")
      * @IsGranted("ROLE_ROUTE"))
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function thirdParty(Request $request, ContainerManager $manager, TranslatorInterface $translator, string $tabName = 'Google')
     {
