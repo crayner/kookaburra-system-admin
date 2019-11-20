@@ -12,11 +12,8 @@
 
 namespace Kookaburra\SystemAdmin\Controller;
 
-use Kookaburra\SystemAdmin\Entity\Module;
 use App\Manager\ExcelManager;
-use App\Provider\ProviderFactory;
 use App\Util\GlobalHelper;
-use Kookaburra\SystemAdmin\Manager\ModulePagination;
 use Kookaburra\UserAdmin\Util\UserHelper;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Query\QueryException;
