@@ -9,12 +9,6 @@ services:
         resource: '../../../src/*'
         exclude: '../../../src/{DependencyInjection,Resources,Tests}'
 
-    # controllers are imported separately to make sure services can be injected
-    # as action arguments even if you don't extend any base controller class
-    Kookaburra\SystemAdmin\Controller\:
-        resource: '../../../src/Controller'
-        tags: ['controller.service_arguments']
-
     Kookaburra\SystemAdmin\Manager\Importer:
         arguments:
             $logger: '@logger'
