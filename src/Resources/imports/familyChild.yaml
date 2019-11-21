@@ -2,7 +2,7 @@ details:
     name: familyChild
     title: Family Children
     category: Family
-    table: FamilyChild
+    table: Kookaburra\UserAdmin\Entity\FamilyChild
     modes: { update: true, insert: true, export: true }
     alias: fc
 security:
@@ -14,10 +14,10 @@ uniqueKeys:
         fields: [ family, person ]
 join:
     Family:
-        table: FamilyChild
+        table: Kookaburra\UserAdmin\Entity\FamilyChild
         alias: f
     Person:
-        table: FamilyChild
+        table: Kookaburra\UserAdmin\Entity\FamilyChild
         alias: p
 fields:
     family:
@@ -30,7 +30,7 @@ fields:
         label: "Child"
         desc: "Username"
         args: { filter: string, required: true }
-        relationship: { table: Person, field: username  }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username  }
         select: p.username
     comment:
         label: "Comment"

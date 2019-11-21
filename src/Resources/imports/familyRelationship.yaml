@@ -2,7 +2,7 @@ details:
     name: familyRelationship
     title: Relationships
     category: Family
-    table: FamilyRelationship
+    table: Kookaburra\UserAdmin\Entity\FamilyRelationship
     modes: { update: true, insert: true, export: true }
     alias: fr
 security:
@@ -14,14 +14,14 @@ uniqueKeys:
         label: Adult - Child in Family
 join:
     Family:
-        table: FamilyRelationship
+        table: Kookaburra\UserAdmin\Entity\FamilyRelationship
         alias: f
     Person1:
-        table: FamilyRelationship
+        table: Kookaburra\UserAdmin\Entity\FamilyRelationship
         alias: p1
         targetTable: Person
     Person2:
-        table: FamilyRelationship
+        table: Kookaburra\UserAdmin\Entity\FamilyRelationship
         alias: p2
         targetTable: Person
 fields:
@@ -35,13 +35,13 @@ fields:
         label: "Adult"
         desc: "Username"
         args: { filter: string, required: true }
-        relationship: { table: Person, key: id, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, key: id, field: username }
         select: p1.username
     person2:
         label: "Child"
         desc: "Username"
         args: { filter: string, required: true }
-        relationship: { table: Person, key: id, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, key: id, field: username }
         select: p2.username
     relationship: 
         label: "Relationship"

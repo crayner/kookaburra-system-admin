@@ -2,7 +2,7 @@ details:
     name: usersStaff
     title: User - Data - Staff
     category: User
-    table: Person
+    table: Kookaburra\UserAdmin\Entity\Person
     modes: { update: true, insert: true, export: false }
     alias: p
 security:
@@ -16,12 +16,12 @@ fixedData:
     staff: Staff
 join:
     PrimaryRole:
-        table: Person
+        table: Kookaburra\UserAdmin\Entity\Person
         alias: r
         targetTable: Role
         with: r.category = :staff
     House:
-        table: Person
+        table: Kookaburra\UserAdmin\Entity\Person
         alias: h
         joinType: leftJoin
 fields:

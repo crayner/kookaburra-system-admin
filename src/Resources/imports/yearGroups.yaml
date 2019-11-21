@@ -40,5 +40,5 @@ fields:
         label: "Head of Year"
         desc: "Username"
         args: { filter: string, custom: true }
-        relationship: { table: Person, key: id, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, key: id, field: username }
         select: p.username

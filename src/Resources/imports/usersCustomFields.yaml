@@ -2,7 +2,7 @@ details:
     name: usersCustomFields
     title: Custom Fields
     category: Custom Fields
-    table: PersonField
+    table: Kookaburra\UserAdmin\Entity\PersonField
     modes: { update: true, insert: true, export: true }
     alias: pf
 security:

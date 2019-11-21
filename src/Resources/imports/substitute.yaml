@@ -21,7 +21,7 @@ fields:
         label: "Substitute User"
         desc: "Username"
         args: { filter: string, required: true }
-        relationship: { table: Person, key: PersonID, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, key: PersonID, field: username }
         select: p.username
     active:
         label: "Active"

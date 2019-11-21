@@ -70,5 +70,5 @@ fields:
         label: "Created By"
         desc: "Username"
         args: { filter: string, custom: true }
-        relationship: { table: Person, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username }
         select: p.username

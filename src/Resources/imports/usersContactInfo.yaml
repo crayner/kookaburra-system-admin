@@ -2,7 +2,7 @@ details:
     name: usersContactInfo
     title: Contact Information
     category: User
-    table: Person
+    table: Kookaburra\UserAdmin\Entity\Person
     modes: { update: true, insert: false }
     alias: p
 security:

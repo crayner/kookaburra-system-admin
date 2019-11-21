@@ -24,7 +24,7 @@ fields:
         label: "Student"
         desc: "Username"
         args: { filter: string, required: true }
-        relationship: { table: Person, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username }
         select: p.username
     studentNoteCategory:
         label: "Category"
@@ -46,7 +46,7 @@ fields:
         label: "Created By"
         desc: "Username"
         args: { filter: string, custom: true }
-        relationship: { table: Person, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username }
         select: c.username
     timestamp:
         label: "Timestamp"

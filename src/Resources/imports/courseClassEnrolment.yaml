@@ -47,7 +47,7 @@ fields:
         label: "Participant"
         desc: "Username"
         args: { filter: string, required: true }
-        relationship: { table: Person, field: username  }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username  }
         select: p.username
     role:
         label: "Role"

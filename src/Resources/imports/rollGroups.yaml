@@ -79,37 +79,37 @@ fields:
         label: "Tutor 1"
         desc: "Up to 3 per roll group. The first-listed will be marked as \"Main Tutor\"."
         args: { filter: string }
-        relationship: { table: Person, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username }
         select: t1.username
     tutor2:
         label: "Tutor 2"
         desc: ""
         args: { filter: string }
-        relationship: { table: Person, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username }
         select: t2.username
     tutor3:
         label: "Tutor 3"
         desc: ""
         args: { filter: string }
-        relationship: { table: Person, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username }
         select: t3.username
     assistant:
         label: "Assistant 1"
         desc: "Up to 3 per roll group. The first-listed will be marked as \"Main Assistant\"."
         args: { filter: string }
-        relationship: { table: Person, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username }
         select: a1.username
     assistant2:
         label: "Assistant 2"
         desc: ""
         args: { filter: string }
-        relationship: { table: Person, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username }
         select: a2.username
     assistant3:
         label: "Assistant 3"
         desc: ""
         args: { filter: string }
-        relationship: { table: Person, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username }
         select: a3.username
     space: 
         label: "Location"

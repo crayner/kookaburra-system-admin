@@ -61,7 +61,7 @@ fields:
         label: "Student"
         desc: "Username"
         args: { filter: string, required: true }
-        relationship: { table: Person, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username }
         select: p.username
     attainmentValue:
         label: "Attainment Value"
@@ -94,5 +94,5 @@ fields:
         label: "Created By"
         desc: "Username"
         args: { filter: string, custom: true }
-        relationship: { table: Person, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username }
         select: le.username

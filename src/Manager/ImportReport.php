@@ -244,7 +244,12 @@ class ImportReport
                         $method = $enum['method'];
                         $list = $class::$method();
                     } else {
-                        $class = '\App\Entity\\'.$table->getTargetTable();
+                        $class = $table->getTargetTable();
+                        if (! class_exists($class) && strpos($table->getTargetTable(), 'Kook') !== 0) {
+                            $class = 'App\\Entity\\' . $table->getTargetTable();
+                        }
+                        if (! class_exists($class))
+                            dd($class, $this); // Error
                         $method = 'get' . ucfirst(explode('.',$field['select'])[1]).'List';
                         $list = $class::$method();
                     }

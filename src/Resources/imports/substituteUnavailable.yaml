@@ -22,7 +22,7 @@ fields:
         label: "Substitute User"
         desc: "Username"
         args: { filter: string, required: true }
-        relationship: { table: Person, field: username  }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username  }
         select: pu.username
     date: 
         label: "Date"

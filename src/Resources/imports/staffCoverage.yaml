@@ -44,7 +44,7 @@ fields:
         label: "Teacher"
         desc: "Username"
         args: { filter: string, required: true, readonly: true }
-        relationship: { table: Person, field: username }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username }
         select: p.username
     date: 
         label: "Date"
@@ -80,13 +80,13 @@ fields:
         label: "Substitute"
         desc: "Username"
         args: { filter: string, required: true, readonly: [StaffAbsenceDate] }
-        relationship: { table: Person, field: username  }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username  }
         select: ccb.username
     statusChangedBy:
         label: "Created By"
         desc: "Username"
         args: { filter: string, required: true, linked: id, readonly: [StaffAbsenceDate] }
-        relationship: { table: Person, field: username  }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username  }
         select: scb.username
     statusNotes:
         label: "Notes"

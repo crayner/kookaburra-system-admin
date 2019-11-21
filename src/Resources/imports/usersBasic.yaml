@@ -2,7 +2,7 @@ details:
     name: usersBasic
     title: User - Data - Basic
     category: User
-    table: Person
+    table: Kookaburra\UserAdmin\Entity\Person
     modes: { update: true, insert: true, export: true }
     alias: p
 security:
@@ -14,7 +14,7 @@ uniqueKeys:
         label: Username
 join:
     PrimaryRole:
-        table: Person
+        table: Kookaburra\UserAdmin\Entity\Person
         alias: r
         targetTable: Role
 fields:

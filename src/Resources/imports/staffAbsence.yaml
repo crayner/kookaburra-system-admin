@@ -36,7 +36,7 @@ fields:
         label: "Staff Member"
         desc: "Username"
         args: { filter: string, required: true, readonly: [StaffAbsenceDate]  }
-        relationship: { table: Person, field: username  }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username  }
         select: p.username
     staffAbsenceType:
         label: "Type"
@@ -93,7 +93,7 @@ fields:
         label: "Created By"
         desc: "Username"
         args: { filter: string, custom: true, required: true }
-        relationship: { table: Person, field: username  }
+        relationship: { table: Kookaburra\UserAdmin\Entity\Person, field: username  }
         select: cb.username
     id:
         label: "Absence ID"
