@@ -12,7 +12,7 @@
  */
 namespace Kookaburra\SystemAdmin\Entity;
 
-use App\Entity\Person;
+use Kookaburra\UserAdmin\Entity\Person;
 use App\Manager\EntityInterface;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,7 +27,7 @@ class NotificationListener
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", name="gibbonNotificationListenerID", columnDefinition="INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT")
+     * @ORM\Column(type="integer", name="gibbonNotificationListenerID", columnDefinition="INT(10) UNSIGNED ZEROFILL")
      * @ORM\GeneratedValue
      */
     private $id;
@@ -41,7 +41,7 @@ class NotificationListener
     
     /**
      * @var Person|null
-     * @ORM\ManyToOne(targetEntity="App\Entity\Person")
+     * @ORM\ManyToOne(targetEntity="Kookaburra\UserAdmin\Entity\Person")
      * @ORM\JoinColumn(name="gibbonPersonID", referencedColumnName="gibbonPersonID", nullable=true)
      * @ORM\OrderBy({"surname": "ASC", "firstName": "ASC"})
      */

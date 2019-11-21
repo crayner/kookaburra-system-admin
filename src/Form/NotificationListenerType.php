@@ -14,7 +14,7 @@ namespace Kookaburra\SystemAdmin\Form;
 
 use Kookaburra\SystemAdmin\Entity\Action;
 use Kookaburra\SystemAdmin\Entity\NotificationEvent;
-use App\Entity\Person;
+use Kookaburra\UserAdmin\Entity\Person;
 use App\Form\EventSubscriber\NotificationListenerSubscriber;
 use App\Form\Type\DisplayType;
 use App\Form\Type\HiddenEntityType;

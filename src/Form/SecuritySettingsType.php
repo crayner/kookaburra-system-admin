@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Form;
 
-use App\Entity\Person;
+use Kookaburra\UserAdmin\Entity\Person;
 use App\Entity\Setting;
 use App\Form\Type\FilePathType;
 use App\Form\Type\HeaderType;

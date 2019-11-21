@@ -153,7 +153,7 @@ fields:
     phone1Type:
         label: "Phone 1 (Type)"
         desc: 'Use one of "{list}"'
-        args: {filter: enum, enum: {class: \App\Entity\Person, method: getPhoneTypeList}, custom: true}
+        args: {filter: enum, enum: {class: \Kookaburra\UserAdmin\Entity\Person, method: getPhoneTypeList}, custom: true}
         select: p.phone1Type
     phone1CountryCode:
         label: "Phone 1 (Country Code)"
@@ -169,7 +169,7 @@ fields:
     phone2Type:
         label: "Phone 2 (Type)"
         desc: 'Use one of "{list}"'
-        args: {filter: enum, enum: {class: \App\Entity\Person, method: getPhoneTypeList}, custom: true}
+        args: {filter: enum, enum: {class: \Kookaburra\UserAdmin\Entity\Person, method: getPhoneTypeList}, custom: true}
         select: p.phone2Type
     phone2CountryCode:
         label: "Phone 2 (Country Code)"
@@ -185,7 +185,7 @@ fields:
     phone3Type:
         label: "Phone 3 (Type)"
         desc: 'Use one of "{list}"'
-        args: {filter: enum, enum: {class: \App\Entity\Person, method: getPhoneTypeList}, custom: true}
+        args: {filter: enum, enum: {class: \Kookaburra\UserAdmin\Entity\Person, method: getPhoneTypeList}, custom: true}
         select: p.phone3Type
     phone3CountryCode:
         label: "Phone 3 (Country Code)"
@@ -201,7 +201,7 @@ fields:
     phone4Type:
         label: "Phone 4 (Type)"
         desc: 'Use one of "{list}"'
-        args: {filter: enum, enum: {class: \App\Entity\Person, method: getPhoneTypeList}, custom: true}
+        args: {filter: enum, enum: {class: \Kookaburra\UserAdmin\Entity\Person, method: getPhoneTypeList}, custom: true}
         select: p.phone4Type
     phone4CountryCode:
         label: "Phone 4 (Country Code)"
@@ -223,17 +223,17 @@ fields:
     languageFirst:
         label: "First Language"
         desc: ""
-        args: { filter: enum, enum: { class: \App\Entity\Person, method: getLanguageList } }
+        args: { filter: enum, enum: { class: \Kookaburra\UserAdmin\Entity\Person, method: getLanguageList } }
         select: p.languageFirst
     languageSecond:
         label: "Second Language"
         desc: ""
-        args: {filter: enum, enum: { class: \App\Entity\Person, method: getLanguageList } }
+        args: {filter: enum, enum: { class: \Kookaburra\UserAdmin\Entity\Person, method: getLanguageList } }
         select: p.languageSecond
     languageThird:
         label: "Third Language"
         desc: ""
-        args: {filter: enum, enum: { class: \App\Entity\Person, method: getLanguageList } }
+        args: {filter: enum, enum: { class: \Kookaburra\UserAdmin\Entity\Person, method: getLanguageList } }
         select: p.languageThird
     countryOfBirth:
         label: "Country of Birth"
@@ -314,7 +314,7 @@ fields:
     emergency1Relationship:
         label: "Emergency 1 Relationship"
         desc: "For students and staff only"
-        args: {filter: enum, enum: {class: \App\Entity\Person, method: getEmergencyRelationshipList }}
+        args: {filter: enum, enum: {class: \Kookaburra\UserAdmin\Entity\Person, method: getEmergencyRelationshipList }}
         select: p.emergency1Relationship
 
     emergency2Name:
@@ -335,7 +335,7 @@ fields:
     emergency2Relationship:
         label: "Emergency 1 Relationship"
         desc: "For students and staff only"
-        args: {filter: enum, enum: {class: \App\Entity\Person, method: getEmergencyRelationshipList }}
+        args: {filter: enum, enum: {class: \Kookaburra\UserAdmin\Entity\Person, method: getEmergencyRelationshipList }}
         select: p.emergency2Relationship
 
     house:

@@ -12,7 +12,7 @@
  */
 namespace Kookaburra\SystemAdmin\Entity;
 
-use App\Entity\Person;
+use Kookaburra\UserAdmin\Entity\Person;
 use App\Manager\EntityInterface;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,14 +28,14 @@ class Notification implements EntityInterface
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", name="gibbonNotificationID", columnDefinition="INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT")
+     * @ORM\Column(type="integer", name="gibbonNotificationID", columnDefinition="INT(10) UNSIGNED ZEROFILL")
      * @ORM\GeneratedValue
      */
     private $id;
 
     /**
      * @var Person|null
-     * @ORM\ManyToOne(targetEntity="App\Entity\Person")
+     * @ORM\ManyToOne(targetEntity="Kookaburra\UserAdmin\Entity\Person")
      * @ORM\JoinColumn(name="gibbonPersonID",referencedColumnName="gibbonPersonID", nullable=false)
      */
     private $person;

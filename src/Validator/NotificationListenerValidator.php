@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Validator;
 
-use App\Entity\Person;
+use Kookaburra\UserAdmin\Entity\Person;
 use App\Entity\YearGroup;
 use App\Provider\ProviderFactory;
 use Kookaburra\UserAdmin\Util\UserHelper;

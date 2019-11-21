@@ -12,7 +12,7 @@
  */
 namespace Kookaburra\SystemAdmin\Repository;
 
-use App\Entity\Person;
+use Kookaburra\UserAdmin\Entity\Person;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Kookaburra\SystemAdmin\Entity\Notification;

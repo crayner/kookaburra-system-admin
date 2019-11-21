@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Provider;
 
-use App\Entity\Person;
+use Kookaburra\UserAdmin\Entity\Person;
 use App\Manager\Traits\EntityTrait;
 use App\Mailer\NotificationMailer;
 use App\Provider\EntityProviderInterface;

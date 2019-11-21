@@ -15,7 +15,7 @@
  */
 namespace Kookaburra\SystemAdmin\Repository;
 
-use App\Entity\Person;
+use Kookaburra\UserAdmin\Entity\Person;
 use Kookaburra\SystemAdmin\Entity\Role;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Connection;

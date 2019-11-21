@@ -12,7 +12,7 @@
 
 namespace Kookaburra\SystemAdmin\Notification;
 
-use App\Entity\Person;
+use Kookaburra\UserAdmin\Entity\Person;
 use App\Provider\ProviderFactory;
 use Doctrine\Common\Collections\ArrayCollection;
 use Kookaburra\SystemAdmin\Entity\Module;

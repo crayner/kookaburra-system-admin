@@ -27,12 +27,12 @@ fields:
     languageHomePrimary: 
         label: "Home Language - Primary"
         desc: ""
-        args: { filter: enum, enum: { class: \App\Entity\Person, method: getLanguageList } }
+        args: { filter: enum, enum: { class: \Kookaburra\UserAdmin\Entity\Person, method: getLanguageList } }
         select: f.languageHomePrimary
     languageHomeSecondary: 
         label: "Home Language - Secondary"
         desc: ""
-        args: { filter: enum, enum: { class: \App\Entity\Person, method: getLanguageList } }
+        args: { filter: enum, enum: { class: \Kookaburra\UserAdmin\Entity\Person, method: getLanguageList } }
         select: f.languageHomeSecondary
     nameAddress:
         label: "Address Name"
