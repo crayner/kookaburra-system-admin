@@ -12,6 +12,8 @@
 
 namespace Kookaburra\SystemAdmin\Command;
 
+use App\Migrations\SqlLoadTrait;
+use App\Util\GlobalHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Kookaburra\SystemAdmin\Entity\Action;
 use Kookaburra\SystemAdmin\Entity\Module;
@@ -25,6 +27,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\HttpFoundation\File\File;
@@ -36,6 +39,8 @@ use Symfony\Component\Yaml\Yaml;
  */
 class ModuleInstallCommand extends Command
 {
+    use SqlLoadTrait;
+
     /**
      * @var EntityManagerInterface
      */
@@ -52,6 +57,11 @@ class ModuleInstallCommand extends Command
     private $module;
 
     /**
+     * @var array
+     */
+    private $sqlContent = [];
+
+    /**
      * @var string
      */
     protected static $defaultName = 'kookaburra:module:install';
@@ -60,10 +70,9 @@ class ModuleInstallCommand extends Command
      * ModuleInstallCommand constructor.
      * @param EntityManagerInterface $em
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, GlobalHelper $helper)
     {
         parent::__construct();
-
         $this->em = $em;
     }
 
@@ -108,10 +117,10 @@ EOT
                 $io->newLine();
 
                 if (is_file($bundle->getRealpath() . '/src/Resources/migration/installation.sql')) {
-                    $content = file($bundle->getRealpath() . '/src/Resources/migration/installation.sql');
+                    $this->getSql($bundle->getRealpath() . '/src/Resources/migration/installation.sql');
                     try {
                         $this->em->beginTransaction();
-                        foreach ($content as $sql) {
+                        foreach ($this->getSqlContent() as $sql) {
                             if ('' !== trim($sql))
                                 $this->em->getConnection()->exec($sql);
                         }
@@ -314,6 +323,33 @@ EOT
     public function setModule(Module $module): ModuleInstallCommand
     {
         $this->module = $module;
+        return $this;
+    }
+
+    private function addSql(string $line): ModuleInstallCommand
+    {
+        $this->getSqlContent();
+        $this->sqlContent[] = $line;
+        return $this;
+    }
+
+    /**
+     * getSqlContent
+     * @return array
+     */
+    public function getSqlContent(): array
+    {
+        return $this->sqlContent = $this->sqlContent ?: [];
+    }
+
+    /**
+     * setSqlContent
+     * @param array $sqlContent
+     * @return ModuleInstallCommand
+     */
+    public function setSqlContent(array $sqlContent): ModuleInstallCommand
+    {
+        $this->sqlContent = $sqlContent;
         return $this;
     }
 }
