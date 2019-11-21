@@ -19,7 +19,7 @@ use App\Entity\Person;
 use Kookaburra\SystemAdmin\Entity\Role;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Connection;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * Class RoleRepository
@@ -29,9 +29,9 @@ class RoleRepository extends ServiceEntityRepository
 {
     /**
      * RoleRepository constructor.
-     * @param RegistryInterface $registry
+     * @param ManagerRegistry $registry
      */
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Role::class);
     }

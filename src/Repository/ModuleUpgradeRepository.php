@@ -15,7 +15,7 @@ namespace Kookaburra\SystemAdmin\Repository;
 use Kookaburra\SystemAdmin\Entity\Module;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Kookaburra\SystemAdmin\Entity\ModuleUpgrade;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * Class ModuleUpgradeRepository
@@ -25,9 +25,9 @@ class ModuleUpgradeRepository extends ServiceEntityRepository
 {
     /**
      * ModuleUpgradeRepository constructor.
-     * @param RegistryInterface $registry
+     * @param ManagerRegistry $registry
      */
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ModuleUpgrade::class);
     }
