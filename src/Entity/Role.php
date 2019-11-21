@@ -2,7 +2,7 @@
 /**
  * Created by PhpStorm.
  *
- * Gibbon-Responsive
+ * Kookaburra
  *
  * (c) 2018 Craig Rayner <craig@craigrayner.com>
  *
@@ -33,7 +33,7 @@ class Role implements EntityInterface
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", name="gibbonRoleID", columnDefinition="INT(3) UNSIGNED ZEROFILL AUTO_INCREMENT")
+     * @ORM\Column(type="integer", name="gibbonRoleID", columnDefinition="INT(3) UNSIGNED ZEROFILL")
      * @ORM\GeneratedValue
      */
     private $id;
