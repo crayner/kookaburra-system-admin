@@ -69,7 +69,7 @@ fields:
     phone1CountryCode:
         label: "Phone 1 (Country Code)"
         desc: "IDD code, without 00 or +"
-        args: {filter: enum, enum: {class: \App\Entity\Country, method: getCountryCodeList} }
+        args: {filter: enum, enum: {class: \Kookaburra\UserAdmin\Entity\Country, method: getCountryCodeList} }
         select: p.phone1CountryCode
     phone1:
         label: "Phone 1"
@@ -85,7 +85,7 @@ fields:
     phone2CountryCode:
         label: "Phone 2 (Country Code)"
         desc: "IDD code, without 00 or +"
-        args: {filter: enum, enum: {class: \App\Entity\Country, method: getCountryCodeList} }
+        args: {filter: enum, enum: {class: \Kookaburra\UserAdmin\Entity\Country, method: getCountryCodeList} }
         select: p.phone2CountryCode
     phone2:
         label: "Phone 2"
@@ -101,7 +101,7 @@ fields:
     phone3CountryCode:
         label: "Phone 3 (Country Code)"
         desc: "IDD code, without 00 or +"
-        args: {filter: enum, enum: {class: \App\Entity\Country, method: getCountryCodeList} }
+        args: {filter: enum, enum: {class: \Kookaburra\UserAdmin\Entity\Country, method: getCountryCodeList} }
         select: p.phone3CountryCode
     phone3:
         label: "Phone 3"
@@ -117,7 +117,7 @@ fields:
     phone4CountryCode:
         label: "Phone 4 (Country Code)"
         desc: "IDD code, without 00 or +"
-        args: {filter: enum, enum: {class: \App\Entity\Country, method: getCountryCodeList} }
+        args: {filter: enum, enum: {class: \Kookaburra\UserAdmin\Entity\Country, method: getCountryCodeList} }
         select: p.phone4CountryCode
     phone4:
         label: "Phone 4"
