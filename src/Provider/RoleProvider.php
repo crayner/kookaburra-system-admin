@@ -71,4 +71,17 @@ class RoleProvider implements EntityProviderInterface
         }
         return null;
     }
+
+    /**
+     * hasRole
+     * @param string $role
+     * @param array $roleList
+     * @return bool
+     */
+    public function hasRole(string $role, array $roleList): bool
+    {
+        $role = $this->getRepository()->findOneByName($role);
+
+        return in_array(intval($role->getId()), $roleList);
+    }
 }
