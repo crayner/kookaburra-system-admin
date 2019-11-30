@@ -20,4 +20,3 @@ services:
         arguments:
             $logger: '@monolog.logger.notification'
 
-
