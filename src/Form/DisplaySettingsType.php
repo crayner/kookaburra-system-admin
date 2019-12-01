@@ -32,6 +32,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class DisplaySettingsType extends AbstractType
 {
+    /**
+     * buildForm
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
