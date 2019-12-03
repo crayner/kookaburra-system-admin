@@ -102,4 +102,18 @@ class RoleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult();
     }
+
+    /**
+     * findByCategory
+     * @return array
+     */
+    public function findAllCategories(): array
+    {
+        return $this->createQueryBuilder('r', 'r.category')
+            ->distinct(true)
+            ->select('r.category')
+            ->orderBy('r.category')
+            ->getQuery()
+            ->getResult();
+    }
 }

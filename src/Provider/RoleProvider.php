@@ -84,4 +84,16 @@ class RoleProvider implements EntityProviderInterface
 
         return in_array(intval($role->getId()), $roleList);
     }
+
+    /**
+     * findByCategory
+     * @return array
+     */
+    public function findAllCategories(): array
+    {
+        $result = [];
+        foreach($this->getRepository()->findAllCategories() as $name=>$item)
+            $result[$name] = $name;
+        return $result;
+    }
 }
