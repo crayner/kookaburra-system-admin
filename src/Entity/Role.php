@@ -363,7 +363,7 @@ class Role implements EntityInterface
 
     /**
      * @var Collection|Permission[]|null
-     * @ORM\OneToMany(targetEntity="Kookaburra\SystemAdmin\Entity\Permission", mappedBy="role")
+     * @ORM\OneToMany(targetEntity="Kookaburra\SystemAdmin\Entity\Permission", mappedBy="role", orphanRemoval=true)
      */
     private $permissions;
 
