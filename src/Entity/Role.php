@@ -18,7 +18,9 @@ namespace Kookaburra\SystemAdmin\Entity;
 use App\Manager\EntityInterface;
 use App\Manager\Traits\BooleanList;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Role
@@ -83,8 +85,10 @@ class Role implements EntityInterface
     /**
      * @var string
      * @ORM\Column(length=8, options={"default": "Staff"})
+     * @Assert\NotBlank()
+     * @Assert\Choice(callback="getCategoryList")
      */
-    private $category = 'Staff';
+    private $category;
 
     /**
      * @var array
@@ -96,7 +100,7 @@ class Role implements EntityInterface
      */
     public function getCategory(): string
     {
-        return $this->category;
+        return $this->category ?: '';
     }
 
     /**
@@ -113,6 +117,8 @@ class Role implements EntityInterface
     /**
      * @var string
      * @ORM\Column(length=20, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=20)
      */
     private $name;
 
@@ -121,7 +127,7 @@ class Role implements EntityInterface
      */
     public function getName(): string
     {
-        return $this->name;
+        return $this->name ?: '';
     }
 
     /**
@@ -138,6 +144,8 @@ class Role implements EntityInterface
     /**
      * @var string
      * @ORM\Column(length=4, name="nameShort", unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4)
      */
     private $nameShort;
 
@@ -146,7 +154,7 @@ class Role implements EntityInterface
      */
     public function getNameShort(): string
     {
-        return $this->nameShort;
+        return $this->nameShort ?: '';
     }
 
     /**
@@ -163,6 +171,8 @@ class Role implements EntityInterface
     /**
      * @var string
      * @ORM\Column(length=60, name="description")
+     * @Assert\NotBlank()
+     * @Assert\Length(max=60)
      */
     private $description;
 
@@ -171,7 +181,7 @@ class Role implements EntityInterface
      */
     public function getDescription(): string
     {
-        return $this->description;
+        return $this->description ?: '';
     }
 
     /**
@@ -181,15 +191,16 @@ class Role implements EntityInterface
      */
     public function setDescription(string $description): Role
     {
-        $this->description = mb_substr($description, 0, 4);
+        $this->description = mb_substr($description, 0, 60);
         return $this;
     }
 
     /**
      * @var string
      * @ORM\Column(length=4, name="type", options={"default": "Core"})
+     * @Assert\Choice(callback="getTypelist")
      */
-    private $type = 'Core';
+    private $type = 'Additional';
 
     /**
      * @var array
@@ -211,7 +222,7 @@ class Role implements EntityInterface
      */
     public function setType(string $type): Role
     {
-        $this->type = in_array($type, self::getTypeList()) ? $type : 'Core';
+        $this->type = in_array($type, self::getTypeList()) ? $type : 'Additional';
         return $this;
     }
 
@@ -226,7 +237,7 @@ class Role implements EntityInterface
      */
     public function isCanLoginRole(): bool
     {
-        return $this->canLoginRole === 'Y' ? true : false;
+        return $this->canLoginRole === 'Y';
     }
 
     /**
@@ -259,7 +270,7 @@ class Role implements EntityInterface
      */
     public function isFutureYearsLogin(): bool
     {
-        return $this->futureYearsLogin === 'Y' ? true : false;
+        return $this->futureYearsLogin === 'Y';
     }
 
     /**
@@ -292,7 +303,7 @@ class Role implements EntityInterface
      */
     public function isPastYearsLogin(): bool
     {
-        return $this->pastYearsLogin === 'Y' ? true : false;
+        return $this->pastYearsLogin === 'Y';
     }
 
     /**
@@ -317,6 +328,7 @@ class Role implements EntityInterface
     /**
      * @var string
      * @ORM\Column(length=10, name="restriction", options={"default": "None"})
+     * @Assert\Choice(callback="getRestrictionList")
      */
     private $restriction = 'None';
 
@@ -373,5 +385,38 @@ class Role implements EntityInterface
     {
         $this->permissions = $permissions;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'category' => $this->getCategory(),
+            'name' => $this->getName(),
+            'name_short' => $this->getNameShort(),
+            'description' => $this->getDescription(),
+            'type' => $this->getType(),
+            'login_years' => $this->getLoginYearsDescription(),
+            'isAdditional' => $this->getType() !== 'Core',
+        ];
+    }
+
+    /**
+     * getLoginYearsDescription
+     * @return string
+     */
+    public function getLoginYearsDescription(): string
+    {
+        if (!$this->isCanLoginRole()) {
+            return 'None';
+        } elseif ($this->isFutureYearsLogin() && $this->isPastYearsLogin()) {
+            return 'All years';
+        } elseif (!$this->isFutureYearsLogin() && !$this->isPastYearsLogin()) {
+            return 'Current year only';
+        } elseif (!$this->isFutureYearsLogin()) {
+            return 'Current/past years only';
+        } elseif (!$this->isPastYearsLogin()) {
+            return 'Current/future years only';
+        }
+
     }
 }
