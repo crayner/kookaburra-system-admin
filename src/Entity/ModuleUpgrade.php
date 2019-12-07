@@ -146,4 +146,15 @@ class ModuleUpgrade implements EntityInterface
             $this->setExecutedAt(new \DateTimeImmutable());
         return $this;
     }
+
+    /**
+     * toArray
+     * @param string|null $name
+     * @return array
+     */
+    public function toArray(?string $name = null): array
+    {
+        return [];
+    }
+
 }

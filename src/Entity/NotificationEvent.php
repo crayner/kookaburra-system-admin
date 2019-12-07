@@ -312,4 +312,15 @@ class NotificationEvent implements EntityInterface
         if ($this->getActionName() === null || $this->getActionName() === '')
             $this->setActionName($this->getAction()->getName());
     }
+
+    /**
+     * toArray
+     * @param string|null $name
+     * @return array
+     */
+    public function toArray(?string $name = null): array
+    {
+        return [];
+    }
+
 }

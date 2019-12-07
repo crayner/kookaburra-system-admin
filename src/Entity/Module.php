@@ -335,7 +335,7 @@ class Module implements EntityInterface
      * toArray
      * @return array
      */
-    public function toArray()
+    public function toArray(?string $name = NULL): array
     {
         return [
             'gibbonModuleID' => $this->id,

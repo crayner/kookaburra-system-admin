@@ -387,7 +387,12 @@ class Role implements EntityInterface
         return $this;
     }
 
-    public function toArray(): array
+    /**
+     * toArray
+     * @param string|null $name
+     * @return array
+     */
+    public function toArray(?string $name = NULL): array
     {
         return [
             'category' => $this->getCategory(),
