@@ -67,7 +67,6 @@ class NotificationController extends AbstractController
         if ($request->getContentType() === 'json') {
             $content = json_decode($request->getContent(), true);
             $form->submit($content);
-dump($content);
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 try {

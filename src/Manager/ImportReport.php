@@ -411,7 +411,6 @@ class ImportReport
 
         }
 
-        dump($name, $this, $this->getJoin());
         throw new \Exception('That will never work.  No alias found for ' . $name);
     }
 

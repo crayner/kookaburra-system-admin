@@ -61,7 +61,6 @@ class GoogleSettingManager
             $config['parameters']['google_client_id'] = $secret['web']['client_id'];
             $config['parameters']['google_client_secret'] = $secret['web']['client_secret'];
 
-            dump($secret['web'], $content);
             $providers = ProviderFactory::create(Setting::class);
             $providers->setSettingByScope('System', 'googleClientName', $secret['web']['project_id']);
             $providers->setSettingByScope('System', 'googleRedirectUri', $config['parameters']['absoluteURL'].'/security/oauth2callback/');

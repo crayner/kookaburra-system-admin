@@ -267,7 +267,6 @@ class ModuleUpdateManager
 
             // Remove the module from the Module / Action / Permission / NotificationEvent table
             if ($ok) {
-                dump($this);
                 ProviderFactory::getRepository(ModuleUpgrade::class)->deleteModuleRecords($this->getModule());
                 ProviderFactory::getRepository(NotificationEvent::class)->deleteModuleRecords($this->getModule());
                 $em->remove($this->getModule());

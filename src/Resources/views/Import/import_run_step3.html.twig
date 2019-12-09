@@ -24,7 +24,6 @@
                 {% set errorsOnly = ['error'] %}
             {% endif %}
             {% for violation in manager.importer.violations %}
-                {% dump(violation) %}
                 {% if violation.parameters.level in errorsOnly %}
                     <tr class="{{ violation.parameters.level }}">
                         <td class="p-2 sm:p-3">
