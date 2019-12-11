@@ -82,6 +82,18 @@ class GibbonVoter implements VoterInterface
                     $this->logger->info(sprintf('The user "%s" attempted to access the route "%s" and was denied.', $token->getUser()->formatName(), $subject[0]), $subject);
                 return VoterInterface::ACCESS_DENIED;
             }
+        } elseif (in_array('ROLE_ANY_ROUTE', $attributes))
+        {
+            foreach($subject as $route) {
+                $subject = $this->resolveSubject($subject);
+                if (SecurityHelper::isRouteAccessible($route))
+                    return VoterInterface::ACCESS_GRANTED;
+            }
+            if (empty($token->getUser()) || ! $token->getUser() instanceof UserInterface)
+                $this->logger->info(sprintf('The user was not correctly authenticated to authorise for route "%s".', $subject[0]), $subject);
+            else
+                $this->logger->info(sprintf('The user "%s" attempted to access the route "%s" and was denied.', $token->getUser()->formatName(), $subject[0]), $subject);
+            return VoterInterface::ACCESS_DENIED;
         } elseif (in_array('ROLE_HIGHEST', $attributes)) {
             $subject = $this->resolveHighestSubject($subject);
             $highest = SecurityHelper::getHighestGroupedAction($subject[0]);
