@@ -29,6 +29,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class SystemSettingsType extends AbstractType
 {
+    /**
+     * buildForm
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -84,9 +89,9 @@ class SystemSettingsType extends AbstractType
                             'entry_type' => ChoiceType::class,
                             'entry_options' => [
                                 'choices' => [
-                                    'Production' => "Production",
-                                    'Testing' =>  "Testing",
-                                    'Development' =>  "Development",
+                                    'Production' => 'Production',
+                                    'Testing' => 'Testing',
+                                    'Development' => 'Development',
                                 ],
                                 'placeholder' => false,
                             ],

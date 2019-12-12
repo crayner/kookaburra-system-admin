@@ -51,7 +51,7 @@ class LocalisationSettingsType extends AbstractType
                             'name' => 'country',
                             'entry_type' => CountryType::class,
                             'entry_options' => [
-                                'placeholder' => '',
+                                'placeholder' => ' ',
                             ],
                         ],
                         [
@@ -71,7 +71,7 @@ class LocalisationSettingsType extends AbstractType
                             'name' => 'timezone',
                             'entry_type' => TimezoneType::class,
                             'entry_options' => [
-                                'placeholder' => '',
+                                'placeholder' => ' ',
                             ],
                         ],
                         [
@@ -79,7 +79,7 @@ class LocalisationSettingsType extends AbstractType
                             'name' => 'currency',
                             'entry_type' => CurrencyType::class,
                             'entry_options' => [
-                                'placeholder' => '',
+                                'placeholder' => ' ',
                             ],
                         ],
                     ],
