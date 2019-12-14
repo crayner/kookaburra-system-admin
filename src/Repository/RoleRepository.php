@@ -116,4 +116,21 @@ class RoleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * findByCategory
+     * @return array
+     */
+    public function selectRoleList(): array
+    {
+        $roles = [];
+        foreach($this->createQueryBuilder('r')
+            ->select(['r.id','r.name'])
+            ->orderBy('r.name')
+            ->getQuery()
+            ->getResult() as $role){
+            $roles[$role['name']]  = $role['id'];
+        }
+        return $roles;
+    }
 }
