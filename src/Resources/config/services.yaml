@@ -7,7 +7,7 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     Kookaburra\SystemAdmin\:
         resource: '../../../src/*'
-        exclude: '../../../src/{DependencyInjection,Resources,Tests}'
+        exclude: '../../../src/{DependencyInjection,Resources,Tests,Form/EventListener}'
 
     Kookaburra\SystemAdmin\Manager\Importer:
         arguments:
