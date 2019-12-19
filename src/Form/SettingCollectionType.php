@@ -78,7 +78,7 @@ class SettingCollectionType extends ReactCollectionType
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         foreach($options['collection_keys'] as $key) {
-            $name = StringHelper::toCamelCase($key);
+            $name = StringHelper::toSnakeCase($key);
             $vars['children'][$name] = $this->buildTemplateView($key,$view->children[$name]);
         }
     }

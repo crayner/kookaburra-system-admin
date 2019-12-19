@@ -68,7 +68,7 @@ class SettingCollectionListener implements EventSubscriberInterface
         $new = new ArrayCollection();
         foreach($this->options['collection_keys'] as $key)
         {
-            $name = StringHelper::toCamelCase($key);
+            $name = StringHelper::toSnakeCase($key);
             if ($value->containsKey($name))
                 $new->set($name, $value->get($name));
             else
