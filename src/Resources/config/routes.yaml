@@ -1,4 +1,4 @@
 controllers:
-    resource: ../../../../../../vendor/kookaburra/system-admin/src/Controller/
+    resource: '@KookaburraSystemAdminBundle/Controller/'
     type: annotation
     schemes: [ 'https' ]
