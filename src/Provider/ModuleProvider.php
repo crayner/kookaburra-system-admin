@@ -38,7 +38,7 @@ class ModuleProvider implements EntityProviderInterface
         $settingProvider = ProviderFactory::create(Setting::class);
         $mainMenuCategoryOrder = $settingProvider->getSettingByScope('System', 'mainMenuCategoryOrder');
 
-        $roleID = $roleID instanceof Role ? $roleID->getId() : $roleID;
+        $roleID = $roleID instanceof Role ? $roleID->getId() : intval($roleID);
 
         $result = $this->getRepository()->findModulesByRole($roleID);
         $sorted = [];

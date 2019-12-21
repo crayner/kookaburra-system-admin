@@ -6,7 +6,7 @@ details:
     alias: sy
 security:
     module: School Admin
-    action: Manage School Years
+    action: Manage Academic Years
 uniqueKeys:
     name:
         fields: [ name ]
