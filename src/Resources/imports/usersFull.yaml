@@ -7,7 +7,7 @@ details:
     alias: p
 security:
     module: User Admin
-    action: Manage Users_edit
+    action: Manage People_edit
 uniqueKeys:
     username:
         fields: [ username ]
@@ -140,7 +140,7 @@ fields:
         desc: ""
         args: {filter: date}
         select: p.dateEnd
-    schoolYearClassOf:
+    academicYearClassOf:
         label: "Class Of"
         desc: "When is the student expected to graduate?"
         args: {filter: string }

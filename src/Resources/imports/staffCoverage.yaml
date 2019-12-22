@@ -34,10 +34,10 @@ fixedData:
     'status': "Accepted"
     'requestType': "Individual"
 fields:
-    schoolYear:
+    academicYear:
         label: "School Year"
         desc: "School year name, as set in School Admin. Must already exist."
-        args: { filter: schoolyear, required: true, custom: true, readonly: [StaffAbsenceDate] }
+        args: { filter: academicyear, required: true, custom: true, readonly: [StaffAbsenceDate] }
         relationship: { table: SchoolYear, field: name }
         select: sy.name
     person:
@@ -107,13 +107,13 @@ fields:
         label: "Absence ID"
         desc: ""
         args: { filter: string, linked: date }
-        relationship: { table: StaffAbsenceDate, field: [ date, allDay, person, schoolYear ] }
+        relationship: { table: StaffAbsenceDate, field: [ date, allDay, person, academicYear ] }
         select: sa.id
     staffCoverage:
         label: "Coverage ID"
         desc: ""
         args: { filter: string, linked: notesCoverage, readonly: [StaffCoverage] }
-        relationship: { table: StaffCoverage, field: [ notesCoverage, statusChangedBy, schoolYear ] }
+        relationship: { table: StaffCoverage, field: [ notesCoverage, statusChangedBy, academicYear ] }
         select: sc.id
     coverageNotes:
         label: "Coverage Notes"

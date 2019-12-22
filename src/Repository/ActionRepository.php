@@ -84,10 +84,10 @@ class ActionRepository extends ServiceEntityRepository
      * findOneByNameModule
      * @param string $name
      * @param Module $module
-     * @return Action
+     * @return Action|null
      * @throws NonUniqueResultException
      */
-    public function findOneByNameModule(string $name, Module $module): Action
+    public function findOneByNameModule(string $name, Module $module): ?Action
     {
         $this->actions = $this->actions ?: $this->findAll();
 

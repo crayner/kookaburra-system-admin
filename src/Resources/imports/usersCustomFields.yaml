@@ -7,7 +7,7 @@ details:
     alias: pf
 security:
     module: User Admin
-    action: Manage Users_edit
+    action: Manage People_edit
 uniqueKeys:
     name:
         fields: [ name ]

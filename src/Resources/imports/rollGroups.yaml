@@ -9,10 +9,10 @@ security:
     action: Manage Roll Groups
 uniqueKeys:
     nameSchoolYear:
-        fields: [ name, schoolYear ]
+        fields: [ name, academicYear ]
         label: Name - School Year
     nameShortSchoolYear:
-        fields: [ nameShort, schoolYear ]
+        fields: [ nameShort, academicYear ]
         label: Short Name - School Year
 join:
     SchoolYear:
@@ -59,10 +59,10 @@ join:
         joinType: leftJoin
         targetTable: RollGroup
 fields:
-    schoolYear: 
+    academicYear:
         label: "School Year"
         desc: "School year name, as set in School Admin. Must already exist."
-        args: { filter: schoolyear,  required: true }
+        args: { filter: academicyear,  required: true }
         relationship: { table: SchoolYear, field: name  }
         select: sy.name
     name:

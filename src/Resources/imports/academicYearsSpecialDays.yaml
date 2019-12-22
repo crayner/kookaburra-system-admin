@@ -1,7 +1,7 @@
 details:
-    name: schoolYearsSpecialDays
+    name: academicYearsSpecialDays
     title: Special Days
-    table: SchoolYearSpecialDay
+    table: Kookaburra\SchoolAdmin\Entity\AcademicYearSpecialDay
     modes: { update: true, insert: true, export: true }
     alias: sysd
 security:
@@ -12,24 +12,24 @@ uniqueKeys:
         fields: [ date ]
         label: Date
 join:
-    SchoolYearTerm:
-        table: SchoolYearSpecialDay
+    AcademicYearTerm:
+        table: AcademicYearSpecialDay
         alias: syt
-    SchoolYear:
-        table: SchoolYearTerm
+    AcademicYear:
+        table: AcademicYearTerm
         alias: sy
 fields:
-    schoolYear:
-        label: "School Year"
-        desc: "School year name, as set in School Admin. Must already exist."
-        args: { filter: schoolyear, required: true, readonly: true }
-        relationship: { table: SchoolYear, field: name }
+    academicYear:
+        label: "Academic Year"
+        desc: "Academic Year name, as set in School Admin. Must already exist."
+        args: { filter: academicyear, required: true, readonly: true }
+        relationship: { table: AcademicYear, field: name }
         select: sy.name
-    schoolYearTerm:
+    academicYearTerm:
         label: "Term"
         desc: "Short Name"
         args: { filter: string, required: true }
-        relationship: { table: SchoolYearTerm, field: [ nameShort, schoolYear ]  }
+        relationship: { table: AcademicYearTerm, field: [ nameShort, academicYear ]  }
         select: syt.nameShort
     date:
         label: "Date"

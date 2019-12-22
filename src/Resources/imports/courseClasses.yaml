@@ -22,17 +22,17 @@ join:
         table: Course
         alias: sy
 fields:
-    schoolYear:
+    academicYear:
         label: "School Year"
         desc: "School year name, as set in School Admin. Must already exist."
-        args: { filter: schoolyear, required: true, readonly: true, custom: true }
+        args: { filter: academicyear, required: true, readonly: true, custom: true }
         relationship: { table: SchoolYear, key: id, field: name  }
         select: sy.name
     course:
         label: "Course"
         desc: "Short Name"
         args: { filter: string, required: true }
-        relationship: { table: Course, key: id, field: [ nameShort, schoolYear ]  }
+        relationship: { table: Course, key: id, field: [ nameShort, academicYear ]  }
         select: c.nameShort
     name:
         label: "Name"

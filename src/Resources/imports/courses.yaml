@@ -10,9 +10,9 @@ security:
 uniqueKeys:
     nameYear:
         label: Name in Year
-        fields: [ schoolYear, name ]
+        fields: [ academicYear, name ]
     nameShortYear:
-        fields: [ schoolYear, nameShort ]
+        fields: [ academicYear, nameShort ]
         label: Short Name in Year
 join:
     SchoolYear:
@@ -22,10 +22,10 @@ join:
         table: Course
         alias: d
 fields:
-    schoolYear:
+    academicYear:
         label: "School Year"
         desc: "School year name, as set in School Admin. Must already exist."
-        args: { filter: schoolyear, required: true, custom: true }
+        args: { filter: academicyear, required: true, custom: true }
         relationship: { table: SchoolYear, key: id, field: name  }
         select: sy.name
     department:

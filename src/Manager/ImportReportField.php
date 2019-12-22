@@ -227,7 +227,7 @@ class ImportReportField
                 'enum' => [],
             ]
         );
-        $resolver->setAllowedValues('filter', ['string','numeric','schoolyear','html','yesno','yearlist',
+        $resolver->setAllowedValues('filter', ['string','numeric','academicyear','html','yesno','yearlist',
             'date', 'language','country','integer','enum','url','array','year_group_list','time','datetime',
             'role_list','boolean']);
 

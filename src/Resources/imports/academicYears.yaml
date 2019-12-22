@@ -1,7 +1,7 @@
 details:
-    name: schoolYears
-    title: School Years
-    table: SchoolYear
+    name: academicYears
+    title: Academic Years
+    table: Kookaburra\SchoolAdmin\Entity\AcademicYear
     modes: { update: true, insert: true, export: true }
     alias: sy
 security:
@@ -10,15 +10,15 @@ security:
 uniqueKeys:
     name:
         fields: [ name ]
-        label: School Year Name
+        label: Academic Year Name
     sequence:
         fields: [ sequenceNumber ]
         label: Sequence Number
 fields:
     name:
-        label: "School Year Name"
+        label: "Academic Year Name"
         desc: ""
-        args: { filter: schoolyear, required: true }
+        args: { filter: academicyear, required: true }
         select: sy.name
     status: 
         label: "Status"

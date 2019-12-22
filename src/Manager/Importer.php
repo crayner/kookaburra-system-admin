@@ -170,7 +170,7 @@ class Importer
     {
         $this->validator = $validator;
         $this->logger = $logger;
-        $this->logger::setTimeZone(new \DateTimeZone($timeZone));
+        $this->logger->setTimeZone(new \DateTimeZone($timeZone));
     }
 
     /**

@@ -311,7 +311,8 @@ class ImportReport
         if ($this->getSecurity()->isProtected()) {
             $module = $this->getModuleByName($this->getSecurity()->getModule());
             $action = ProviderFactory::getRepository(Action::class)->findOneByNameModule($this->getSecurity()->getAction(), $module);
-
+            if (null === $action)
+dump($module,$action,$this);
             $this->getSecurity()->setEntryURL($action->getEntryURL());
 
             if ($this->getDetails()->getCategory() === 'Kookaburra')

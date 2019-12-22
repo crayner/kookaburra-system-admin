@@ -7,7 +7,7 @@ details:
     alias: p
 security:
     module: User Admin
-    action: Manage Users_edit
+    action: Manage People_edit
 uniqueKeys:
     username:
         fields: [ username ]

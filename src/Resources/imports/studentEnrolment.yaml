@@ -9,11 +9,11 @@ security:
     action: Student Enrolment
 uniqueKeys:
     yearGroupPerson:
-        fields: [ schoolYear, yearGroup, person ]
+        fields: [ academicYear, yearGroup, person ]
         label: Student in Year Group / School Year
     rollGroupPerson:
         label: Student in Roll Group / School Year
-        fields: [ schoolYear, rollGroup, person ]
+        fields: [ academicYear, rollGroup, person ]
 join:
     SchoolYear:
         table: StudentEnrolment
@@ -28,10 +28,10 @@ join:
         table: StudentEnrolment
         alias: p
 fields:
-    schoolYear:
+    academicYear:
         label: "School Year"
         desc: "School year name, as set in School Admin. Must already exist."
-        args: { filter: schoolyear, required: true, custom: true }
+        args: { filter: academicyear, required: true, custom: true }
         relationship: { table: SchoolYear, field: name }
         select: sy.name
     yearGroup:
@@ -44,7 +44,7 @@ fields:
         label: "Roll Group"
         desc: "Short Name"
         args: { filter: string, required: true }
-        relationship: { table: RollGroup, field: [ nameShort, schoolYear ] }
+        relationship: { table: RollGroup, field: [ nameShort, academicYear ] }
         select: rg.nameShort
     person:
         label: "Student"

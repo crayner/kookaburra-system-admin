@@ -47,17 +47,17 @@ join:
         alias: sge
         reference: scaleGrades
 fields:
-    schoolYear:
+    academicYear:
         label: "School Year"
         desc: "School year name, as set in School Admin. Must already exist."
-        args: { filter: schoolyear, required: true, custom: true, readonly: true }
+        args: { filter: academicyear, required: true, custom: true, readonly: true }
         relationship: { table: SchoolYear, field: name  }
         select: sy.name
     course:
         label: "Course"
         desc: "Short Name"
         args: { filter: string, required: true, custom: true, readonly: true }
-        relationship: { table: Course, field: [ nameShort, schoolYear ]  }
+        relationship: { table: Course, field: [ nameShort, academicYear ]  }
         select: c.nameShort
     courseClass:
         label: "Class"

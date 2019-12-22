@@ -127,7 +127,7 @@ fields:
     replacementYear :
         label: "Replacement Year"
         desc: "School year name, as set in School Admin. Must already exist."
-        args: { filter: schoolyear, custom: true }
+        args: { filter: academicyear, custom: true }
         relationship: { table: SchoolYear, key: SchoolYearID, field: name  }
         select: ry.name
     comment:
