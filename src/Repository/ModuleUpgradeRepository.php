@@ -18,7 +18,7 @@ namespace Kookaburra\SystemAdmin\Repository;
 use Kookaburra\SystemAdmin\Entity\Module;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Kookaburra\SystemAdmin\Entity\ModuleUpgrade;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * Class ModuleUpgradeRepository

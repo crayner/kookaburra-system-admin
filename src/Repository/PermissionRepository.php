@@ -18,7 +18,7 @@ use Doctrine\DBAL\Driver\PDOException;
 use Doctrine\ORM\ORMException;
 use Kookaburra\SystemAdmin\Entity\Permission;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Kookaburra\SystemAdmin\Entity\Role;
 
 /**

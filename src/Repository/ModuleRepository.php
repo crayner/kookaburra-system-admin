@@ -16,7 +16,7 @@ use Kookaburra\SystemAdmin\Entity\Module;
 use Kookaburra\SystemAdmin\Entity\Role;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Connection;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * Class ModuleRepository

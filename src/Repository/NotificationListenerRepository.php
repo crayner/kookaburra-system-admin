@@ -15,7 +15,7 @@ namespace Kookaburra\SystemAdmin\Repository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Kookaburra\SystemAdmin\Entity\NotificationEvent;
 use Kookaburra\SystemAdmin\Entity\NotificationListener;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * Class NotificationListenerRepository

@@ -19,7 +19,7 @@ use Kookaburra\UserAdmin\Entity\Person;
 use Kookaburra\SystemAdmin\Entity\Role;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Connection;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * Class RoleRepository
