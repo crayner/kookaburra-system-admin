@@ -16,7 +16,7 @@
 namespace Kookaburra\SystemAdmin\Validator;
 
 use Kookaburra\UserAdmin\Entity\Person;
-use App\Entity\YearGroup;
+use Kookaburra\SchoolAdmin\Entity\YearGroup;
 use App\Provider\ProviderFactory;
 use Kookaburra\UserAdmin\Util\UserHelper;
 use Symfony\Component\Validator\Constraint;

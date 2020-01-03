@@ -16,7 +16,7 @@
 namespace Kookaburra\SystemAdmin\Manager;
 
 use Kookaburra\SystemAdmin\Entity\Role;
-use App\Entity\YearGroup;
+use Kookaburra\SchoolAdmin\Entity\YearGroup;
 use App\Provider\ProviderFactory;
 use App\Util\TranslationsHelper;
 use App\Validator\RoleList;

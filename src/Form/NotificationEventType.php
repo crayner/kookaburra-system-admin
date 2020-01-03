@@ -17,7 +17,7 @@ namespace Kookaburra\SystemAdmin\Form;
 
 use Kookaburra\SystemAdmin\Entity\NotificationEvent;
 use Kookaburra\UserAdmin\Entity\Person;
-use App\Entity\YearGroup;
+use Kookaburra\SchoolAdmin\Entity\YearGroup;
 use App\Form\Type\DisplayType;
 use App\Form\Type\HeaderType;
 use App\Form\Type\ParagraphType;
