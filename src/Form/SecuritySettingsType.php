@@ -44,6 +44,11 @@ use Symfony\Component\Validator\Constraints\Range;
  */
 class SecuritySettingsType extends AbstractType
 {
+    /**
+     * buildForm
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
