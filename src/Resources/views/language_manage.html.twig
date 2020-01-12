@@ -135,16 +135,18 @@
             </div>
         </div>
     {% endfor %}
-    {% for lang in notInstalled if lang.active is same as('Y') %}
-        <div id="popup{{lang.id}}" class="overlay">
-            <div class="popup">
-                <h3>{{ lang.installed is same as('Y') ? 'Update'|trans : 'Install'|trans }} - {{ lang.name }}</h3>
-                <a class="close" title="{{ 'Close'|trans }}" href="#"><span class="far fa-times-circle fa-fw"></span></a>
-                <div class="content">
-                    <p>{{ 'This action will download the required files and place them in the {path} folder on your server. Are you sure you want to continue?'|trans({path: translationPath}) }}</p>
-                    <button class="button btn-gibbon" style="color: white; float: right;" onclick="window.open('{{ path('system_admin__language_install', {i18n: lang.id}) }}','_self')">{{ 'Yes'|trans }}</button>
+    {% for lang in notInstalled %}
+        {% if lang.active is same as('Y') %}
+            <div id="popup{{lang.id}}" class="overlay">
+                <div class="popup">
+                    <h3>{{ lang.installed is same as('Y') ? 'Update'|trans : 'Install'|trans }} - {{ lang.name }}</h3>
+                    <a class="close" title="{{ 'Close'|trans }}" href="#"><span class="far fa-times-circle fa-fw"></span></a>
+                    <div class="content">
+                        <p>{{ 'This action will download the required files and place them in the {path} folder on your server. Are you sure you want to continue?'|trans({path: translationPath}) }}</p>
+                        <button class="button btn-gibbon" style="color: white; float: right;" onclick="window.open('{{ path('system_admin__language_install', {i18n: lang.id}) }}','_self')">{{ 'Yes'|trans }}</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
     {% endfor %}
 {% endblock popUpContent %}
