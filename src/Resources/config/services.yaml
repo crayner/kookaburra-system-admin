@@ -20,3 +20,6 @@ services:
         arguments:
             $logger: '@monolog.logger.notification'
 
+    Kookaburra\SystemAdmin\Voter\GibbonVoter:
+        arguments:
+            $logger: '@monolog.logger.security'
