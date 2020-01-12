@@ -15,20 +15,16 @@
 
 namespace Kookaburra\SystemAdmin\Form;
 
-use App\Entity\Scale;
 use App\Form\Type\HeaderType;
 use App\Form\Type\ReactFormType;
 use App\Form\Type\SettingsType;
 use Doctrine\ORM\EntityRepository;
+use Kookaburra\SchoolAdmin\Entity\Scale;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CountryType;
-use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
