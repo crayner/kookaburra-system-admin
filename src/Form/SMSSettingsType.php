@@ -18,6 +18,7 @@ namespace Kookaburra\SystemAdmin\Form;
 
 use App\Entity\Setting;
 use App\Form\Type\HeaderType;
+use App\Form\Type\ParagraphType;
 use App\Form\Type\ReactFormType;
 use App\Form\Type\SettingsType;
 use App\Provider\ProviderFactory;
@@ -47,7 +48,12 @@ class SMSSettingsType extends AbstractType
             ->add('smsHeader', HeaderType::class,
                 [
                     'label' => 'SMS Settings',
-                    'help' => 'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.'
+                ]
+            )
+            ->add('smsWarning', ParagraphType::class,
+                [
+                    'help' => 'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.',
+                    'wrapper_class' => 'warning',
                 ]
             )
             ->add('smsSettings', SettingsType::class,
