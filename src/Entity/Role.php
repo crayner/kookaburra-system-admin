@@ -26,7 +26,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class Role
  * @package Kookaburra\SystemAdmin\Entity
  * @ORM\Entity(repositoryClass="Kookaburra\SystemAdmin\Repository\RoleRepository")
- * @ORM\Table(options={"auto_increment": 1}, name="Role", uniqueConstraints={@ORM\UniqueConstraint(name="name", columns={"name"}), @ORM\UniqueConstraint(name="nameShort", columns={"nameShort"})})
+ * @ORM\Table(options={"auto_increment": 1}, name="Role",
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="name", columns={"name"}),
+ *     @ORM\UniqueConstraint(name="nameShort", columns={"nameShort"})})
  */
 class Role implements EntityInterface
 {
@@ -356,11 +358,6 @@ class Role implements EntityInterface
         return $this;
     }
 
-    public function __toString(): string
-    {
-        return $this->getCategory().': '.$this->getName();
-    }
-
     /**
      * @var Collection|Permission[]|null
      * @ORM\OneToMany(targetEntity="Kookaburra\SystemAdmin\Entity\Permission", mappedBy="role", orphanRemoval=true)
@@ -422,6 +419,14 @@ class Role implements EntityInterface
         } elseif (!$this->isPastYearsLogin()) {
             return 'Current/future years only';
         }
+    }
 
+    /**
+     * __toString
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->getId() ?: '';
     }
 }
