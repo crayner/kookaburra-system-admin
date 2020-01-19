@@ -19,12 +19,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Class Module
  * @package Kookaburra\SystemAdmin\Entity
  * @ORM\Entity(repositoryClass="Kookaburra\SystemAdmin\Repository\ModuleRepository")
- * @ORM\Table(options={"auto_increment": 1}, name="Module", uniqueConstraints={@ORM\UniqueConstraint(name="gibbonModuleName", columns={"name"})})
+ * @ORM\Table(options={"auto_increment": 1}, name="Module", uniqueConstraints={@ORM\UniqueConstraint(name="name", columns={"name"})})
+ * @UniqueEntity({"name"})
  * */
 class Module implements EntityInterface
 {
@@ -33,7 +35,7 @@ class Module implements EntityInterface
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", name="gibbonModuleID", columnDefinition="INT(4) UNSIGNED ZEROFILL AUTO_INCREMENT", options={"comment": "This number is assigned at install, and is only unique to the installation"})
+     * @ORM\Column(type="integer", columnDefinition="INT(4) UNSIGNED ZEROFILL AUTO_INCREMENT", options={"comment": "This number is assigned at install, and is only unique to the installation"})
      * @ORM\GeneratedValue
      */
     private $id;

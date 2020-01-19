@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class NotificationEvent
  * @package Kookaburra\SystemAdmin\Entity
  * @ORM\Entity(repositoryClass="Kookaburra\SystemAdmin\Repository\NotificationEventRepository")
- * @ORM\Table(options={"auto_increment": 1}, name="NotificationEvent", uniqueConstraints={@ORM\UniqueConstraint(name="event", columns={"event","moduleID"})})
+ * @ORM\Table(options={"auto_increment": 1}, name="NotificationEvent", uniqueConstraints={@ORM\UniqueConstraint(name="eventModule", columns={"event","module"})})
  * @UniqueEntity(fields={"event","module"})
  * @ORM\HasLifecycleCallbacks()
  * */
@@ -34,7 +34,7 @@ class NotificationEvent implements EntityInterface
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", name="gibbonNotificationEventID", columnDefinition="INT(6) UNSIGNED ZEROFILL AUTO_INCREMENT")
+     * @ORM\Column(type="integer", columnDefinition="INT(6) UNSIGNED ZEROFILL AUTO_INCREMENT")
      * @ORM\GeneratedValue
      */
     private $id;
@@ -55,7 +55,7 @@ class NotificationEvent implements EntityInterface
     /**
      * @var Module|null
      * @ORM\ManyToOne(targetEntity="Kookaburra\SystemAdmin\Entity\Module", inversedBy="events")
-     * @ORM\JoinColumn(name="moduleID", referencedColumnName="gibbonModuleID", nullable=true)
+     * @ORM\JoinColumn(name="module", referencedColumnName="id", nullable=true)
      */
     private $module;
 
@@ -69,7 +69,7 @@ class NotificationEvent implements EntityInterface
     /**
      * @var Action|null
      * @ORM\ManyToOne(targetEntity="Action")
-     * @ORM\JoinColumn(name="actionID", referencedColumnName="gibbonActionID", nullable=true)
+     * @ORM\JoinColumn(name="actionID", referencedColumnName="id", nullable=true)
      */
     private $action;
 

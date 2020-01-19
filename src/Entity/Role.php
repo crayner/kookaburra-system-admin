@@ -37,7 +37,7 @@ class Role implements EntityInterface
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", name="gibbonRoleID", columnDefinition="INT(3) UNSIGNED ZEROFILL")
+     * @ORM\Column(type="integer", columnDefinition="INT(3) UNSIGNED ZEROFILL")
      * @ORM\GeneratedValue
      */
     private $id;

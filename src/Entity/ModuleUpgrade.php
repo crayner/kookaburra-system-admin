@@ -41,7 +41,7 @@ class ModuleUpgrade implements EntityInterface
     /**
      * @var Module|null
      * @ORM\ManyToOne(targetEntity="Kookaburra\SystemAdmin\Entity\Module", inversedBy="upgradeLogs")
-     * @ORM\JoinColumn(name="module",referencedColumnName="gibbonModuleID",nullable=false)
+     * @ORM\JoinColumn(name="module",referencedColumnName="id",nullable=false)
      */
     private $module;
 

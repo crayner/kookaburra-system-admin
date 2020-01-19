@@ -14,21 +14,25 @@ namespace Kookaburra\SystemAdmin\Entity;
 
 use App\Manager\EntityInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Class Permission
  * @package Kookaburra\SystemAdmin\Entity
  * @ORM\Entity(repositoryClass="Kookaburra\SystemAdmin\Repository\PermissionRepository")
- * @ORM\Table(options={"auto_increment": 1}, name="Permission", indexes={@ORM\Index(name="gibbonRoleID", columns={"gibbonRoleID"}), @ORM\Index(name="gibbonActionID", columns={"gibbonActionID"})})
+ * @ORM\Table(options={"auto_increment": 1}, name="Permission",
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="roleAction",columns={"role","action"})},
+ *     indexes={@ORM\Index(name="role", columns={"role"}),
+ *      @ORM\Index(name="action", columns={"action"})})
+ * @UniqueEntity({"role","action"})
  */
 class Permission implements EntityInterface
 {
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", name="permissionID", columnDefinition="INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT")
+     * @ORM\Column(type="integer", columnDefinition="INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT")
      * @ORM\GeneratedValue
      */
     private $id;
@@ -36,7 +40,7 @@ class Permission implements EntityInterface
     /**
      * @var Role|null
      * @ORM\ManyToOne(targetEntity="Kookaburra\SystemAdmin\Entity\Role", inversedBy="permissions")
-     * @ORM\JoinColumn(name="gibbonRoleID", referencedColumnName="gibbonRoleID", nullable=false)
+     * @ORM\JoinColumn(name="role", referencedColumnName="id", nullable=false)
      * @MaxDepth(2)
      */
     private $role;
@@ -44,7 +48,7 @@ class Permission implements EntityInterface
     /**
      * @var Action|null
      * @ORM\ManyToOne(targetEntity="Kookaburra\SystemAdmin\Entity\Action", inversedBy="permissions")
-     * @ORM\JoinColumn(name="gibbonActionID", referencedColumnName="gibbonActionID", nullable=false)
+     * @ORM\JoinColumn(name="action", referencedColumnName="id", nullable=false)
      * @MaxDepth(2)
      */
     private $action;

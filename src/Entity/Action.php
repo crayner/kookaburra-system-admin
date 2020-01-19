@@ -23,7 +23,7 @@ use Doctrine\ORM\PersistentCollection;
  * Class Action
  * @package Kookaburra\SystemAdmin\Entity
  * @ORM\Entity(repositoryClass="Kookaburra\SystemAdmin\Repository\ActionRepository")
- * @ORM\Table(options={"auto_increment": 1}, name="Action",uniqueConstraints={@ORM\UniqueConstraint(name="moduleActionName", columns={"name", "gibbonModuleID"})}, indexes={@ORM\Index(name="gibbonModuleID", columns={"gibbonModuleID"})})
+ * @ORM\Table(options={"auto_increment": 1}, name="Action",uniqueConstraints={@ORM\UniqueConstraint(name="moduleActionName", columns={"name", "module"})}, indexes={@ORM\Index(name="module", columns={"module"})})
  */
 class Action implements EntityInterface
 {
@@ -32,7 +32,7 @@ class Action implements EntityInterface
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", name="gibbonActionID", columnDefinition="INT(7) UNSIGNED ZEROFILL AUTO_INCREMENT")
+     * @ORM\Column(type="integer", columnDefinition="INT(7) UNSIGNED ZEROFILL AUTO_INCREMENT")
      * @ORM\GeneratedValue
      */
     private $id;
@@ -40,7 +40,7 @@ class Action implements EntityInterface
     /**
      * @var Module|null
      * @ORM\ManyToOne(targetEntity="Kookaburra\SystemAdmin\Entity\Module", inversedBy="actions")
-     * @ORM\JoinColumn(name="gibbonModuleID",referencedColumnName="gibbonModuleID", nullable=false)
+     * @ORM\JoinColumn(name="module",referencedColumnName="id", nullable=false)
      */
     private $module;
 

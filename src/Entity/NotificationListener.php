@@ -27,7 +27,7 @@ class NotificationListener
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", name="gibbonNotificationListenerID", columnDefinition="INT(10) UNSIGNED ZEROFILL")
+     * @ORM\Column(type="integer", columnDefinition="INT(10) UNSIGNED ZEROFILL")
      * @ORM\GeneratedValue
      */
     private $id;
@@ -35,14 +35,14 @@ class NotificationListener
     /**
      * @var NotificationEvent|null
      * @ORM\ManyToOne(targetEntity="NotificationEvent", inversedBy="listeners")
-     * @ORM\JoinColumn(name="gibbonNotificationEventID", referencedColumnName="gibbonNotificationEventID", nullable=true)
+     * @ORM\JoinColumn(name="notification_event", referencedColumnName="id", nullable=true)
      */
     private $event;
     
     /**
      * @var Person|null
      * @ORM\ManyToOne(targetEntity="Kookaburra\UserAdmin\Entity\Person")
-     * @ORM\JoinColumn(name="gibbonPersonID", referencedColumnName="gibbonPersonID", nullable=true)
+     * @ORM\JoinColumn(name="person", referencedColumnName="id", nullable=true)
      * @ORM\OrderBy({"surname": "ASC", "firstName": "ASC"})
      */
     private $person;

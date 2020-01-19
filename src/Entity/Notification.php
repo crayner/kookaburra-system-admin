@@ -28,7 +28,7 @@ class Notification implements EntityInterface
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", name="gibbonNotificationID", columnDefinition="INT(10) UNSIGNED ZEROFILL")
+     * @ORM\Column(type="integer", columnDefinition="INT(10) UNSIGNED ZEROFILL")
      * @ORM\GeneratedValue
      */
     private $id;
@@ -36,7 +36,7 @@ class Notification implements EntityInterface
     /**
      * @var Person|null
      * @ORM\ManyToOne(targetEntity="Kookaburra\UserAdmin\Entity\Person")
-     * @ORM\JoinColumn(name="gibbonPersonID",referencedColumnName="gibbonPersonID", nullable=false)
+     * @ORM\JoinColumn(name="gibbonPersonID",referencedColumnName="id", nullable=false)
      */
     private $person;
 
@@ -54,7 +54,7 @@ class Notification implements EntityInterface
     /**
      * @var Module|null
      * @ORM\ManyToOne(targetEntity="Kookaburra\SystemAdmin\Entity\Module", inversedBy="notifications")
-     * @ORM\JoinColumn(name="gibbonModuleID",referencedColumnName="gibbonModuleID", nullable=true)
+     * @ORM\JoinColumn(name="gibbonModuleID",referencedColumnName="id", nullable=true)
      */
     private $module;
 
