@@ -15,6 +15,8 @@
 
 namespace Kookaburra\SystemAdmin\Repository;
 
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Kookaburra\SystemAdmin\Entity\Module;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Kookaburra\SystemAdmin\Entity\ModuleUpgrade;
@@ -47,5 +49,26 @@ class ModuleUpgradeRepository extends ServiceEntityRepository
             ->setParameter('module', $module)
             ->getQuery()
             ->execute();
+    }
+
+    /**
+     * hasModuleVersion
+     * @param Module $module
+     * @param string $version
+     * @return bool
+     */
+    public function hasModuleVersion(Module $module, string $version): bool
+    {
+        try {
+            return $this->createQueryBuilder('u')
+                    ->where('u.module = :module')
+                    ->andWhere('u.version = :version')
+                    ->select(['COUNT(u.id)'])
+                    ->setParameters(['module' => $module, 'version' => $version])
+                    ->getQuery()
+                    ->getSingleScalarResult() > 0;
+        } catch (NoResultException | NonUniqueResultException $e) {
+            return false;
+        }
     }
 }

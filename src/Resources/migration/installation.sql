@@ -22,7 +22,7 @@ CREATE TABLE `__prefix__Action` (
     UNIQUE KEY `moduleActionName` (`name`,`module`),
     KEY `gibbonModuleID` (`module`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT = 1;
-CREATE TABLE IF NOT EXISTS `__prefix__Module` (
+CREATE TABLE `__prefix__Module` (
     `id` int(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
     `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT 'This name should be globally unique preferably, but certainly locally unique',
     `description` longtext COLLATE utf8_unicode_ci NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `__prefix__Module` (
     PRIMARY KEY (`id`),
     UNIQUE KEY `name` (`name`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT = 1;
-CREATE TABLE IF NOT EXISTS `__prefix__Role` (
+CREATE TABLE `__prefix__Role` (
     `id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
     `category` varchar(8) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Staff',
     `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `__prefix__Role` (
 CREATE TABLE __prefix__ModuleUpgrade (
     id INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT,
     module INT(4) UNSIGNED ZEROFILL,
-    version VARCHAR(14) NOT NULL,
+    version VARCHAR(20) NOT NULL,
     executed_at DATETIME NOT NULL COMMENT '(DC2Type:datetime_immutable)',
     INDEX IDX_3B5BDC02C242628 (module),
     UNIQUE INDEX module_version (module, version),

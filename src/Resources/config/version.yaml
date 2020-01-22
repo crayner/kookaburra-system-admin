@@ -1,2 +1,193 @@
 version: 0.0.00
-name: System Admin
+name: 'System Admin'
+module:
+    name: 'System Admin'
+    description: 'Allows administrators to configure system settings.'
+    entryURL: system_settings
+    type: Core
+    active: 'Y'
+    category: Admin
+    version: 0.0.00
+    author: 'Craig Rayner'
+    url: 'http://www.craigrayner.com'
+    actions:
+        'System Settings':
+            name: 'System Settings'
+            precedence: 0
+            category: Settings
+            description: 'Main system settings'
+            URLList: system_settings
+            entryURL: system_settings
+            entrySidebar: 'Y'
+            menuShow: 'Y'
+            defaultPermissionAdmin: 'Y'
+            defaultPermissionTeacher: 'N'
+            defaultPermissionStudent: 'N'
+            defaultPermissionParent: 'N'
+            defaultPermissionSupport: 'N'
+            categoryPermissionStaff: 'Y'
+            categoryPermissionStudent: 'N'
+            categoryPermissionParent: 'N'
+            categoryPermissionOther: 'N'
+            permissions:
+                - Administrator
+        'Manage Modules':
+            name: 'Manage Modules'
+            precedence: 0
+            category: 'Extend & Update'
+            description: ''
+            URLList: module_manage
+            entryURL: module_manage
+            entrySidebar: 'Y'
+            menuShow: 'Y'
+            defaultPermissionAdmin: 'Y'
+            defaultPermissionTeacher: 'N'
+            defaultPermissionStudent: 'N'
+            defaultPermissionParent: 'N'
+            defaultPermissionSupport: 'N'
+            categoryPermissionStaff: 'Y'
+            categoryPermissionStudent: 'N'
+            categoryPermissionParent: 'N'
+            categoryPermissionOther: 'N'
+            permissions:
+                - Administrator
+        'Manage Languages':
+            name: 'Manage Languages'
+            precedence: 0
+            category: 'Extend & Update'
+            description: 'Allows administrators to control system-wide language and localisation settings.'
+            URLList: language_manage
+            entryURL: language_manage
+            entrySidebar: 'Y'
+            menuShow: 'Y'
+            defaultPermissionAdmin: 'Y'
+            defaultPermissionTeacher: 'N'
+            defaultPermissionStudent: 'N'
+            defaultPermissionParent: 'N'
+            defaultPermissionSupport: 'N'
+            categoryPermissionStaff: 'Y'
+            categoryPermissionStudent: 'N'
+            categoryPermissionParent: 'N'
+            categoryPermissionOther: 'N'
+            permissions:
+                - Administrator
+        'Third Party Settings':
+            name: 'Third Party Settings'
+            precedence: 0
+            category: Settings
+            description: 'Allows administrators to configure and make use of third party services.'
+            URLList: third_party
+            entryURL: third_party
+            entrySidebar: 'Y'
+            menuShow: 'Y'
+            defaultPermissionAdmin: 'Y'
+            defaultPermissionTeacher: 'N'
+            defaultPermissionStudent: 'N'
+            defaultPermissionParent: 'N'
+            defaultPermissionSupport: 'N'
+            categoryPermissionStaff: 'Y'
+            categoryPermissionStudent: 'N'
+            categoryPermissionParent: 'N'
+            categoryPermissionOther: 'N'
+            permissions:
+                - Administrator
+        'String Replacement':
+            name: 'String Replacement'
+            precedence: 0
+            category: Settings
+            description: 'Allows for interface strings to be replaced with custom values.'
+            URLList: 'string_replacement_manage, string_replacement_edit, string_replacement_delete'
+            entryURL: string_replacement_manage
+            entrySidebar: 'Y'
+            menuShow: 'Y'
+            defaultPermissionAdmin: 'Y'
+            defaultPermissionTeacher: 'N'
+            defaultPermissionStudent: 'N'
+            defaultPermissionParent: 'N'
+            defaultPermissionSupport: 'N'
+            categoryPermissionStaff: 'Y'
+            categoryPermissionStudent: 'N'
+            categoryPermissionParent: 'N'
+            categoryPermissionOther: 'N'
+            permissions:
+                - Administrator
+        'Display Settings':
+            name: 'Display Settings'
+            precedence: 0
+            category: Settings
+            description: 'Allows administrators to configure the system display settings.'
+            URLList: display_settings
+            entryURL: display_settings
+            entrySidebar: 'Y'
+            menuShow: 'Y'
+            defaultPermissionAdmin: 'Y'
+            defaultPermissionTeacher: 'N'
+            defaultPermissionStudent: 'N'
+            defaultPermissionParent: 'N'
+            defaultPermissionSupport: 'N'
+            categoryPermissionStaff: 'Y'
+            categoryPermissionStudent: 'N'
+            categoryPermissionParent: 'N'
+            categoryPermissionOther: 'N'
+            permissions:
+                - Administrator
+        'System Check':
+            name: 'System Check'
+            precedence: 0
+            category: 'Extend & Update'
+            description: 'Check system versions and extensions installed.'
+            URLList: check
+            entryURL: check
+            entrySidebar: 'Y'
+            menuShow: 'Y'
+            defaultPermissionAdmin: 'Y'
+            defaultPermissionTeacher: 'N'
+            defaultPermissionStudent: 'N'
+            defaultPermissionParent: 'N'
+            defaultPermissionSupport: 'N'
+            categoryPermissionStaff: 'Y'
+            categoryPermissionStudent: 'N'
+            categoryPermissionParent: 'N'
+            categoryPermissionOther: 'N'
+            permissions:
+                - Administrator
+        'Notification Settings':
+            name: 'Notification Settings'
+            precedence: 0
+            category: Settings
+            description: 'Manage settings for system notifications.'
+            URLList: 'notification_settings,notification_edit'
+            entryURL: notification_settings
+            entrySidebar: 'Y'
+            menuShow: 'Y'
+            defaultPermissionAdmin: 'Y'
+            defaultPermissionTeacher: 'N'
+            defaultPermissionStudent: 'N'
+            defaultPermissionParent: 'N'
+            defaultPermissionSupport: 'N'
+            categoryPermissionStaff: 'Y'
+            categoryPermissionStudent: 'N'
+            categoryPermissionParent: 'N'
+            categoryPermissionOther: 'N'
+            permissions:
+                - Administrator
+        'Import From File':
+            name: 'Import From File'
+            precedence: 0
+            category: 'Import & Export'
+            description: 'Allows a user to view and run available imports.'
+            URLList: 'import_manage,export_run,import_run'
+            entryURL: import_manage
+            entrySidebar: 'Y'
+            menuShow: 'Y'
+            defaultPermissionAdmin: 'Y'
+            defaultPermissionTeacher: 'N'
+            defaultPermissionStudent: 'N'
+            defaultPermissionParent: 'N'
+            defaultPermissionSupport: 'N'
+            categoryPermissionStaff: 'Y'
+            categoryPermissionStudent: 'N'
+            categoryPermissionParent: 'N'
+            categoryPermissionOther: 'N'
+            permissions:
+                - Administrator

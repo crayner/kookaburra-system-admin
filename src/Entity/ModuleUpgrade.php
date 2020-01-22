@@ -47,7 +47,7 @@ class ModuleUpgrade implements EntityInterface
 
     /**
      * @var string|null
-     * @ORM\Column(length=14)
+     * @ORM\Column(length=20)
      */
     private $version;
 
