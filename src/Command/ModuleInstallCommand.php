@@ -20,6 +20,7 @@ use App\Util\GlobalHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Exception\TableExistsException;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use Doctrine\ORM\EntityManager;
 use Kookaburra\SystemAdmin\Entity\Action;
 use Kookaburra\SystemAdmin\Entity\Module;
 use Kookaburra\SystemAdmin\Entity\NotificationEvent;
@@ -88,7 +89,7 @@ class ModuleInstallCommand extends Command
      */
     public function __construct(EntityManagerInterface $em, UpgradeManager $manager, GlobalHelper $helper)
     {
-        parent::__construct(self::$defaultName);
+        parent::__construct();
         $this->em = $em;
         $this->manager = $manager;
         $this->connection = $em->getConnection();
@@ -116,7 +117,14 @@ EOT
     {
         $io = new SymfonyStyle($input, $output);
         $io->newLine();
+        $io->text('Commencing Module Build');
+        if (!$this->em instanceof EntityManager) {
+            dd($this);
+            $io->warning('The entity manager is not available!');
+            return 1;
+        }
         if (! $this->em->getConnection()->connect()) {
+            dd($this);
             $io->warning('The database is not available. Check that the database settings are available and are valid!');
             return 1;
         }
@@ -126,37 +134,17 @@ EOT
         $projectDir = $kernel->getContainer()->getParameter('kernel.project_dir');
         $exitCode = 0;
 
-        $bundles = $finder->directories()->in($projectDir . '/Gibbon/modules/')->depth(0);
-        $io->text('Legacy Check:');
-        foreach ($bundles as $bundle) {
-            $this->version = null;
-
-            $module = $this->em->getRepository(Module::class)->findOneByName(ucfirst($bundle->getBasename()));
-
-            // Do Legacy Module Build
-            if (is_file($bundle->getRealPath() . '/legacy.yaml') && !$this->manager->hasModuleVersion($module, 'legacy')) {
-                $io->text('Checking legacy bundle <info>' . $module->getName() . '</info>.');
-                $version = Yaml::parse(file_get_contents($bundle->getRealPath() . '/legacy.yaml'));
-                $this->version = $version;
-
-                if (isset($version['module']))
-                    $exitCode += $this->writeModuleDetails($version['module'], $input, $output, $io);
-
-                if (isset($version['events']))
-                    $exitCode += $this->writeEventDetails($version['events'], $input, $output, $io);
-            }
-        }
-
-
-
+        $io->text('Module Check:');
+        $finder = new Finder();
         $bundles = $finder->directories()->in($projectDir . '/vendor/kookaburra/')->depth(0);
+
         foreach ($bundles as $bundle) {
             $this->version = null;
-            $io->text('Checking bundle <info>' . (isset($this->version['name']) ? $this->version['name'] : ucfirst($bundle->getBasename())) . '</info>.');
+            $io->text('Checking bundle <info>' . $bundle->getBasename() . '</info>');
             // do the installation stuff
 
             if (!$this->isModuleInstalled($bundle)) {
-                $io->text('Installing database for bundle <info>' . (isset($this->version['name']) ? $this->version['name'] : $bundle->getBasename()) . '</info>.');
+                $io->text('Checking bundle <info>' . $bundle->getBasename() . '</info>');
 
                 $io->newLine();
 
@@ -168,9 +156,9 @@ EOT
                     if (isset($version['module']))
                         $exitCode += $this->writeModuleDetails($version['module'], $input, $output, $io);
                     if ($exitCode === 0)
-                        $this->setModuleVersion($module, $version['version']);
+                        $this->setModuleVersion($this->getModule(), $version['version']);
 
-                    if (!$this->manager->hasModuleVersion($module, 'installation')) {
+                    if (!$this->manager->hasModuleVersion($this->getModule(), 'installation')) {
                         if (is_file($bundle->getRealpath() . '/src/Resources/migration/installation.sql')) {
                             $io->text('Installation');
                             $this->setSqlContent([]);
@@ -178,10 +166,11 @@ EOT
                             if ($this->writeFileSql($input, $output) > 0)
                                 return 1;
                             else
-                                $this->setModuleVersion($module, 'installation');
+                                $this->setModuleVersion($this->getModule(), 'installation');
                         }
                     }
-                    if (!$this->manager->hasModuleVersion($module, 'core')) {
+
+                    if (!$this->manager->hasModuleVersion($this->getModule(), 'core')) {
                         if (is_file($bundle->getRealpath() . '/src/Resources/migration/core.sql')) {
                             $io->text('Core');
                             $this->setSqlContent([]);
@@ -189,10 +178,11 @@ EOT
                             if ($this->writeFileSql($input, $output) > 0)
                                 return 1;
                             else
-                                $this->setModuleVersion($module, 'core');
+                                $this->setModuleVersion($this->getModule(), 'core');
                         }
                     }
-                    if (!$this->manager->hasModuleVersion($module, 'foreign-constraint')) {
+
+                    if (!$this->manager->hasModuleVersion($this->getModule(), 'foreign-constraint')) {
                         {
                             if (is_file($bundle->getRealpath() . '/src/Resources/migration/foreign-constraint.sql')) {
                                 $io->text('Foreign Constraint');
@@ -201,106 +191,19 @@ EOT
                                 if ($this->writeFileSql($input, $output) > 0)
                                     return 1;
                                 else
-                                    $this->setModuleVersion($module, 'foreign-constraint');
+                                    $this->setModuleVersion($this->getModule(), 'foreign-constraint');
                             }
                         }
 
                         // Add upgrades here ...
-                        $io->success('Installation completed and database created for bundle "' . (isset($this->version['name']) ? $this->version['name'] : ucfirst($bundle->getBasename())) . '"');
+                        $name = isset($this->version['name']) ? $this->version['name'] : ucfirst($bundle->getBasename());
+                        $io->success('Installation completed and database created for bundle ' . $name );
                     }
                 }
             }
         }
 
         return $exitCode > 0 ? 1 : 0;
-    }
-
-    /**
-     * writeModuleDetails
-     * @param array $w
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @return int
-     */
-    private function writeModuleDetails(array $w, InputInterface $input, OutputInterface $output, SymfonyStyle $io) {
-
-        $module = $this->em->getRepository(Module::class)->findOneBy(['name' => $this->version['name']]) ?: new Module();
-        $io->text(sprintf('Creating or Modifying Module / Action / Permission entries for <info>%s</info> bundle.', $this->version['name']));
-
-        $module
-            ->setName($w['name'])
-            ->setEntryURL($w['entryURL'])
-            ->setDescription($w['description'])
-            ->setActive($w['active'])
-            ->setCategory($w['category'])
-            ->setVersion($w['version'])
-            ->setAuthor($w['author'])
-            ->setUrl($w['url'])
-            ->setType($w['type'])
-        ;
-        $actions = [];
-        $permissions = [];
-        foreach($w['actions'] as $r)
-        {
-            $action = $this->em->getRepository(Action::class)->findOneBy(['name' => $r['name'], 'module' => $module]) ?: new Action();
-            $action
-                ->setName($r['name'])
-                ->setPrecedence($r['precedence'])
-                ->setCategory($r['category'])
-                ->setDescription($r['description'])
-                ->setURLList($r['URLList'])
-                ->setEntryURL($r['entryURL'])
-                ->setEntrySidebar($r['entrySidebar'])
-                ->setMenuShow($r['menuShow'])
-                ->setDefaultPermissionAdmin($r['defaultPermissionAdmin'])
-                ->setDefaultPermissionTeacher($r['defaultPermissionTeacher'])
-                ->setDefaultPermissionStudent($r['defaultPermissionStudent'])
-                ->setDefaultPermissionParent($r['defaultPermissionParent'])
-                ->setDefaultPermissionSupport($r['defaultPermissionSupport'])
-                ->setCategoryPermissionStaff($r['categoryPermissionStaff'])
-                ->setCategoryPermissionStudent($r['categoryPermissionStudent'])
-                ->setCategoryPermissionParent($r['categoryPermissionParent'])
-                ->setCategoryPermissionOther($r['categoryPermissionOther'])
-                ->setModule($module)
-            ;
-
-            if (isset($r['permissions'])) {
-                foreach ($r['permissions'] as $t) {
-                    $role = $this->em->getRepository(Role::class)->findOneByName($t);
-                    $permission = $this->em->getRepository(Permission::class)->findOneBy(['role' => $role, 'action' => $action]) ?: new Permission();
-                    $permission
-                        ->setAction($action)
-                        ->setRole($role);
-                    $permissions[] = $permission;
-                }
-            }
-            $actions[] = $action;
-        }
-
-        $exitCode = 0;
-
-        try {
-            $this->em->beginTransaction();
-            $this->em->persist($module);
-            foreach($actions as $action)
-                $this->em->persist($action);
-            foreach($permissions as $permission)
-                $this->em->persist($permission);
-            $this->em->flush();
-            $this->em->commit();
-        } catch (PDOException $e) {
-            $this->em->rollback();
-            $io->error($e->getMessage());
-            $exitCode = 1;
-        }
-
-        if ($exitCode > 0) {
-            $io->error(sprintf('Some errors occurred while installing the "%s" bundle to the Module Table.', $w['name']));
-        }
-
-        $this->setModule($module);
-
-        return $exitCode;
     }
 
     /**
@@ -312,6 +215,7 @@ EOT
     {
         if (!is_file($bundle->getRealPath(). '/src/Resources/config/version.yaml'))
             return true;
+
         $this->version = Yaml::parse(file_get_contents($bundle->getRealPath(). '/src/Resources/config/version.yaml'));
         if (!isset($this->version['name']))
             return true;
@@ -319,8 +223,9 @@ EOT
         $module = $this->em->getRepository(Module::class)->findOneByName($this->version['name']);
 
         if (null === $module)
-            return true;
+            return false;
 
+        $this->setModule($module);
         return $this->manager->hasModuleVersion($module, $this->version['version']);
     }
 
@@ -429,7 +334,7 @@ EOT
             $this->em->beginTransaction();
             foreach ($this->getSqlContent() as $sql) {
                 $sql = str_replace('IF NOT EXISTS ', '', $sql);
-                $sql = str_replace('CREATE TABLE ', 'CREATE TABLE IF NOT EXISTS ', $sql);
+                $sql = str_replace("CREATE TABLE ", "CREATE TABLE IF NOT EXISTS ", $sql);
                 if ('' !== trim($sql))
                     $this->em->getConnection()->exec($sql);
             }
