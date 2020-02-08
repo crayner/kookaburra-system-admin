@@ -922,7 +922,7 @@ class UpgradeManager
         $this->addSql('ALTER TABLE gibbonPlannerParentWeeklyEmailSummary ADD CONSTRAINT FOREIGN KEY (gibbonPersonIDStudent) REFERENCES gibbonPerson (id)');
         $this->addSql('ALTER TABLE gibbonResource ADD CONSTRAINT FOREIGN KEY (gibbonPersonID) REFERENCES gibbonPerson (id)');
         $this->addSql('ALTER TABLE gibbonRubric ADD CONSTRAINT FOREIGN KEY (gibbonDepartmentID) REFERENCES gibbonDepartment (id)');
-        $this->addSql('ALTER TABLE gibbonRubric ADD CONSTRAINT FOREIGN KEY (id) REFERENCES gibbonScale (id)');
+        $this->addSql('ALTER TABLE gibbonRubric ADD CONSTRAINT FOREIGN KEY (gibbonScaleID) REFERENCES gibbonScale (id)');
         $this->addSql('ALTER TABLE gibbonRubric ADD CONSTRAINT FOREIGN KEY (gibbonPersonIDCreator) REFERENCES gibbonPerson (id)');
         $this->addSql('ALTER TABLE gibbonRubricCell ADD CONSTRAINT FOREIGN KEY (gibbonRubricID) REFERENCES gibbonRubric (gibbonRubricID)');
         $this->addSql('ALTER TABLE gibbonRubricCell ADD CONSTRAINT FOREIGN KEY (gibbonRubricColumnID) REFERENCES gibbonRubricColumn (gibbonRubricColumnID)');
