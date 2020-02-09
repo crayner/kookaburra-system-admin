@@ -16,7 +16,6 @@
 namespace Kookaburra\SystemAdmin\Manager;
 
 use App\Migrations\SqlLoadTrait;
-use App\Provider\ProviderFactory;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\PDOException;
 use Doctrine\DBAL\Exception\TableExistsException;
@@ -85,15 +84,15 @@ class UpgradeManager
 
     /**
      * moduleAtVersion
-     * @param Module $module
+     * @param Module|null $module
      * @param string|null $version
      * @return bool
      */
-    public function hasModuleVersion(Module $module, ?string $version): bool
+    public function hasModuleVersion(?Module $module, ?string $version): bool
     {
-        if (in_array($version, [null,'']))
+        if (in_array($version, [null,'']) || null === $module)
             return false;
-        return $this->em->getRepository(ModuleUpgrade::class)->hasModuleVersion($module,$version);
+        return $this->em->getRepository(ModuleUpgrade::class)->hasModuleVersion($module, strtolower($version));
     }
 
     /**
@@ -104,10 +103,9 @@ class UpgradeManager
      */
     public function setModuleVersion(Module $module, string $version): self
     {
-        if ($this->hasModuleVersion($module, $version)) {
+        if (! $this->hasModuleVersion($module, $version)) {
             $mu = new ModuleUpgrade();
-
-            $mu->setModule($module)->setVersion($version);
+            $mu->setModule($module)->setVersion(strtolower($version));
             $this->em->persist($mu);
             $this->em->flush();
         }
@@ -115,8 +113,10 @@ class UpgradeManager
     }
 
     /**
-     * installation
+     * Installation
+     * @param KernelInterface $kernel
      * @return int
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function installation(KernelInterface $kernel)
     {
@@ -124,6 +124,7 @@ class UpgradeManager
         $projectDir = $kernel->getContainer()->getParameter('kernel.project_dir');
         $exitCode = 0;
         $this->getLogger()->notice('Module Installation');
+        $version = Yaml::parse(file_get_contents(__DIR__ . '/../Resources/config/version.yaml'));
 
         $file = realpath(__DIR__ . '/../Resources/migration/installation.sql');
 
@@ -133,7 +134,17 @@ class UpgradeManager
 
         $this->getSql($file);
 
+        $file = realpath(__DIR__ . '/../Resources/migration/foreign-constraint.sql');
+
+        $this->getSql($file);
+
         $this->writeFileSql();
+
+        $this->writeModuleDetails($version['module']);
+
+        $this->setModuleVersion($this->getModule(), 'installation');
+        $this->setModuleVersion($this->getModule(), 'core');
+        $this->setModuleVersion($this->getModule(), 'foreign-constraint');
 
         $bundles = $finder->directories()->in($projectDir . '/Gibbon/modules/')->depth(0);
         foreach ($bundles as $bundle) {
@@ -251,13 +262,15 @@ class UpgradeManager
         $this->loadForeignConstraints();
         if ($this->writeFileSql() > 0)
             return 1;
+        else
+            $this->setModuleVersion($this->getModule(), 'foreign-constraint');
 
 
         foreach ($bundles as $bundle) {
             if (!$this->hasModuleVersion($this->getModule(), 'foreign-constraint')) {
                 {
                     if (is_file($bundle->getRealpath() . '/src/Resources/migration/foreign-constraint.sql')) {
-                        $this->getLogger()->notice('Foreign Constraint for ' . $bundle->getBasename());
+                        $this->getLogger()->notice('Foreign Constraint for ' . $bundle->getBasename(), 'foreign-constraint');
                         $this->sqlContent = [];
                         $this->getSql($bundle->getRealpath() . '/src/Resources/migration/foreign-constraint.sql');
                         if ($this->writeFileSql() > 0)
@@ -630,23 +643,6 @@ class UpgradeManager
         $this->addSql('CREATE TABLE gibbonMessengerCannedResponse (gibbonMessengerCannedResponseID INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT, subject VARCHAR(30) NOT NULL, body LONGTEXT NOT NULL, timestampCreator DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, gibbonPersonIDCreator INT(10) UNSIGNED ZEROFILL, INDEX IDX_C83786BFFF59AAB0 (gibbonPersonIDCreator), PRIMARY KEY(gibbonMessengerCannedResponseID)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1');
         $this->addSql('CREATE TABLE gibbonMessengerReceipt (gibbonMessengerReceiptID INT(14) UNSIGNED ZEROFILL AUTO_INCREMENT, targetType VARCHAR(16) NOT NULL, targetID VARCHAR(30) NOT NULL, contactType VARCHAR(5) DEFAULT NULL, contactDetail VARCHAR(255) DEFAULT NULL, `key` VARCHAR(40) DEFAULT NULL, confirmed VARCHAR(1) DEFAULT NULL, confirmedTimestamp DATETIME DEFAULT NULL, gibbonMessengerID INT(12) UNSIGNED ZEROFILL, gibbonPersonID INT(10) UNSIGNED ZEROFILL, INDEX IDX_30BB77081B4FC86A (gibbonMessengerID), INDEX IDX_30BB7708CC6782D6 (gibbonPersonID), PRIMARY KEY(gibbonMessengerReceiptID)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1');
         $this->addSql('CREATE TABLE gibbonMessengerTarget (gibbonMessengerTargetID INT(14) UNSIGNED ZEROFILL AUTO_INCREMENT, type VARCHAR(16) DEFAULT NULL, id VARCHAR(30) NOT NULL, parents VARCHAR(1) DEFAULT \'N\' NOT NULL, students VARCHAR(1) DEFAULT \'N\' NOT NULL, staff VARCHAR(1) DEFAULT \'N\' NOT NULL, gibbonMessengerID INT(12) UNSIGNED ZEROFILL, INDEX IDX_62C2BBE11B4FC86A (gibbonMessengerID), PRIMARY KEY(gibbonMessengerTargetID)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1');
-        $this->addSql('CREATE TABLE gibbonNotification (gibbonNotificationID INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT, status VARCHAR(8) DEFAULT \'New\' NOT NULL, count INT(4), text LONGTEXT NOT NULL,actionLink VARCHAR(255) NOT NULL COMMENT \'Relative to absoluteURL, start with a forward slash\', timestamp DATETIME NOT NULL, gibbonPersonID INT(10) UNSIGNED ZEROFILL, gibbonModuleID INT(4) UNSIGNED ZEROFILL, INDEX IDX_D5180450CC6782D6 (gibbonPersonID), INDEX IDX_D5180450CB86AD4B (gibbonModuleID), PRIMARY KEY(gibbonNotificationID)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1');
-        $this->addSql('CREATE TABLE `gibboNnotificationEvent` (
-  `gibbonNotificationEventID` int(6) UNSIGNED ZEROFILL AUTO_INCREMENT,
-  `event` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
-  `moduleName` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `actionName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `type` varchar(12) COLLATE utf8_unicode_ci NOT NULL DEFAULT \'Core\',
-  `scopes` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT \'All\',
-  `active` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT \'Y\',
-  `moduleID` int(4) UNSIGNED ZEROFILL DEFAULT NULL,
-  `actionID` int(7) UNSIGNED ZEROFILL DEFAULT NULL,
-  PRIMARY KEY (`gibbonNotificationEventID`),
-  UNIQUE KEY `event` (`event`,`moduleName`),
-  KEY `FK_A364BEAD9E834449` (`moduleID`),
-  KEY `FK_A364BEADB6AA0365` (`actionID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT = 1');
-        $this->addSql('CREATE TABLE gibbonNotificationListener (gibbonNotificationListenerID INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT, scopeType VARCHAR(30) DEFAULT NULL, scopeID INT(20) UNSIGNED, gibbonNotificationEventID INT(6) UNSIGNED ZEROFILL, gibbonPersonID INT(10) UNSIGNED ZEROFILL, INDEX IDX_6313F17E26A39C71 (gibbonNotificationEventID), INDEX IDX_6313F17ECC6782D6 (gibbonPersonID), PRIMARY KEY(gibbonNotificationListenerID)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1');
         $this->addSql('CREATE TABLE `gibbonOutcome` (
   `gibbonOutcomeID` int(8) UNSIGNED ZEROFILL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -880,10 +876,6 @@ class UpgradeManager
         $this->addSql('ALTER TABLE gibbonMessengerReceipt ADD CONSTRAINT FOREIGN KEY (gibbonMessengerID) REFERENCES gibbonMessenger (gibbonMessengerID)');
         $this->addSql('ALTER TABLE gibbonMessengerReceipt ADD CONSTRAINT FOREIGN KEY (gibbonPersonID) REFERENCES gibbonPerson (id)');
         $this->addSql('ALTER TABLE gibbonMessengerTarget ADD CONSTRAINT FOREIGN KEY (gibbonMessengerID) REFERENCES gibbonMessenger (gibbonMessengerID)');
-        $this->addSql('ALTER TABLE gibbonNotification ADD CONSTRAINT FOREIGN KEY (gibbonPersonID) REFERENCES gibbonPerson (id)');
-        $this->addSql('ALTER TABLE gibbonNotification ADD CONSTRAINT FOREIGN KEY (gibbonModuleID) REFERENCES gibbonModule (id)');
-        $this->addSql('ALTER TABLE gibbonNotificationListener ADD CONSTRAINT FOREIGN KEY (gibbonNotificationEventID) REFERENCES gibbonNotificationEvent (gibbonNotificationEventID)');
-        $this->addSql('ALTER TABLE gibbonNotificationListener ADD CONSTRAINT FOREIGN KEY (gibbonPersonID) REFERENCES gibbonPerson (id)');
         $this->addSql('ALTER TABLE gibbonOutcome ADD CONSTRAINT FOREIGN KEY (gibbonDepartmentID) REFERENCES gibbonDepartment (id)');
         $this->addSql('ALTER TABLE gibbonOutcome ADD CONSTRAINT FOREIGN KEY (gibbonPersonIDCreator) REFERENCES gibbonPerson (id)');
         $this->addSql('ALTER TABLE gibbonPayment ADD CONSTRAINT FOREIGN KEY (gibbonPersonID) REFERENCES gibbonPerson (id)');

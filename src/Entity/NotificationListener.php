@@ -42,7 +42,7 @@ class NotificationListener
     /**
      * @var Person|null
      * @ORM\ManyToOne(targetEntity="Kookaburra\UserAdmin\Entity\Person")
-     * @ORM\JoinColumn(name="person", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
      * @ORM\OrderBy({"surname": "ASC", "firstName": "ASC"})
      */
     private $person;

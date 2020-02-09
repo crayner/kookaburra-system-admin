@@ -40,6 +40,7 @@ class ModuleUpgradeRepository extends ServiceEntityRepository
     /**
      * deleteModuleRecords
      * @param Module $module
+     * @return mixed
      */
     public function deleteModuleRecords(Module $module)
     {
