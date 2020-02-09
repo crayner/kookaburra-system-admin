@@ -23,3 +23,7 @@ services:
     Kookaburra\SystemAdmin\Voter\GibbonVoter:
         arguments:
             $logger: '@monolog.logger.security'
+
+    Kookaburra\SystemAdmin\Manager\UpgradeManager:
+        arguments:
+            $logger: '@monolog.logger.installation'

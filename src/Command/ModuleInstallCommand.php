@@ -24,8 +24,6 @@ use Doctrine\ORM\EntityManager;
 use Kookaburra\SystemAdmin\Entity\Action;
 use Kookaburra\SystemAdmin\Entity\Module;
 use Kookaburra\SystemAdmin\Entity\NotificationEvent;
-use Kookaburra\SystemAdmin\Entity\Permission;
-use Kookaburra\SystemAdmin\Entity\Role;
 use Doctrine\DBAL\Driver\PDOException;
 use Doctrine\ORM\EntityManagerInterface;
 use Kookaburra\SystemAdmin\Manager\UpgradeManager;
@@ -154,7 +152,7 @@ EOT
                     $module = $this->em->getRepository(Module::class)->findOneByName($this->version['name']);
 
                     if (isset($version['module']))
-                        $exitCode += $this->writeModuleDetails($version['module'], $input, $output, $io);
+                        $exitCode += $this->manager->writeModuleDetails($version['module']);
                     if ($exitCode === 0)
                         $this->setModuleVersion($this->getModule(), $version['version']);
 

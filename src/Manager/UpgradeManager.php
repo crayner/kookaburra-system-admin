@@ -16,6 +16,7 @@
 namespace Kookaburra\SystemAdmin\Manager;
 
 use App\Migrations\SqlLoadTrait;
+use App\Provider\ProviderFactory;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver\PDOException;
 use Doctrine\DBAL\Exception\TableExistsException;
@@ -74,11 +75,12 @@ class UpgradeManager
      * UpgradeManager constructor.
      * @param EntityManagerInterface $em
      */
-    public function __construct(EntityManagerInterface $em, ParameterBagInterface $bag)
+    public function __construct(EntityManagerInterface $em, ParameterBagInterface $bag, LoggerInterface $logger)
     {
         $this->em = $em;
         $this->connection = $this->em->getConnection();
         $this->bag = $bag;
+        $this->logger = $logger;
     }
 
     /**
@@ -118,7 +120,6 @@ class UpgradeManager
      */
     public function installation(KernelInterface $kernel)
     {
-
         $finder = new Finder();
         $projectDir = $kernel->getContainer()->getParameter('kernel.project_dir');
         $exitCode = 0;
@@ -140,13 +141,16 @@ class UpgradeManager
         
             $module = $this->em->getRepository(Module::class)->findOneByName(ucfirst($bundle->getBasename()));
             // Do Legacy Module Build
-            if (is_file($bundle->getRealPath() . '/legacy.yaml') && !$module instanceof Module) {
+            if (is_file($bundle->getRealPath() . '/legacy.yaml') && !$module instanceof Module && !$this->hasModuleVersion($module, 'Legacy')) {
                 $this->getLogger()->notice('Checking legacy bundle ' . $bundle->getBasename());
                 $version = Yaml::parse(file_get_contents($bundle->getRealPath() . '/legacy.yaml'));
                 $this->version = $version;
 
-                if (isset($version['module']))
+                if (isset($version['module'])) {
                     $exitCode += $this->writeModuleDetails($version['module']);
+                    if ($exitCode === 0)
+                        $this->setModuleVersion($this->getModule(), 'Legacy');
+                }
                 if (isset($version['events']))
                     $exitCode += $this->writeEventDetails($version['events']);
             }
@@ -294,7 +298,7 @@ class UpgradeManager
      * @param array $w
      * @return int
      */
-    private function writeModuleDetails(array $w)
+    public function writeModuleDetails(array $w)
     {
         $module = $this->em->getRepository(Module::class)->findOneBy(['name' => $w['name']]) ?: new Module();
         $this->getLogger()->notice(sprintf('Creating or Modifying Module / Action / Permission entries for "%s" bundle.', $w['name']));
