@@ -12,11 +12,13 @@
  */
 namespace Kookaburra\SystemAdmin\Repository;
 
+use Doctrine\DBAL\Driver\PDOException;
 use Kookaburra\SystemAdmin\Entity\Action;
 use Kookaburra\SystemAdmin\Entity\Module;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
+use Kookaburra\UserAdmin\Util\UserHelper;
 
 /**
  * Class ActionRepository
@@ -122,5 +124,33 @@ class ActionRepository extends ServiceEntityRepository
             ->setParameters($criteria)
             ->getQuery()
             ->getArrayResult();
+    }
+
+    /**
+     * findHighestGroupedAction
+     * @param string $action
+     * @param Module $module
+     * @return bool
+     */
+    public function findHighestGroupedAction(string $action, Module $module)
+    {
+        try {
+            return $this->createQueryBuilder('a')
+            ->select('a.name')
+            ->join('a.permissions', 'p')
+            ->where('a.URLList LIKE :actionName')
+            ->setParameter('actionName', '%'.$action.'%')
+            ->andWhere('a.module = :module')
+            ->setParameter('module', $module)
+            ->andWhere('p.role = :currentRole')
+            ->setParameter('currentRole', UserHelper::getCurrentUser()->getPrimaryRole())
+            ->orderBy('a.precedence', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+        } catch (NonUniqueResultException | PDOException | \PDOException $e) {
+            return null;
+        }
+
     }
 }
