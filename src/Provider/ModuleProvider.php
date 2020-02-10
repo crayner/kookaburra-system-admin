@@ -102,7 +102,7 @@ class ModuleProvider implements EntityProviderInterface
                 $names[$module['name']] = true;
             }
         }
-dump($categories);
+
         return $categories;
     }
 }

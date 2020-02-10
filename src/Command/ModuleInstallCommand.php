@@ -18,6 +18,7 @@ namespace Kookaburra\SystemAdmin\Command;
 use App\Migrations\SqlLoadTrait;
 use App\Util\GlobalHelper;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Exception\TableExistsException;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManager;
@@ -211,7 +212,7 @@ EOT
                                 return 1;
                             }
                             else {
-                                $this->setModuleVersion($this->getModule(), str_replace(['version', 'Version', '.sql'], '', $update->getBasename()));
+                                $this->manager->setModuleVersion($this->getModule(), str_replace(['version', 'Version', '.sql'], '', $update->getBasename()));
                                 $io->success(sprintf('Update for %s completed', $update->getBasename()));
                             }
                         }
@@ -348,7 +349,6 @@ EOT
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int
-     * @throws \Doctrine\DBAL\DBALException
      */
     private function writeFileSql(InputInterface $input, OutputInterface $output): int
     {
@@ -365,7 +365,7 @@ EOT
             return 0;
         } catch (UniqueConstraintViolationException $e) {
             return 0;
-        } catch (TableExistsException | UniqueConstraintViolationException | PDOException $e) {
+        } catch (TableExistsException | UniqueConstraintViolationException | DBALException | PDOException $e) {
             $this->em->rollback();
             $io = new SymfonyStyle($input, $output);
             $io->newLine();

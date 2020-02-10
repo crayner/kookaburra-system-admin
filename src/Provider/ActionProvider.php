@@ -36,7 +36,6 @@ class ActionProvider implements EntityProviderInterface
      * findByURLListModuleRole
      * @param array $criteria
      * @return mixed
-     * @throws \Exception
      */
     public function findByURLListModuleRole(array $criteria)
     {

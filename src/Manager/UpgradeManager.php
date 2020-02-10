@@ -275,6 +275,29 @@ class UpgradeManager
                     }
                 }
             }
+            $finder = new Finder();
+            $updates = $finder->files()->in($bundle->getRealpath() . '/src/Resources/migration')->depth(0)->name('Version*.sql')->sortByName();
+            if ($updates->hasResults()) {
+                foreach($updates as $update) {
+                    if (!$this->hasModuleVersion($this->getModule(), str_replace(['version', 'Version', '.sql'], '', $update->getBasename()))) {
+                        {
+                            $this->getLogger()->notice(sprintf('Update for <info>%s</info>.', $update->getBasename()));
+                            $this->setSqlContent([]);
+                            $this->getSql($update->getRealpath());
+                            if ($this->writeFileSql() > 0) {
+                                $this->getLogger()->error(sprintf('Update for %s failed.', $update->getBasename()));
+                                return 1;
+                            }
+                            else {
+                                $this->setModuleVersion($this->getModule(), str_replace(['version', 'Version', '.sql'], '', $update->getBasename()));
+                                $this->getLogger()->notice(sprintf('Update for %s completed', $update->getBasename()));
+                            }
+                        }
+                    }
+
+                }
+            }
+
         }
 
 
