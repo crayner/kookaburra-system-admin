@@ -192,13 +192,37 @@ EOT
                                     $this->setModuleVersion($this->getModule(), 'foreign-constraint');
                             }
                         }
-
-                        // Add upgrades here ...
-                        $name = isset($this->version['name']) ? $this->version['name'] : ucfirst($bundle->getBasename());
-                        $io->success('Installation completed and database created for bundle ' . $name );
                     }
                 }
             }
+            // Add upgrades here ...
+
+            $finder = new Finder();
+            $updates = $finder->files()->in($bundle->getRealpath() . '/src/Resources/migration')->depth(0)->name('Version*.sql')->sortByName();
+            if ($updates->hasResults()) {
+                foreach($updates as $update) {
+                    if (!$this->manager->hasModuleVersion($this->getModule(), str_replace(['version', 'Version', '.sql'], '', $update->getBasename()))) {
+                        {
+                            $io->text(sprintf('Update for <info>%s</info>.', $update->getBasename()));
+                            $this->setSqlContent([]);
+                            $this->getSql($update->getRealpath());
+                            if ($this->writeFileSql($input, $output) > 0) {
+                                $io->error(sprintf('Update for %s failed.', $update->getBasename()));
+                                return 1;
+                            }
+                            else {
+                                $this->setModuleVersion($this->getModule(), str_replace(['version', 'Version', '.sql'], '', $update->getBasename()));
+                                $io->success(sprintf('Update for %s completed', $update->getBasename()));
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            $name = isset($this->version['name']) ? $this->version['name'] : ucfirst($bundle->getBasename());
+            $io->success('Installation completed and database created for bundle ' . $name);
+
         }
 
         return $exitCode > 0 ? 1 : 0;
@@ -333,6 +357,7 @@ EOT
             foreach ($this->getSqlContent() as $sql) {
                 $sql = str_replace('IF NOT EXISTS ', '', $sql);
                 $sql = str_replace("CREATE TABLE ", "CREATE TABLE IF NOT EXISTS ", $sql);
+                $sql = str_replace("__prefix__", $this->getPrefix(), $sql);
                 if ('' !== trim($sql))
                     $this->em->getConnection()->exec($sql);
             }
