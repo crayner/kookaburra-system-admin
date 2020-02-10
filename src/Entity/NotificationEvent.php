@@ -55,7 +55,7 @@ class NotificationEvent implements EntityInterface
     /**
      * @var Module|null
      * @ORM\ManyToOne(targetEntity="Kookaburra\SystemAdmin\Entity\Module", inversedBy="events")
-     * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="module", referencedColumnName="id", nullable=true)
      */
     private $module;
 
@@ -69,7 +69,7 @@ class NotificationEvent implements EntityInterface
     /**
      * @var Action|null
      * @ORM\ManyToOne(targetEntity="Action")
-     * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="action", referencedColumnName="id", nullable=true)
      */
     private $action;
 

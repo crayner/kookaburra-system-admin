@@ -134,17 +134,12 @@ class UpgradeManager
 
         $this->getSql($file);
 
-        $file = realpath(__DIR__ . '/../Resources/migration/foreign-constraint.sql');
-
-        $this->getSql($file);
-
         $this->writeFileSql();
 
         $this->writeModuleDetails($version['module']);
 
         $this->setModuleVersion($this->getModule(), 'installation');
         $this->setModuleVersion($this->getModule(), 'core');
-        $this->setModuleVersion($this->getModule(), 'foreign-constraint');
 
         $bundles = $finder->directories()->in($projectDir . '/Gibbon/modules/')->depth(0);
         foreach ($bundles as $bundle) {
