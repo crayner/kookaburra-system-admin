@@ -88,6 +88,7 @@ class ModuleProvider implements EntityProviderInterface
         $result = $this->getRepository()->findModuleActionsByRole($module, $role);
 
         $categories = [];
+        $names = [];
 
         foreach($result as $q=>$module)
         {
@@ -95,9 +96,13 @@ class ModuleProvider implements EntityProviderInterface
             $name = explode('_',$module['name']);
             $module['name'] = $name[0];
             $result[$q] = $module;
-            $categories[$module['category']][] = $module;
-        }
 
+            if (!isset($names[$module['name']])) {
+                $categories[$module['category']][] = $module;
+                $names[$module['name']] = true;
+            }
+        }
+dump($categories);
         return $categories;
     }
 }
