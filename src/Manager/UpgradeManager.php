@@ -521,7 +521,7 @@ class UpgradeManager
   `map` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT \'Y\' COMMENT \'Should this course be included in curriculum maps and other summaries?\',
   `gibbonYearGroupIDList` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `orderBy` int(3) DEFAULT NULL,
-  `AcademicYearID` int(3) UNSIGNED ZEROFILL DEFAULT NULL,
+  `academic_year` int(3) UNSIGNED ZEROFILL DEFAULT NULL,
   `gibbonDepartmentID` int(4) UNSIGNED ZEROFILL DEFAULT NULL,
   PRIMARY KEY (`gibbonCourseID`),
   UNIQUE KEY `nameYear` (`AcademicYearID`,`name`),
