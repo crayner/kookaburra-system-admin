@@ -19,13 +19,13 @@ use App\Manager\Entity\PaginationAction;
 use App\Manager\Entity\PaginationColumn;
 use App\Manager\Entity\PaginationRow;
 use App\Manager\ReactPaginationInterface;
-use App\Manager\ReactPaginationManager;
+use App\Manager\AbstractPaginationManager;
 
 /**
  * Class StringReplacementPagination
  * @package App\Manager\SystemAdmin
  */
-class StringReplacementPagination extends ReactPaginationManager
+class StringReplacementPagination extends AbstractPaginationManager
 {
     /**
      * execute
