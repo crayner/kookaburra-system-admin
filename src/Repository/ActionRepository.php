@@ -128,18 +128,18 @@ class ActionRepository extends ServiceEntityRepository
 
     /**
      * findHighestGroupedAction
-     * @param string $action
+     * @param string $route
      * @param Module $module
      * @return bool
      */
-    public function findHighestGroupedAction(string $action, Module $module)
+    public function findHighestGroupedAction(string $route, Module $module)
     {
         try {
             return $this->createQueryBuilder('a')
             ->select('a.name')
             ->join('a.permissions', 'p')
             ->where('a.URLList LIKE :actionName')
-            ->setParameter('actionName', '%'.$action.'%')
+            ->setParameter('actionName', '%'.$route.'%')
             ->andWhere('a.module = :module')
             ->setParameter('module', $module)
             ->andWhere('p.role = :currentRole')
