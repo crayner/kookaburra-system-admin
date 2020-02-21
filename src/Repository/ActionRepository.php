@@ -151,6 +151,25 @@ class ActionRepository extends ServiceEntityRepository
         } catch (NonUniqueResultException | PDOException | \PDOException $e) {
             return null;
         }
+    }
 
+    /**
+     * findOneByRoute
+     * @param string $route
+     * @return Action|null
+     */
+    public function findOneByRoute(string $route): ?Action
+    {
+        try {
+            return $this->createQueryBuilder('a')
+                ->where('a.URLList LIKE :route')
+                ->setParameter('route', '%' . $route . '%')
+                ->orderBy('a.precedence', 'ASC')
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+            return null;
+        }
     }
 }

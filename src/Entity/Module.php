@@ -341,6 +341,7 @@ class Module implements EntityInterface
     {
         return [
             'gibbonModuleID' => $this->id,
+            'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
             'entryURL' => $this->entryURL,

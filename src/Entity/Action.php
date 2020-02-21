@@ -14,6 +14,7 @@ namespace Kookaburra\SystemAdmin\Entity;
 
 use App\Manager\EntityInterface;
 use App\Manager\Traits\BooleanList;
+use App\Util\TranslationsHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -204,6 +205,18 @@ class Action implements EntityInterface
     {
         $this->name = mb_substr($name, 0, 50);
         return $this;
+    }
+
+    /**
+     * getTranslatedName
+     * @return string|null
+     */
+    public function getTranslatedName(): ?string
+    {
+        if (null === $this->getName())
+            return null;
+        $name = explode('_', $this->getName());
+        return TranslationsHelper::translate($name[0], [], 'SystemAdmin');
     }
 
     /**
@@ -528,8 +541,10 @@ class Action implements EntityInterface
     public function toArray(?string $name = NULL): array
     {
         return [
+            'id' => $this->id,
             'gibbonActionID' => $this->id,
             'name' => $this->name,
+            'translatedName' => $this->getTranslatedName(),
             'precedence' => $this->precedence,
             'category' => $this->category,
             'URLList' => $this->URLList,
@@ -545,7 +560,7 @@ class Action implements EntityInterface
             'categoryPermissionStudent' => $this->categoryPermissionStudent,
             'categoryPermissionParent' => $this->categoryPermissionParent,
             'categoryPermissionOther' => $this->categoryPermissionOther,
-            'gibbonModuleID' => $this->getModule() ? $this->getModule()->getId() : null,
+            'module' => $this->getModule() ? $this->getModule()->getId() : null,
         ];
     }
 
