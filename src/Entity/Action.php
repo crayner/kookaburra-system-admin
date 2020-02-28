@@ -216,7 +216,8 @@ class Action implements EntityInterface
         if (null === $this->getName())
             return null;
         $name = explode('_', $this->getName());
-        return TranslationsHelper::translate($name[0], [], 'SystemAdmin');
+        $domain = $this->getModule() ? str_replace(' ', '', $this->getModule()->getName()) : 'messages';
+        return TranslationsHelper::translate($name[0], [], $domain);
     }
 
     /**
