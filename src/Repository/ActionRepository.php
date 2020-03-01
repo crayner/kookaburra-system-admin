@@ -160,6 +160,26 @@ class ActionRepository extends ServiceEntityRepository
      */
     public function findOneByRoute(string $route): ?Action
     {
+        if (mb_strpos($route, '__') !== false) {
+            $module = explode('__', $route);
+            $route = $module[1];
+            $module = ucwords(str_replace('_', ' ', $module[0]));
+            try {
+                return $this->createQueryBuilder('a')
+                    ->where('a.URLList LIKE :route')
+                    ->join('a.module', 'm')
+                    ->andWhere('m.name = :module')
+                    ->setParameter('module', $module)
+                    ->setParameter('route', '%' . $route . '%')
+                    ->orderBy('a.precedence', 'ASC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getOneOrNullResult();
+            } catch (NonUniqueResultException $e) {
+                return null;
+            }
+        }
+
         try {
             return $this->createQueryBuilder('a')
                 ->where('a.URLList LIKE :route')
