@@ -416,7 +416,7 @@ class SystemAdminController extends AbstractController
         $config = Yaml::parse(file_get_contents($this->getSettingFileName()));
         $config['parameters']['locale'] = $i18n->getCode();
         file_put_contents($this->getSettingFileName(), Yaml::dump($config, 8));
-        $this->addFlash('success', 'Your request was completed successfully.');
+        $this->addFlash('success', 'return.success.0');
         $session->set('i18n', $i18n->toArray());
         return $this->redirectToRoute('system_admin__language_manage');
     }
@@ -455,7 +455,7 @@ class SystemAdminController extends AbstractController
             $this->addFlash('warning', 'Your request was successful, but some data was not properly saved.');
             return $this->redirectToRoute('system_admin__language_manage');
         }
-        $this->addFlash('success', 'Your request was completed successfully.');
+        $this->addFlash('success', 'return.success.0');
         return $this->redirectToRoute('system_admin__language_manage');
     }
 
@@ -485,7 +485,7 @@ class SystemAdminController extends AbstractController
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($stringReplacement);
                     $em->flush();
-                    $data['errors'][] = ['class' => 'success', 'message' => TranslationsHelper::translate('Your request was completed successfully.', [], 'messages')];
+                    $data['errors'][] = ['class' => 'success', 'message' => TranslationsHelper::translate('return.success.0', [], 'messages')];
                     $data['status'] = 'success';
                     $form = $this->createForm(StringReplacementType::class, $stringReplacement, ['action' => $this->generateUrl('system_admin__string_replacement_edit', ['stringReplacement' => $stringReplacement->getId() ?: 'Add'])]);
                 } catch (PDOException $e) {
@@ -543,7 +543,7 @@ class SystemAdminController extends AbstractController
             $em =$this->getDoctrine()->getManager();
             $em->remove($stringReplacement);
             $em->flush();
-            $this->addFlash('success', 'Your request was completed successfully.');
+            $this->addFlash('success', 'return.success.0');
         } catch (PDOException $e) {
             $this->addFlash('error', 'Your request failed due to a database error.');
         }

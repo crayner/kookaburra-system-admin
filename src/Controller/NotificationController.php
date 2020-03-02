@@ -83,7 +83,7 @@ class NotificationController extends AbstractController
                         $em->refresh($listener);
                     }
                     $form = $this->createForm(NotificationEventType::class, $event, ['action' => $this->generateUrl('system_admin__notification_edit', ['event' => $event->getId()]), 'listener_delete_route' => $this->generateUrl('system_admin__notification_listener_delete', ['listener' => '__id__', 'event' => '__event__'])]);
-                    $data['errors'][] = ['class' => 'success', 'message' => TranslationsHelper::translate('Your request was completed successfully.')];
+                    $data['errors'][] = ['class' => 'success', 'message' => TranslationsHelper::translate('return.success.0')];
                 } catch (PDOException $e) {
                     $data['errors'][] = ['class' => 'error', 'message' => TranslationsHelper::translate('Your request failed due to a database error.')];
                 } catch (\PDOException $e) {
@@ -141,7 +141,7 @@ class NotificationController extends AbstractController
         $manager->singlePanel($form->createView(), 'NotificationEvent');
         $data['form'] = $manager->getFormFromContainer('formContent', 'single');
         if ($data['errors'] === []) {
-            $data['errors'][] = ['class' => 'success', 'message' => TranslationsHelper::translate('Your request was completed successfully.', [], 'messages')];
+            $data['errors'][] = ['class' => 'success', 'message' => TranslationsHelper::translate('return.success.0', [], 'messages')];
             $data['status'] = 'success';
         }
 

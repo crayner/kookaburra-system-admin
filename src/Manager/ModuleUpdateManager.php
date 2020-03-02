@@ -136,7 +136,7 @@ class ModuleUpdateManager
                         $upgrade->setModule($this->getModule())->setVersion($content['version']);
                         $em->persist($upgrade);
                         $em->flush();
-                        $this->getMessageManager()->add('success', 'Your request was completed successfully.');
+                        $this->getMessageManager()->add('success', 'return.success.0');
                     }
                 }
             }

@@ -84,7 +84,7 @@ class ModuleController extends AbstractController
         if ($manager->setModule($delete)->isSymfonyBundle() && $delete->getType() === 'Additional')
         {
             $manager->deleteModule();
-            $this->addFlash('success', 'Your request was completed successfully.');
+            $this->addFlash('success', 'return.success.0');
         } else {
             $this->addFlash('error', 'Your request failed because your inputs were invalid.');
         }
