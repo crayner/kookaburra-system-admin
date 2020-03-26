@@ -30,7 +30,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class ModuleController
  * @package Kookaburra\SystemAdmin\Controller
- * @Route("/system/admin", name="system_admin__")
+
  */
 class ModuleController extends AbstractController
 {

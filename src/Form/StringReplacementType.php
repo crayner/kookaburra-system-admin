@@ -15,14 +15,11 @@
 
 namespace Kookaburra\SystemAdmin\Form;
 
-use App\Entity\StringReplacement;
 use App\Form\Type\EnumType;
-use App\Form\Type\HeaderType;
 use App\Form\Type\ReactFormType;
 use App\Form\Type\ToggleType;
-use App\Twig\MinorLinks;
+use Kookaburra\SystemAdmin\Entity\StringReplacement;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -96,6 +93,7 @@ class StringReplacementType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => StringReplacement::class,
+                'translation_domain' => 'SystemAdmin',
             ]
         );
     }

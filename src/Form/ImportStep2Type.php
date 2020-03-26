@@ -87,7 +87,7 @@ class ImportStep2Type extends AbstractType
                     'id' => 'importStep2',
                     'novalidate' => 'novalidate',
                 ],
-                'translation_domain' => 'messages',
+                'translation_domain' => 'SystemAdmin',
                 'data_class' => ImportControl::class,
                 'constraints' => [
                     new ImportStep2(),

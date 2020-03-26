@@ -20,10 +20,9 @@ use App\Container\ContainerManager;
 use App\Container\Panel;
 use App\Entity\I18n;
 use App\Entity\Setting;
-use App\Entity\StringReplacement;
+use App\Manager\PageManager;
 use App\Manager\VersionManager;
 use App\Provider\ProviderFactory;
-use App\Util\TranslationsHelper;
 use Doctrine\DBAL\Driver\PDOException;
 use Kookaburra\SystemAdmin\Form\DisplaySettingsType;
 use Kookaburra\SystemAdmin\Form\EmailSettingsType;
@@ -34,12 +33,10 @@ use Kookaburra\SystemAdmin\Form\OrganisationSettingsType;
 use Kookaburra\SystemAdmin\Form\PaypalSettingsType;
 use Kookaburra\SystemAdmin\Form\SecuritySettingsType;
 use Kookaburra\SystemAdmin\Form\SMSSettingsType;
-use Kookaburra\SystemAdmin\Form\StringReplacementType;
 use Kookaburra\SystemAdmin\Form\SystemSettingsType;
 use Kookaburra\SystemAdmin\Manager\GoogleSettingManager;
 use Kookaburra\SystemAdmin\Manager\LanguageManager;
 use Kookaburra\SystemAdmin\Manager\MailerSettingsManager;
-use Kookaburra\SystemAdmin\Manager\StringReplacementPagination;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,30 +51,33 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * Class SystemAdminController
  * @package App\Controller
- * @Route("/system/admin", name="system_admin__")
  */
 class SystemAdminController extends AbstractController
 {
     /**
      * systemSettings
-     * @param Request $request
+     * @param PageManager $pageManager
      * @param ContainerManager $manager
      * @param TranslatorInterface $translator
      * @param string $tabName
      * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/system/{tabName}/settings/", name="system_settings")
-     * @Route("/")
+     * @Route("/", name="default")
      * @Security("is_granted('ROLE_ROUTE', ['system_admin__system_settings'])")
      */
-    public function systemSettings(Request $request, ContainerManager $manager, TranslatorInterface $translator, string $tabName = 'System')
+    public function systemSettings(PageManager $pageManager, ContainerManager $manager, TranslatorInterface $translator, string $tabName = 'System')
     {
+        if ($pageManager->isNotReadyForJSON()) return $pageManager->getBaseResponse();
+        $request = $pageManager->getRequest();
+
         $settingProvider = ProviderFactory::create(Setting::class);
         $settingProvider->getSettingsByScope('System');
         $container = new Container();
+        $manager->setTranslationDomain('SystemAdmin');
         // System Settings
         $form = $this->createForm(SystemSettingsType::class, null, ['action' => $this->generateUrl('system_admin__system_settings', ['tabName' => 'System'])]);
 
-        if ($tabName === 'System' && $request->getContentType() === 'json') {
+        if ($tabName === 'System' && $request->getContent() !== '') {
             $data = [];
             try {
                 $data['errors'] = $settingProvider->handleSettingsForm($form, $request, $translator);
@@ -104,7 +104,7 @@ class SystemAdminController extends AbstractController
             ]
         );
 
-        if ($tabName === 'Organisation' && $request->getContentType() === 'json') {
+        if ($tabName === 'Organisation' && $request->getContent() !== '') {
             $data = [];
             try {
                 $data['errors'] = $settingProvider->handleSettingsForm($form, $request, $translator);
@@ -130,7 +130,7 @@ class SystemAdminController extends AbstractController
             ]
         );
 
-        if ($tabName === 'Security' && $request->getContentType() === 'json') {
+        if ($tabName === 'Security' && $request->getContent() !== '') {
             $data = [];
             try {
                 $data['errors'] = $settingProvider->handleSettingsForm($form, $request, $translator);
@@ -154,7 +154,7 @@ class SystemAdminController extends AbstractController
             ]
         );
 
-        if ($tabName === 'Localisation' && $request->getContentType() === 'json') {
+        if ($tabName === 'Localisation' && $request->getContent() !== '') {
             $data = [];
             try {
                 $data['errors'] = $settingProvider->handleSettingsForm($form, $request, $translator);
@@ -178,7 +178,7 @@ class SystemAdminController extends AbstractController
             ]
         );
 
-        if ($tabName === 'Miscellaneous' && $request->getContentType() === 'json') {
+        if ($tabName === 'Miscellaneous' && $request->getContent() !== '') {
             $data = [];
             try {
                 $data['errors'] = $settingProvider->handleSettingsForm($form, $request, $translator);
@@ -201,117 +201,8 @@ class SystemAdminController extends AbstractController
         // Finally Finished
         $manager->addContainer($container)->buildContainers();
 
-        return $this->render('@KookaburraSystemAdmin/system_settings.html.twig');
-    }
-
-    /**
-     * thirdParty
-     * @param Request $request
-     * @param ContainerManager $manager
-     * @param TranslatorInterface $translator
-     * @param string $tabName
-     * @Route("/third/{tabName}/party/", name="third_party")
-     * @IsGranted("ROLE_ROUTE"))
-     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
-     */
-    public function thirdParty(Request $request, ContainerManager $manager, TranslatorInterface $translator, string $tabName = 'Google')
-    {
-        $settingProvider = ProviderFactory::create(Setting::class);
-        $container = new Container();
-        $container->setTarget('formContent')->setSelectedPanel($tabName)->setApplication('ThirdParty');
-
-        // Google
-        $form = $this->createForm(GoogleIntegationType::class, null, ['action' => $this->generateUrl('system_admin__third_party', ['tabName' => 'Google'])]);
-
-        if ($tabName === 'Google' && $request->getContentType() === 'json') {
-            $data = [];
-            try {
-                $data['errors'] = $settingProvider->handleSettingsForm($form, $request, $translator);
-                $gm = new GoogleSettingManager();
-                $data['errors'][] = $gm->handleGoogleSecretsFile($form, $request, $translator);
-            } catch (\Exception $e) {
-                $data['errors'][] = ['class' => 'error', 'message' => $translator->trans('Your request failed due to a database error.') . ' ' . $e->getMessage()];
-            }
-
-            $form = $this->createForm(GoogleIntegationType::class, null, ['action' => $this->generateUrl('system_admin__third_party', ['tabName' => 'Google'])]);
-            $manager->singlePanel($form->createView());
-            $data['form'] = $manager->getFormFromContainer('formContent', 'single');
-
-            return new JsonResponse($data, 200);
-        }
-
-        $panel = new Panel('Google');
-        $container->addForm('Google', $form->createView())->addPanel($panel);
-
-        // PayPal
-        $form = $this->createForm(PaypalSettingsType::class, null, ['action' => $this->generateUrl('system_admin__third_party', ['tabName' => 'PayPal'])]);
-
-        if ($tabName === 'PayPal' && $request->getContentType() === 'json') {
-            $data = [];
-            try {
-                $data['errors'] = $settingProvider->handleSettingsForm($form, $request, $translator);
-            } catch (\Exception $e) {
-                $data['errors'][] = ['class' => 'error', 'message' => $translator->trans('Your request failed due to a database error.')];
-            }
-
-            $form = $this->createForm(PaypalSettingsType::class, null, ['action' => $this->generateUrl('system_admin__third_party', ['tabName' => 'PayPal'])]);
-            $manager->singlePanel($form->createView());
-            $data['form'] = $manager->getFormFromContainer('formContent', 'single');
-
-            return new JsonResponse($data, 200);
-        }
-
-        $panel = new Panel('PayPal');
-        $container->addForm('PayPal', $form->createView())->addPanel($panel);
-
-        // SMS
-        $form = $this->createForm(SMSSettingsType::class, null, ['action' => $this->generateUrl('system_admin__third_party', ['tabName' => 'SMS'])]);
-
-        if ($tabName === 'SMS' && $request->getContentType() === 'json') {
-            $data = [];
-            try {
-                $data['errors'] = $settingProvider->handleSettingsForm($form, $request, $translator);
-            } catch (\Exception $e) {
-                $data['errors'][] = ['class' => 'error', 'message' => $translator->trans('Your request failed due to a database error.')];
-            }
-
-            $form = $this->createForm(SMSSettingsType::class, null, ['action' => $this->generateUrl('system_admin__third_party', ['tabName' => 'SMS'])]);
-            $manager->singlePanel($form->createView());
-            $data['form'] = $manager->getFormFromContainer('formContent', 'single');
-
-            return new JsonResponse($data, 200);
-        }
-
-        $panel = new Panel('SMS');
-        $container->addForm('SMS', $form->createView())->addPanel($panel);
-
-        // E-Mail
-        $form = $this->createForm(EmailSettingsType::class, null, ['action' => $this->generateUrl('system_admin__third_party', ['tabName' => 'E-Mail'])]);
-
-        if ($tabName === 'E-Mail' && $request->getContentType() === 'json') {
-            $data = [];
-            try {
-                $data['errors'] = $settingProvider->handleSettingsForm($form, $request, $translator);
-                $msm = new MailerSettingsManager();
-                $msm->handleMailerDsn($request);
-            } catch (\Exception $e) {
-                $data['errors'][] = ['class' => 'error', 'message' => $translator->trans('Your request failed due to a database error.')];
-            }
-
-            $form = $this->createForm(EmailSettingsType::class, null, ['action' => $this->generateUrl('system_admin__third_party', ['tabName' => 'E-Mail'])]);
-            $manager->singlePanel($form->createView());
-            $data['form'] = $manager->getFormFromContainer('formContent', 'single');
-
-            return new JsonResponse($data, 200);
-        }
-
-        $panel = new Panel('E-Mail');
-        $container->addForm('E-Mail', $form->createView())->addPanel($panel);
-
-        // Finally Finished
-        $manager->addContainer($container)->buildContainers();
-
-        return $this->render('@KookaburraSystemAdmin/third_party.html.twig');
+        return $pageManager->createBreadcrumbs('System Settings')
+            ->render(['containers' => $manager->getBuiltContainers()]);
     }
 
     /**
@@ -343,7 +234,7 @@ class SystemAdminController extends AbstractController
         // System Settings
         $form = $this->createForm(DisplaySettingsType::class, null, ['action' => $this->generateUrl('system_admin__display_settings')]);
 
-        if ($request->getContentType() === 'json') {
+        if ($request->getContent() !== '') {
             $data = [];
             try {
                 $data['errors'] = $settingProvider->handleSettingsForm($form, $request, $translator);
@@ -457,98 +348,6 @@ class SystemAdminController extends AbstractController
         }
         $this->addFlash('success', 'return.success.0');
         return $this->redirectToRoute('system_admin__language_manage');
-    }
-
-    /**
-     * stringReplacementEdit
-     * @param Request $request
-     * @param ContainerManager $manager
-     * @param string|null $stringReplacement
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/string/replacement/{stringReplacement}/edit/", name="string_replacement_edit")
-     * @IsGranted("ROLE_ROUTE")
-     */
-    public function stringReplacementEdit(Request $request, ContainerManager $manager, ?string $stringReplacement = 'Add')
-    {
-        $stringReplacement = $stringReplacement !== 'Add' ? ProviderFactory::getRepository(StringReplacement::class)->find($stringReplacement) : new StringReplacement();
-
-        $form = $this->createForm(StringReplacementType::class, $stringReplacement, ['action' => $this->generateUrl('system_admin__string_replacement_edit', ['stringReplacement' => $stringReplacement->getId() ?: 'Add'])]);
-
-        if ($request->getContentType() === 'json') {
-            $content = json_decode($request->getContent(), true);
-
-            $data = [];
-            $form->submit($content);
-            if ($form->isValid()) {
-
-                try {
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($stringReplacement);
-                    $em->flush();
-                    $data['errors'][] = ['class' => 'success', 'message' => TranslationsHelper::translate('return.success.0', [], 'messages')];
-                    $data['status'] = 'success';
-                    $form = $this->createForm(StringReplacementType::class, $stringReplacement, ['action' => $this->generateUrl('system_admin__string_replacement_edit', ['stringReplacement' => $stringReplacement->getId() ?: 'Add'])]);
-                } catch (PDOException $e) {
-                    $data['errors'][] = ['class' => 'error', 'message' => TranslationsHelper::translate('Your request failed because your inputs were invalid.', [], 'messages')];
-                    $data['status'] = 'error';
-                }
-            } else {
-                $data['errors'][] = ['class' => 'error', 'message' => TranslationsHelper::translate('Your request failed due to a database error.', [], 'messages')];
-                $data['status'] = 'error';
-            }
-
-            $manager->singlePanel($form->createView());
-            $data['form'] = $manager->getFormFromContainer('formContent', 'single');
-
-            return JsonResponse::create($data, 200);
-        }
-
-        $manager->singlePanel($form->createView());
-
-        return $this->render('@KookaburraSystemAdmin/string_replacement_edit.html.twig');
-    }
-
-    /**
-     * stringReplacementManage
-     * @param Request $request
-     * @param string|null $stringReplacement
-     * @Route("/string/replacement/manage/", name="string_replacement_manage")
-     * @IsGranted("ROLE_ROUTE")
-     */
-    public function stringReplacementManage(Request $request, StringReplacementPagination $pagination)
-    {
-        $content = [];
-        $provider = ProviderFactory::create(StringReplacement::class);
-        $content = $provider->getPaginationResults($request->query->get('search'));
-        $pagination->setContent($content)
-            ->setPaginationScript();
-        return $this->render('@KookaburraSystemAdmin/string_replacement_manage.html.twig',
-            [
-                'content' => $content,
-                'search' => $request->query->get('search') ?: '',
-            ]
-        );
-    }
-
-    /**
-     * stringReplacementDelete
-     * @param StringReplacement $stringReplacement
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/string/replacement/{stringReplacement}/delete/", name="string_replacement_delete")
-     * @IsGranted("ROLE_ROUTE")
-     */
-    public function stringReplacementDelete(StringReplacement $stringReplacement)
-    {
-        try {
-            $em =$this->getDoctrine()->getManager();
-            $em->remove($stringReplacement);
-            $em->flush();
-            $this->addFlash('success', 'return.success.0');
-        } catch (PDOException $e) {
-            $this->addFlash('error', 'Your request failed due to a database error.');
-        }
-
-        return $this->forward(SystemAdminController::class . '::stringReplacementManage');
     }
 
     /**

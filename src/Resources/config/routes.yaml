@@ -2,3 +2,7 @@ controllers:
     resource: '@KookaburraSystemAdminBundle/Controller/'
     type: annotation
     schemes: [ 'https' ]
+    # this is added to the beginning of all imported route URLs
+    prefix: '/system/admin'
+    # this is added to the beginning of all imported route names
+    name_prefix: 'system_admin__'

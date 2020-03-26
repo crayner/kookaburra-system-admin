@@ -20,6 +20,7 @@ use App\Manager\Entity\PaginationColumn;
 use App\Manager\Entity\PaginationRow;
 use App\Manager\PaginationInterface;
 use App\Manager\AbstractPaginationManager;
+use App\Util\TranslationsHelper;
 
 /**
  * Class StringReplacementPagination
@@ -33,48 +34,57 @@ class StringReplacementPagination extends AbstractPaginationManager
      */
     public function execute(): PaginationInterface
     {
+        TranslationsHelper::setDomain('SystemAdmin');
+
         $row = new PaginationRow();
         $column = new PaginationColumn();
-        $column->setLabel('Original String');
-        $column->setContentKey('original');
-        $column->setSort(true);
-        $column->setClass('column relative pr-4 cursor-pointer widthAuto');
+        $column->setLabel('Original String')
+            ->setContentKey('original')
+            ->setSort(true)
+            ->setSearch(true)
+            ->setClass('column relative pr-4 cursor-pointer widthAuto');
         $row->addColumn($column);
+
         $column = new PaginationColumn();
-        $column->setLabel('Replacement String');
-        $column->setContentKey('replacement');
-        $column->setSort(true);
-        $column->setClass('column relative pr-4 cursor-pointer widthAuto');
+        $column->setLabel('Replacement String')
+            ->setContentKey('replacement')
+            ->setSort(true)
+            ->setSearch(true)
+            ->setClass('column relative pr-4 cursor-pointer widthAuto');
         $row->addColumn($column);
+
         $column = new PaginationColumn();
-        $column->setLabel('Mode');
-        $column->setContentKey('mode');
-        $column->setClass('column hidden md:table-cell relative pr-4 cursor-pointer widthAuto');
+        $column->setLabel('Mode')
+            ->setContentKey('mode')
+            ->setClass('column hidden md:table-cell relative pr-4 cursor-pointer widthAuto');
         $row->addColumn($column);
+
         $column = new PaginationColumn();
-        $column->setLabel('Case Sensitive');
-        $column->setContentKey('caseSensitive');
-        $column->setClass('column hidden md:table-cell relative pr-4 cursor-pointer widthAuto');
+        $column->setLabel('Case Sensitive')
+            ->setContentKey('caseSensitive')
+            ->setClass('column hidden md:table-cell relative pr-4 cursor-pointer widthAuto');
         $row->addColumn($column);
+
         $column = new PaginationColumn();
-        $column->setLabel('Priority');
-        $column->setContentKey('priority');
-        $column->setSort(true);
-        $column->setClass('column hidden md:table-cell relative pr-4 cursor-pointer widthAuto');
+        $column->setLabel('Priority')
+            ->setContentKey('priority')
+            ->setSort(true)
+            ->setClass('column hidden md:table-cell relative pr-4 cursor-pointer widthAuto');
         $row->addColumn($column);
 
         $action = new PaginationAction();
         $action->setTitle('Edit')
             ->setAClass('p-3 sm:p-0')
-            ->setSpanClass('far fa-edit fa-fw fa-1-5x text-gray-700')
+            ->setSpanClass('far fa-edit fa-fw fa-1-5x text-gray-800 hover:text-purple-500')
             ->setRoute('system_admin__string_replacement_edit')
             ->setRouteParams(['stringReplacement' => 'id']);
         $row->addAction($action);
+
         $action = new PaginationAction();
         $action->setTitle('Delete')
             ->setAClass('thickbox p-3 sm:p-0')
             ->setColumnClass('p-2 sm:p-3')
-            ->setSpanClass('fas fa-trash-alt fa-fw fa-1-5x text-gray-700')
+            ->setSpanClass('fas fa-trash-alt fa-fw fa-1-5x text-gray-800 hover:text-red-500')
             ->setRoute('system_admin__string_replacement_delete')
             ->setRouteParams(['stringReplacement' => 'id']);
         $row->addAction($action);

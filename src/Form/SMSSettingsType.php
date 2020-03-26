@@ -309,7 +309,7 @@ class SMSSettingsType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'translation_domain' => 'messages',
+                'translation_domain' => 'SystemAdmin',
                 'data_class' => null,
             ]
         );

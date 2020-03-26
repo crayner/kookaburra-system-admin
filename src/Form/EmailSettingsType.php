@@ -15,7 +15,6 @@
 
 namespace Kookaburra\SystemAdmin\Form;
 
-
 use App\Entity\Setting;
 use App\Form\Type\HeaderType;
 use App\Form\Type\ReactFormType;
@@ -111,6 +110,7 @@ class EmailSettingsType extends AbstractType
         $host = $provider->getSettingByScope('System','mailerSMTPHost', true);
         $port = $provider->getSettingByScope('System','mailerSMTPPort', true);
         $secure = $provider->getSettingByScope('System','mailerSMTPSecure', true);
+        TranslationsHelper::setDomain('SystemAdmin');
         ReactFormHelper::setExtras(array_merge(ReactFormHelper::getExtras(),
             [
                 'mailer' => [
@@ -204,7 +204,7 @@ class EmailSettingsType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'translation_domain' => 'messages',
+                'translation_domain' => 'SystemAdmin',
                 'data_class' => null,
             ]
         );

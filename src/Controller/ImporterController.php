@@ -38,7 +38,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * Class SystemAdminController
  * @package App\Controller
- * @Route("/system/admin", name="system_admin__")
+
  */
 class ImporterController extends AbstractController
 {

@@ -1,6 +1,0 @@
-version: '20191016034117'
-up:
-    - CREATE TABLE gibbonModuleUpgrade (id INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT, module INT(4) UNSIGNED ZEROFILL, version VARCHAR(14) NOT NULL, executed_at DATETIME NOT NULL COMMENT '(DC2Type:datetime_immutable)', INDEX IDX_3B5BDC02C242628 (module), UNIQUE INDEX module_version (module, version), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1
-    - ALTER TABLE gibbonModuleUpgrade ADD CONSTRAINT FK_3B5BDC02C242628 FOREIGN KEY (module) REFERENCES gibbonModule (gibbonModuleID)
-down:
-    - DROP TABLE gibbonModuleUpgrade

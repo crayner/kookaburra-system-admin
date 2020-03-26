@@ -33,7 +33,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class NotificationController
  * @package App\Controller
- * @Route("/system/admin", name="system_admin__")
+
  */
 
 class NotificationController extends AbstractController

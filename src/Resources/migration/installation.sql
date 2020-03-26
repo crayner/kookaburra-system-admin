@@ -103,4 +103,12 @@ CREATE TABLE `__prefix__NotificationListener` (
     `person` INT(10) UNSIGNED ZEROFILL,
     INDEX IDX_6313F17E26A39C71 (`notification_event`), INDEX IDX_6313F17ECC6782D6 (`person`), PRIMARY KEY(`id`)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1;
-
+CREATE TABLE `__prefix__String` (
+    `id` INT(8) UNSIGNED AUTO_INCREMENT,
+    `original` VARCHAR(100) NOT NULL,
+    `replacement` VARCHAR(100) NOT NULL,
+    `mode` VARCHAR(8) NOT NULL,
+    `caseSensitive` VARCHAR(1) NOT NULL,
+    `priority` INT(2),
+    PRIMARY KEY(`id`)
+) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1;

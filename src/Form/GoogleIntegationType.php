@@ -50,7 +50,7 @@ class GoogleIntegationType extends AbstractType
                         '{oneString}' => "<a href='https://gibbonedu.org/support/administrators/installing-gibbon/authenticating-with-google-oauth/' target='_blank'>",
                         '{twoString}' => '</a>',
                     ],
-                    'translation_domain' => 'messages',
+                    'translation_domain' => 'SystemAdmin',
                 ]
             )
             ->add('googleIntegrationSettings', SettingsType::class,
@@ -75,7 +75,7 @@ class GoogleIntegationType extends AbstractType
                         '%{anchor}' => "<a href='https://console.cloud.google.com/apis/credentials' target='_blank'>",
                         '%{anchorClose}' => "</a>",
                     ],
-                    'translation_domain' => 'messages',
+                    'translation_domain' => 'SystemAdmin',
                     'file_prefix' => 'temp',
                     'data' => '',
                 ]
@@ -93,7 +93,7 @@ class GoogleIntegationType extends AbstractType
                                     '%{anchor}' => "<a href='https://console.cloud.google.com/apis/credentials' target='_blank'>",
                                     '%{anchorClose}' => "</a>",
                                 ],
-                                'translation_domain' => 'messages',
+                                'translation_domain' => 'SystemAdmin',
                             ],
                         ],
                         [
@@ -115,7 +115,7 @@ class GoogleIntegationType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'translation_domain' => 'messages',
+                'translation_domain' => 'SystemAdmin',
                 'data_class' => null,
             ]
         );
