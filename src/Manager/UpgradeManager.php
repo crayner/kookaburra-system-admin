@@ -24,6 +24,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Kookaburra\SystemAdmin\Entity\Action;
 use Kookaburra\SystemAdmin\Entity\Module;
 use Kookaburra\SystemAdmin\Entity\ModuleUpgrade;
+use Kookaburra\SystemAdmin\Entity\NotificationEvent;
 use Kookaburra\SystemAdmin\Entity\Permission;
 use Kookaburra\SystemAdmin\Entity\Role;
 use Psr\Log\LoggerInterface;
@@ -158,7 +159,7 @@ class UpgradeManager
                         $this->setModuleVersion($this->getModule(), 'Legacy');
                 }
                 if (isset($version['events']))
-                    $exitCode += $this->writeEventDetails($version['events']);
+                    $exitCode += $this->writeEventDetails($version['events'],$version['name']);
             }
         }
 
@@ -393,7 +394,6 @@ class UpgradeManager
                 $this->em->persist($action);
             foreach($permissions as $permission)
                 $this->em->persist($permission);
-            $this->em->flush();
             $this->em->commit();
         } catch (PDOException $e) {
             $this->em->rollback();
@@ -406,6 +406,46 @@ class UpgradeManager
         }
 
         $this->setModule($module);
+
+        return $exitCode;
+    }
+
+    /**
+     * writeEventDetails
+     * @param array $details
+     * @param string $name
+     * @return int
+     */
+    public function writeEventDetails(array $details, string $name): int
+    {
+        if (empty($details))
+            return 0;
+        $module = $this->em->getRepository(Module::class)->findOneBy(['name' => $name]) ?: new Module();
+        $this->getLogger()->notice(sprintf('Writing events for "%s" bundle.', $name));
+        $exitCode = 0;
+        $count = 0;
+        try {
+            $this->em->beginTransaction();
+            foreach($details as $item)
+            {
+                $event = new NotificationEvent();
+                $action = $this->em->getRepository(Action::class)->findOneBy(['name' => $item['action']]) ?: null;
+                $event->setEvent($item['event'])
+                    ->setModule($module)
+                    ->setScopes(implode(',',$item['scopes']))
+                    ->setActive($item['active'])
+                    ->setAction($action)
+                ;
+                $this->em->persist($event);
+                $count++;
+            }
+            $this->em->commit();
+            $this->getLogger()->notice(sprintf('%s events for "%s" bundle were created.', strval($count), $name));
+        } catch (PDOException $e) {
+            $this->em->rollback();
+            $this->getLogger()->error($e->getMessage());
+            $exitCode = 1;
+        }
 
         return $exitCode;
     }

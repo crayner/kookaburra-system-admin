@@ -16,7 +16,7 @@ module:
             precedence: 0
             category: Settings
             description: 'Main system settings'
-            URLList: system_settings
+            URLList: 'system_settings,default'
             entryURL: system_settings
             entrySidebar: 'Y'
             menuShow: 'Y'
@@ -151,13 +151,13 @@ module:
             categoryPermissionOther: 'N'
             permissions:
                 - Administrator
-        'Notification Settings':
-            name: 'Notification Settings'
+        'Notification Events':
+            name: 'Notification Events'
             precedence: 0
             category: Settings
-            description: 'Manage settings for system notifications.'
-            URLList: 'notification_settings,notification_edit'
-            entryURL: notification_settings
+            description: 'Manage system notification events.'
+            URLList: 'notification_events,notification_edit'
+            entryURL: notification_events
             entrySidebar: 'Y'
             menuShow: 'Y'
             defaultPermissionAdmin: 'Y'

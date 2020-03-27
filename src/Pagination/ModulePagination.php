@@ -13,7 +13,7 @@
  * Time: 10:25
  */
 
-namespace Kookaburra\SystemAdmin\Manager;
+namespace Kookaburra\SystemAdmin\Pagination;
 
 use App\Manager\Entity\PaginationAction;
 use App\Manager\Entity\PaginationColumn;

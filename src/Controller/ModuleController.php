@@ -16,7 +16,7 @@
 namespace Kookaburra\SystemAdmin\Controller;
 
 use Kookaburra\SystemAdmin\Entity\Module;
-use Kookaburra\SystemAdmin\Manager\ModulePagination;
+use Kookaburra\SystemAdmin\Pagination\ModulePagination;
 use Kookaburra\SystemAdmin\Manager\ModuleUpdateManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;

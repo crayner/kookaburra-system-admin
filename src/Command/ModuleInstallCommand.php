@@ -154,6 +154,8 @@ EOT
 
                     if (isset($version['module']))
                         $exitCode += $this->manager->writeModuleDetails($version['module']);
+                    if (isset($version['events']))
+                        $exitCode += $this->manager->writeEventDetails($version['events'],$version['name']);
                     if ($exitCode === 0)
                         $this->setModuleVersion($this->getModule(), $version['version']);
 
@@ -250,51 +252,6 @@ EOT
 
         $this->setModule($module);
         return $this->manager->hasModuleVersion($module, $this->version['version']);
-    }
-
-    /**
-     * writeModuleDetails
-     * @param array $w
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @return int
-     */
-    private function writeEventDetails(array $w, InputInterface $input, OutputInterface $output, SymfonyStyle $io): int
-    {
-        $module = $this->getModule();
-        if (null === $module || !is_array($w))
-        {
-            $io->error(sprintf('Not able to create events for "%s" bundle.', $this->version['name']));
-            return 1;
-        }
-        $io->text(sprintf('Creating Notification Events for <info>%s</info> bundle.', $this->version['name']));
-        $actions = new ArrayCollection($this->em->getRepository(Action::class)->findBy(['module' => $module]));
-
-        try {
-            $this->em->beginTransaction();
-            foreach ($w as $name => $item) {
-                $event = new NotificationEvent();
-                $action = $actions->filter(function ($action) use ($item, $module) {
-                    return $action->getName() === $item['action'] && $action->getModule() === $module;
-                });
-
-                $event->setEvent($name)
-                    ->setModule($module)
-                    ->setAction($action->first())
-                    ->setType($item['type'])
-                    ->setScopes($item['scopes'])
-                    ->setActive($item['active']);
-                $this->em->persist($event);
-            }
-            $this->em->flush();
-            $this->em->commit();
-        } catch (PDOException $e) {
-            $this->em->rollback();
-            $io->error($e->getMessage());
-            return 1;
-        }
-
-        return 0;
     }
 
     /**

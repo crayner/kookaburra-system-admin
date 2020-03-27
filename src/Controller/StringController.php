@@ -23,7 +23,7 @@ use App\Util\TranslationsHelper;
 use Doctrine\DBAL\Driver\PDOException;
 use Kookaburra\SystemAdmin\Entity\StringReplacement;
 use Kookaburra\SystemAdmin\Form\StringReplacementType;
-use Kookaburra\SystemAdmin\Manager\StringReplacementPagination;
+use Kookaburra\SystemAdmin\Pagination\StringReplacementPagination;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
