@@ -14,8 +14,12 @@ namespace Kookaburra\SystemAdmin\Entity;
 
 use App\Manager\EntityInterface;
 use App\Manager\Traits\BooleanList;
+use App\Util\TranslationsHelper;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
+use Kookaburra\UserAdmin\Entity\Person;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -47,7 +51,7 @@ class NotificationEvent implements EntityInterface
 
     /**
      * @var string|null
-     * @ORM\Column(length=30, name="moduleName")
+     * @ORM\Column(length=30, name="moduleName",nullable=true)
      * @deprecated
      */
     private $moduleName;
@@ -61,7 +65,7 @@ class NotificationEvent implements EntityInterface
 
     /**
      * @var string|null
-     * @ORM\Column(length=50, name="actionName")
+     * @ORM\Column(length=50, name="actionName",nullable=true)
      * @deprecated
      */
     private $actionName;
@@ -99,9 +103,17 @@ class NotificationEvent implements EntityInterface
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="NotificationListener", mappedBy="event", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="NotificationListener", mappedBy="event", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $listeners;
+
+    /**
+     * NotificationEvent constructor.
+     */
+    public function __construct()
+    {
+        $this->listeners = new ArrayCollection();
+    }
 
     /**
      * @return int|null
@@ -145,7 +157,8 @@ class NotificationEvent implements EntityInterface
      */
     public function getModuleName(): ?string
     {
-        return $this->moduleName;
+        trigger_error(sprintf('The method %s is deprecated in %s', __METHOD__, __CLASS__), E_USER_DEPRECATED);
+        return $this->moduleName ?: ($this->getModule() ? $this->getModule()->getName() : null);
     }
 
     /**
@@ -165,7 +178,8 @@ class NotificationEvent implements EntityInterface
      */
     public function getActionName(): ?string
     {
-        return $this->actionName;
+        trigger_error(sprintf('The method %s is deprecated in %s', __METHOD__, __CLASS__), E_USER_DEPRECATED);
+        return $this->actionName ?: ($this->getAction() ? $this->getAction()->getName() : null);
     }
 
     /**
@@ -202,6 +216,17 @@ class NotificationEvent implements EntityInterface
      */
     public function getScopes(): ?array
     {
+        if (!is_array($this->scopes))
+            $this->scopes = [];
+        // Legacy
+        foreach($this->scopes as $q=>$w) {
+            if ($w === 'gibbonPersonIDStudent')
+                $this->scopes[$q] = 'Student';
+            if ($w === 'gibbonPersonIDStaff')
+                $this->scopes[$q] = 'Staff';
+            if ($w === 'gibbonYearGroupID')
+                $this->scopes[$q] = 'Year Group';
+        }
         return $this->scopes ?: [];
     }
 
@@ -216,11 +241,21 @@ class NotificationEvent implements EntityInterface
     }
 
     /**
-     * @return string|null
+     * isActive
+     * @return bool
      */
-    public function getActive(): ?string
+    public function isActive(): bool
     {
-        return $this->active;
+        return $this->getActive() === 'Y';
+    }
+
+    /**
+     * getActive
+     * @return string
+     */
+    public function getActive(): string
+    {
+        return $this->checkBoolean($this->active);
     }
 
     /**
@@ -246,7 +281,27 @@ class NotificationEvent implements EntityInterface
      */
     public function getListeners(): Collection
     {
+        if (null === $this->listeners)
+            $this->listeners = new ArrayCollection();
+
+        if ($this->listeners instanceof PersistentCollection)
+            $this->listeners->initialize();
+
         return $this->listeners;
+    }
+
+    /**
+     * getListenersByPerson
+     *
+     * @param NotificationListener $listener
+     * @return Collection
+     */
+    public function getListenersByPerson(NotificationListener $listener): Collection
+    {
+        return $this->getListeners()->filter(function (NotificationListener $entity) use ($listener) {
+            if ($listener->getScopeType() !== $entity->getScopeType() && $listener->getPerson()->isEqualTo($entity->getPerson()))
+                return $entity;
+        });
     }
 
     /**
@@ -258,6 +313,36 @@ class NotificationEvent implements EntityInterface
     public function setListeners(Collection $listeners): NotificationEvent
     {
         $this->listeners = $listeners;
+        return $this;
+    }
+
+    /**
+     * addListener
+     * @param NotificationListener $listener
+     * @param bool $mirror
+     * @return NotificationEvent
+     */
+    public function addListener(NotificationListener $listener, bool $mirror = true): NotificationEvent
+    {
+        if ($this->getListeners()->contains($listener))
+            return $this;
+
+        if ($mirror)
+            $listener->setEvent($this, false);
+
+        $this->listeners->add($listener);
+        return $this;
+    }
+
+    /**
+     * removeListener
+     * @param NotificationListener $listener
+     * @return NotificationEvent
+     */
+    public function removeListener(NotificationListener $listener): NotificationEvent
+    {
+        $this->getListeners()->removeElement($listener);
+
         return $this;
     }
 
@@ -307,10 +392,8 @@ class NotificationEvent implements EntityInterface
      */
     public function legacyNameCalling()
     {
-        if ($this->getModuleName() === null || $this->getModuleName() === '')
-            $this->setModuleName($this->getModule()->getName());
-        if ($this->getActionName() === null || $this->getActionName() === '')
-            $this->setActionName($this->getAction()->getName());
+            $this->setModuleName($this->getModuleName());
+            $this->setActionName($this->getActionName());
     }
 
     /**
@@ -320,7 +403,14 @@ class NotificationEvent implements EntityInterface
      */
     public function toArray(?string $name = null): array
     {
-        return [];
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getEvent(),
+            'module' => $this->getModule()->getName(),
+            'subscribers' => strval(intval($this->getListeners()->count())),
+            'active' => $this->isActive() ? TranslationsHelper::translate('Yes', [], 'messages') : TranslationsHelper::translate('No', [], 'messages'),
+            'isActive' => $this->isActive(),
+            'canDelete' => false,
+        ];
     }
-
 }

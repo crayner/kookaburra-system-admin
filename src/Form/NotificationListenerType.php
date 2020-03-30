@@ -15,11 +15,14 @@
 
 namespace Kookaburra\SystemAdmin\Form;
 
+use App\Form\Transform\EntityToStringTransformer;
+use Kookaburra\SchoolAdmin\Entity\YearGroup;
 use Kookaburra\SystemAdmin\Entity\Action;
 use Kookaburra\SystemAdmin\Entity\NotificationEvent;
+use Kookaburra\SystemAdmin\Form\EventListener\NotificationEventSubscriber;
+use Kookaburra\SystemAdmin\Form\Transform\NotificationListenerStatusIDTransform;
+use Kookaburra\SystemAdmin\Form\Transform\NotificationListenerTransform;
 use Kookaburra\UserAdmin\Entity\Person;
-use App\Form\EventSubscriber\NotificationListenerSubscriber;
-use App\Form\Type\DisplayType;
 use App\Form\Type\HiddenEntityType;
 use App\Provider\ProviderFactory;
 use Kookaburra\SystemAdmin\Entity\NotificationListener;
@@ -42,7 +45,8 @@ class NotificationListenerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $action = ProviderFactory::getRepository(Action::class)->findOneByName($options['event']->getAction()->getName());
+        $event = $options['event'];
+        $action = ProviderFactory::getRepository(Action::class)->findOneByName($event->getAction()->getName());
         $roles= [];
         foreach($action->getPermissions() as $permission)
             $roles[] = $permission->getRole()->getId();
@@ -53,13 +57,8 @@ class NotificationListenerType extends AbstractType
             $people[$person['name']][] = $person[0];
         }
 
-        $allScopes = [
-            'All'                   => 'All',
-            'gibbonPersonIDStudent' => 'Student',
-            'gibbonPersonIDStaff'   => 'Staff',
-            'gibbonYearGroupID'     => 'Year Group',
-        ];
-        $eventScopes = array_flip($options['event']->getScopes());
+        $allScopes = NotificationListener::getScopeTypeList();
+        $eventScopes = array_flip($event->getScopes());
         $availableScopes = array_intersect_key($allScopes, $eventScopes);
 
         $builder
@@ -78,22 +77,24 @@ class NotificationListenerType extends AbstractType
                     'label' => 'Scope',
                     'placeholder' => 'Please select...',
                     'choices' => array_flip($availableScopes),
-                    'on_change' => 'toggleScopeType',
+                    'chained_child' => 'scopeID',
+                    'chained_values' => NotificationListener::getChainedValues(array_flip($availableScopes)),
                 ]
             )
-            ->add('scopeID', DisplayType::class,
+            ->add('scopeID', ChoiceType::class,
                 [
-                    'label' => 'Scope Type Choices',
+                    'label' => 'Scope Choices',
+                    'placeholder' => ' ',
+                    'choices' => NotificationListener::getChainedValues([]),
+                    'required' => false,
                 ]
             )
             ->add('event', HiddenEntityType::class,
                 [
                     'class' => NotificationEvent::class,
-                    'row_style' => 'hidden',
                 ]
             )
         ;
-        $builder->addEventSubscriber(new NotificationListenerSubscriber());
     }
 
     /**
@@ -109,12 +110,8 @@ class NotificationListenerType extends AbstractType
         );
         $resolver->setDefaults(
             [
-                'constraints' => [
-                    new \Kookaburra\SystemAdmin\Validator\NotificationListener(),
-                ],
-                'allow_extra_fields' => true,
                 'data_class' => NotificationListener::class,
-                'error_bubbling' => false,
+                'translation_domain' => 'SystemAdmin',
             ]
         );
     }

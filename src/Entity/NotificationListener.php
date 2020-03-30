@@ -12,17 +12,22 @@
  */
 namespace Kookaburra\SystemAdmin\Entity;
 
+use App\Provider\ProviderFactory;
+use Kookaburra\SchoolAdmin\Entity\YearGroup;
+use Kookaburra\SystemAdmin\Validator as Valid;
 use Kookaburra\UserAdmin\Entity\Person;
 use App\Manager\EntityInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class NotificationListener
  * @package Kookaburra\SystemAdmin\Entity
  * @ORM\Entity(repositoryClass="Kookaburra\SystemAdmin\Repository\NotificationListenerRepository")
  * @ORM\Table(options={"auto_increment": 1}, name="NotificationListener")
- * */
-class NotificationListener
+ * @Valid\EventListener()
+ */
+class NotificationListener implements EntityInterface
 {
     /**
      * @var integer|null
@@ -35,27 +40,41 @@ class NotificationListener
     /**
      * @var NotificationEvent|null
      * @ORM\ManyToOne(targetEntity="NotificationEvent", inversedBy="listeners")
-     * @ORM\JoinColumn(name="notification_event", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="notification_event", referencedColumnName="id")
+     * @Assert\NotBlank()
      */
     private $event;
     
     /**
      * @var Person|null
      * @ORM\ManyToOne(targetEntity="Kookaburra\UserAdmin\Entity\Person")
-     * @ORM\JoinColumn(referencedColumnName="id", nullable=true, name="person")
+     * @ORM\JoinColumn(referencedColumnName="id",name="person")
      * @ORM\OrderBy({"surname": "ASC", "firstName": "ASC"})
+     * @Assert\NotBlank()
      */
     private $person;
 
     /**
      * @var string|null
      * @ORM\Column(length=30, name="scopeType", nullable=true)
+     * @Assert\Choice(callback="getScopeTypeList")
+     * @Assert\NotBlank()
      */
     private $scopeType;
 
     /**
-     * @var integer|null
-     * @ORM\Column(type="bigint", name="scopeID", columnDefinition="INT(20) UNSIGNED", nullable=true)
+     * @var array
+     */
+    private static $scopeTypeList = [
+        'All',
+        'Student',
+        'Staff',
+        'Year Group'
+    ];
+
+    /**
+     * @var string|null
+     * @ORM\Column(length=20,name="scopeID",nullable=true)
      */
     private $scopeID;
 
@@ -89,8 +108,10 @@ class NotificationListener
      * @param NotificationEvent|null $notification
      * @return NotificationListener
      */
-    public function setEvent(?NotificationEvent $event): NotificationListener
+    public function setEvent(?NotificationEvent $event, bool $mirror = true): NotificationListener
     {
+        if ($mirror)
+            $event->addListener($this, false);
         $this->event = $event;
         return $this;
     }
@@ -128,26 +149,77 @@ class NotificationListener
     public function setScopeType(?string $scopeType): NotificationListener
     {
         $this->scopeType = $scopeType;
+        if ($scopeType === 'All')
+            $this->setScopeID(null);
         return $this;
     }
 
     /**
-     * @return int|null
+     * getScopeID
+     * @return string|null
      */
-    public function getScopeID(): ?int
+    public function getScopeID(): ?string
     {
+        if ($this->getScopeType() === 'All')
+            $this->scopeID = null;
         return $this->scopeID;
     }
 
     /**
-     * @param int|null $scopeID
+     * setScopeID
+     * @param string|null $scopeID
      * @return NotificationListener
      */
-    public function setScopeID($scopeID): NotificationListener
+    public function setScopeID(?string $scopeID): NotificationListener
     {
-        if ($scopeID instanceof EntityInterface)
-            $scopeID = $scopeID->getId();
+        if ($this->getScopeType() === 'All')
+            $scopeID  = null;
         $this->scopeID = $scopeID;
         return $this;
+    }
+
+    /**
+     * getScopeTypeList
+     * @return array
+     */
+    public static function getScopeTypeList(): array
+    {
+        $result = [];
+        foreach(self::$scopeTypeList as $name)
+            $result[$name] = $name;
+        return $result;
+    }
+
+    /**
+     * toArray
+     * @param string|null $name
+     * @return array
+     */
+    public function toArray(?string $name = null): array
+    {
+        return [];
+    }
+
+    /**
+     * getChainedValues
+     * @param array $available
+     * @return array
+     */
+    public static function getChainedValues(array $available): array
+    {
+        $result = [];
+        if (array_key_exists('All', $available) || $available === [])
+            $result['All'] = [];
+
+        if (array_key_exists('Student', $available) || $available === [])
+            $result['Student'] = ProviderFactory::create(Person::class)->getCurrentStudentChoiceList();
+
+        if (array_key_exists('Staff', $available) || $available === [])
+            $result['Staff'] = ProviderFactory::create(Person::class)->getCurrentStaffChoiceList();
+
+        if (array_key_exists('Year Group', $available) || $available === [])
+            $result['Year Group'] = ProviderFactory::create(YearGroup::class)->getCurrentYearGroupChoiceList();
+
+        return $result;
     }
 }

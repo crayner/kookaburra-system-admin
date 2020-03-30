@@ -276,6 +276,9 @@ class Notification implements EntityInterface
      */
     public function toArray(?string $name = null): array
     {
-        return [];
+        return [
+            'module' => $this->getModule()->getName(),
+            'name' => $this->get
+        ];
     }
 }

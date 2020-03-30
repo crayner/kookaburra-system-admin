@@ -16,6 +16,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Kookaburra\SystemAdmin\Entity\NotificationEvent;
 use Kookaburra\SystemAdmin\Entity\NotificationListener;
 use Doctrine\Persistence\ManagerRegistry;
+use Kookaburra\UserAdmin\Entity\Person;
 
 /**
  * Class NotificationListenerRepository
@@ -68,5 +69,21 @@ class NotificationListenerRepository extends ServiceEntityRepository
             $t[] = $w->getPerson();
 
         return $t;
+    }
+
+    /**
+     * findNotAllByPerson
+     * @param Person $person
+     * @return array
+     */
+    public function findNotAllByPerson(Person $person): array
+    {
+        return $this->createQueryBuilder('l')
+            ->where('l.person = :person')
+            ->andWhere('l.scopeType != :all')
+            ->setParameters(['all' => 'All', 'person' => $person])
+            ->getQuery()
+            ->getResult()
+            ;
     }
 }

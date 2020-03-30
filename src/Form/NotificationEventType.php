@@ -16,16 +16,13 @@
 namespace Kookaburra\SystemAdmin\Form;
 
 use Kookaburra\SystemAdmin\Entity\NotificationEvent;
-use Kookaburra\UserAdmin\Entity\Person;
-use Kookaburra\SchoolAdmin\Entity\YearGroup;
+use Kookaburra\SystemAdmin\Form\EventListener\NotificationEventSubscriber;
 use App\Form\Type\DisplayType;
 use App\Form\Type\HeaderType;
 use App\Form\Type\ParagraphType;
 use App\Form\Type\ReactCollectionType;
 use App\Form\Type\ReactFormType;
 use App\Form\Type\ToggleType;
-use App\Provider\ProviderFactory;
-use App\Util\ReactFormHelper;
 use App\Util\TranslationsHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -39,6 +36,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class NotificationEventType extends AbstractType
 {
+    /**
+     * buildForm
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -103,14 +105,7 @@ class NotificationEventType extends AbstractType
             )
             ->add('submit', SubmitType::class)
         ;
-        ReactFormHelper::setExtras(
-            [
-                'students' =>  ProviderFactory::create(Person::class)->getCurrentStudentChoiceList(),
-                'staff' => ProviderFactory::create(Person::class)->getCurrentStaffChoiceList(),
-                'yearGroups' => ProviderFactory::create(YearGroup::class)->getCurrentYearGroupChoiceList(),
-            ]
-        );
-
+        $builder->addEventSubscriber(new NotificationEventSubscriber());
     }
 
     /**
@@ -131,6 +126,7 @@ class NotificationEventType extends AbstractType
         $resolver->setDefaults(
             [
                 'data_class' => NotificationEvent::class,
+                'translation_domain' => 'SystemAdmin',
             ]
         );
         $resolver->setRequired(
