@@ -23,6 +23,7 @@ use App\Entity\Setting;
 use App\Manager\PageManager;
 use App\Manager\VersionManager;
 use App\Provider\ProviderFactory;
+use App\Util\ErrorMessageHelper;
 use Doctrine\DBAL\Driver\PDOException;
 use Kookaburra\SystemAdmin\Form\DisplaySettingsType;
 use Kookaburra\SystemAdmin\Form\EmailSettingsType;
@@ -223,12 +224,18 @@ class SystemAdminController extends AbstractController
 
     /**
      * systemSettings
-     * @param Request $request
+     * @param PageManager $pageManager
+     * @param ContainerManager $manager
+     * @param TranslatorInterface $translator
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/display/settings/", name="display_settings")
      * @IsGranted("ROLE_ROUTE")
      */
-    public function displaySettings(Request $request, ContainerManager $manager, TranslatorInterface $translator)
+    public function displaySettings(PageManager $pageManager, ContainerManager $manager, TranslatorInterface $translator)
     {
+        if ($pageManager->isNotReadyForJSON()) return $pageManager->getBaseResponse();
+        $request = $pageManager->getRequest();
+
         $settingProvider = ProviderFactory::create(Setting::class);
 
         // System Settings
@@ -239,7 +246,7 @@ class SystemAdminController extends AbstractController
             try {
                 $data['errors'] = $settingProvider->handleSettingsForm($form, $request, $translator);
             } catch (\Exception $e) {
-                $data['errors'][] = ['class' => 'error', 'message' => $translator->trans('Your request failed due to a database error.')];
+                $data = ErrorMessageHelper::getDatabaseErrorMessage($data, true);
             }
 
             $manager->singlePanel($form->createView());
@@ -249,6 +256,9 @@ class SystemAdminController extends AbstractController
         }
 
         $manager->singlePanel($form->createView());
+
+        return $pageManager->createBreadcrumbs('Display Settings')
+            ->render(['containers' => $manager->getBuiltContainers()]);
 
         return $this->render('@KookaburraSystemAdmin/display_settings.html.twig');
     }
