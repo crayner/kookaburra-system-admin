@@ -16,6 +16,7 @@
 namespace Kookaburra\SystemAdmin\Controller;
 
 use App\Manager\ExcelManager;
+use App\Manager\PageManager;
 use App\Util\GlobalHelper;
 use Kookaburra\UserAdmin\Util\UserHelper;
 use Doctrine\ORM\Query\Expr\Join;
@@ -47,15 +48,13 @@ class ImporterController extends AbstractController
      * @Route("/import/manage/", name="import_manage")
      * @IsGranted("ROLE_ROUTE")
      */
-    public function manageImport(ImportManager $manager)
+    public function manageImport(ImportManager $manager, PageManager $pageManager)
     {
-        $manager->loadImportReportList();
+        if ($pageManager->isNotReadyForJSON()) return $pageManager->getBaseResponse();
+       // $manager->loadImportReportList();
 
-        return $this->render('@KookaburraSystemAdmin/Import/import_manage.html.twig',
-            [
-                'manager' => $manager,
-            ]
-        );
+        return $pageManager->createBreadcrumbs('Import From File')
+                ->render(['content' => $this->renderView('components/todo.html.twig')]);
     }
 
     /**
@@ -68,6 +67,7 @@ class ImporterController extends AbstractController
      * @param bool $data
      * @param bool $all
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws QueryException
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @Route("/export/{report}/{data}/run/{all}", name="export_run")
      * @IsGranted("ROLE_ROUTE")
