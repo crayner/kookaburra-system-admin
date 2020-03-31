@@ -213,13 +213,14 @@ class SystemAdminController extends AbstractController
      * @Route("/check/", name="check")
      * @IsGranted("ROLE_ROUTE")
      */
-    public function check(VersionManager $manager)
+    public function check(VersionManager $manager, PageManager $pageManager)
     {
-        return $this->render('@KookaburraSystemAdmin/check.html.twig',
-            [
+        if ($pageManager->isNotReadyForJSON()) return $pageManager->getBaseResponse();
+
+        return $pageManager->createBreadcrumbs('system Check')
+            ->render(['content' => $this->renderView('@KookaburraSystemAdmin/check.html.twig', [
                 'manager' => $manager->setEm($this->getDoctrine()->getManager()),
-            ]
-        );
+            ] )]);
     }
 
     /**

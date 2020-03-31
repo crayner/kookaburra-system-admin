@@ -154,3 +154,44 @@ Next Page: Next Page
 Previous Page: Previous Page
 Records {start}-{end} of {total}: Records {start}-{end} of {total}
 There are no records to display.: There are no records to display.
+A comma separated list of module categories in display order.: A comma separated list of module categories in display order.
+Active: Active
+'Active: No': 'Active: No'
+'Active: Yes': 'Active: Yes'
+All: All
+Apache Modules: Apache Modules
+Available only to users with the required permission.: Available only to users with the required permission.
+Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.: Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.
+Database collation should be set to {collation}: Database collation should be set to {collation}
+Edit Notification Event: Edit Notification Event
+Edit Subscribers: Edit Subscribers
+Enabled: Enabled
+Event: Event
+File Permissions: File Permissions
+Files publicly writeable: Files publicly writeable
+Kookaburra: Kookaburra
+Listening Count: Listening Count
+Main Menu Category Order: Main Menu Category Order
+Module: Module
+Must be {operator} {required}: Must be {operator} {required}
+MySQL Collation: MySQL Collation
+MySQL Version: MySQL Version
+Name: Name
+Notification Events: Notification Events
+PHP Extensions: PHP Extensions
+PHP Settings: PHP Settings
+PHP Version: PHP Version
+Permission Required: Permission Required
+Please select...: Please select...
+Scope Choices: Scope Choices
+Scope: Scope
+Staff: Staff
+Student: Student
+System Requirements: System Requirements
+System not publicly writeable: System not publicly writeable
+The settings used here are cached and changes will not be reflected in the display configuration immediately.: The settings used here are cached and changes will not be reflected in the display configuration immediately.
+Uploads folder server writeable: Uploads folder server writeable
+Year Group: Year Group
+count files checked: count files checked
+system Check: System Check
+'{name} requires {software} version {version} or higher': '{name} requires {software} version {version} or higher'
