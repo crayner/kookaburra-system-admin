@@ -15,6 +15,7 @@
 
 namespace Kookaburra\SystemAdmin\Controller;
 
+use App\Manager\PageManager;
 use Kookaburra\SystemAdmin\Entity\Module;
 use Kookaburra\SystemAdmin\Pagination\ModulePagination;
 use Kookaburra\SystemAdmin\Manager\ModuleUpdateManager;
@@ -30,28 +31,28 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class ModuleController
  * @package Kookaburra\SystemAdmin\Controller
-
+ * @todo Modules need a lot of work...
  */
 class ModuleController extends AbstractController
 {
     /**
      * manage
      * @param ModulePagination $pagination
+     * @param ModuleUpdateManager $manager
+     * @param PageManager $pageManager
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/module/manage/", name="module_manage")
      * @IsGranted("ROLE_ROUTE")
      */
-    public function manage(ModulePagination $pagination, ModuleUpdateManager $manager)
+    public function manage(ModulePagination $pagination, ModuleUpdateManager $manager, PageManager $pageManager)
     {
+        if ($pageManager->isNotReadyForJSON()) return $pageManager->getBaseResponse();
         $content = $manager->getAllModules();
         $pagination->setContent($content)->setPageMax(25)
             ->setPaginationScript();
 
-        return $this->render('@KookaburraSystemAdmin/module_manage.html.twig',
-            [
-                'content' => $content,
-            ]
-        );
+        return $pageManager->createBreadcrumbs('Manage Modules')
+            ->render(['pagination' => $pagination->toArray()]);
     }
 
     /**

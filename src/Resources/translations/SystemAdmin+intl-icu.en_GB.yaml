@@ -159,6 +159,13 @@ Active: Active
 'Active: No': 'Active: No'
 'Active: Yes': 'Active: Yes'
 All: All
+Author: Author
+Description: Description
+Not Installed: Not Installed
+Status: Status
+Type: Type
+Update: Update
+Version: Version
 Apache Modules: Apache Modules
 Available only to users with the required permission.: Available only to users with the required permission.
 Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.: Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.

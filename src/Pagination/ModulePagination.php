@@ -20,6 +20,7 @@ use App\Manager\Entity\PaginationColumn;
 use App\Manager\Entity\PaginationRow;
 use App\Manager\PaginationInterface;
 use App\Manager\AbstractPaginationManager;
+use App\Util\TranslationsHelper;
 
 /**
  * Class ModulePagination
@@ -33,6 +34,7 @@ class ModulePagination extends AbstractPaginationManager
      */
     public function execute(): PaginationInterface
     {
+        TranslationsHelper::setDomain('SystemAdmin');
         $row = new PaginationRow();
         $column = new PaginationColumn();
         $column->setLabel('Name');
@@ -80,7 +82,7 @@ class ModulePagination extends AbstractPaginationManager
         $action->setTitle('Update')
             ->setAClass('thickbox p-3 sm:p-0')
             ->setColumnClass('p-2 sm:p-3')
-            ->setSpanClass('fas fa-wrench fa-fw fa-1-5x text-gray-700')
+            ->setSpanClass('fas fa-wrench fa-fw fa-1-5x text-gray-800 hover:text-orange-500')
             ->setRoute('system_admin__module_update')
             ->setDisplayWhen('updateRequired')
             ->setRouteParams(['upgrade' => 'id']);
@@ -90,7 +92,7 @@ class ModulePagination extends AbstractPaginationManager
         $action->setTitle('Delete')
             ->setAClass('thickbox p-3 sm:p-0')
             ->setColumnClass('p-2 sm:p-3')
-            ->setSpanClass('fas fa-trash-alt fa-fw fa-1-5x text-gray-700')
+            ->setSpanClass('fas fa-trash-alt fa-fw fa-1-5x text-gray-800 hover:text-red-500')
             ->setRoute('system_admin__module_delete')
             ->setDisplayWhen('isNotCore')
             ->setOnClick('areYouSure')
