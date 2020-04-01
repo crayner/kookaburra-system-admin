@@ -1,0 +1,207 @@
+'API Password provided by PayPal.': 'API Password provided by PayPal.'
+'API Signature provided by PayPal.': 'API Signature provided by PayPal.'
+'API Username provided by PayPal.': 'API Username provided by PayPal.'
+'Adds PHPMailer settings for servers with an SMTP connection.': 'Adds PHPMailer settings for servers with an SMTP connection.'
+'Admissions Administrator': 'Admissions Administrator'
+Analytics: Analitice
+Automatic: Automatic
+'Automatically sets the encryption based on the port, otherwise select one manually.': 'Automatically sets the encryption based on the port, otherwise select one manually.'
+Background: Fundal
+'Base Path': 'Cale principală'
+'Base URL': 'URL principal'
+'Case Sensitive': 'Case Sensitive'
+Country: Țara
+Currency: Monedă
+'Database Administrator': 'Administrator DataBase'
+'Default Assessment Scale': 'Default Assessment Scale'
+Development: Development
+'Display Settings': 'Display Settings'
+E-Mail: E-Mail
+'Edit String': 'Edit String'
+'Enable Gibbon-wide integration with the Google APIs?': 'Permit integrarea Gibbon cu API-urile Google?'
+'Enable Payments': 'Deschide plăți'
+'Enable SMTP Mail': 'Enable SMTP Mail'
+'Extend & Update': 'Extinde & Actualizare'
+'First Day Of The Week': 'First Day Of The Week'
+'General email address for the school': 'Adresa de e-mail oficială a școlii'
+'Google Calendar ID for your school calendar. Only enables timetable integration when logging in via Google.': 'Google ID Calendar pentru calendar școală. Permite integrarea calendarului numai atunci când vă conectați prin intermediul Google'
+'Google Developers Developer Key': 'Google Developers Developer Key'
+'Google Integration': 'Google Integration'
+'Google OAuth Download File': 'Google OAuth Download File'
+'Higher priorities are substituted first.': 'Higher priorities are substituted first.'
+'Human Resources Administrator': 'Human Resources Administrator'
+'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.': 'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.'
+'Import & Export': 'Import & Export'
+'Import From File': 'Import From File'
+'Index Page Text': 'Index Page Text'
+'Install Type': 'Tip instalare'
+'Javascript code to integrate statistics, such as Google Analytics': 'Javascript code to integrate statistics, such as Google Analytics'
+'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.': 'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.'
+'Link To Email': 'Conectare Email'
+'Link To Web': 'Conectare Web'
+Localisation: Localizare
+Logo: 'Logo, emblema'
+'Manage Languages': 'Manage Languages'
+'Manage Modules': 'Gestionează Module'
+'Manage String Replacements': 'Manage String Replacements'
+'Minimum acceptable password length.': 'Lungimea parolei minim acceptată'
+Miscellaneous: Diverse
+Mode: Mode
+Monday: Luni
+'Must be numeric. Number of records shown per page.': 'Trebuie să fie numeric. Numărul de înregistrări afisate pe pagina.'
+None: Nimic
+'Notification Settings': 'Notification Settings'
+'On which day should the week begin?': 'On which day should the week begin?'
+'Organisation Email': 'Email Organizație'
+'Organisation Initials': 'Inițiale organizație'
+'Organisation Name': 'Nume Organizație'
+'Organisation Settings': 'Setări Organizare'
+Organisation: Organisation
+'Original String': 'Original String'
+'Pagination Count': 'Număr pagină'
+Partial: Partial
+'Password - Alpha Requirement': 'Password - Alpha Requirement'
+'Password - Minimum Length': 'Password - Minimum Length'
+'Password - Non-Alphanumeric Requirement': 'Password - Non-Alphanumeric Requirement'
+'Password - Numeric Requirement': 'Password - Numeric Requirement'
+'Password Policy': 'Securizare parola'
+'Password to use for SMTP authentication. Leave blank for no authentication.': 'Password to use for SMTP authentication. Leave blank for no authentication.'
+'PayPal API Password': 'PayPal API Parolă'
+'PayPal API Signature': 'PayPal API semnătură'
+'PayPal API Username': 'PayPal API Nume utilizator'
+'PayPal Payment Gateway': 'PayPal Payment Gateway'
+'Please Select...': 'Please Select...'
+Priority: Prioritate
+Production: Production
+'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}'
+'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}'
+'Relative path to background image. Overrides theme background.': 'Relative path to background image. Overrides theme background.'
+'Relative path to site logo (400 x 100px)': 'Cale relativă la logo-ul site (400 x 100px)'
+'Replacement String': 'Replacement String'
+'Require at least one non-alphanumeric character (e.g. punctuation mark or space)?': 'Necesită cel puțin un caracter non-alfanumeric (de exemplu, semn de punctuație sau spațiu)?'
+'Require at least one numeric character?': 'Necesită cel puțin un caracter numeric?'
+'Require both upper and lower case alpha characters?': 'Require both upper and lower case alpha characters?'
+'SMS Gateway': 'SMS Gateway'
+'SMS Password': 'SMS Parola'
+'SMS Sender ID': 'SMS Sender ID'
+'SMS Settings': 'SMS setări'
+'SMS URL Credit': 'SMS URL Credit'
+'SMS URL': 'SMS URL'
+'SMS Username': 'SMS Username'
+'SMS gateway URL for checking credit.': 'SMS gateway URL for checking credit.'
+'SMS gateway URL for send requests.': 'SMS gateway URL for send requests.'
+'SMS gateway password.': 'SMS gateway password.'
+'SMS gateway username.': 'SMS gateway username.'
+'SMTP Encryption': 'SMTP Encryption'
+'SMTP Host': 'SMTP Host'
+'SMTP Password': 'SMTP Password'
+'SMTP Port': 'SMTP Port'
+'SMTP Username': 'SMTP Username'
+'School Google Calendar ID': 'Școală Google ID Calendar'
+'Security Settings': 'Setări de securitate'
+Security: Security
+'Session Duration': 'Durata sesiune'
+'Set the SMTP port number - likely to be 25, 465 or 587.': 'Set the SMTP port number - likely to be 25, 465 or 587.'
+'Set the hostname of the mail server.': 'Set the hostname of the mail server.'
+Settings: Setări
+'Should payments be enabled across the system?': 'Doriți să activați plățile în cadru sistemului ?'
+'String Replacement': 'String Replacement'
+Submit: Trimite
+Sunday: Duminică
+'System Admin': 'Administrare Sistem'
+'System Administrator': 'Administrare sistem'
+'System Check': 'System Check'
+'System Name': 'Nume Sistem'
+'System Settings': 'Setări de sistem'
+'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.': 'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.'
+System: System
+Testing: Testare
+'Text displayed in system''s welcome page.': 'Textul de  afișat în pagina de Bun venit! a  sistemului'
+'The address at which the whole system resides.': 'Adresa serverului care gazduiește sistemul (domeniul, dacă este găzduit)'
+'The country the school is located in': 'Școala se află localizată în țara....'
+'The link that points to the school/''s email system': 'Link-ul care indică adresa de e-mail școlii'
+'The link that points to the school/''s website': 'Link-ul care indică pagina web a școlii'
+'The local FS path to the system': 'The local FS path to the system'
+'The purpose of this installation of Kookaburra': 'The purpose of this installation of Kookaburra'
+'The sender name or phone number. Depends on the gateway used.': 'The sender name or phone number. Depends on the gateway used.'
+'The staff member who receives notifications for admissions events.': 'The staff member who receives notifications for admissions events.'
+'The staff member who receives notifications for data events.': 'The staff member who receives notifications for data events.'
+'The staff member who receives notifications for staffing events.': 'The staff member who receives notifications for staffing events.'
+'The staff member who receives notifications for system events.': 'The staff member who receives notifications for system events.'
+'The timezone where the school is located': 'Zona de fus orar în care se află școala(pt.Romania implicit Europe/Bucharest)'
+'Third Party Settings': 'Setări terțe părți'
+'This is the scale used as a default where assessment scales need to be selected.': 'This is the scale used as a default where assessment scales need to be selected.'
+'Time, in seconds, before system logs a user out. Should be less than PHP''s session.gc_maxlifetime option.': 'Timp, în secunde, înainte ca sistemul înregistrează un utilizator inactiv. Ar trebui să fie mai puțin decât opțiunea  PHP''s session.gc_maxlifetime '
+Timezone: 'Timpul curent'
+'Username to use for SMTP authentication. Leave blank for no authentication.': 'Username to use for SMTP authentication. Leave blank for no authentication.'
+Whole: Whole
+ssl: ssl
+tls: tls
+'API Key': 'API Key'
+'API Secret/Auth Token': 'API Secret/Auth Token'
+Google: Google
+Installed: Instalat
+PayPal: PayPal
+'SMS Domain': 'SMS Domain'
+SMS: SMS
+'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}': 'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}'
+Actions: Acțiuni
+Delete: Șterge
+Edit: Editare
+'First Page': 'First Page'
+'Last Page': 'Last Page'
+'Next Page': 'Next Page'
+'Previous Page': 'Previous Page'
+'Records {start}-{end} of {total}': 'Records {start}-{end} of {total}'
+'There are no records to display.': 'Nu există înregistrări de afișat'
+'A comma separated list of module categories in display order.': 'A comma separated list of module categories in display order.'
+Active: Activ
+'Active: No': 'Active: No'
+'Active: Yes': 'Active: Yes'
+All: Tot
+Author: Autor
+Description: Descriere
+'Not Installed': Neinstalat
+Status: Status
+Type: Tip
+Update: Actualizare
+Version: Versiune
+'Apache Modules': 'Apache Modules'
+'Available only to users with the required permission.': 'Available only to users with the required permission.'
+'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.': 'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.'
+'Database collation should be set to {collation}': 'Database collation should be set to {collation}'
+'Edit Notification Event': 'Edit Notification Event'
+'Edit Subscribers': 'Edit Subscribers'
+Enabled: Enabled
+Event: Eveniment
+'File Permissions': 'File Permissions'
+'Files publicly writeable': 'Files publicly writeable'
+Kookaburra: Kookaburra
+'Listening Count': 'Listening Count'
+'Main Menu Category Order': 'Main Menu Category Order'
+Module: Module
+'Must be {operator} {required}': 'Must be {operator} {required}'
+'MySQL Collation': 'MySQL Collation'
+'MySQL Version': 'MySQL Version'
+Name: Nume
+'Notification Events': 'Notification Events'
+'PHP Extensions': 'PHP Extensions'
+'PHP Settings': 'PHP Settings'
+'PHP Version': 'PHP Version'
+'Permission Required': 'Permission Required'
+'Please select...': 'Vă rugăm selectați....'
+'Scope Choices': 'Scope Choices'
+Scope: Domeniu
+Staff: Responsabil
+Student: Cursant
+'System Requirements': 'System Requirements'
+'System not publicly writeable': 'System not publicly writeable'
+'The settings used here are cached and changes will not be reflected in the display configuration immediately.': 'The settings used here are cached and changes will not be reflected in the display configuration immediately.'
+'Uploads folder server writeable': 'Uploads folder server writeable'
+'Year Group': 'An de studiu'
+'count files checked': 'count files checked'
+'system Check': 'system Check'
+'{name} requires {software} version {version} or higher': '{name} requires {software} version {version} or higher'
+Code: Cod
+Default: Implicit
+'Set as Default': 'Set as Default'

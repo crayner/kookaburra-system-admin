@@ -260,13 +260,13 @@ class SystemAdminController extends AbstractController
     }
 
     /**
-     * languageInstall
+     * languageManage
      * @param PageManager $pageManager
      * @param LanguageManager $manager
      * @param LanguagePagination $pagination
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/language/manage/", name="language_manage")
      * @IsGranted("ROLE_ROUTE")
-     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function languageManage(PageManager $pageManager, LanguageManager $manager, LanguagePagination $pagination)
     {
@@ -283,6 +283,8 @@ class SystemAdminController extends AbstractController
     /**
      * languageSetDefault
      * @param I18n $i18n
+     * @param SessionInterface $session
+     * @return RedirectResponse
      * @Route("/language/{i18n}/default/", name="language_default")
      * @Security("is_granted('ROLE_ROUTE', ['system_admin__language_manage'])")
      */
@@ -301,44 +303,6 @@ class SystemAdminController extends AbstractController
         file_put_contents($this->getSettingFileName(), Yaml::dump($config, 8));
         $this->addFlash('success', 'return.success.0');
         $session->set('i18n', $i18n);
-        return $this->redirectToRoute('system_admin__language_manage');
-    }
-
-    /**
-     * languageInstall
-     * @param Request $request
-     * @return RedirectResponse
-     * @Route("/language/{i18n}/install/", name="language_install")
-     * @Security("is_granted('ROLE_ROUTE', ['system_admin__language_manage'])")
-     */
-    public function languageInstall(I18n $i18n, Request $request, LanguageManager $manager)
-    {
-        $installed = $manager->i18nFileInstall($i18n);
-
-        if ($installed) {
-            $i18n->setInstalled('Y');
-            $i18n->setVersion($this->getParameter('gibbon_version'));
-            $em = $this->getDoctrine()->getManager();
-            try {
-                $em->persist($i18n);
-                $em->flush();
-                $updated = true;
-            } catch (PDOException $e) {
-                $updated = false;
-            } catch (\PDOException $e) {
-                $updated = false;
-            }
-        }
-
-        if (!$installed) {
-            $this->addFlash('error', 'The file transfer was not completed successfully.  Please try again.');
-            return $this->redirectToRoute('system_admin__language_manage');
-        }
-        if (!$updated) {
-            $this->addFlash('warning', 'Your request was successful, but some data was not properly saved.');
-            return $this->redirectToRoute('system_admin__language_manage');
-        }
-        $this->addFlash('success', 'return.success.0');
         return $this->redirectToRoute('system_admin__language_manage');
     }
 

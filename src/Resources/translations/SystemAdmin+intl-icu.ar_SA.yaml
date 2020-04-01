@@ -1,0 +1,207 @@
+'API Password provided by PayPal.': 'كلمة مرور API الذي تم توفيره من قبل بأي بال.'
+'API Signature provided by PayPal.': 'توقيع الـ API الذي تم توفيره من قبل بأي بال.'
+'API Username provided by PayPal.': 'أسم مستخدم API الذي تم توفيره من قبل بأي بال.'
+'Adds PHPMailer settings for servers with an SMTP connection.': 'Adds PHPMailer settings for servers with an SMTP connection.'
+'Admissions Administrator': 'Admissions Administrator'
+Analytics: التحليلات
+Automatic: Automatic
+'Automatically sets the encryption based on the port, otherwise select one manually.': 'Automatically sets the encryption based on the port, otherwise select one manually.'
+Background: الخلفية
+'Base Path': 'المسار الأساسى'
+'Base URL': 'الرابط الأساسي'
+'Case Sensitive': 'Case Sensitive'
+Country: البلد
+Currency: العملة
+'Database Administrator': 'مسؤول قاعدة البيانات'
+'Default Assessment Scale': 'مقياس التقييم الافتراضي'
+Development: Development
+'Display Settings': 'اعدادات العرض'
+E-Mail: E-Mail
+'Edit String': 'تحرير قيمة'
+'Enable Gibbon-wide integration with the Google APIs?': 'تمكين Gibbon لعمل التكامل الواسع مع واجهات برمجة تطبيقات جوجل(Google APIs) ؟'
+'Enable Payments': 'تمكين المدفوعات'
+'Enable SMTP Mail': 'Enable SMTP Mail'
+'Extend & Update': 'التمديد & التحديث'
+'First Day Of The Week': 'اليوم الأول في الأسبوع'
+'General email address for the school': 'عنوان البريد الإلكتروني العام للمدرسة'
+'Google Calendar ID for your school calendar. Only enables timetable integration when logging in via Google.': 'معرف تقويم قوقل لتقويم مدرستك. يتيح التكامل الزمني فقط عند تسجيل الدخول عن طريق جوجل.'
+'Google Developers Developer Key': 'مفتاح المطور بمطوري جوجل'
+'Google Integration': 'تكامل جوجل'
+'Google OAuth Download File': 'Google OAuth Download File'
+'Higher priorities are substituted first.': 'Higher priorities are substituted first.'
+'Human Resources Administrator': 'مدير الموارد البشرية'
+'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.': 'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.'
+'Import & Export': 'Import & Export'
+'Import From File': 'Import From File'
+'Index Page Text': 'نص الصفحة الرئيسية'
+'Install Type': 'نوع التثبيت'
+'Javascript code to integrate statistics, such as Google Analytics': 'كود جافا سكريبت ﻹدماج الإحصاءات، مثل إحصائيات قوقل.'
+'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.': 'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.'
+'Link To Email': 'الرابط الى البريد الإلكتروني'
+'Link To Web': 'رابط إلى صفحة الويب'
+Localisation: محلي
+Logo: الشعار
+'Manage Languages': 'Manage Languages'
+'Manage Modules': 'إدارة الموديولز'
+'Manage String Replacements': 'Manage String Replacements'
+'Minimum acceptable password length.': 'طول كلمة المرور المقبول كحد أدنى.'
+Miscellaneous: متنوع
+Mode: Mode
+Monday: الإثنين
+'Must be numeric. Number of records shown per page.': 'يجب أن تكون رقمية. عدد السجلات التي تظهر في كل صفحة.'
+None: 'لا شيء'
+'Notification Settings': 'إعدادات الاشعارات'
+'On which day should the week begin?': 'On which day should the week begin?'
+'Organisation Email': 'البريد الإلكتروني للمنظمة'
+'Organisation Initials': 'الأحرف الأولى من اسم منظمة'
+'Organisation Name': 'اسم المنظمة'
+'Organisation Settings': 'إعدادات المنظمة'
+Organisation: Organisation
+'Original String': 'Original String'
+'Pagination Count': 'عدد ترقيم الصفحات'
+Partial: جزئي
+'Password - Alpha Requirement': 'كلمة المرور - تتطلب حروف كبيرة وصفيرة'
+'Password - Minimum Length': 'كلمة المرور - الطول الادني'
+'Password - Non-Alphanumeric Requirement': 'كلمة المرور - تتطلب رموز ترقيم'
+'Password - Numeric Requirement': 'كلمة المرور - تتطلب ارقام'
+'Password Policy': 'سياسة كلمة المرور'
+'Password to use for SMTP authentication. Leave blank for no authentication.': 'Password to use for SMTP authentication. Leave blank for no authentication.'
+'PayPal API Password': 'كلمة مرور API الباي بال (PayPal)'
+'PayPal API Signature': 'توقيع API الباي بال (PayPal)'
+'PayPal API Username': 'إسم مستخدم API الباي بال (PayPal)'
+'PayPal Payment Gateway': 'بوابة الدفع عبر بأي بال (PayPal)'
+'Please Select...': 'Please Select...'
+Priority: الأولوية
+Production: Production
+'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}'
+'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}'
+'Relative path to background image. Overrides theme background.': 'Relative path to background image. Overrides theme background.'
+'Relative path to site logo (400 x 100px)': 'المسار الوثيق بالموقع شعار (400بكسل في  100بكسل)'
+'Replacement String': 'Replacement String'
+'Require at least one non-alphanumeric character (e.g. punctuation mark or space)?': 'تتطلب حرف غير أبجدي واحد على الأقل (مثل علامة الترقيم أو المسافة)؟'
+'Require at least one numeric character?': 'مطلوب على الأقل رقم واحد؟'
+'Require both upper and lower case alpha characters?': 'للغة الإنجليزية تتطلب حروف كبيرة وصغيرة؟'
+'SMS Gateway': 'SMS Gateway'
+'SMS Password': 'كلمة المرور الرسائل القصيرة SMS'
+'SMS Sender ID': 'SMS Sender ID'
+'SMS Settings': 'إعدادات الرسائل القصيرة'
+'SMS URL Credit': 'رابط إعتماد رسائل الـ SMS'
+'SMS URL': 'رابط الرسائل القصيرة SMS'
+'SMS Username': 'اسم مستخدم الرسائل القصيرة SMS'
+'SMS gateway URL for checking credit.': 'رابط بوابة الرسائل القصيرة للتحقق من الائتمان.'
+'SMS gateway URL for send requests.': 'رابط بوابة الرسائل القصيرة لإرسال الطلبات.'
+'SMS gateway password.': 'كلمة مرور بوابة الرسائل القصيرة SMS'
+'SMS gateway username.': 'اسم مستخدم بوابة الرسائل القصيرة SMS'
+'SMTP Encryption': 'SMTP Encryption'
+'SMTP Host': 'SMTP Host'
+'SMTP Password': 'SMTP Password'
+'SMTP Port': 'SMTP Port'
+'SMTP Username': 'SMTP Username'
+'School Google Calendar ID': 'معرف تقويم قوقل للمدرسة'
+'Security Settings': 'إعدادات الأمان'
+Security: Security
+'Session Duration': 'مدة الجلسة'
+'Set the SMTP port number - likely to be 25, 465 or 587.': 'Set the SMTP port number - likely to be 25, 465 or 587.'
+'Set the hostname of the mail server.': 'Set the hostname of the mail server.'
+Settings: الإعدادات
+'Should payments be enabled across the system?': 'هل يتم تمكين المدفوعات عبر هذا النظام؟'
+'String Replacement': 'String Replacement'
+Submit: ارسال
+Sunday: الأحد
+'System Admin': 'إدارة  النظام'
+'System Administrator': 'مسؤول النظام'
+'System Check': 'فحص النظام'
+'System Name': 'اسم النظام'
+'System Settings': 'إعدادات النظام'
+'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.': 'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.'
+System: System
+Testing: اختبار
+'Text displayed in system''s welcome page.': 'النص المعروض في صفحة ترحيب النظام.'
+'The address at which the whole system resides.': 'العنوان الذي يقوم عليه النظام بأكمله.'
+'The country the school is located in': 'الدولة التي تقع فيها المدرسة'
+'The link that points to the school/''s email system': 'الرابط الذي يشير إلى نظام البريد الإلكتروني الخاص بالمدرسة'
+'The link that points to the school/''s website': 'الرابط الذي يشير إلى الموقع الإلكتروني للمدرسة'
+'The local FS path to the system': 'مسار الملفات المحلي للنظام.'
+'The purpose of this installation of Kookaburra': 'The purpose of this installation of Kookaburra'
+'The sender name or phone number. Depends on the gateway used.': 'The sender name or phone number. Depends on the gateway used.'
+'The staff member who receives notifications for admissions events.': 'The staff member who receives notifications for admissions events.'
+'The staff member who receives notifications for data events.': 'The staff member who receives notifications for data events.'
+'The staff member who receives notifications for staffing events.': 'The staff member who receives notifications for staffing events.'
+'The staff member who receives notifications for system events.': 'The staff member who receives notifications for system events.'
+'The timezone where the school is located': 'المنطقة الزمنية التي تقع فيها المدرسة'
+'Third Party Settings': 'Third Party Settings'
+'This is the scale used as a default where assessment scales need to be selected.': 'هذا المقياس يستخدم لحساب النتيجة بشكل افتراضي.'
+'Time, in seconds, before system logs a user out. Should be less than PHP''s session.gc_maxlifetime option.': 'الوقت، بالثواني، قبل أن يقوم النظام بتسجيل خروج المستخدم . ينبغي أن يكون أقل من خيار الـ PHP ـ session.gc_maxlifetime.'
+Timezone: 'المنطقة الزمنية'
+'Username to use for SMTP authentication. Leave blank for no authentication.': 'Username to use for SMTP authentication. Leave blank for no authentication.'
+Whole: كامل
+ssl: ssl
+tls: tls
+'API Key': 'API Key'
+'API Secret/Auth Token': 'API Secret/Auth Token'
+Google: Google
+Installed: مثبت
+PayPal: PayPal
+'SMS Domain': 'SMS Domain'
+SMS: 'الرسائل القصيرة SMS'
+'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}': 'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}'
+Actions: الإجراءات
+Delete: حذف
+Edit: تحرير
+'First Page': 'First Page'
+'Last Page': 'Last Page'
+'Next Page': 'Next Page'
+'Previous Page': 'Previous Page'
+'Records {start}-{end} of {total}': 'Records {start}-{end} of {total}'
+'There are no records to display.': 'لا توجد سجلات لعرضها.'
+'A comma separated list of module categories in display order.': 'A comma separated list of module categories in display order.'
+Active: نَشط
+'Active: No': 'Active: No'
+'Active: Yes': 'Active: Yes'
+All: الكل
+Author: الكاتب
+Description: الوصف
+'Not Installed': 'غير مثبت'
+Status: الحالة
+Type: النوع
+Update: تحديث
+Version: الإصدارة
+'Apache Modules': 'Apache Modules'
+'Available only to users with the required permission.': 'Available only to users with the required permission.'
+'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.': 'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.'
+'Database collation should be set to {collation}': 'Database collation should be set to {collation}'
+'Edit Notification Event': 'Edit Notification Event'
+'Edit Subscribers': 'Edit Subscribers'
+Enabled: Enabled
+Event: Event
+'File Permissions': 'صلاحيات الملف'
+'Files publicly writeable': 'Files publicly writeable'
+Kookaburra: Kookaburra
+'Listening Count': 'Listening Count'
+'Main Menu Category Order': 'Main Menu Category Order'
+Module: Module
+'Must be {operator} {required}': 'Must be {operator} {required}'
+'MySQL Collation': 'MySQL Collation'
+'MySQL Version': 'MySQL Version'
+Name: الإسم
+'Notification Events': 'Notification Events'
+'PHP Extensions': 'PHP Extensions'
+'PHP Settings': 'PHP Settings'
+'PHP Version': 'PHP Version'
+'Permission Required': 'Permission Required'
+'Please select...': 'يرجى الإختيار...'
+'Scope Choices': 'Scope Choices'
+Scope: المجال
+Staff: 'فريق العمل'
+Student: طالب
+'System Requirements': 'متطلبات النظام'
+'System not publicly writeable': 'System not publicly writeable'
+'The settings used here are cached and changes will not be reflected in the display configuration immediately.': 'The settings used here are cached and changes will not be reflected in the display configuration immediately.'
+'Uploads folder server writeable': 'Uploads folder server writeable'
+'Year Group': 'السنة الدراسية'
+'count files checked': 'count files checked'
+'system Check': 'system Check'
+'{name} requires {software} version {version} or higher': '{name} requires {software} version {version} or higher'
+Code: الكود
+Default: الإفتراضي
+'Set as Default': 'Set as Default'

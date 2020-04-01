@@ -1,0 +1,207 @@
+'API Password provided by PayPal.': 'API Password จัดโดย PayPal'
+'API Signature provided by PayPal.': 'API Signature จัดโดย Paypal'
+'API Username provided by PayPal.': 'API Username จัดโดย PayPal'
+'Adds PHPMailer settings for servers with an SMTP connection.': 'เพิ่มการตั้งค่า PHPMailer สำหรับเซิร์ฟเวอร์ที่มีการเชื่อมต่อ SMTP'
+'Admissions Administrator': ผู้ดูแลระบบการรับสมัคร
+Analytics: Analytics
+Automatic: อัตโนมัติ
+'Automatically sets the encryption based on the port, otherwise select one manually.': ตั้งค่าการเข้ารหัสโดยอัตโนมัติตามพอร์ตมิฉะนั้นให้เลือกด้วยตนเอง
+Background: 'ภูมิหลัง'
+'Base Path': 'Base Path'
+'Base URL': 'Base URL'
+'Case Sensitive': รูปแบบตัวอักษรมีผล
+Country: ประเทศ
+Currency: เงินตรา
+'Database Administrator': ผู้ดูแลระบบฐานข้อมูล
+'Default Assessment Scale': ค่าเริ่มต้นระดับการประเมิน
+Development: Development
+'Display Settings': การตั้งค่าการแสดงผล
+E-Mail: E-Mail
+'Edit String': แก้ไขข้อความ
+'Enable Gibbon-wide integration with the Google APIs?': 'เปิดใช้งานการผสานรวม Gibbon เข้ากับ Google APIs หรือไม่?'
+'Enable Payments': เปิดใช้การชำระเงิน
+'Enable SMTP Mail': 'เปิดใช้งาน SMTP Mail'
+'Extend & Update': ขยายและปรับปรุง
+'First Day Of The Week': วันแรกของสัปดาห์
+'General email address for the school': ที่อยู่อีเมลทั่วไปสำหรับโรงเรียน
+'Google Calendar ID for your school calendar. Only enables timetable integration when logging in via Google.': 'รหัสปฏิทิน Google สำหรับปฏิทินโรงเรียนของคุณ ช่วยให้สามารถรวมตารางเวลาได้เมื่อเข้าสู่ระบบผ่านทาง Google'
+'Google Developers Developer Key': 'Google Developers Developer Key'
+'Google Integration': 'Google Integration'
+'Google OAuth Download File': 'Google OAuth Download File'
+'Higher priorities are substituted first.': ลำดับความสำคัญที่สูงขึ้นจะถูกแทนที่ก่อน
+'Human Resources Administrator': ผู้บริหารทรัพยากรบุคคล
+'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.': 'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.'
+'Import & Export': นำเข้าและส่งออก
+'Import From File': นำเข้าจากไฟล์
+'Index Page Text': ข้อความในหน้าดัชนีเริ่มต้น
+'Install Type': 'ประเภทการติดตั้ง'
+'Javascript code to integrate statistics, such as Google Analytics': 'โค้ด Javascript เพื่อรวมสถิติเช่น Google Analytics'
+'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.': 'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.'
+'Link To Email': ลิงก์ไปยังอีเมล
+'Link To Web': ลิงก์ไปยังเว็บ
+Localisation: 'การปรับภาษาท้องถิ่น'
+Logo: โลโก้
+'Manage Languages': 'จัดการภาษา'
+'Manage Modules': จัดการโมดูล
+'Manage String Replacements': จัดการการแทนที่ข้อความ
+'Minimum acceptable password length.': ความยาวรหัสผ่านต่ำสุดที่ยอมรับได้
+Miscellaneous: เบ็ดเตล็ด
+Mode: โหมด
+Monday: วันจันทร์
+'Must be numeric. Number of records shown per page.': 'ต้องเป็นตัวเลข จำนวนระเบียนที่แสดงต่อหน้า'
+None: ไม่มี
+'Notification Settings': การตั้งค่าการแจ้งเตือน
+'On which day should the week begin?': 'วันที่ควรเป็นวันเริ่มต้นสัปดาห์?'
+'Organisation Email': อีเมลองค์กร
+'Organisation Initials': ชื่อย่อองค์การ
+'Organisation Name': ชื่อองค์การ
+'Organisation Settings': การตั้งค่าองค์กร
+Organisation: Organisation
+'Original String': ข้อความเดิม
+'Pagination Count': การนับจำนวนหน้า
+Partial: เป็นบางส่วน
+'Password - Alpha Requirement': 'รหัสผ่าน - ต้องการอักษรกรีก'
+'Password - Minimum Length': 'รหัสผ่าน - ความยาวขั้นต่า'
+'Password - Non-Alphanumeric Requirement': 'รหัสผ่าน - ความต้องการที่ไม่ใช่ตัวอักษรและตัวเลข'
+'Password - Numeric Requirement': 'รหัสผ่าน - ต้องการตัวเลข'
+'Password Policy': นโยบายรหัสผ่าน
+'Password to use for SMTP authentication. Leave blank for no authentication.': 'รหัสผ่านเพื่อใช้สำหรับการตรวจสอบสิทธิ์ SMTP เว้นว่างไว้เมื่อไม่มีการตรวจสอบสิทธิ์'
+'PayPal API Password': 'PayPal API Password'
+'PayPal API Signature': 'PayPal API Signature'
+'PayPal API Username': 'PayPal API Username'
+'PayPal Payment Gateway': 'เกตเวย์การชำระเงินของ PayPal'
+'Please Select...': 'Please Select...'
+Priority: ลำดับความสำคัญ
+Production: Production
+'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}'
+'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}'
+'Relative path to background image. Overrides theme background.': 'เส้นทางสัมพัทธ์ไปยังภาพพื้นหลัง แทนที่พื้นหลังของธีม'
+'Relative path to site logo (400 x 100px)': 'เส้นทางสัมพัทธ์ไปยังโลโก้ไซต์ (400 x 100px)'
+'Replacement String': ข้อความทดแทน
+'Require at least one non-alphanumeric character (e.g. punctuation mark or space)?': 'ต้องมีอักขระที่ไม่ใช่ตัวอักษรและตัวเลขอย่างน้อยหนึ่งตัว (เช่น เครื่องหมายวรรคตอน หรือช่องว่าง) หรือไม่?'
+'Require at least one numeric character?': 'ต้องใช้ตัวเลขอย่างน้อยหนึ่งตัว?'
+'Require both upper and lower case alpha characters?': 'ต้องการทั้งอักขระตัวพิมพ์ใหญ่และตัวพิมพ์เล็กหรือไม่?'
+'SMS Gateway': 'SMS Gateway'
+'SMS Password': 'รหัสผ่าน SMS'
+'SMS Sender ID': 'SMS Sender ID'
+'SMS Settings': 'การตั้งค่า SMS'
+'SMS URL Credit': 'SMS URL Credit'
+'SMS URL': 'SMS URL'
+'SMS Username': 'SMS Username'
+'SMS gateway URL for checking credit.': 'URL เกตเวย์ SMS สำหรับการตรวจสอบเครดิต'
+'SMS gateway URL for send requests.': 'URL เกตเวย์ SMS สำหรับส่งคำขอ'
+'SMS gateway password.': 'รหัสผ่านของ SMS gateway'
+'SMS gateway username.': 'ชื่อผู้ใช้เกตเวย์ SMS'
+'SMTP Encryption': 'SMTP Encryption'
+'SMTP Host': 'โฮสต์ SMTP'
+'SMTP Password': 'รหัสผ่าน SMTP'
+'SMTP Port': 'พอร์ต SMTP'
+'SMTP Username': 'ชื่อผู้ใช้งาน SMTP'
+'School Google Calendar ID': 'Google Calendar ID ของโรงเรียน'
+'Security Settings': 'ตั้งค่าความปลอดภัย'
+Security: Security
+'Session Duration': ระยะเวลาเซสชัน
+'Set the SMTP port number - likely to be 25, 465 or 587.': 'ตั้งค่าหมายเลขพอร์ต SMTP - น่าจะ 25, 465 หรือ 587'
+'Set the hostname of the mail server.': ตั้งชื่อโฮสต์ของอีเมลเซิร์ฟเวอร์
+Settings: ตั้งค่า
+'Should payments be enabled across the system?': 'ควรเปิดใช้งานการชำระเงินในระบบหรือไม่?'
+'String Replacement': การแทนที่ข้อความ
+Submit: Submit
+Sunday: วันอาทิตย์
+'System Admin': ตั้งค่าระบบ
+'System Administrator': ผู้ดูแลระบบ
+'System Check': ตรวจสอบระบบ
+'System Name': ชื่อระบบ
+'System Settings': การตั้งค่าระบบ
+'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.': 'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.'
+System: System
+Testing: การสอบ
+'Text displayed in system''s welcome page.': ข้อความที่ปรากฏในหน้าต้อนรับของระบบ
+'The address at which the whole system resides.': ที่อยู่ที่ระบบทั้งหมดเร่ิมต้น
+'The country the school is located in': ประเทศที่โรงเรียนตั้งอยู่
+'The link that points to the school/''s email system': ลิงก์ที่ชี้ไปยังระบบอีเมลของโรงเรียน
+'The link that points to the school/''s website': ลิงก์ที่ชี้ไปยังเว็บไซต์ของโรงเรียน
+'The local FS path to the system': เส้นทางระบบไฟล์ท้องถิ่นที่ชี้ไปยังระบบ
+'The purpose of this installation of Kookaburra': 'The purpose of this installation of Kookaburra'
+'The sender name or phone number. Depends on the gateway used.': 'ชื่อผู้ส่งหรือหมายเลขโทรศัพท์ ขึ้นอยู่กับเกตเวย์ที่ใช้'
+'The staff member who receives notifications for admissions events.': พนักงานที่ได้รับการแจ้งเตือนสำหรับกิจกรรมการรับสมัคร
+'The staff member who receives notifications for data events.': พนักงานที่ได้รับการแจ้งเตือนสำหรับเหตุการณ์ข้อมูล
+'The staff member who receives notifications for staffing events.': พนักงานที่ได้รับการแจ้งเตือนสำหรับกิจกรรมพนักงาน
+'The staff member who receives notifications for system events.': พนักงานที่ได้รับการแจ้งเตือนสำหรับเหตุการณ์ของระบบ
+'The timezone where the school is located': เขตเวลาที่โรงเรียนตั้งอยู่
+'Third Party Settings': การตั้งค่าระบบของบุคคลที่สาม
+'This is the scale used as a default where assessment scales need to be selected.': นี่คือสเกลที่ใช้เป็นค่าเริ่มต้นซึ่งจะต้องมีระดับการประเมินผลที่ได้เลือกไว้
+'Time, in seconds, before system logs a user out. Should be less than PHP''s session.gc_maxlifetime option.': 'เวลาเป็นวินาทีก่อนที่ระบบจะให้ผู้ใช้ออกจากระบบ ควรน้อยกว่าตัวเลือก PHP session.gc_maxlifetime'
+Timezone: เขตเวลา
+'Username to use for SMTP authentication. Leave blank for no authentication.': 'ชื่อผู้ใช้ที่ใช้สำหรับการตรวจสอบสิทธิ์ SMTP เว้นว่างไว้หากไม่มีการตรวจสอบสิทธิ์'
+Whole: ทั้งหมด
+ssl: ssl
+tls: tls
+'API Key': 'API Key'
+'API Secret/Auth Token': 'API Secret/Auth Token'
+Google: Google
+Installed: ติดตั้งแล้ว
+PayPal: PayPal
+'SMS Domain': 'SMS Domain'
+SMS: SMS
+'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}': 'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}'
+Actions: แอ็กชั่น
+Delete: ลบ
+Edit: แก้ไข
+'First Page': หน้าแรก
+'Last Page': หน้าสุดท้าย
+'Next Page': 'Next Page'
+'Previous Page': 'Previous Page'
+'Records {start}-{end} of {total}': 'Records {start}-{end} of {total}'
+'There are no records to display.': ไม่มีรายการในการแสดงผล
+'A comma separated list of module categories in display order.': 'รายการที่คั่นด้วยจุลภาคของหมวดโมดูลในลำดับการแสดงผล'
+Active: แอ็กทีฟ
+'Active: No': 'Active: No'
+'Active: Yes': 'Active: Yes'
+All: ทั้งหมด
+Author: ผู้เขียน
+Description: คำอธิบาย
+'Not Installed': ยังไม่ได้ติดตั้ง
+Status: สถานะ
+Type: 'ประเภท'
+Update: อัพเดต
+Version: เวอร์ชั่น
+'Apache Modules': 'โมดูล Apache'
+'Available only to users with the required permission.': ใช้ได้เฉพาะกับผู้ใช้ที่ได้รับอนุญาตเท่านั้น
+'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.': 'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.'
+'Database collation should be set to {collation}': 'Database collation should be set to {collation}'
+'Edit Notification Event': แก้ไขกิจการแจ้งเตือน
+'Edit Subscribers': แก้ไขผู้สมัครใช้บริการ
+Enabled: เปิดการใช้งาน
+Event: เหตุการณ์
+'File Permissions': สิทธิ์ของไฟล์
+'Files publicly writeable': 'Files publicly writeable'
+Kookaburra: Kookaburra
+'Listening Count': 'Listening Count'
+'Main Menu Category Order': ลำดับหมวดหมู่เมนูหลัก
+Module: โมดูล
+'Must be {operator} {required}': 'Must be {operator} {required}'
+'MySQL Collation': 'MySQL Collation'
+'MySQL Version': 'MySQL Version'
+Name: ชื่อ
+'Notification Events': แจ้งเตือนเหตุการณ์
+'PHP Extensions': 'PHP Extensions'
+'PHP Settings': 'การตั้งค่า PHP'
+'PHP Version': 'PHP Version'
+'Permission Required': ต้องได้รับอนุญาต
+'Please select...': โปรดเลือก...
+'Scope Choices': 'Scope Choices'
+Scope: ขอบเขต
+Staff: เจ้าหน้าที่
+Student: นักศึกษา
+'System Requirements': ความต้องการของระบบ
+'System not publicly writeable': ระบบไม่สามารถเขียนได้แบบสาธารณะ
+'The settings used here are cached and changes will not be reflected in the display configuration immediately.': 'The settings used here are cached and changes will not be reflected in the display configuration immediately.'
+'Uploads folder server writeable': อัพโหลดโฟลเดอร์เซิร์ฟเวอร์ได้
+'Year Group': กลุ่มปี
+'count files checked': 'count files checked'
+'system Check': 'system Check'
+'{name} requires {software} version {version} or higher': '{name} requires {software} version {version} or higher'
+Code: โค๊ด
+Default: ค่าเริ่มต้น
+'Set as Default': 'Set as Default'

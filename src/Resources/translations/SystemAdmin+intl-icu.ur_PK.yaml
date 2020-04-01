@@ -1,0 +1,207 @@
+'API Password provided by PayPal.': 'پے پال کے ذریعہ فراہم کردہ API پاس ورڈ.'
+'API Signature provided by PayPal.': 'پے پال کی طرف سے فراہم API دستخط.'
+'API Username provided by PayPal.': 'پے پال کے ذریعہ فراہم کردہ API کا صارف نام.'
+'Adds PHPMailer settings for servers with an SMTP connection.': 'Adds PHPMailer settings for servers with an SMTP connection.'
+'Admissions Administrator': 'Admissions Administrator'
+Analytics: اینالٹکس
+Automatic: خودکار
+'Automatically sets the encryption based on the port, otherwise select one manually.': 'Automatically sets the encryption based on the port, otherwise select one manually.'
+Background: 'پس منظر'
+'Base Path': 'بیس پاتھ'
+'Base URL': 'بیس ہو آر ایل'
+'Case Sensitive': 'Case Sensitive'
+Country: ملک
+Currency: کرنسی
+'Database Administrator': 'ڈیٹابیس ایڈمنیسٹریٹر'
+'Default Assessment Scale': 'Default Assessment Scale'
+Development: ڈویلپمنٹ
+'Display Settings': 'Display Settings'
+E-Mail: E-Mail
+'Edit String': 'Edit String'
+'Enable Gibbon-wide integration with the Google APIs?': 'Enable Gibbon-wide integration with the Google APIs?'
+'Enable Payments': 'ادائیگیوں کو فعال کریں'
+'Enable SMTP Mail': 'Enable SMTP Mail'
+'Extend & Update': 'Extend & Update'
+'First Day Of The Week': 'First Day Of The Week'
+'General email address for the school': 'اسکول کے لئے جنرل ای میل ایڈریس'
+'Google Calendar ID for your school calendar. Only enables timetable integration when logging in via Google.': 'Google Calendar ID for your school calendar. Only enables timetable integration when logging in via Google.'
+'Google Developers Developer Key': 'Google ڈویلپرز ڈیولپر کی'
+'Google Integration': 'Google Integration'
+'Google OAuth Download File': 'Google OAuth Download File'
+'Higher priorities are substituted first.': 'Higher priorities are substituted first.'
+'Human Resources Administrator': 'Human Resources Administrator'
+'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.': 'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.'
+'Import & Export': 'درآمد اور بر آمد'
+'Import From File': 'فائل سے در آمد کریں'
+'Index Page Text': 'انڈیکس پیج ٹیکسٹ'
+'Install Type': 'انسٹال کی قسم'
+'Javascript code to integrate statistics, such as Google Analytics': 'اعداد و شمار کو متحرک کرنے کے لئے جاوا اسکرپٹ کوڈ، جیسے Google Analytics'
+'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.': 'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.'
+'Link To Email': 'ای میل کا لنک'
+'Link To Web': 'ویب کا لنک'
+Localisation: Localisation
+Logo: لوگو
+'Manage Languages': 'زبانوں کا انتظام کریں'
+'Manage Modules': 'ماڈیولز کا نظم کریں'
+'Manage String Replacements': 'Manage String Replacements'
+'Minimum acceptable password length.': 'کم از کم قابل قبول پاس ورڈ کی لمبائی.'
+Miscellaneous: متفرق
+Mode: Mode
+Monday: سوموار
+'Must be numeric. Number of records shown per page.': "عددی ہونا ضروری ہے. فی صفحہ دکھائے گیا ریکارڈوں کی تعداد.\n"
+None: 'کوئی نہیں'
+'Notification Settings': 'Notification Settings'
+'On which day should the week begin?': 'On which day should the week begin?'
+'Organisation Email': 'ادارہ کا ای میل'
+'Organisation Initials': 'ادارہ کے ہجے/انیشل'
+'Organisation Name': 'ادارے کا نام'
+'Organisation Settings': 'ادارےکی ترتیبات'
+Organisation: Organisation
+'Original String': 'Original String'
+'Pagination Count': 'پیجینیشن کائونٹ'
+Partial: Partial
+'Password - Alpha Requirement': 'Password - Alpha Requirement'
+'Password - Minimum Length': 'Password - Minimum Length'
+'Password - Non-Alphanumeric Requirement': 'Password - Non-Alphanumeric Requirement'
+'Password - Numeric Requirement': 'Password - Numeric Requirement'
+'Password Policy': 'پاس ورڈ کی پالیسی'
+'Password to use for SMTP authentication. Leave blank for no authentication.': 'Password to use for SMTP authentication. Leave blank for no authentication.'
+'PayPal API Password': 'پے پال API پاس ورڈ'
+'PayPal API Signature': 'پے پال API دستخط'
+'PayPal API Username': 'پے پال API یوزرنیم'
+'PayPal Payment Gateway': 'پے پال ادائیگی گیٹ وے'
+'Please Select...': 'Please Select...'
+Priority: ترجیح
+Production: پروڈکشن
+'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}'
+'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}'
+'Relative path to background image. Overrides theme background.': "پس منظر کی تصویر پر رشتہ دار راستہ. اوورائڈز تھیم پس منظر.\n"
+'Relative path to site logo (400 x 100px)': 'Relative path to site logo (400 x 100px)'
+'Replacement String': 'Replacement String'
+'Require at least one non-alphanumeric character (e.g. punctuation mark or space)?': 'کم سے کم ایک غیر الفا نمیرک کردار کی ضرورت ہے (مثال کے طور پر پوائنٹ نشان یا جگہ)؟'
+'Require at least one numeric character?': "کم از کم ایک عددی کردار کی ضرورت ہے؟\n"
+'Require both upper and lower case alpha characters?': 'اوپری اور کم کیس الفا حروف کی ضرورت ہے؟'
+'SMS Gateway': 'ایس ایم ایس گیٹ وے'
+'SMS Password': 'ایس ایم ایس پاسورڈ/خفیہ کوڈ'
+'SMS Sender ID': "SMS Sender ID\n"
+'SMS Settings': 'SMS Settings'
+'SMS URL Credit': 'ایس ایم ایس یو آر ایل کریڈٹ'
+'SMS URL': 'ایس ایم ایس یو آر ایل'
+'SMS Username': 'ایس ایم ایس یوزر/صارف کا نام'
+'SMS gateway URL for checking credit.': 'کریڈٹ دیکھنے کے لیے ایس ایم ایس گیٹ وے یو آر ایل'
+'SMS gateway URL for send requests.': 'سینڈ ریکوئسٹ کے لیے ایس ایم ایس گیٹ وے یو آر ایل'
+'SMS gateway password.': 'ایس ایم ایس گیٹ وے پاسورڈ/خفیہ کوڈ'
+'SMS gateway username.': 'ایس ایم ایس گیٹ وے یوزر نیم'
+'SMTP Encryption': 'SMTP Encryption'
+'SMTP Host': 'SMTP Host'
+'SMTP Password': 'SMTP Password'
+'SMTP Port': 'SMTP Port'
+'SMTP Username': 'SMTP Username'
+'School Google Calendar ID': 'School Google Calendar ID'
+'Security Settings': 'سیکورٹی کی ترتیبات'
+Security: Security
+'Session Duration': 'Session Duration'
+'Set the SMTP port number - likely to be 25, 465 or 587.': 'Set the SMTP port number - likely to be 25, 465 or 587.'
+'Set the hostname of the mail server.': 'Set the hostname of the mail server.'
+Settings: ترتیبات
+'Should payments be enabled across the system?': 'کیا نظام میں ادائیگی کی جا سکتی ہے؟'
+'String Replacement': 'String Replacement'
+Submit: 'جمع کریں'
+Sunday: اتوار
+'System Admin': 'سیسٹم ایڈمن'
+'System Administrator': 'سسٹم ایڈ مینیسٹریٹر'
+'System Check': 'System Check'
+'System Name': 'سسٹم کا نام'
+'System Settings': 'سسٹم کی ترتیبات'
+'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.': 'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.'
+System: System
+Testing: ٹیسٹنگ
+'Text displayed in system''s welcome page.': 'سسٹم کا استقبال صفحہ میں ظاہر ہوا متن.'
+'The address at which the whole system resides.': 'وہ پتہ جس پر پورا نظام رہتا ہے.'
+'The country the school is located in': 'ملک جس میں اسکول واقع ہے'
+'The link that points to the school/''s email system': 'وہ لنک جو اسکول / ای میل کے نظام پر منسلک کرتا ہے'
+'The link that points to the school/''s website': 'وہ لنک جو اسکول / ویب سائٹ پر ہوتا ہے'
+'The local FS path to the system': 'نظام میں مقامی ایف ایس کا راستہ'
+'The purpose of this installation of Kookaburra': 'The purpose of this installation of Kookaburra'
+'The sender name or phone number. Depends on the gateway used.': "بھیجنے والے کا نام یا فون نمبر. استعمال ہونے والی گیٹ وے پر منحصر ہے.\n"
+'The staff member who receives notifications for admissions events.': 'The staff member who receives notifications for admissions events.'
+'The staff member who receives notifications for data events.': 'The staff member who receives notifications for data events.'
+'The staff member who receives notifications for staffing events.': 'The staff member who receives notifications for staffing events.'
+'The staff member who receives notifications for system events.': 'The staff member who receives notifications for system events.'
+'The timezone where the school is located': 'ٹائم زون جہاں اسکول واقع ہے'
+'Third Party Settings': 'Third Party Settings'
+'This is the scale used as a default where assessment scales need to be selected.': 'This is the scale used as a default where assessment scales need to be selected.'
+'Time, in seconds, before system logs a user out. Should be less than PHP''s session.gc_maxlifetime option.': 'Time, in seconds, before system logs a user out. Should be less than PHP''s session.gc_maxlifetime option.'
+Timezone: 'ٹائم زون'
+'Username to use for SMTP authentication. Leave blank for no authentication.': "ایس ایم ٹی پی کی توثیق کے لئے صارف کا نام استعمال کرنا. کوئی تصدیق کے بغیر کے لئے خالی چھوڑ دو\n"
+Whole: Whole
+ssl: ssl
+tls: tls
+'API Key': "API Key\n"
+'API Secret/Auth Token': "API Secret/Auth Token\n"
+Google: Google
+Installed: Installed
+PayPal: PayPal
+'SMS Domain': "SMS Domain\n"
+SMS: 'ایس ایم ایس'
+'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}': 'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}'
+Actions: ایکشنز
+Delete: 'حزف کریں'
+Edit: 'ترمیم کریں'
+'First Page': 'First Page'
+'Last Page': 'Last Page'
+'Next Page': 'Next Page'
+'Previous Page': 'Previous Page'
+'Records {start}-{end} of {total}': 'Records {start}-{end} of {total}'
+'There are no records to display.': 'دکھانے کے لئے کوئی ریکارڈ نہیں ہے.'
+'A comma separated list of module categories in display order.': 'A comma separated list of module categories in display order.'
+Active: ایکٹو
+'Active: No': 'Active: No'
+'Active: Yes': 'Active: Yes'
+All: تمام
+Author: مصنف
+Description: تفصیل
+'Not Installed': 'Not Installed'
+Status: سٹیٹس
+Type: قسم
+Update: 'اپ ڈیٹ'
+Version: ورژن
+'Apache Modules': 'اپاچی ماڈیولز'
+'Available only to users with the required permission.': 'ضروری اجازت کے ساتھ صارفین کو صرف دستیاب ہے.'
+'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.': 'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.'
+'Database collation should be set to {collation}': 'Database collation should be set to {collation}'
+'Edit Notification Event': 'اطلاع کے واقعہ میں ترمیم کریں'
+'Edit Subscribers': 'صارفین کو ترمیم کریں'
+Enabled: فعال
+Event: Event
+'File Permissions': 'File Permissions'
+'Files publicly writeable': 'Files publicly writeable'
+Kookaburra: Kookaburra
+'Listening Count': 'Listening Count'
+'Main Menu Category Order': 'Main Menu Category Order'
+Module: ماڈیول
+'Must be {operator} {required}': 'Must be {operator} {required}'
+'MySQL Collation': 'MySQL Collation'
+'MySQL Version': 'MySQL Version'
+Name: نام
+'Notification Events': 'نوٹیفکیشن واقعات'
+'PHP Extensions': 'PHP Extensions'
+'PHP Settings': 'PHP Settings'
+'PHP Version': 'PHP Version'
+'Permission Required': 'اجازت کی ضرورت ہے'
+'Please select...': 'براہ مہربانی منتخب کریں۔۔۔۔'
+'Scope Choices': 'Scope Choices'
+Scope: سکوپ
+Staff: عملہ
+Student: 'طالب علم'
+'System Requirements': 'سسٹم کی ضروریات'
+'System not publicly writeable': 'System not publicly writeable'
+'The settings used here are cached and changes will not be reflected in the display configuration immediately.': 'The settings used here are cached and changes will not be reflected in the display configuration immediately.'
+'Uploads folder server writeable': 'Uploads فولڈر سرور کے لکھنے قابل'
+'Year Group': 'جماعت / کلاس'
+'count files checked': 'count files checked'
+'system Check': 'system Check'
+'{name} requires {software} version {version} or higher': '{name} requires {software} version {version} or higher'
+Code: کوڈ
+Default: 'پہلے سے طے شدہ کی طرف سے / ڈیفالٹ'
+'Set as Default': 'Set as Default'

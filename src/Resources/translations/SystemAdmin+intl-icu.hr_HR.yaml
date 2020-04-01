@@ -1,0 +1,207 @@
+'API Password provided by PayPal.': 'API lozinka za PayPal.'
+'API Signature provided by PayPal.': 'API potpis za PayPal.'
+'API Username provided by PayPal.': 'API korisničko ime za PayPal.'
+'Adds PHPMailer settings for servers with an SMTP connection.': 'Dodaje PHPMailer postavke za poslužitelje s SMTP vezom.'
+'Admissions Administrator': 'Administrator za upise'
+Analytics: Analitika
+Automatic: Automatski
+'Automatically sets the encryption based on the port, otherwise select one manually.': 'Automatically sets the encryption based on the port, otherwise select one manually.'
+Background: Pozadina
+'Base Path': 'Osnovna putanja (path)'
+'Base URL': 'Osnovni URL (base)'
+'Case Sensitive': 'Veličina slova je bitna'
+Country: Država
+Currency: Valuta
+'Database Administrator': 'Administrator baze podataka'
+'Default Assessment Scale': 'Zadana skala za procjenu'
+Development: Razvoj
+'Display Settings': 'Postavke prikaza'
+E-Mail: E-Mail
+'Edit String': 'Uredi niz'
+'Enable Gibbon-wide integration with the Google APIs?': 'Omogućite Gibbonovu integraciju s Google API-jem?'
+'Enable Payments': 'Omogući plaćanje'
+'Enable SMTP Mail': 'Omoguči SMTP e-poštu'
+'Extend & Update': 'Produlji i nadogradi'
+'First Day Of The Week': 'Prvi dan u tjednu'
+'General email address for the school': 'Opća adresa e-pošte za školu'
+'Google Calendar ID for your school calendar. Only enables timetable integration when logging in via Google.': 'ID Google kalendara za školski kalendar. Omogućuje samo integraciju rasporeda prilikom prijave putem Googlea.'
+'Google Developers Developer Key': 'Google Developers Developer Key'
+'Google Integration': 'Google integracija'
+'Google OAuth Download File': 'Google OAuth Download File'
+'Higher priorities are substituted first.': 'Prvo se zamjenjuju veći prioriteti.'
+'Human Resources Administrator': 'Administrator ljudskih resursa'
+'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.': 'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.'
+'Import & Export': 'Uvoz i izvoz'
+'Import From File': 'Uvoz iz datoteke'
+'Index Page Text': 'Index Page Text'
+'Install Type': 'Vrsta instalacije'
+'Javascript code to integrate statistics, such as Google Analytics': 'Javascript code to integrate statistics, such as Google Analytics'
+'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.': 'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.'
+'Link To Email': 'Poveznica na e-poštu'
+'Link To Web': 'Poveznica na web'
+Localisation: Lokalizacija
+Logo: Logotip
+'Manage Languages': 'Upravljanje jezicima'
+'Manage Modules': 'Upravljaj modulima'
+'Manage String Replacements': 'Upravljaj zamjenama nizova (teksta).'
+'Minimum acceptable password length.': 'Najkraća dopuštena duljina lozinke.'
+Miscellaneous: Razno
+Mode: Način
+Monday: Ponedjeljak
+'Must be numeric. Number of records shown per page.': 'Mora biti brojčana vrijednost. Broj zapisa prikazanih po stranici.'
+None: Nijedan
+'Notification Settings': 'Postavke za obavijesti'
+'On which day should the week begin?': 'Dan kojim počinje tjedan.'
+'Organisation Email': 'E-pošta organizacije'
+'Organisation Initials': 'Kratica organizacije'
+'Organisation Name': 'Naziv organizacije'
+'Organisation Settings': 'Postavke organizacije'
+Organisation: Organisation
+'Original String': 'Originalni niz'
+'Pagination Count': 'Broj za paginaciju'
+Partial: Dio
+'Password - Alpha Requirement': 'Lozinka - zahtjev vezan uz slova'
+'Password - Minimum Length': 'Lozinka - zahtjev vezan uz najkraću duljinu'
+'Password - Non-Alphanumeric Requirement': 'Lozinka - zahtjev vezan uz ne-alfanumeričke znakove'
+'Password - Numeric Requirement': 'Lozinka - zahtjev vezan uz brojeve'
+'Password Policy': 'Politika za lozinke'
+'Password to use for SMTP authentication. Leave blank for no authentication.': 'Lozinka koju ćete koristiti za SMTP autentikaciju. Ostavite prazno za provjeru autentičnosti.'
+'PayPal API Password': 'PayPal API lozinka'
+'PayPal API Signature': 'PayPal API potpis'
+'PayPal API Username': 'PayPal API korisničko ime'
+'PayPal Payment Gateway': 'PayPal Payment Gateway'
+'Please Select...': 'Please Select...'
+Priority: Prioritet
+Production: Produkcija
+'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}'
+'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}'
+'Relative path to background image. Overrides theme background.': 'Relativni put do pozadinske slike. Nadjačava pozadinsku temu.'
+'Relative path to site logo (400 x 100px)': 'Relativna putanja do logotipa web-lokacije (400 x 100 piksela)'
+'Replacement String': 'Zamjenski niz'
+'Require at least one non-alphanumeric character (e.g. punctuation mark or space)?': 'Zahtijevaj barem jedan ne-alfanumerički znak (na primjer znak interpunkcije ili razmak)?'
+'Require at least one numeric character?': 'Zahtijevaj barem jedan numerički znak?'
+'Require both upper and lower case alpha characters?': 'Zahtijevaj i mala i velika slova?'
+'SMS Gateway': 'SMS gateway'
+'SMS Password': 'SMS lozinka'
+'SMS Sender ID': 'ID pošiljatelja SMS poruke'
+'SMS Settings': 'SMS postavke'
+'SMS URL Credit': 'SMS URL natpis'
+'SMS URL': 'SMS URL'
+'SMS Username': 'SMS korisničko ime'
+'SMS gateway URL for checking credit.': 'SMS gateway URL for checking credit.'
+'SMS gateway URL for send requests.': 'SMS gateway URL for send requests.'
+'SMS gateway password.': 'Lozinka za SMS gateway.'
+'SMS gateway username.': 'Korisničko ime za SMS gateway.'
+'SMTP Encryption': 'SMTP enkripcija'
+'SMTP Host': 'SMTP poslužitelj'
+'SMTP Password': 'SMTP lozinka'
+'SMTP Port': 'SMTP port'
+'SMTP Username': 'SMTP korisničko ime'
+'School Google Calendar ID': 'Google Calendar ID škole'
+'Security Settings': 'Sigurnosne postavke'
+Security: Security
+'Session Duration': 'Trajanje sesije'
+'Set the SMTP port number - likely to be 25, 465 or 587.': 'Zadajte broj SMTP porta, najvjerojatnije 25, 465 ili 587.'
+'Set the hostname of the mail server.': 'Zadajte naziv poslužitelja e-pošte.'
+Settings: Postavke
+'Should payments be enabled across the system?': 'Želite li omogućiti plaćanje na razini cijelog sustava?'
+'String Replacement': 'Zamjena nizova'
+Submit: Predaj
+Sunday: Nedjelja
+'System Admin': 'Administrator sustava'
+'System Administrator': 'Administrator sustava'
+'System Check': 'Provjera sustava'
+'System Name': 'Naziv sustava'
+'System Settings': 'Postavke sustava'
+'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.': 'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.'
+System: System
+Testing: Testiranje
+'Text displayed in system''s welcome page.': 'Tekst koji se prikazuje na stranici dobrodošlice na sustav.'
+'The address at which the whole system resides.': 'Adresa na kojoj je smješten sustav.'
+'The country the school is located in': 'Država u kojoj je škola.'
+'The link that points to the school/''s email system': 'Poveznica na webmail škole.'
+'The link that points to the school/''s website': 'Poveznica na web škole.'
+'The local FS path to the system': 'The local FS path to the system'
+'The purpose of this installation of Kookaburra': 'The purpose of this installation of Kookaburra'
+'The sender name or phone number. Depends on the gateway used.': 'Ime ili broj pošiljatelja. Ovisi o korištenom gatewayu.'
+'The staff member who receives notifications for admissions events.': 'Zaposlenik koji prima obavijesti o događajima vezanima uz prijave.'
+'The staff member who receives notifications for data events.': 'The staff member who receives notifications for data events.'
+'The staff member who receives notifications for staffing events.': 'The staff member who receives notifications for staffing events.'
+'The staff member who receives notifications for system events.': 'Zaposlenik koji prima obavijesti o događajima na razini sustava.'
+'The timezone where the school is located': 'Vremenska zona u kojoj je smještena škola'
+'Third Party Settings': 'Postavke usluga treće strane'
+'This is the scale used as a default where assessment scales need to be selected.': 'Ova skala se koristi kao zadana za procjene kod kojih se može odabrati skala za ocjenjivanje/procjenu.'
+'Time, in seconds, before system logs a user out. Should be less than PHP''s session.gc_maxlifetime option.': 'Time, in seconds, before system logs a user out. Should be less than PHP''s session.gc_maxlifetime option.'
+Timezone: 'Vremenska zona'
+'Username to use for SMTP authentication. Leave blank for no authentication.': 'Korisničko ime za SMTP autorizaciju. Ostavite prazno ako ne koristite autorizaciju.'
+Whole: Cijeli
+ssl: ssl
+tls: tls
+'API Key': 'API ključ'
+'API Secret/Auth Token': 'API Secret/Auth Token'
+Google: Google
+Installed: Instalirano
+PayPal: PayPal
+'SMS Domain': 'SMS domena'
+SMS: SMS
+'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}': 'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}'
+Actions: Akcije
+Delete: Izbriši
+Edit: Uredi
+'First Page': 'First Page'
+'Last Page': 'Last Page'
+'Next Page': 'Next Page'
+'Previous Page': 'Previous Page'
+'Records {start}-{end} of {total}': 'Records {start}-{end} of {total}'
+'There are no records to display.': 'Nema zapisa za prikaz.'
+'A comma separated list of module categories in display order.': 'Popis kategorija modula razdvojenih zarezima u redoslijedu prikazivanja.'
+Active: Aktivno
+'Active: No': 'Active: No'
+'Active: Yes': 'Active: Yes'
+All: Svi
+Author: Autor
+Description: Opis
+'Not Installed': 'Nije instalirano'
+Status: Status
+Type: Vrsta
+Update: Nadogradi
+Version: Inačica
+'Apache Modules': 'Apache moduli'
+'Available only to users with the required permission.': 'Dostupno samo korisnicima s potrebnim ovlastima.'
+'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.': 'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.'
+'Database collation should be set to {collation}': 'Database collation should be set to {collation}'
+'Edit Notification Event': 'Uredi događaj za slanje obavijesti'
+'Edit Subscribers': 'Uredi pretplatnike'
+Enabled: Omogućeno
+Event: Događaj
+'File Permissions': 'Ovlasti nad datotekama'
+'Files publicly writeable': 'Files publicly writeable'
+Kookaburra: Kookaburra
+'Listening Count': 'Listening Count'
+'Main Menu Category Order': 'Redoslijed kategorija u glavnom izborniku'
+Module: Modul
+'Must be {operator} {required}': 'Must be {operator} {required}'
+'MySQL Collation': 'MySQL kolacija'
+'MySQL Version': 'MySQL Version'
+Name: Ime
+'Notification Events': 'Događaji za slanje obavijesti'
+'PHP Extensions': 'PHP ekstenzije'
+'PHP Settings': 'PHP postavke'
+'PHP Version': 'PHP Version'
+'Permission Required': 'Potrebna je dozvola'
+'Please select...': Odaberite...
+'Scope Choices': 'Scope Choices'
+Scope: Scope
+Staff: 'Nastavno osoblje'
+Student: Polaznik
+'System Requirements': 'Tehnički preduvjeti za sustav'
+'System not publicly writeable': 'U sustav nije moguće javno pisati'
+'The settings used here are cached and changes will not be reflected in the display configuration immediately.': 'The settings used here are cached and changes will not be reflected in the display configuration immediately.'
+'Uploads folder server writeable': 'U mapu za postavljanje na poslužitelj može se zapisivati'
+'Year Group': 'Grupa po godini'
+'count files checked': 'count files checked'
+'system Check': 'system Check'
+'{name} requires {software} version {version} or higher': '{name} requires {software} version {version} or higher'
+Code: Kôd
+Default: Zadano
+'Set as Default': 'Set as Default'

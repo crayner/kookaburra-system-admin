@@ -1,0 +1,207 @@
+'API Password provided by PayPal.': 'API-wachtwoord bezorgd door PayPal'
+'API Signature provided by PayPal.': 'API-handtekening bezorgd door PayPal'
+'API Username provided by PayPal.': 'API-gebruikersnaam bezorgd door PayPal'
+'Adds PHPMailer settings for servers with an SMTP connection.': 'Adds PHPMailer settings for servers with an SMTP connection.'
+'Admissions Administrator': 'Beheerder van inschrijvingen'
+Analytics: Statistieken
+Automatic: Automatic
+'Automatically sets the encryption based on the port, otherwise select one manually.': 'Automatically sets the encryption based on the port, otherwise select one manually.'
+Background: Achtergrond
+'Base Path': Pad
+'Base URL': URL
+'Case Sensitive': Hoofdlettergevoelig
+Country: Land
+Currency: Valuta
+'Database Administrator': Databankbeheerder
+'Default Assessment Scale': 'Default Assessment Scale'
+Development: Development
+'Display Settings': 'Display Settings'
+E-Mail: E-Mail
+'Edit String': 'Bewerk tekstregel'
+'Enable Gibbon-wide integration with the Google APIs?': 'Laat integratie met Google APIs toe?'
+'Enable Payments': 'Betalingen mogelijk maken'
+'Enable SMTP Mail': 'Enable SMTP Mail'
+'Extend & Update': 'Verlengen & Actualiseren'
+'First Day Of The Week': 'First Day Of The Week'
+'General email address for the school': 'E-mailadres van de school'
+'Google Calendar ID for your school calendar. Only enables timetable integration when logging in via Google.': 'Google Calendar ID van de schoolkalender. Integratie is enkel mogelijk na aanmelding via Google.'
+'Google Developers Developer Key': 'Google Developers Ontwikkelsleutel'
+'Google Integration': 'Integratie met Google'
+'Google OAuth Download File': 'Google OAuth Download File'
+'Higher priorities are substituted first.': 'Hogere prioriteiten worden eerst vervangen.'
+'Human Resources Administrator': 'Human Resources Administrator'
+'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.': 'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.'
+'Import & Export': 'Import & Export'
+'Import From File': 'Import From File'
+'Index Page Text': 'Tekst Startpagina'
+'Install Type': Installatietype
+'Javascript code to integrate statistics, such as Google Analytics': 'Javascriptcode om statistieken te integreren.'
+'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.': 'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.'
+'Link To Email': 'Koppeling naar E-mail'
+'Link To Web': 'Koppeling naar WWW'
+Localisation: Plaats
+Logo: Logo
+'Manage Languages': 'Manage Languages'
+'Manage Modules': 'Beheer modules'
+'Manage String Replacements': 'Beheer Tekstvervanging'
+'Minimum acceptable password length.': 'Minimale wachtwoordlengte'
+Miscellaneous: Varia
+Mode: Modus
+Monday: Maandag
+'Must be numeric. Number of records shown per page.': 'Moet een getal zijn. Aantal bestanden per pagina.'
+None: Geen
+'Notification Settings': 'Notification Settings'
+'On which day should the week begin?': 'On which day should the week begin?'
+'Organisation Email': 'E-mailadres Organisatie'
+'Organisation Initials': 'Initialen Organisatie'
+'Organisation Name': 'Naam Organisatie'
+'Organisation Settings': Schoolinstellingen
+Organisation: Organisation
+'Original String': 'Oorspronkelijke tekst'
+'Pagination Count': 'Aantal pagina''s'
+Partial: Deels
+'Password - Alpha Requirement': 'Password - Alpha Requirement'
+'Password - Minimum Length': 'Password - Minimum Length'
+'Password - Non-Alphanumeric Requirement': 'Password - Non-Alphanumeric Requirement'
+'Password - Numeric Requirement': 'Password - Numeric Requirement'
+'Password Policy': Wachtwoordbeleid
+'Password to use for SMTP authentication. Leave blank for no authentication.': 'Password to use for SMTP authentication. Leave blank for no authentication.'
+'PayPal API Password': 'PayPal API-wachtwoord'
+'PayPal API Signature': 'PayPal API-handtekening'
+'PayPal API Username': 'PayPal API Gebruikersnaam'
+'PayPal Payment Gateway': PayPal
+'Please Select...': 'Please Select...'
+Priority: Prioritair
+Production: Production
+'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}'
+'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}'
+'Relative path to background image. Overrides theme background.': 'Relative path to background image. Overrides theme background.'
+'Relative path to site logo (400 x 100px)': 'Relatief pad naar het logo van de webstek (400 x 100px)'
+'Replacement String': 'Vervangende tekst'
+'Require at least one non-alphanumeric character (e.g. punctuation mark or space)?': 'Vereis minstens één speciaal teken (bv. punt of spatie)?'
+'Require at least one numeric character?': 'Vereis minstens één numeriek karakter?'
+'Require both upper and lower case alpha characters?': 'Vereis hoofd- & kleine letters?'
+'SMS Gateway': 'SMS Gateway'
+'SMS Password': SMS-wachtwoord
+'SMS Sender ID': 'SMS Sender ID'
+'SMS Settings': SMS-instellingen
+'SMS URL Credit': SMS-URL-Krediet
+'SMS URL': SMS-URL
+'SMS Username': SMS-Gebruikersnaam
+'SMS gateway URL for checking credit.': 'URL van de SMS-gateway om tegoed te controleren.'
+'SMS gateway URL for send requests.': 'URL van de SMS-gateway om aanvragen te versturen.'
+'SMS gateway password.': 'Wachtwoord SMS-gateway'
+'SMS gateway username.': 'Gebruikersnaam SMS-gateway'
+'SMTP Encryption': 'SMTP Encryption'
+'SMTP Host': 'SMTP Host'
+'SMTP Password': 'SMTP Password'
+'SMTP Port': 'SMTP Port'
+'SMTP Username': 'SMTP Username'
+'School Google Calendar ID': 'Googlecalender ID'
+'Security Settings': Veiligheidsinstellingen
+Security: Security
+'Session Duration': 'Duur van een sessie'
+'Set the SMTP port number - likely to be 25, 465 or 587.': 'Set the SMTP port number - likely to be 25, 465 or 587.'
+'Set the hostname of the mail server.': 'Set the hostname of the mail server.'
+Settings: Instellingen
+'Should payments be enabled across the system?': 'Betalingen doorheen het hele systeem toestaan?'
+'String Replacement': 'String Replacement'
+Submit: Invoeren
+Sunday: Zondag
+'System Admin': Systeembeheer
+'System Administrator': Systeembeheerder
+'System Check': 'System Check'
+'System Name': Systeemnaam
+'System Settings': Systeeminstellingen
+'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.': 'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.'
+System: System
+Testing: Examens
+'Text displayed in system''s welcome page.': 'Welkomstpagina van het systeem'
+'The address at which the whole system resides.': 'Fysiek adres van het systeem.'
+'The country the school is located in': 'Land waar de school zich bevindt.'
+'The link that points to the school/''s email system': 'Koppeling naar het e-mailsysteem van de school.'
+'The link that points to the school/''s website': 'Koppeling naar de webstek van de school'
+'The local FS path to the system': 'Het locale FS-pad naar het systeem.'
+'The purpose of this installation of Kookaburra': 'The purpose of this installation of Kookaburra'
+'The sender name or phone number. Depends on the gateway used.': 'The sender name or phone number. Depends on the gateway used.'
+'The staff member who receives notifications for admissions events.': 'Het personeelslid dat meldingen ontvangt voor toelatingen.'
+'The staff member who receives notifications for data events.': 'Het personeelslid dat meldingen ontvangt voor gegevensgebeurtenissen.'
+'The staff member who receives notifications for staffing events.': 'The staff member who receives notifications for staffing events.'
+'The staff member who receives notifications for system events.': 'Het personeelslid dat meldingen ontvangt voor systeemgebeurtenissen.'
+'The timezone where the school is located': 'Tijdzone van de school.'
+'Third Party Settings': 'Instellingen externen'
+'This is the scale used as a default where assessment scales need to be selected.': 'This is the scale used as a default where assessment scales need to be selected.'
+'Time, in seconds, before system logs a user out. Should be less than PHP''s session.gc_maxlifetime option.': 'Duur, in seconden, voor een gebruiker afgemeld wordt. Moet minder zijn dan PHP''s session.gc_maxlifetime.'
+Timezone: Tijdzone
+'Username to use for SMTP authentication. Leave blank for no authentication.': 'Username to use for SMTP authentication. Leave blank for no authentication.'
+Whole: Helemaal
+ssl: ssl
+tls: tls
+'API Key': 'API Key'
+'API Secret/Auth Token': 'API Secret/Auth Token'
+Google: Google
+Installed: Geïnstalleerd
+PayPal: PayPal
+'SMS Domain': 'SMS Domain'
+SMS: SMS
+'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}': 'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}'
+Actions: Acties
+Delete: Wis
+Edit: Wijjzig
+'First Page': 'First Page'
+'Last Page': 'Last Page'
+'Next Page': 'Next Page'
+'Previous Page': 'Previous Page'
+'Records {start}-{end} of {total}': 'Records {start}-{end} of {total}'
+'There are no records to display.': 'Er zijn geen gegevens om weer te geven.'
+'A comma separated list of module categories in display order.': 'A comma separated list of module categories in display order.'
+Active: Actief
+'Active: No': 'Active: No'
+'Active: Yes': 'Active: Yes'
+All: Alle
+Author: Auteur
+Description: Beschrijving
+'Not Installed': 'Niet Geïnstalleerd'
+Status: Status
+Type: Type
+Update: Actualiseren
+Version: Versie
+'Apache Modules': 'Apache Modules'
+'Available only to users with the required permission.': 'Available only to users with the required permission.'
+'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.': 'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.'
+'Database collation should be set to {collation}': 'Database collation should be set to {collation}'
+'Edit Notification Event': 'Edit Notification Event'
+'Edit Subscribers': 'Edit Subscribers'
+Enabled: Enabled
+Event: Gebeurtenis
+'File Permissions': 'File Permissions'
+'Files publicly writeable': 'Files publicly writeable'
+Kookaburra: Kookaburra
+'Listening Count': 'Listening Count'
+'Main Menu Category Order': 'Main Menu Category Order'
+Module: Module
+'Must be {operator} {required}': 'Must be {operator} {required}'
+'MySQL Collation': 'MySQL Collation'
+'MySQL Version': 'MySQL Version'
+Name: Naam
+'Notification Events': 'Notification Events'
+'PHP Extensions': 'PHP Extensions'
+'PHP Settings': 'PHP Settings'
+'PHP Version': 'PHP Version'
+'Permission Required': 'Permission Required'
+'Please select...': Kies...
+'Scope Choices': 'Scope Choices'
+Scope: Bereik
+Staff: Personeel
+Student: Student
+'System Requirements': 'System Requirements'
+'System not publicly writeable': 'System not publicly writeable'
+'The settings used here are cached and changes will not be reflected in the display configuration immediately.': 'The settings used here are cached and changes will not be reflected in the display configuration immediately.'
+'Uploads folder server writeable': 'Uploads folder server writeable'
+'Year Group': Leerjaar
+'count files checked': 'count files checked'
+'system Check': 'system Check'
+'{name} requires {software} version {version} or higher': '{name} requires {software} version {version} or higher'
+Code: Code
+Default: Default
+'Set as Default': 'Set as Default'

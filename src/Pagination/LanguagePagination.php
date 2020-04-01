@@ -59,7 +59,6 @@ class LanguagePagination extends AbstractPaginationManager
             ->setClass('column relative pr-4 cursor-pointer');
         $row->addColumn($column);
 
-
         $filter = new PaginationFilter();
         $filter->setName('Active: Yes')
             ->setGroup('Active')
@@ -74,27 +73,17 @@ class LanguagePagination extends AbstractPaginationManager
             ->setValue(false);
         $row->addFilter($filter);
 
-        /*$action = new PaginationAction();
-        $action->setTitle('Update')
+        $action = new PaginationAction();
+        $action->setTitle('Set as Default')
             ->setAClass('thickbox p-3 sm:p-0')
             ->setColumnClass('p-2 sm:p-3')
-            ->setSpanClass('fas fa-wrench fa-fw fa-1-5x text-gray-800 hover:text-orange-500')
-            ->setRoute('system_admin__module_update')
-            ->setDisplayWhen('updateRequired')
-            ->setRouteParams(['upgrade' => 'id']);
+            ->setSpanClass('far fa-check-square fa-fw fa-1-5x text-gray-800 hover:text-purple-500')
+            ->setRoute('system_admin__language_default')
+            ->setDisplayWhen('isNotDefault')
+            ->setRouteParams(['i18n' => 'id']);
         $row->addAction($action);
 
-        $action = new PaginationAction();
-        $action->setTitle('Delete')
-            ->setAClass('thickbox p-3 sm:p-0')
-            ->setColumnClass('p-2 sm:p-3')
-            ->setSpanClass('fas fa-trash-alt fa-fw fa-1-5x text-gray-800 hover:text-red-500')
-            ->setRoute('system_admin__module_delete')
-            ->setDisplayWhen('isNotCore')
-            ->setOnClick('areYouSure')
-            ->setRouteParams(['delete' => 'id']);
-        $row->addAction($action);*/
-
+        $row->setDefaultFilter(['Active: Yes']);
         $this->setRow($row);
         return $this;
     }

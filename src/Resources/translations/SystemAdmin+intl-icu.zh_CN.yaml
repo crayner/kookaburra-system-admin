@@ -1,0 +1,207 @@
+'API Password provided by PayPal.': 'PayPal提供的API密码'
+'API Signature provided by PayPal.': PayPal提供的API签名
+'API Username provided by PayPal.': PayPal提供的API用户名
+'Adds PHPMailer settings for servers with an SMTP connection.': '通过SMTP连接为服务器添加phpmailer设置。'
+'Admissions Administrator': 招生管理员
+Analytics: 分析
+Automatic: 自动
+'Automatically sets the encryption based on the port, otherwise select one manually.': 'Automatically sets the encryption based on the port, otherwise select one manually.'
+Background: 背景
+'Base Path': 基本路径
+'Base URL': 基本网址
+'Case Sensitive': 区分大小写
+Country: 国家
+Currency: 货币
+'Database Administrator': 数据库管理员
+'Default Assessment Scale': 预设评估分值
+Development: 开发
+'Display Settings': 显示设置
+E-Mail: E-Mail
+'Edit String': 编辑字符串
+'Enable Gibbon-wide integration with the Google APIs?': '启用Gibbon范围的Google APIs？'
+'Enable Payments': 启用付款
+'Enable SMTP Mail': 启用SMTP邮箱
+'Extend & Update': 扩展和更新
+'First Day Of The Week': 一周的第一天
+'General email address for the school': '学校的一般电子邮件地址'
+'Google Calendar ID for your school calendar. Only enables timetable integration when logging in via Google.': 'Google日历ID为您的学校日历。只有通过谷歌登录才能启用课程表整合。'
+'Google Developers Developer Key': Google开发者主键
+'Google Integration': Google整合
+'Google OAuth Download File': 'Google OAuth Download File'
+'Higher priorities are substituted first.': 首先取代更高优先级。
+'Human Resources Administrator': 人力资源管理员
+'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.': 'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.'
+'Import & Export': '导入&导出'
+'Import From File': 从文件导入
+'Index Page Text': 主页上的正文
+'Install Type': 安装类型
+'Javascript code to integrate statistics, such as Google Analytics': '用于整合统计数据的JavaScript代码，例如Google Analytics'
+'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.': 'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.'
+'Link To Email': 链接到电子邮件
+'Link To Web': 链接到网页
+Localisation: 位置
+Logo: LOGO
+'Manage Languages': 语言管理
+'Manage Modules': 管理模块
+'Manage String Replacements': 管理字符串替换
+'Minimum acceptable password length.': '最小可接受的密码长度'
+Miscellaneous: 其它
+Mode: 模式
+Monday: 星期一
+'Must be numeric. Number of records shown per page.': 必须是数字。每页显示的记录数。
+None: 取消
+'Notification Settings': 通知设置
+'On which day should the week begin?': 这周应该在哪一天开始？
+'Organisation Email': 机构邮件
+'Organisation Initials': 机构首字母缩写
+'Organisation Name': 机构名称
+'Organisation Settings': 组织设置
+Organisation: Organisation
+'Original String': 原始字符串
+'Pagination Count': 分页计数
+Partial: 非全天
+'Password - Alpha Requirement': '密码 - 字母要求'
+'Password - Minimum Length': '密码 - 最小长度'
+'Password - Non-Alphanumeric Requirement': '密码 - 非字母数字要求'
+'Password - Numeric Requirement': '密码 - 数字要求'
+'Password Policy': '密码策略'
+'Password to use for SMTP authentication. Leave blank for no authentication.': '用于smtp认证的密码。不用身份验证就留空。'
+'PayPal API Password': 'paypal API 密码'
+'PayPal API Signature': 'paypal api签名'
+'PayPal API Username': 'paypal api用户名'
+'PayPal Payment Gateway': PayPal支付网关
+'Please Select...': 'Please Select...'
+Priority: 优先
+Production: 作业
+'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}'
+'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}'
+'Relative path to background image. Overrides theme background.': 背景图像的相对路径。覆盖主题背景。
+'Relative path to site logo (400 x 100px)': '网站LOGO的相对路径（400 x 100px）'
+'Replacement String': 替换字符串
+'Require at least one non-alphanumeric character (e.g. punctuation mark or space)?': '至少需要一个非字母数字字符（例如标点符号或空格）？'
+'Require at least one numeric character?': 至少需要一个数字字符？
+'Require both upper and lower case alpha characters?': 需要大写和小写字母字符？
+'SMS Gateway': 短信网关
+'SMS Password': '短信密码'
+'SMS Sender ID': 短信发件人ID
+'SMS Settings': 短信设置
+'SMS URL Credit': 短信网址信用
+'SMS URL': 短信网址
+'SMS Username': 短信用户名
+'SMS gateway URL for checking credit.': 用于检查信用的短信网关网址。
+'SMS gateway URL for send requests.': 用于发送请求的短信网关URL。
+'SMS gateway password.': '短信网关密码。'
+'SMS gateway username.': 短信网关用户名。
+'SMTP Encryption': 'SMTP Encryption'
+'SMTP Host': SMTP主机
+'SMTP Password': 'SMTP密码'
+'SMTP Port': SMTP端口
+'SMTP Username': SMTP用户名
+'School Google Calendar ID': '学校Google日历ID'
+'Security Settings': 安全设置
+Security: Security
+'Session Duration': 'Session 持续时间'
+'Set the SMTP port number - likely to be 25, 465 or 587.': '设置smtp端口号 - 可能是25,465或587。'
+'Set the hostname of the mail server.': 设置邮件服务器的主机名。
+Settings: 设置
+'Should payments be enabled across the system?': 在整个系统中启用付款吗？
+'String Replacement': 字符串替换
+Submit: 提交
+Sunday: 星期日
+'System Admin': 系统管理
+'System Administrator': 系统管理员
+'System Check': 系统检查
+'System Name': 系统名称
+'System Settings': 系统设置
+'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.': 'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.'
+System: System
+Testing: 测试
+'Text displayed in system''s welcome page.': 显示在系统的欢迎页面中的文字。
+'The address at which the whole system resides.': 系统所在的网址。
+'The country the school is located in': '学校位于'
+'The link that points to the school/''s email system': 'extm学校链接的电子邮件系统的链接 '
+'The link that points to the school/''s website': '指向学校网页的链接。'
+'The local FS path to the system': 系统所在本地的文件系统路径
+'The purpose of this installation of Kookaburra': 'The purpose of this installation of Kookaburra'
+'The sender name or phone number. Depends on the gateway used.': '发件人姓名或电话号码。取决于使用的网关。'
+'The staff member who receives notifications for admissions events.': 收到招生活动通知的员工。
+'The staff member who receives notifications for data events.': 收到数据事件通知的员工。
+'The staff member who receives notifications for staffing events.': 接收人事事件通知的工作人员。
+'The staff member who receives notifications for system events.': 收到系统事件通知的员工。
+'The timezone where the school is located': '学校所在的时区'
+'Third Party Settings': 第三方设置
+'This is the scale used as a default where assessment scales need to be selected.': 这是默认的分值，评估分值必选时会用到。
+'Time, in seconds, before system logs a user out. Should be less than PHP''s session.gc_maxlifetime option.': 时间，以秒为单位，在系统登录用户之前。应该小于php的session.gc_maxlifetime选项。
+Timezone: 时区
+'Username to use for SMTP authentication. Leave blank for no authentication.': 用于smtp身份验证的用户名。不用身份验证就留空。
+Whole: 整个
+ssl: ssl
+tls: tls
+'API Key': API密钥
+'API Secret/Auth Token': API密令/验证口令
+Google: Google
+Installed: 已安装
+PayPal: PayPal
+'SMS Domain': 短信域名
+SMS: 短信
+'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}': 'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}'
+Actions: 操作
+Delete: '删除'
+Edit: 编辑
+'First Page': 'First Page'
+'Last Page': 'Last Page'
+'Next Page': 'Next Page'
+'Previous Page': 'Previous Page'
+'Records {start}-{end} of {total}': 'Records {start}-{end} of {total}'
+'There are no records to display.': '查询 无记录。'
+'A comma separated list of module categories in display order.': 按照显示顺序以逗号分隔的模块类别列表。
+Active: 激活
+'Active: No': 'Active: No'
+'Active: Yes': 'Active: Yes'
+All: 全选
+Author: 作者
+Description: 描述
+'Not Installed': 未安装
+Status: 状态
+Type: 类型
+Update: 更新
+Version: 版本
+'Apache Modules': Apache模块
+'Available only to users with the required permission.': 仅适用于具有所需权限的用户。
+'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.': 'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.'
+'Database collation should be set to {collation}': 'Database collation should be set to {collation}'
+'Edit Notification Event': 编辑通知事件
+'Edit Subscribers': 编辑订阅者
+Enabled: 启用
+Event: 事件
+'File Permissions': 文件权限
+'Files publicly writeable': 'Files publicly writeable'
+Kookaburra: Kookaburra
+'Listening Count': 'Listening Count'
+'Main Menu Category Order': 主菜单类别顺序
+Module: 模块
+'Must be {operator} {required}': 'Must be {operator} {required}'
+'MySQL Collation': mysql整理
+'MySQL Version': 'MySQL Version'
+Name: 名称
+'Notification Events': 通知事件
+'PHP Extensions': PHP扩展
+'PHP Settings': PHP设置
+'PHP Version': 'PHP Version'
+'Permission Required': 需要许可
+'Please select...': 请选择...
+'Scope Choices': 'Scope Choices'
+Scope: 范围
+Staff: 员工
+Student: 学生
+'System Requirements': 系统要求
+'System not publicly writeable': 系统不公开可写
+'The settings used here are cached and changes will not be reflected in the display configuration immediately.': 'The settings used here are cached and changes will not be reflected in the display configuration immediately.'
+'Uploads folder server writeable': '上传文件夹服务器可写'
+'Year Group': 年级
+'count files checked': 'count files checked'
+'system Check': 'system Check'
+'{name} requires {software} version {version} or higher': '{name} requires {software} version {version} or higher'
+Code: '代码'
+Default: 默认
+'Set as Default': 'Set as Default'

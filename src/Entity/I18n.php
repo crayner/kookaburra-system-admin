@@ -230,10 +230,7 @@ class I18n implements EntityInterface
      */
     public function getInstalled(): ?string
     {
-        $this->installed = self::checkBoolean($this->installed, 'N');
-        if ($this->installed === 'Y' && false === realpath(__DIR__ . '/../../translations/messages.'.$this->getCode().'.mo')) {
-            $this->installed = 'N';
-        }
+        $this->installed = (false === realpath(__DIR__ . '/../../../../../translations/messages+intl-icu.'.$this->getCode().'.yaml') ? 'N' : 'Y');
 
         return $this->installed;
     }
@@ -243,7 +240,7 @@ class I18n implements EntityInterface
      */
     public function isInstalled(): bool
     {
-        return $this->getInstalled() === 'Y' ? true : false;
+        return $this->getInstalled() === 'Y';
     }
 
     /**
@@ -395,6 +392,7 @@ class I18n implements EntityInterface
             'active' => TranslationsHelper::translate($this->isActive() ? 'Yes' : 'No', [], 'messages'),
             'status' => $this->getStatus(),
             'isActive' => $this->isActive(),
+            'isNotDefault' => !$this->isSystemDefault() && $this->isInstalled(),
         ];
     }
 

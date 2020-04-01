@@ -1,0 +1,207 @@
+'API Password provided by PayPal.': PayPal提供的API密碼
+'API Signature provided by PayPal.': PayPal提供的API簽名
+'API Username provided by PayPal.': PayPal提供的API用戶名稱
+'Adds PHPMailer settings for servers with an SMTP connection.': 'Adds PHPMailer settings for servers with an SMTP connection.'
+'Admissions Administrator': 'Admissions Administrator'
+Analytics: 分析
+Automatic: Automatic
+'Automatically sets the encryption based on the port, otherwise select one manually.': 'Automatically sets the encryption based on the port, otherwise select one manually.'
+Background: 背景
+'Base Path': 基本路徑
+'Base URL': '基本網頁'
+'Case Sensitive': 'Case Sensitive'
+Country: 國家
+Currency: 貨幣
+'Database Administrator': 數據庫管理員
+'Default Assessment Scale': 'Default Assessment Scale'
+Development: Development
+'Display Settings': 'Display Settings'
+E-Mail: E-Mail
+'Edit String': 'Edit String'
+'Enable Gibbon-wide integration with the Google APIs?': '允許全Gibbon積分的谷歌 API?'
+'Enable Payments': 啟用付錢
+'Enable SMTP Mail': 'Enable SMTP Mail'
+'Extend & Update': '擴大&更新'
+'First Day Of The Week': 'First Day Of The Week'
+'General email address for the school': '學校的總電郵'
+'Google Calendar ID for your school calendar. Only enables timetable integration when logging in via Google.': '給你的學校月曆的谷歌月曆號碼。只允許在用谷歌登錄時的時間表積分。'
+'Google Developers Developer Key': 谷歌開發者開發關鍵
+'Google Integration': 'Google 積分'
+'Google OAuth Download File': 'Google OAuth Download File'
+'Higher priorities are substituted first.': 'Higher priorities are substituted first.'
+'Human Resources Administrator': 'Human Resources Administrator'
+'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.': 'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.'
+'Import & Export': 'Import & Export'
+'Import From File': 'Import From File'
+'Index Page Text': '指數頁的正文'
+'Install Type': 安裝類型
+'Javascript code to integrate statistics, such as Google Analytics': 審問資料的Javascript代碼，例如谷歌分析。
+'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.': 'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.'
+'Link To Email': 電郵的連結
+'Link To Web': 網站的連結
+Localisation: 本土化
+Logo: 徽標
+'Manage Languages': 'Manage Languages'
+'Manage Modules': 管理程式組件
+'Manage String Replacements': 'Manage String Replacements'
+'Minimum acceptable password length.': 最短可接受的密碼長度
+Miscellaneous: '雜項'
+Mode: Mode
+Monday: 星期一
+'Must be numeric. Number of records shown per page.': '一定要是數字。一頁中的紀錄數目。'
+None: 無
+'Notification Settings': 'Notification Settings'
+'On which day should the week begin?': 'On which day should the week begin?'
+'Organisation Email': 組織電郵
+'Organisation Initials': 組織縮寫
+'Organisation Name': 組織名稱
+'Organisation Settings': 數據庫設置
+Organisation: Organisation
+'Original String': 'Original String'
+'Pagination Count': '頁數'
+Partial: Partial
+'Password - Alpha Requirement': 'Password - Alpha Requirement'
+'Password - Minimum Length': 'Password - Minimum Length'
+'Password - Non-Alphanumeric Requirement': 'Password - Non-Alphanumeric Requirement'
+'Password - Numeric Requirement': 'Password - Numeric Requirement'
+'Password Policy': 密碼策略
+'Password to use for SMTP authentication. Leave blank for no authentication.': 'Password to use for SMTP authentication. Leave blank for no authentication.'
+'PayPal API Password': 'PayPal API 密碼'
+'PayPal API Signature': 'PayPal API 簽名'
+'PayPal API Username': 'PayPal API 用戶名稱'
+'PayPal Payment Gateway': ' PayPal 付款網關'
+'Please Select...': 'Please Select...'
+Priority: 優先
+Production: Production
+'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}'
+'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}'
+'Relative path to background image. Overrides theme background.': 背景圖片的相對路徑。將替代主题的背景。
+'Relative path to site logo (400 x 100px)': '到網頁徽標(400 x 100px)的路徑。'
+'Replacement String': 'Replacement String'
+'Require at least one non-alphanumeric character (e.g. punctuation mark or space)?': '需要要求一個非字母或數字 (例如標點符號或間隙)?'
+'Require at least one numeric character?': '需要要求最少一個數字?'
+'Require both upper and lower case alpha characters?': '需要要求大楷和小楷的字母?'
+'SMS Gateway': 'SMS Gateway'
+'SMS Password': 'SMS 密碼'
+'SMS Sender ID': 'SMS Sender ID'
+'SMS Settings': SMS設定
+'SMS URL Credit': 'SMS 網頁信貸'
+'SMS URL': 'SMS 網頁'
+'SMS Username': 'SMS 用戶名稱'
+'SMS gateway URL for checking credit.': 檢查分數的SMS網關URL。
+'SMS gateway URL for send requests.': '為了寄送要求的SMS網關URL '
+'SMS gateway password.': SMS網關密碼
+'SMS gateway username.': SMS網關登錄名
+'SMTP Encryption': 'SMTP Encryption'
+'SMTP Host': 'SMTP Host'
+'SMTP Password': 'SMTP Password'
+'SMTP Port': 'SMTP Port'
+'SMTP Username': 'SMTP Username'
+'School Google Calendar ID': '學校 Google 月曆編號'
+'Security Settings': 保障設置
+Security: Security
+'Session Duration': 會期時間
+'Set the SMTP port number - likely to be 25, 465 or 587.': 'Set the SMTP port number - likely to be 25, 465 or 587.'
+'Set the hostname of the mail server.': 'Set the hostname of the mail server.'
+Settings: 設定
+'Should payments be enabled across the system?': '付款可以在系統中用嗎?'
+'String Replacement': 'String Replacement'
+Submit: 提交
+Sunday: 星期日
+'System Admin': 系統管理員
+'System Administrator': 系統管理員
+'System Check': 'System Check'
+'System Name': 系統名稱
+'System Settings': 系統設置
+'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.': 'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.'
+System: System
+Testing: 測試
+'Text displayed in system''s welcome page.': '在系統歡迎頁顯示的文字。'
+'The address at which the whole system resides.': 整個系統的地址
+'The country the school is located in': '學校位於的國家'
+'The link that points to the school/''s email system': '這鏈接指向學校的電郵系統。'
+'The link that points to the school/''s website': '這鏈接指向學校的網頁。'
+'The local FS path to the system': 本地進入系統的FS路線
+'The purpose of this installation of Kookaburra': 'The purpose of this installation of Kookaburra'
+'The sender name or phone number. Depends on the gateway used.': 'The sender name or phone number. Depends on the gateway used.'
+'The staff member who receives notifications for admissions events.': 會收到申請事件通知的工作人員。
+'The staff member who receives notifications for data events.': 會收到資料事件通知的工作人員。
+'The staff member who receives notifications for staffing events.': 'The staff member who receives notifications for staffing events.'
+'The staff member who receives notifications for system events.': 會收到系統事件通知的工作人員。
+'The timezone where the school is located': '學校地點的時區'
+'Third Party Settings': 第三者設定
+'This is the scale used as a default where assessment scales need to be selected.': 'This is the scale used as a default where assessment scales need to be selected.'
+'Time, in seconds, before system logs a user out. Should be less than PHP''s session.gc_maxlifetime option.': '系統幫用戶登出前的秒鐘。應該少過PHP的 session.gc_maxlifetime 選項。'
+Timezone: 時區
+'Username to use for SMTP authentication. Leave blank for no authentication.': 'Username to use for SMTP authentication. Leave blank for no authentication.'
+Whole: Whole
+ssl: ssl
+tls: tls
+'API Key': 'API Key'
+'API Secret/Auth Token': 'API Secret/Auth Token'
+Google: Google
+Installed: 已安裝
+PayPal: PayPal
+'SMS Domain': 'SMS Domain'
+SMS: SMS
+'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}': 'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}'
+Actions: 行動
+Delete: 刪除
+Edit: 編輯
+'First Page': 'First Page'
+'Last Page': 'Last Page'
+'Next Page': 'Next Page'
+'Previous Page': 'Previous Page'
+'Records {start}-{end} of {total}': 'Records {start}-{end} of {total}'
+'There are no records to display.': 沒有要顯示的記錄
+'A comma separated list of module categories in display order.': 'A comma separated list of module categories in display order.'
+Active: 活性
+'Active: No': 'Active: No'
+'Active: Yes': 'Active: Yes'
+All: 全部
+Author: 作者
+Description: 描寫
+'Not Installed': 還沒安裝
+Status: 狀態
+Type: 類型
+Update: 更新
+Version: 版本
+'Apache Modules': 'Apache Modules'
+'Available only to users with the required permission.': 'Available only to users with the required permission.'
+'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.': 'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.'
+'Database collation should be set to {collation}': 'Database collation should be set to {collation}'
+'Edit Notification Event': 'Edit Notification Event'
+'Edit Subscribers': 'Edit Subscribers'
+Enabled: Enabled
+Event: 事件
+'File Permissions': 'File Permissions'
+'Files publicly writeable': 'Files publicly writeable'
+Kookaburra: Kookaburra
+'Listening Count': 'Listening Count'
+'Main Menu Category Order': 'Main Menu Category Order'
+Module: Module
+'Must be {operator} {required}': 'Must be {operator} {required}'
+'MySQL Collation': 'MySQL Collation'
+'MySQL Version': 'MySQL Version'
+Name: 名稱
+'Notification Events': 'Notification Events'
+'PHP Extensions': 'PHP Extensions'
+'PHP Settings': 'PHP Settings'
+'PHP Version': 'PHP Version'
+'Permission Required': 'Permission Required'
+'Please select...': 請選擇...
+'Scope Choices': 'Scope Choices'
+Scope: 範圍
+Staff: 員工
+Student: 學生
+'System Requirements': 'System Requirements'
+'System not publicly writeable': 'System not publicly writeable'
+'The settings used here are cached and changes will not be reflected in the display configuration immediately.': 'The settings used here are cached and changes will not be reflected in the display configuration immediately.'
+'Uploads folder server writeable': 'Uploads folder server writeable'
+'Year Group': 年級
+'count files checked': 'count files checked'
+'system Check': 'system Check'
+'{name} requires {software} version {version} or higher': '{name} requires {software} version {version} or higher'
+Code: 代碼
+Default: 默認
+'Set as Default': 'Set as Default'

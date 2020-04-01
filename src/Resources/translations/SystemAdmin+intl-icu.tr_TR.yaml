@@ -1,0 +1,207 @@
+'API Password provided by PayPal.': 'API şifresi PayPal tarafından sağlanmıştır.'
+'API Signature provided by PayPal.': 'API imzası PayPal tarafından sağlanmıştır.'
+'API Username provided by PayPal.': 'API Kullanıcı Adı, PayPal tarafından sağlanmıştır.'
+'Adds PHPMailer settings for servers with an SMTP connection.': 'SMTP bağlantısı olan sunucular için PHPMailer ayarları ekler.'
+'Admissions Administrator': 'Kabul Yöneticisi'
+Analytics: analitik
+Automatic: Automatic
+'Automatically sets the encryption based on the port, otherwise select one manually.': 'Automatically sets the encryption based on the port, otherwise select one manually.'
+Background: 'Arka fon'
+'Base Path': 'Baz Yolu'
+'Base URL': 'Temel URL'
+'Case Sensitive': 'Harfe duyarlı'
+Country: ülke
+Currency: 'Para birimi'
+'Database Administrator': 'Veritabanı yöneticisi'
+'Default Assessment Scale': 'Varsayılan Değerlendirme Ölçeği'
+Development: gelişme
+'Display Settings': 'Görüntü ayarları'
+E-Mail: E-Mail
+'Edit String': 'Dize Düzenle'
+'Enable Gibbon-wide integration with the Google APIs?': 'Google API''leriyle Gibbon çapında entegrasyon etkinleştirilsin mi?'
+'Enable Payments': 'Ödemeleri Etkinleştir'
+'Enable SMTP Mail': 'SMTP Postasını Etkinleştir'
+'Extend & Update': 'Genişlet ve Güncelle'
+'First Day Of The Week': 'Haftanın ilk günü'
+'General email address for the school': 'Okulun genel e-posta adresi'
+'Google Calendar ID for your school calendar. Only enables timetable integration when logging in via Google.': "Okul takviminiz için Google Takvim Kimliği.\_Yalnızca Google ile giriş yaparken zaman çizelgesi entegrasyonunu sağlar."
+'Google Developers Developer Key': 'Google Geliştiricileri Geliştirici Anahtarı'
+'Google Integration': 'Google Entegrasyonu'
+'Google OAuth Download File': 'Google OAuth Download File'
+'Higher priorities are substituted first.': 'Yüksek öncelikler önce ikame edilir.'
+'Human Resources Administrator': 'İnsan Kaynakları Yöneticisi'
+'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.': 'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.'
+'Import & Export': 'İthalat ihracat'
+'Import From File': 'Dosyadan İçe Aktar'
+'Index Page Text': 'Dizin Sayfası Metni'
+'Install Type': 'Yükleme türü'
+'Javascript code to integrate statistics, such as Google Analytics': 'Google Analytics gibi istatistikleri entegre etmek için Javascript kodu'
+'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.': 'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.'
+'Link To Email': 'E-postaya Bağla'
+'Link To Web': 'Web’e Bağla'
+Localisation: konum
+Logo: Logo
+'Manage Languages': 'Dilleri Yönet'
+'Manage Modules': 'Modülleri Yönet'
+'Manage String Replacements': 'Dize Değiştirmelerini Yönet'
+'Minimum acceptable password length.': 'Minimum kabul edilebilir şifre uzunluğu.'
+Miscellaneous: Çeşitli
+Mode: kip
+Monday: Pazartesi
+'Must be numeric. Number of records shown per page.': "Sayısal olmalı.\_Sayfa başına gösterilen kayıt sayısı."
+None: Yok
+'Notification Settings': 'Bildirim ayarları'
+'On which day should the week begin?': 'Hafta hangi günde başlamalı?'
+'Organisation Email': 'Organizasyon E-postası'
+'Organisation Initials': 'Organizasyon Baş harfleri'
+'Organisation Name': 'Organizasyon Adı'
+'Organisation Settings': 'Organizasyon ayarları'
+Organisation: Organisation
+'Original String': 'Orijinal Dize'
+'Pagination Count': 'Sayfalandırma Sayısı'
+Partial: Kısmi
+'Password - Alpha Requirement': 'Şifre - Alfa Gereksinimi'
+'Password - Minimum Length': 'Şifre - Minimum Uzunluk'
+'Password - Non-Alphanumeric Requirement': 'Şifre - Alfanümerik Olmayan Gereksinim'
+'Password - Numeric Requirement': 'Şifre - Sayısal Gereksinim'
+'Password Policy': 'Şifre politikası'
+'Password to use for SMTP authentication. Leave blank for no authentication.': "SMTP kimlik doğrulaması için kullanılacak şifre.\_Kimlik doğrulama için boş bırakın."
+'PayPal API Password': 'PayPal API Şifresi'
+'PayPal API Signature': 'PayPal API İmzası'
+'PayPal API Username': 'PayPal API Kullanıcı Adı'
+'PayPal Payment Gateway': 'PayPal Ödeme Ağ Geçidi'
+'Please Select...': 'Please Select...'
+Priority: öncelik
+Production: Üretim
+'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}'
+'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}'
+'Relative path to background image. Overrides theme background.': "Arka plan resmine olan göreceli yol.\_Tema arka planını geçersiz kılar."
+'Relative path to site logo (400 x 100px)': 'Site logosuna göreceli yol (400 x 100 piksel)'
+'Replacement String': 'Yedek dize'
+'Require at least one non-alphanumeric character (e.g. punctuation mark or space)?': 'En az bir alfasayısal olmayan karakter (örneğin, noktalama işareti veya boşluk) gerektirsin mi?'
+'Require at least one numeric character?': 'En az bir sayısal karakter gerekli mi?'
+'Require both upper and lower case alpha characters?': 'Hem büyük hem de küçük harf alfa karakterleri mi gerektiriyorsunuz?'
+'SMS Gateway': 'SMS Ağ Geçidi'
+'SMS Password': 'SMS şifresi'
+'SMS Sender ID': 'SMS Gönderen Kimliği'
+'SMS Settings': 'SMS Ayarları'
+'SMS URL Credit': 'SMS URL Kredisi'
+'SMS URL': 'SMS URL'
+'SMS Username': 'SMS Kullanıcı Adı'
+'SMS gateway URL for checking credit.': 'Kredi kontrolü için SMS ağ geçidi URL''si.'
+'SMS gateway URL for send requests.': 'Gönderme istekleri için SMS ağ geçidi URL''si.'
+'SMS gateway password.': 'SMS ağ geçidi şifresi.'
+'SMS gateway username.': 'SMS ağ geçidi kullanıcı adı.'
+'SMTP Encryption': 'SMTP Encryption'
+'SMTP Host': 'SMTP Sunucusu'
+'SMTP Password': 'SMTP Şifresi'
+'SMTP Port': 'SMTP Bağlantı Noktası'
+'SMTP Username': 'SMTP Kullanıcı Adı'
+'School Google Calendar ID': 'Okul Google Takvim Kimliği'
+'Security Settings': 'Güvenlik ayarları'
+Security: Security
+'Session Duration': 'Oturum Süresi'
+'Set the SMTP port number - likely to be 25, 465 or 587.': 'SMTP port numarasını ayarlayın - muhtemelen 25, 465 veya 587 olabilir.'
+'Set the hostname of the mail server.': 'Posta sunucusunun ana bilgisayar adını ayarlayın.'
+Settings: Settings
+'Should payments be enabled across the system?': 'Ödemeler sistem genelinde etkinleştirilmeli mi?'
+'String Replacement': 'Dize Değiştirme'
+Submit: Gönder
+Sunday: Pazar
+'System Admin': 'Sistem yöneticisi'
+'System Administrator': 'Sistem yöneticisi'
+'System Check': 'Sistem kontrolü'
+'System Name': 'Sistem adı'
+'System Settings': 'Sistem ayarları'
+'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.': 'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.'
+System: System
+Testing: 'Test yapmak'
+'Text displayed in system''s welcome page.': 'Sistemin açılış sayfasında görüntülenen metin.'
+'The address at which the whole system resides.': 'Tüm sistemin bulunduğu adres.'
+'The country the school is located in': 'Okulun bulunduğu ülke'
+'The link that points to the school/''s email system': 'Okulun / e-posta sistemine işaret eden bağlantı'
+'The link that points to the school/''s website': 'Okulun / web sitesinin işaret ettiği link'
+'The local FS path to the system': 'Sisteme yerel FS yolu'
+'The purpose of this installation of Kookaburra': 'The purpose of this installation of Kookaburra'
+'The sender name or phone number. Depends on the gateway used.': "Gönderenin adı veya telefon numarası.\_Kullanılan ağ geçidine bağlıdır."
+'The staff member who receives notifications for admissions events.': 'Kabul olayları için bildirim alan personel.'
+'The staff member who receives notifications for data events.': 'Veri olayları için bildirim alan personel.'
+'The staff member who receives notifications for staffing events.': 'Personel etkinlikleri için bildirim alan personel üyesi.'
+'The staff member who receives notifications for system events.': 'Sistem olayları için bildirim alan personel.'
+'The timezone where the school is located': 'Okulun bulunduğu saat dilimi'
+'Third Party Settings': 'Üçüncü Parti Ayarları'
+'This is the scale used as a default where assessment scales need to be selected.': 'Bu, değerlendirme ölçeklerinin seçilmesi gereken bir varsayılan olarak kullanılan ölçekdir.'
+'Time, in seconds, before system logs a user out. Should be less than PHP''s session.gc_maxlifetime option.': "Sistem bir kullanıcı oturumunu kapatmadan önce saniye cinsinden süre.\_PHP'nin session.gc_maxlifetime seçeneğinden daha az olması gerekir."
+Timezone: 'Saat dilimi'
+'Username to use for SMTP authentication. Leave blank for no authentication.': "SMTP kimlik doğrulaması için kullanılacak kullanıcı adı.\_Kimlik doğrulama için boş bırakın."
+Whole: Bütün
+ssl: ssl
+tls: tls
+'API Key': 'API Anahtarı'
+'API Secret/Auth Token': 'API Sırrı / Kimlik Doğrulama Simgesi'
+Google: Google
+Installed: Kurulmuş
+PayPal: PayPal
+'SMS Domain': 'SMS Etki Alanı'
+SMS: SMS
+'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}': 'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}'
+Actions: Eylemler
+Delete: silmek
+Edit: Düzenle
+'First Page': 'First Page'
+'Last Page': 'Last Page'
+'Next Page': 'Next Page'
+'Previous Page': 'Previous Page'
+'Records {start}-{end} of {total}': 'Records {start}-{end} of {total}'
+'There are no records to display.': 'Gösterilecek kayıt yok.'
+'A comma separated list of module categories in display order.': 'Ekran sırasındaki virgülle ayrılmış modül kategorileri listesi.'
+Active: Aktif
+'Active: No': 'Active: No'
+'Active: Yes': 'Active: Yes'
+All: Herşey
+Author: Yazar
+Description: Açıklama
+'Not Installed': 'Yüklü değil'
+Status: durum
+Type: tip
+Update: Güncelleştirme
+Version: versiyon
+'Apache Modules': 'Apache Modülleri'
+'Available only to users with the required permission.': 'Yalnızca gerekli izne sahip kullanıcılar tarafından kullanılabilir.'
+'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.': 'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.'
+'Database collation should be set to {collation}': 'Database collation should be set to {collation}'
+'Edit Notification Event': 'Bildirim Etkinliğini Düzenle'
+'Edit Subscribers': 'Aboneleri Düzenle'
+Enabled: Etkin
+Event: Etkinlik
+'File Permissions': 'Dosya izinleri'
+'Files publicly writeable': 'Files publicly writeable'
+Kookaburra: Kookaburra
+'Listening Count': 'Listening Count'
+'Main Menu Category Order': 'Ana Menü Kategori Siparişi'
+Module: modül
+'Must be {operator} {required}': 'Must be {operator} {required}'
+'MySQL Collation': 'MySQL Harmanlama'
+'MySQL Version': 'MySQL Version'
+Name: isim
+'Notification Events': 'Bildirim Olayları'
+'PHP Extensions': 'PHP Eklentileri'
+'PHP Settings': 'PHP Settings'
+'PHP Version': 'PHP Version'
+'Permission Required': 'İzin Gerekli'
+'Please select...': 'Lütfen seçin...'
+'Scope Choices': 'Scope Choices'
+Scope: kapsam
+Staff: Personel
+Student: Öğrenci
+'System Requirements': 'sistem gereksinimleri'
+'System not publicly writeable': 'Sistem halka açık değil'
+'The settings used here are cached and changes will not be reflected in the display configuration immediately.': 'The settings used here are cached and changes will not be reflected in the display configuration immediately.'
+'Uploads folder server writeable': 'Klasör sunucusunu yazılabilir yükler'
+'Year Group': 'Yıl Grubu'
+'count files checked': 'count files checked'
+'system Check': 'system Check'
+'{name} requires {software} version {version} or higher': '{name} requires {software} version {version} or higher'
+Code: kod
+Default: Varsayılan
+'Set as Default': 'Set as Default'

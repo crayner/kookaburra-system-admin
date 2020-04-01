@@ -1,0 +1,207 @@
+'API Password provided by PayPal.': 'Hasło API udostępnione przez PayPal.'
+'API Signature provided by PayPal.': 'Podpis API podany przez PayPal.'
+'API Username provided by PayPal.': 'Nazwa użytkownika interfejsu API podana przez PayPal.'
+'Adds PHPMailer settings for servers with an SMTP connection.': 'Dodaje ustawienia PHPMailer dla serwerów z połączeniem SMTP.'
+'Admissions Administrator': 'Administrator Rekrutacji'
+Analytics: Analityka
+Automatic: Automatyczny
+'Automatically sets the encryption based on the port, otherwise select one manually.': 'Automatycznie ustawia szyfrowanie na podstawie portu, w przeciwnym razie wybierz ręcznie.'
+Background: Pochodzenie
+'Base Path': 'Podstawowa ścieżka'
+'Base URL': 'Podstawowy adres URL'
+'Case Sensitive': 'Case Sensitive'
+Country: Kraj
+Currency: Waluta
+'Database Administrator': 'Administrator bazy danych'
+'Default Assessment Scale': 'Domyślna skala oceny'
+Development: Rozwój
+'Display Settings': 'Ustawienia wyświetlania'
+E-Mail: E-Mail
+'Edit String': 'Edytuj ciąg'
+'Enable Gibbon-wide integration with the Google APIs?': 'Włącz integrację dziennika z interfejsami API Google?'
+'Enable Payments': 'Włącz płatności'
+'Enable SMTP Mail': 'Włącz pocztę SMTP'
+'Extend & Update': 'Rozszerz i aktualizuj'
+'First Day Of The Week': 'Pierwszy dzień tygodnia'
+'General email address for the school': 'Ogólny adres e-mail dla szkoły'
+'Google Calendar ID for your school calendar. Only enables timetable integration when logging in via Google.': 'Google Calendar ID do kalendarza szkolnego. Włącza tylko integrację harmonogramu przy logowaniu przez Google.'
+'Google Developers Developer Key': 'Klucz programisty Google Developers'
+'Google Integration': 'Integracja Google'
+'Google OAuth Download File': 'Google OAuth Download File'
+'Higher priorities are substituted first.': 'Priorytety wyższe są zastępowane jako pierwsze.'
+'Human Resources Administrator': 'Administrator zasobów ludzkich'
+'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.': 'If your school uses Google Apps, you can enable single sign on and calendar integration with Kookaburra. This process makes use of Google''s APIs, and allows a user to access Kookaburra without a username and password, provided that their listed email address is a Google account to which they have access. For configuration instructions, {oneString}click here{twoString}.'
+'Import & Export': 'Import Eksport'
+'Import From File': 'Importuj z pliku'
+'Index Page Text': 'Tekst strony indeksu'
+'Install Type': 'Typ instalacji'
+'Javascript code to integrate statistics, such as Google Analytics': 'Kod JavaScript do integracji statystyk, takich jak Google Analytics'
+'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.': 'Kookaburra can use a number of different gateways to send out SMS messages. These are paid services, not affiliated with Kookaburra, and you must create your own account with them before being able to send out SMSs using the Messenger module.'
+'Link To Email': 'Link do e-maila'
+'Link To Web': 'Link do internetu'
+Localisation: Lokalizacja
+Logo: Logo
+'Manage Languages': 'język zarządzaj'
+'Manage Modules': 'Zarządzaj modułami'
+'Manage String Replacements': 'Zarządzaj zastępowaniem ciągów'
+'Minimum acceptable password length.': 'Minimalna dopuszczalna długość hasła.'
+Miscellaneous: Różne
+Mode: Tryb
+Monday: Poniedziałek
+'Must be numeric. Number of records shown per page.': 'Musi być numeryczny. Liczba rekordów wyświetlanych na stronie.'
+None: Żaden
+'Notification Settings': 'Ustawienia powiadomień'
+'On which day should the week begin?': 'W którym dniu powinien rozpocząć się tydzień?'
+'Organisation Email': 'E-mail organizacji'
+'Organisation Initials': 'Inicjały organizacyjne'
+'Organisation Name': 'Nazwa organizacji'
+'Organisation Settings': 'Ustawienia organizacji'
+Organisation: Organisation
+'Original String': 'Oryginalny ciąg'
+'Pagination Count': 'Liczenie stronicowania'
+Partial: Częściowy
+'Password - Alpha Requirement': 'Hasło - wymóg alfa'
+'Password - Minimum Length': 'Hasło - minimalna długość'
+'Password - Non-Alphanumeric Requirement': 'Hasło - wymóg inny niż alfanumeryczny'
+'Password - Numeric Requirement': 'Hasło - wymaganie numeryczne'
+'Password Policy': 'Zasady dotyczące haseł'
+'Password to use for SMTP authentication. Leave blank for no authentication.': 'Hasło do użycia do uwierzytelniania SMTP. Pozostaw puste, aby nie było uwierzytelniania.'
+'PayPal API Password': 'Hasło API PayPal'
+'PayPal API Signature': 'Podpis PayPal API'
+'PayPal API Username': 'Nazwa użytkownika interfejsu API systemu PayPal'
+'PayPal Payment Gateway': 'PayPal Payment Gateway'
+'Please Select...': 'Please Select...'
+Priority: Priorytet
+Production: Produkcja
+'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the .json file downloaded from the %{anchor}Google Development Console.%{anchorClose}'
+'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}': 'Provide a copy of the API Key from the %{anchor}Google Development Console.%{anchorClose}'
+'Relative path to background image. Overrides theme background.': 'Względna ścieżka do obrazu tła. Zastępuje tło motywu.'
+'Relative path to site logo (400 x 100px)': 'Względna ścieżka do logo witryny (400 x 100 pikseli)'
+'Replacement String': 'Ciąg zastępujący'
+'Require at least one non-alphanumeric character (e.g. punctuation mark or space)?': 'Wymagać co najmniej jednego znaku niealfanumerycznego (np. Znaku interpunkcyjnego lub spacji)?'
+'Require at least one numeric character?': 'Wymagać co najmniej jednej cyfry?'
+'Require both upper and lower case alpha characters?': 'Wymagać wielkich i małych liter alfabetu?'
+'SMS Gateway': 'Bramka SMS'
+'SMS Password': 'Hasło SMS'
+'SMS Sender ID': 'SMS Sender ID'
+'SMS Settings': 'Ustawienia SMS'
+'SMS URL Credit': 'Kredyt URL URL'
+'SMS URL': 'URL SMS'
+'SMS Username': 'Nazwa użytkownika SMS'
+'SMS gateway URL for checking credit.': 'Adres URL bramki SMS do sprawdzania kredytu.'
+'SMS gateway URL for send requests.': 'Adres URL bramki SMS dla żądań wysyłania.'
+'SMS gateway password.': 'Hasło bramy SMS.'
+'SMS gateway username.': 'Nazwa użytkownika bramy SMS.'
+'SMTP Encryption': 'Szyfrowanie SMTP'
+'SMTP Host': 'Host SMTP'
+'SMTP Password': 'Hasło SMTP'
+'SMTP Port': 'Port SMTP'
+'SMTP Username': 'Nazwa użytkownika SMTP'
+'School Google Calendar ID': 'Szkolny identyfikator kalendarza Google'
+'Security Settings': 'Ustawienia bezpieczeństwa'
+Security: Security
+'Session Duration': 'Czas trwania sesji'
+'Set the SMTP port number - likely to be 25, 465 or 587.': 'Ustaw numer portu SMTP - prawdopodobnie 25, 465 lub 587.'
+'Set the hostname of the mail server.': 'Ustaw nazwę hosta serwera pocztowego.'
+Settings: Ustawienia
+'Should payments be enabled across the system?': 'Czy należy włączyć płatności w systemie?'
+'String Replacement': 'Zastąpienie ciągu'
+Submit: Zatwierdź
+Sunday: Niedziela
+'System Admin': 'Administrator systemu'
+'System Administrator': 'Administrator systemu'
+'System Check': 'Sprawdzanie systemu'
+'System Name': 'Nazwa systemu'
+'System Settings': 'Ustawienia systemowe'
+'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.': 'System-wide currency for financial transactions. Support for online payment in this currency depends on your credit card gateway: please consult their support documentation.'
+System: System
+Testing: Testowanie
+'Text displayed in system''s welcome page.': 'Tekst wyświetlany na stronie powitalnej systemu.'
+'The address at which the whole system resides.': 'Adres, pod którym znajduje się cały system.'
+'The country the school is located in': 'Kraj, w którym znajduje się szkoła'
+'The link that points to the school/''s email system': 'Link do systemu pocztowego szkoły / szkoły'
+'The link that points to the school/''s website': 'Link, który wskazuje na stronę internetową szkoły /'
+'The local FS path to the system': 'Lokalna ścieżka FS do systemu'
+'The purpose of this installation of Kookaburra': 'The purpose of this installation of Kookaburra'
+'The sender name or phone number. Depends on the gateway used.': 'Nazwa nadawcy lub numer telefonu. Zależy od używanej bramy.'
+'The staff member who receives notifications for admissions events.': 'Członek personelu, który otrzymuje powiadomienia o wydarzeniach związanych z przyjęciem.'
+'The staff member who receives notifications for data events.': 'Członek personelu, który otrzymuje powiadomienia o zdarzeniach dotyczących danych.'
+'The staff member who receives notifications for staffing events.': 'Członek personelu, który otrzymuje powiadomienia o zdarzeniach związanych z personelem.'
+'The staff member who receives notifications for system events.': 'Członek personelu, który otrzymuje powiadomienia o zdarzeniach systemowych.'
+'The timezone where the school is located': 'Strefa czasowa, w której znajduje się szkoła'
+'Third Party Settings': 'Ustawienia innych firm'
+'This is the scale used as a default where assessment scales need to be selected.': 'Jest to skala stosowana jako domyślna, gdy należy wybrać skale oceny.'
+'Time, in seconds, before system logs a user out. Should be less than PHP''s session.gc_maxlifetime option.': 'Czas, w sekundach, zanim system wyloguje użytkownika. Powinien być mniejszy niż opcja session.gc_maxlifetime PHP.'
+Timezone: 'Strefa czasowa'
+'Username to use for SMTP authentication. Leave blank for no authentication.': 'Nazwa użytkownika używana do uwierzytelniania SMTP. Pozostaw puste, aby nie było uwierzytelniania.'
+Whole: Cały
+ssl: ssl
+tls: tls
+'API Key': 'Klucz API'
+'API Secret/Auth Token': 'Tajemnica API / Auth Token'
+Google: Google
+Installed: Zainstalowany
+PayPal: PayPal
+'SMS Domain': 'Domena SMS'
+SMS: SMS
+'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}': 'When using GMail with two factor authentication, you will need to create an application password on your GMail account. See {anchor}Google Account Security: App Passwords{closeAnchor}'
+Actions: Akcja
+Delete: Usuń
+Edit: Edytować
+'First Page': 'First Page'
+'Last Page': 'Last Page'
+'Next Page': 'Next Page'
+'Previous Page': 'Previous Page'
+'Records {start}-{end} of {total}': 'Records {start}-{end} of {total}'
+'There are no records to display.': 'Brak zawartości do wyświetlenia.'
+'A comma separated list of module categories in display order.': 'Rozdzielana przecinkami lista kategorii modułów w kolejności wyświetlania.'
+Active: Aktywacja
+'Active: No': 'Active: No'
+'Active: Yes': 'Active: Yes'
+All: Wszystkie
+Author: autor
+Description: opis
+'Not Installed': 'Nie zainstalowany'
+Status: Stan
+Type: Typ
+Update: Aktualizacja
+Version: wersja
+'Apache Modules': 'Moduły Apache'
+'Available only to users with the required permission.': 'Dostępne tylko dla użytkowników z wymaganymi uprawnieniami.'
+'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.': 'Configuration values can be set in your system php.ini file. On shared host, use .htaccess to set php settings.'
+'Database collation should be set to {collation}': 'Database collation should be set to {collation}'
+'Edit Notification Event': 'Edytuj wydarzenie powiadomień'
+'Edit Subscribers': 'Edytuj subskrybentów'
+Enabled: Włączone
+Event: Zdarzenie
+'File Permissions': 'Uprawnienia do plików'
+'Files publicly writeable': 'Files publicly writeable'
+Kookaburra: Kookaburra
+'Listening Count': 'Listening Count'
+'Main Menu Category Order': 'Główne menu Kategoria Zamówienie'
+Module: Moduł
+'Must be {operator} {required}': 'Must be {operator} {required}'
+'MySQL Collation': 'Sortowanie MySQL'
+'MySQL Version': 'MySQL Version'
+Name: Nazwa
+'Notification Events': 'Wydarzenia powiadomień'
+'PHP Extensions': 'Rozszerzenia PHP'
+'PHP Settings': 'Ustawienia PHP'
+'PHP Version': 'PHP Version'
+'Permission Required': 'Wymagane pozwolenie'
+'Please select...': Wybierz....
+'Scope Choices': 'Scope Choices'
+Scope: Obszar
+Staff: Pracownicy
+Student: Uczeń
+'System Requirements': 'wymagania systemowe'
+'System not publicly writeable': 'System nie jest publicznie dostępny do zapisu'
+'The settings used here are cached and changes will not be reflected in the display configuration immediately.': 'The settings used here are cached and changes will not be reflected in the display configuration immediately.'
+'Uploads folder server writeable': 'Przesyła zapis do serwera folderów'
+'Year Group': 'Klasa wychowawcza'
+'count files checked': 'count files checked'
+'system Check': 'system Check'
+'{name} requires {software} version {version} or higher': '{name} requires {software} version {version} or higher'
+Code: Kod
+Default: Główny
+'Set as Default': 'Set as Default'
