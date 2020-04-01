@@ -27,3 +27,7 @@ services:
     Kookaburra\SystemAdmin\Manager\UpgradeManager:
         arguments:
             $logger: '@monolog.logger.installation'
+
+    Kookaburra\SystemAdmin\Manager\LocaleManager:
+        arguments:
+            $absolutePath: '%kernel.public_dir%'

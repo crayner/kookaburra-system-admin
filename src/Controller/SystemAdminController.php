@@ -18,26 +18,21 @@ namespace Kookaburra\SystemAdmin\Controller;
 use App\Container\Container;
 use App\Container\ContainerManager;
 use App\Container\Panel;
-use App\Entity\I18n;
 use App\Entity\Setting;
 use App\Manager\PageManager;
 use App\Manager\VersionManager;
 use App\Provider\ProviderFactory;
 use App\Util\ErrorMessageHelper;
 use Doctrine\DBAL\Driver\PDOException;
+use Kookaburra\SystemAdmin\Entity\I18n;
 use Kookaburra\SystemAdmin\Form\DisplaySettingsType;
-use Kookaburra\SystemAdmin\Form\EmailSettingsType;
-use Kookaburra\SystemAdmin\Form\GoogleIntegationType;
 use Kookaburra\SystemAdmin\Form\LocalisationSettingsType;
 use Kookaburra\SystemAdmin\Form\MiscellaneousSettingsType;
 use Kookaburra\SystemAdmin\Form\OrganisationSettingsType;
-use Kookaburra\SystemAdmin\Form\PaypalSettingsType;
 use Kookaburra\SystemAdmin\Form\SecuritySettingsType;
-use Kookaburra\SystemAdmin\Form\SMSSettingsType;
 use Kookaburra\SystemAdmin\Form\SystemSettingsType;
-use Kookaburra\SystemAdmin\Manager\GoogleSettingManager;
 use Kookaburra\SystemAdmin\Manager\LanguageManager;
-use Kookaburra\SystemAdmin\Manager\MailerSettingsManager;
+use Kookaburra\SystemAdmin\Pagination\LanguagePagination;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -266,37 +261,23 @@ class SystemAdminController extends AbstractController
 
     /**
      * languageInstall
-     * @param Request $request
-     * @return RedirectResponse
+     * @param PageManager $pageManager
+     * @param LanguageManager $manager
+     * @param LanguagePagination $pagination
      * @Route("/language/manage/", name="language_manage")
      * @IsGranted("ROLE_ROUTE")
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function languageManage(Request $request, LanguageManager $manager)
+    public function languageManage(PageManager $pageManager, LanguageManager $manager, LanguagePagination $pagination)
     {
-        $langsInstalled = ProviderFactory::getRepository(I18n::class)->findBy(['installed' => 'Y'], ['code' => "ASC"]);
-        $langsNotInstalled = ProviderFactory::getRepository(I18n::class)->findBy(['installed' => 'N'], ['code' => 'ASC']);
+        if ($pageManager->isNotReadyForJSON()) return $pageManager->getBaseResponse();
 
-        $langFileMissing = 0;
-        foreach($langsInstalled as $q=>$lang){
-            if (! $lang->isInstalled()) {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($lang);
-                $em->flush();
-                unset($langsInstalled[$q]);
-                $langFileMissing++;
-            }
-        }
+        $content = ProviderFactory::getRepository(I18n::class)->findBy([], ['code' => "ASC"]);
 
-        if ($langFileMissing > 0)
-            $langsNotInstalled = ProviderFactory::getRepository(I18n::class)->findBy(['installed' => 'N'], ['code' => 'ASC']);
+        $pagination->setContent($content)->setPageMax(25)
+            ->setPaginationScript();
 
-        return $this->render('@KookaburraSystemAdmin/language_manage.html.twig', [
-            'installed' => $langsInstalled,
-            'notInstalled' => $langsNotInstalled,
-            'manager' => $manager,
-            'translationPath' => $this->getProjectDir() . '/translations',
-            'gVersion' => $this->getParameter('gibbon_version'),
-        ]);
+        return $pageManager->createBreadCrumbs('Manage Languages')->render(['pagination' => $pagination->toArray()]);
     }
 
     /**
@@ -319,7 +300,7 @@ class SystemAdminController extends AbstractController
         $config['parameters']['locale'] = $i18n->getCode();
         file_put_contents($this->getSettingFileName(), Yaml::dump($config, 8));
         $this->addFlash('success', 'return.success.0');
-        $session->set('i18n', $i18n->toArray());
+        $session->set('i18n', $i18n);
         return $this->redirectToRoute('system_admin__language_manage');
     }
 

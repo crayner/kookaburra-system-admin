@@ -15,7 +15,7 @@
 
 namespace Kookaburra\SystemAdmin\Manager;
 
-use App\Entity\I18n;
+use Kookaburra\SystemAdmin\Entity\I18n;
 use App\Provider\ProviderFactory;
 
 /**

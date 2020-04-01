@@ -1,15 +1,5 @@
-{% extends 'kookaburra.html.twig' %}
+{% trans_default_domain 'SystemAdmin' %}
 
-{% set moduleName = 'System Admin' %}
-{% set module = {
-    baseURL: 'system_admin',
-    crumbs: [
-        {uri: 'system_admin__system_settings', name: 'System Admin'},
-    ],
-    title: 'Manage Languages'} %}
-{% set breadcrumbs = 'new' %}
-
-{% block content %}
     <h2>{{ 'Installed'|trans }}</h2>
     <p>{{ 'Changing the default language will give strange translation results until the cache is fully rebuilt.'|trans({}, 'kookaburra') }}</p>
     <div class="dataTable">
@@ -117,8 +107,6 @@
             </table>
         </div>
     </div>
-
-{% endblock content %}
 
 
 
