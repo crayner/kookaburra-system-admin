@@ -112,3 +112,17 @@ CREATE TABLE `__prefix__String` (
     `priority` INT(2),
     PRIMARY KEY(`id`)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1;
+CREATE TABLE `__prefix__I18n` (
+    `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `code` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+    `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+    `version` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+    `active` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Y',
+    `installed` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
+    `systemDefault` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
+    `dateFormat` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+    `dateFormatRegEx` longtext COLLATE utf8_unicode_ci NOT NULL,
+    `dateFormatPHP` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+    `rtl` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
