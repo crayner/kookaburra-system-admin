@@ -31,3 +31,9 @@ services:
     Kookaburra\SystemAdmin\Manager\LocaleManager:
         arguments:
             $absolutePath: '%kernel.public_dir%'
+
+    locale:
+        class: Kookaburra\SystemAdmin\Manager\LocaleManager
+        arguments:
+            $absolutePath: '%kernel.public_dir%'
+        public: true

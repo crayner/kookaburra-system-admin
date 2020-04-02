@@ -17,10 +17,7 @@ namespace Kookaburra\SystemAdmin\Manager;
 
 use App\Provider\ProviderFactory;
 use Gibbon\Locale;
-use Gibbon\Session;
 use Kookaburra\SystemAdmin\Entity\I18n;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Class LocaleManager
@@ -35,24 +32,6 @@ class LocaleManager extends Locale
     private $localeEntity;
 
     /**
-     * @var ParameterBagInterface
-     */
-    private $parameterBag;
-
-    /**
-     * Construct
-     *
-     * @param string $absolutePath Absolute path to the Gibbon installation
-     * @param SessionInterface $session Global session object for string
-     *                              replacement cache.
-     */
-    public function __construct(string $absolutePath, SessionInterface $session, ParameterBagInterface $parameterBag)
-    {
-        parent::__construct($absolutePath, $session);
-        $this->parameterBag = $parameterBag;
-    }
-
-    /**
      * setLocale
      * @param string $i18nCode
      */
@@ -62,8 +41,7 @@ class LocaleManager extends Locale
         if (empty($this->localeEntity))
             $this->localeEntity = ProviderFactory::getRepository(I18n::class)->findOneByCode('en_GB');
 
-        
-        if (empty($this->localeEntity))
+         if (empty($this->localeEntity))
             return;
         
         putenv('LC_ALL='.$this->localeEntity->getCode().'.utf8');
