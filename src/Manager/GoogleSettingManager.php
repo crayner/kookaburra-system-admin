@@ -15,9 +15,9 @@
 
 namespace Kookaburra\SystemAdmin\Manager;
 
-use App\Entity\Setting;
+use Kookaburra\SystemAdmin\Entity\Setting;
 use App\Provider\ProviderFactory;
-use App\Provider\SettingProvider;
+use Kookaburra\SystemAdmin\Provider\SettingProvider;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;

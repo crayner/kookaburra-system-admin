@@ -19,7 +19,7 @@ use App\Provider\EntityProviderInterface;
 use App\Provider\ProviderFactory;
 use Kookaburra\SystemAdmin\Entity\Module;
 use Kookaburra\SystemAdmin\Entity\Role;
-use App\Entity\Setting;
+use Kookaburra\SystemAdmin\Entity\Setting;
 use App\Manager\Traits\EntityTrait;
 
 class ModuleProvider implements EntityProviderInterface

@@ -16,7 +16,7 @@
 namespace Kookaburra\SystemAdmin\Form;
 
 use Kookaburra\UserAdmin\Entity\Person;
-use App\Entity\Setting;
+use Kookaburra\SystemAdmin\Entity\Setting;
 use App\Form\Transform\EntityToStringTransformer;
 use App\Form\Type\FilePathType;
 use App\Form\Type\HeaderType;

@@ -15,7 +15,7 @@
 
 namespace Kookaburra\SystemAdmin\Manager;
 
-use App\Entity\Setting;
+use Kookaburra\SystemAdmin\Entity\Setting;
 use App\Form\Type\ToggleType;
 use App\Provider\ProviderFactory;
 use Doctrine\Common\Collections\ArrayCollection;

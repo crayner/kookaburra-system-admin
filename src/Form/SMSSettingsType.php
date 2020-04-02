@@ -16,7 +16,7 @@
 namespace Kookaburra\SystemAdmin\Form;
 
 
-use App\Entity\Setting;
+use Kookaburra\SystemAdmin\Entity\Setting;
 use App\Form\Type\HeaderType;
 use App\Form\Type\ParagraphType;
 use App\Form\Type\ReactFormType;

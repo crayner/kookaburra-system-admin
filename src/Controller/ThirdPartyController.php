@@ -18,7 +18,7 @@ namespace Kookaburra\SystemAdmin\Controller;
 use App\Container\Container;
 use App\Container\ContainerManager;
 use App\Container\Panel;
-use App\Entity\Setting;
+use Kookaburra\SystemAdmin\Entity\Setting;
 use App\Manager\PageManager;
 use App\Provider\ProviderFactory;
 use App\Util\TranslationsHelper;
