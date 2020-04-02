@@ -18,7 +18,7 @@ namespace Kookaburra\SystemAdmin\Form;
 use Kookaburra\SystemAdmin\Entity\Setting;
 use App\Form\Type\HeaderType;
 use App\Form\Type\ReactFormType;
-use App\Form\Type\SettingsType;
+use Kookaburra\SystemAdmin\Form\SettingsType;
 use App\Provider\ProviderFactory;
 use App\Util\ReactFormHelper;
 use App\Util\TranslationsHelper;

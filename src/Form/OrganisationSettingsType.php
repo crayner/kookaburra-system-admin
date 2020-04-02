@@ -22,7 +22,7 @@ use App\Form\Type\FilePathType;
 use App\Form\Type\HeaderType;
 use App\Form\Type\ReactFileType;
 use App\Form\Type\ReactFormType;
-use App\Form\Type\SettingsType;
+use Kookaburra\SystemAdmin\Form\SettingsType;
 use App\Provider\ProviderFactory;
 use App\Validator\AlwaysInValid;
 use App\Validator\ReactImage;

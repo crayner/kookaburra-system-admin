@@ -17,7 +17,7 @@ namespace Kookaburra\SystemAdmin\Form;
 
 use App\Form\Type\HeaderType;
 use App\Form\Type\ReactFormType;
-use App\Form\Type\SettingsType;
+use Kookaburra\SystemAdmin\Form\SettingsType;
 use Doctrine\ORM\EntityRepository;
 use Kookaburra\SchoolAdmin\Entity\Scale;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

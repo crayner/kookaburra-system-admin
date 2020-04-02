@@ -21,7 +21,7 @@ use App\Form\Type\FilePathType;
 use App\Form\Type\HeaderType;
 use App\Form\Type\ReactFileType;
 use App\Form\Type\ReactFormType;
-use App\Form\Type\SettingsType;
+use Kookaburra\SystemAdmin\Form\SettingsType;
 use App\Form\Type\ToggleType;
 use App\Provider\ProviderFactory;
 use Kookaburra\UserAdmin\Util\SecurityHelper;

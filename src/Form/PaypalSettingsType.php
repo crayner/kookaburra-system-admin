@@ -18,7 +18,7 @@ namespace Kookaburra\SystemAdmin\Form;
 
 use App\Form\Type\HeaderType;
 use App\Form\Type\ReactFormType;
-use App\Form\Type\SettingsType;
+use Kookaburra\SystemAdmin\Form\SettingsType;
 use App\Form\Type\ToggleType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
