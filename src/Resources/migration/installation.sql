@@ -126,3 +126,14 @@ CREATE TABLE `__prefix__I18n` (
     `rtl` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE `__prefix__Setting` (
+     `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+     `scope` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+     `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+     `nameDisplay` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+     `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+     `value` longtext COLLATE utf8_unicode_ci,
+     PRIMARY KEY (`id`),
+     UNIQUE KEY `scope_name` (`scope`,`name`) USING BTREE,
+     UNIQUE KEY `scope_display` (`scope`,`nameDisplay`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
