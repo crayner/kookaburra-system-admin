@@ -114,16 +114,18 @@ class ActionRepository extends ServiceEntityRepository
      */
     public function findByURLListModuleRole(array $criteria)
     {
-        return $this->createQueryBuilder('a')
-            ->join('a.permissions', 'p')
-            ->join('p.role', 'r')
+        $criteria['roleId'] = $criteria['role']->getId();
+        unset($criteria['role']);
+        $result = $this->createQueryBuilder('a')
+            ->leftJoin('a.roles', 'r')
             ->where('a.URLList LIKE :name')
             ->andWhere('a.module = :module')
-            ->andWhere('p.role = :role')
+            ->andWhere('r.id = :roleId')
             ->andWhere('a.name LIKE :sub')
             ->setParameters($criteria)
             ->getQuery()
             ->getArrayResult();
+        return $result;
     }
 
     /**
@@ -135,19 +137,20 @@ class ActionRepository extends ServiceEntityRepository
     public function findHighestGroupedAction(string $route, Module $module)
     {
         try {
-            return $this->createQueryBuilder('a')
+            $result = $this->createQueryBuilder('a')
             ->select('a.name')
-            ->join('a.permissions', 'p')
+            ->join('a.roles', 'r')
             ->where('a.URLList LIKE :actionName')
             ->setParameter('actionName', '%'.$route.'%')
             ->andWhere('a.module = :module')
             ->setParameter('module', $module)
-            ->andWhere('p.role = :currentRole')
-            ->setParameter('currentRole', UserHelper::getCurrentUser()->getPrimaryRole())
+            ->andWhere('r.id = :currentRole')
+            ->setParameter('currentRole', UserHelper::getCurrentUser()->getPrimaryRole()->getId())
             ->orderBy('a.precedence', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
+            return $result;
         } catch (NonUniqueResultException | PDOException | \PDOException $e) {
             return null;
         }
@@ -191,5 +194,36 @@ class ActionRepository extends ServiceEntityRepository
         } catch (NonUniqueResultException $e) {
             return null;
         }
+    }
+
+    /**
+     * findPermissionPagination
+     * @return mixed
+     */
+    public function findPermissionPagination()
+    {
+        return $this->createQueryBuilder('a')
+            ->select(['a.name AS actionName','r.id as role','m.name AS moduleName', 'a.id', 'a.categoryPermissionStaff', 'a.categoryPermissionStudent', 'a.categoryPermissionParent', 'a.categoryPermissionOther'])
+            ->leftJoin('a.roles', 'r')
+            ->leftJoin('a.module', 'm')
+            ->orderBy('m.name', 'ASC')
+            ->addOrderBy('a.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * findModuleNameList
+     * @return array
+     */
+    public function findModuleNameList(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->leftJoin('a.module', 'm')
+            ->groupBy('m.id')
+            ->select(['m.name'])
+            ->orderBy('m.name')
+            ->getQuery()
+            ->getResult();
     }
 }

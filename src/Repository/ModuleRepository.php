@@ -15,7 +15,6 @@ namespace Kookaburra\SystemAdmin\Repository;
 use Kookaburra\SystemAdmin\Entity\Module;
 use Kookaburra\SystemAdmin\Entity\Role;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\DBAL\Connection;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -40,11 +39,10 @@ class ModuleRepository extends ServiceEntityRepository
      */
     public function findModulesByRole(int $roleID)
     {
-        return $this->createQueryBuilder('m')
+        $result = $this->createQueryBuilder('m')
             ->select(['m.category', 'm.name', 'm.type', 'm.entryURL', 'a.entryURL AS alternateEntryURL'])
             ->join('m.actions', 'a')
-            ->join('a.permissions', 'p')
-            ->join('p.role', 'r')
+            ->join('a.roles', 'r')
             ->where('m.active = :active')
             ->andWhere('a.menuShow = :active')
             ->andWhere('r.id = :role_id')
@@ -55,6 +53,8 @@ class ModuleRepository extends ServiceEntityRepository
             ->setParameter('role_id', intval($roleID))
             ->getQuery()
             ->getResult();
+        dump($result);
+        return $result;
     }
 
     /**
@@ -65,14 +65,14 @@ class ModuleRepository extends ServiceEntityRepository
      */
     public function findModuleActionsByRole(Module $module, Role $role)
     {
-        $result = $this->createQueryBuilder('m')
+        return $this->createQueryBuilder('m')
             ->select(['a.category', 'm.name AS moduleName', 'a.name AS actionName', 'm.type', 'a.precedence', 'm.entryURL AS moduleEntry', 'a.entryURL', 'a.URLList', 'a.name AS name'])
             ->join('m.actions', 'a')
-            ->join('a.permissions', 'p')
+            ->join('a.roles', 'r')
             ->where('m.id = :module_id')
             ->setParameter('module_id', intval($module->getId()))
-            ->andWhere('p.role = :role')
-            ->setParameter('role', $role)
+            ->andWhere('r.id = :role')
+            ->setParameter('role', intval($role->getId()))
             ->andWhere('a.entryURL != :empty')
             ->setParameter('empty', '')
             ->andWhere('a.menuShow = :yes')
@@ -83,13 +83,12 @@ class ModuleRepository extends ServiceEntityRepository
             ->addOrderBy('a.precedence', 'DESC')
             ->getQuery()
             ->getResult();
-
-        return $result;
     }
 
     /**
      * findFastFinderActions
      * @param Role $role
+     * @param string $actionTitle
      * @return mixed
      */
     public function findFastFinderActions(Role $role, string $actionTitle)
@@ -101,12 +100,12 @@ class ModuleRepository extends ServiceEntityRepository
                 'm.name as search'
             ])
             ->join('m.actions', 'a')
-            ->join('a.permissions', 'p')
+            ->join('a.roles', 'r')
             ->where('m.active = :yes')
             ->andWhere('a.menuShow = :yes')
-            ->andWhere('p.role = :role')
+            ->andWhere('r.id = :role')
             ->orderBy('text', 'ASC')
-            ->setParameters(['yes' => 'Y', 'role' => $role])
+            ->setParameters(['yes' => 'Y', 'role' => intval($role->getId())])
             ->distinct()
             ->getQuery()
             ->getResult();

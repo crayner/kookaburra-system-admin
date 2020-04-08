@@ -133,4 +133,18 @@ class RoleRepository extends ServiceEntityRepository
         }
         return $roles;
     }
+
+    /**
+     * findPermissionTitles
+     * @return array
+     */
+    public function findPermissionTitles(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->select(['r.id', 'r.nameShort', 'r.name'])
+            ->orderBy('r.category', 'DESC')
+            ->addOrderBy('r.nameShort', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

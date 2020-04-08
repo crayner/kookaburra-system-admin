@@ -20,6 +20,7 @@ use App\Manager\Traits\BooleanList;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -37,10 +38,80 @@ class Role implements EntityInterface
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", columnDefinition="INT(3) UNSIGNED ZEROFILL")
+     * @ORM\Column(type="integer", columnDefinition="INT(3) UNSIGNED AUTO_INCREMENT")
      * @ORM\GeneratedValue
      */
     private $id;
+
+    /**
+     * @var string
+     * @ORM\Column(length=8, options={"default": "Staff"})
+     * @Assert\NotBlank()
+     * @Assert\Choice(callback="getCategoryList")
+     */
+    private $category;
+
+    /**
+     * @var string
+     * @ORM\Column(length=20, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=20)
+     */
+    private $name;
+
+    /**
+     * @var string
+     * @ORM\Column(length=4, name="nameShort", unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4)
+     */
+    private $nameShort;
+
+    /**
+     * @var string
+     * @ORM\Column(length=60, name="description")
+     * @Assert\NotBlank()
+     * @Assert\Length(max=60)
+     */
+    private $description;
+
+    /**
+     * @var string
+     * @ORM\Column(length=4, name="type", options={"default": "Core"})
+     * @Assert\Choice(callback="getTypelist")
+     */
+    private $type = 'Additional';
+
+    /**
+     * @var string
+     * @ORM\Column(length=1, name="canLoginRole", options={"default": "Y"})
+     */
+    private $canLoginRole = 'Y';
+
+    /**
+     * @var string
+     * @ORM\Column(length=1, name="futureYearsLogin", options={"default": "Y"})
+     */
+    private $futureYearsLogin = 'Y';
+
+    /**
+     * @var string
+     * @ORM\Column(length=1, name="pastYearsLogin", options={"default": "Y"})
+     */
+    private $pastYearsLogin = 'Y';
+
+    /**
+     * @var string
+     * @ORM\Column(length=10, name="restriction", options={"default": "None"})
+     * @Assert\Choice(callback="getRestrictionList")
+     */
+    private $restriction = 'None';
+
+    /**
+     * @var Collection|Action[]|null
+     * @ORM\ManyToMany(targetEntity="Kookaburra\SystemAdmin\Entity\Action", mappedBy="roles")
+     */
+    private $actions;
 
     /**
      * @return array
@@ -85,14 +156,6 @@ class Role implements EntityInterface
     }
 
     /**
-     * @var string
-     * @ORM\Column(length=8, options={"default": "Staff"})
-     * @Assert\NotBlank()
-     * @Assert\Choice(callback="getCategoryList")
-     */
-    private $category;
-
-    /**
      * @var array
      */
     private static $categoryList = ['Staff','Student','Parent','Other'];
@@ -117,14 +180,6 @@ class Role implements EntityInterface
     }
 
     /**
-     * @var string
-     * @ORM\Column(length=20, unique=true)
-     * @Assert\NotBlank()
-     * @Assert\Length(max=20)
-     */
-    private $name;
-
-    /**
      * @return string
      */
     public function getName(): string
@@ -142,14 +197,6 @@ class Role implements EntityInterface
         $this->name = mb_substr($name, 0, 20);
         return $this;
     }
-
-    /**
-     * @var string
-     * @ORM\Column(length=4, name="nameShort", unique=true)
-     * @Assert\NotBlank()
-     * @Assert\Length(max=4)
-     */
-    private $nameShort;
 
     /**
      * @return string
@@ -171,14 +218,6 @@ class Role implements EntityInterface
     }
 
     /**
-     * @var string
-     * @ORM\Column(length=60, name="description")
-     * @Assert\NotBlank()
-     * @Assert\Length(max=60)
-     */
-    private $description;
-
-    /**
      * @return string
      */
     public function getDescription(): string
@@ -196,13 +235,6 @@ class Role implements EntityInterface
         $this->description = mb_substr($description, 0, 60);
         return $this;
     }
-
-    /**
-     * @var string
-     * @ORM\Column(length=4, name="type", options={"default": "Core"})
-     * @Assert\Choice(callback="getTypelist")
-     */
-    private $type = 'Additional';
 
     /**
      * @var array
@@ -227,12 +259,6 @@ class Role implements EntityInterface
         $this->type = in_array($type, self::getTypeList()) ? $type : 'Additional';
         return $this;
     }
-
-    /**
-     * @var string
-     * @ORM\Column(length=1, name="canLoginRole", options={"default": "Y"})
-     */
-    private $canLoginRole = 'Y';
 
     /**
      * @return boolean
@@ -262,12 +288,6 @@ class Role implements EntityInterface
     }
 
     /**
-     * @var string
-     * @ORM\Column(length=1, name="futureYearsLogin", options={"default": "Y"})
-     */
-    private $futureYearsLogin = 'Y';
-
-    /**
      * @return boolean
      */
     public function isFutureYearsLogin(): bool
@@ -293,12 +313,6 @@ class Role implements EntityInterface
         $this->futureYearsLogin = self::checkBoolean($futureYearsLogin);
         return $this;
     }
-
-    /**
-     * @var string
-     * @ORM\Column(length=1, name="pastYearsLogin", options={"default": "Y"})
-     */
-    private $pastYearsLogin = 'Y';
 
     /**
      * @return boolean
@@ -328,13 +342,6 @@ class Role implements EntityInterface
     }
 
     /**
-     * @var string
-     * @ORM\Column(length=10, name="restriction", options={"default": "None"})
-     * @Assert\Choice(callback="getRestrictionList")
-     */
-    private $restriction = 'None';
-
-    /**
      * @var array
      */
     private static $restrictionList = ['None', 'Same Role', 'Admin Only'];
@@ -359,28 +366,62 @@ class Role implements EntityInterface
     }
 
     /**
-     * @var Collection|Permission[]|null
-     * @ORM\OneToMany(targetEntity="Kookaburra\SystemAdmin\Entity\Permission", mappedBy="role", orphanRemoval=true)
+     * @return Collection|Action[]|null
      */
-    private $permissions;
-
-    /**
-     * @return Collection|Permission[]|null
-     */
-    public function getPermissions()
+    public function getActions(): Collection
     {
-        return $this->permissions = $this->permissions ?: new ArrayCollection();
+        if ($this->actions === null)
+            $this->actions = new ArrayCollection();
+
+        if ($this->actions instanceof PersistentCollection)
+            $this->actions->initialize();
+
+        return $this->actions;
     }
 
     /**
      * Permissions.
      *
-     * @param Collection|Permission[]|null $permissions
+     * @param Collection|Action[]|null $actions
      * @return Role
      */
-    public function setPermissions($permissions)
+    public function setActions(Collection $actions)
     {
-        $this->permissions = $permissions;
+        $this->actions = $actions;
+        return $this;
+    }
+
+    /**
+     * addAction
+     * @param Action $action
+     * @param bool $mirror
+     * @return Role
+     */
+    public function addAction(Action $action, bool $mirror = true): Role
+    {
+        if ($this->getActions()->contains($action))
+            return $this;
+
+        if ($mirror)
+            $action->addRole($this, false);
+
+        $this->actions->add($action);
+
+        return $this;
+    }
+
+    /**
+     * removeAction
+     * @param Action $action
+     * @param bool $mirror
+     * @return Role
+     */
+    public function removeAction(Action $action, bool $mirror = true): Role
+    {
+        if ($mirror)
+            $action->removeRole($this, false);
+
+        $this->getActions()->removeElement($action);
         return $this;
     }
 

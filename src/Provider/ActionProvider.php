@@ -18,6 +18,7 @@ namespace Kookaburra\SystemAdmin\Provider;
 use App\Provider\EntityProviderInterface;
 use App\Manager\Traits\EntityTrait;
 use Kookaburra\SystemAdmin\Entity\Action;
+use Kookaburra\SystemAdmin\Entity\Role;
 
 /**
  * Class ActionProvider
@@ -40,5 +41,43 @@ class ActionProvider implements EntityProviderInterface
     public function findByURLListModuleRole(array $criteria)
     {
         return $this->getRepository()->findByURLListModuleRole($criteria);
+    }
+
+    /**
+     * findPaginationContent
+     * @return array
+     */
+    public function findPaginationContent()
+    {
+        $result = [];
+        $roles = [];
+        foreach($this->getRepository(Role::class)->findBy([], ['category' => 'DESC', 'nameShort' => 'ASC']) as $role)
+        {
+            $w = [];
+            $w['id'] = $role->getId();
+            $w['category'] = $role->getCategory();
+            $w['nameShort'] = $role->getNameShort();
+            $w['readOnly'] = false;
+            $w['checked'] = false;
+            $roles[$w['id']] = $w;
+        }
+
+        foreach($this->getRepository()->findPermissionPagination() as $item)
+        {
+            $id = intval($item['id']);
+            if (!key_exists($id, $result)) {
+                $result[$id] = $item;
+                $result[$id]['roles'] = $roles;
+                foreach($result[$id]['roles'] as $q=>$w)
+                {
+                    $category = $w['category'];
+                    $result[$id]['roles'][$q]['readOnly'] = $item['categoryPermission' . $category] === 'N';
+                }
+            }
+            $roleId = intval($item['role']);
+            if ($roleId > 0)
+                $result[$id]['roles'][$roleId]['checked'] = true;
+        }
+        return $result;
     }
 }

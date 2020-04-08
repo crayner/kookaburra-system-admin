@@ -33,7 +33,7 @@ class Action implements EntityInterface
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", columnDefinition="INT(7) UNSIGNED ZEROFILL AUTO_INCREMENT")
+     * @ORM\Column(type="integer", columnDefinition="INT(7) UNSIGNED AUTO_INCREMENT")
      * @ORM\GeneratedValue
      */
     private $id;
@@ -149,9 +149,13 @@ class Action implements EntityInterface
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Kookaburra\SystemAdmin\Entity\Permission", mappedBy="action", orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity="Kookaburra\SystemAdmin\Entity\Role", inversedBy="actions", cascade={"persist"})
+     * @ORM\JoinTable(name="permission",
+     *      joinColumns={@ORM\JoinColumn(name="action",referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="role",referencedColumnName="id")}
+     *      )
      */
-    private $permissions;
+    private $roles;
 
     /**
      * @return int|null
@@ -510,27 +514,61 @@ class Action implements EntityInterface
     }
 
     /**
-     * getPermissions
+     * getRoles
      * @return Collection
      */
-    public function getPermissions(): Collection
+    public function getRoles(): Collection
     {
-        if (empty($this->permissions))
-            $this->permissions = new ArrayCollection();
+        if (null === $this->roles)
+            $this->roles = new ArrayCollection();
 
-        if ($this->permissions instanceof PersistentCollection)
-            $this->permissions->initialize();
+        if ($this->roles instanceof PersistentCollection)
+            $this->roles->initialize();
 
-        return $this->permissions;
+        return $this->roles;
     }
 
     /**
-     * @param Collection $permissions
+     * @param Collection $roles
      * @return Action
      */
-    public function setPermissions(Collection $permissions): Action
+    public function setRoles(Collection $roles): Action
     {
-        $this->permissions = $permissions;
+        $this->roles = $roles;
+        return $this;
+    }
+
+    /**
+     * addRole
+     * @param Role $role
+     * @param bool $mirror
+     * @return Action
+     */
+    public function addRole(Role $role, bool $mirror = true): Action
+    {
+        if ($this->getRoles()->contains($role))
+            return $this;
+
+        if ($mirror)
+            $role->addAction($this, false);
+
+        $this->roles->add($role);
+
+        return $this;
+    }
+
+    /**
+     * removeRole
+     * @param Role $role
+     * @param bool $mirror
+     * @return Action
+     */
+    public function removeRole(Role $role, bool $mirror = true): Action
+    {
+        if ($mirror)
+            $role->removeAction($this, false);
+
+        $this->getRoles()->removeElement($role);
         return $this;
     }
 
