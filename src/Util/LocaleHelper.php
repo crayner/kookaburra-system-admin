@@ -12,6 +12,7 @@
  */
 namespace Kookaburra\SystemAdmin\Util;
 
+use Doctrine\DBAL\Exception\DriverException;
 use Kookaburra\SystemAdmin\Entity\I18n;
 use Kookaburra\UserAdmin\Entity\Person;
 use Kookaburra\SystemAdmin\Provider\I18nProvider;
@@ -123,8 +124,13 @@ class LocaleHelper
      */
     public static function getEntity(string $code): ?I18n
     {
-        if (null === self::$entity)
-            self::$entity = self::$provider->getRepository()->findOneBy(['code' => $code]);
+        if (null === self::$entity) {
+            try {
+                self::$entity = self::$provider->getRepository()->findOneBy(['code' => $code]);
+            } catch (DriverException $e) {
+                self::$entity = null;
+            }
+        }
         return self::$entity;
     }
 }

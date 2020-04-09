@@ -13,6 +13,7 @@
 namespace Kookaburra\SystemAdmin\Repository;
 
 use Doctrine\DBAL\Driver\PDOException;
+use Doctrine\DBAL\Exception\DriverException;
 use Kookaburra\SystemAdmin\Entity\Action;
 use Kookaburra\SystemAdmin\Entity\Module;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -178,7 +179,7 @@ class ActionRepository extends ServiceEntityRepository
                     ->setMaxResults(1)
                     ->getQuery()
                     ->getOneOrNullResult();
-            } catch (NonUniqueResultException $e) {
+            } catch (NonUniqueResultException | DriverException $e) {
                 return null;
             }
         }

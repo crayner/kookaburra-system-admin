@@ -15,6 +15,7 @@
  */
 namespace Kookaburra\SystemAdmin\Repository;
 
+use Doctrine\DBAL\Exception\DriverException;
 use Kookaburra\SystemAdmin\Entity\I18n;
 use Kookaburra\SystemAdmin\Util\LocaleHelper;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -46,7 +47,11 @@ class I18nRepository extends ServiceEntityRepository
      */
     public function findSystemDefaultCode(): ?string
     {
-        $systemDefault = $this->findOneBySystemDefault('Y');
+        try {
+            $systemDefault = $this->findOneBySystemDefault('Y');
+        } catch (DriverException $e) {  //  Installation step over
+            $systemDefault = null;
+        }
         return $systemDefault ? $systemDefault->getCode() : null;
     }
 

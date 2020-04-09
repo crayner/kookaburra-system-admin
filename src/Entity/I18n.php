@@ -39,7 +39,7 @@ class I18n implements EntityInterface
     /**
      * @var string|null
      * @ORM\Column(length=5)
-     * @Assert\NotBlank()
+     * @Assert\Choice(callback="getLanguages")
      */
     private $code;
 
@@ -376,7 +376,7 @@ class I18n implements EntityInterface
      */
     public static function getLanguages(): array
     {
-        return self::$languages;
+        return array_flip(self::$languages);
     }
 
     /**

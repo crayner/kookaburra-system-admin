@@ -16,6 +16,7 @@
 namespace Kookaburra\SystemAdmin\Provider;
 
 use App\Provider\EntityProviderInterface;
+use Doctrine\DBAL\Exception\DriverException;
 use Kookaburra\SystemAdmin\Entity\I18n;
 use Doctrine\Common\Collections\Collection;
 use Kookaburra\UserAdmin\Entity\Person;
@@ -57,7 +58,11 @@ class SettingProvider implements EntityProviderInterface
      */
     public function getSettingByScope(string $scope, string $name, $returnRow = false)
     {
-        $setting = $this->getSetting($scope, $name) ?: $this->findOneBy(['scope' => $scope, 'name' => $name]);
+        try {
+            $setting = $this->getSetting($scope, $name) ?: $this->findOneBy(['scope' => $scope, 'name' => $name]);
+        } catch (DriverException $e) {
+            $setting = null;
+        }
 
         if (null === $setting) {
             return false;
