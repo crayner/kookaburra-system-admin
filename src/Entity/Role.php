@@ -17,6 +17,7 @@ namespace Kookaburra\SystemAdmin\Entity;
 
 use App\Manager\EntityInterface;
 use App\Manager\Traits\BooleanList;
+use App\Util\TranslationsHelper;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -49,7 +50,7 @@ class Role implements EntityInterface
      * @Assert\NotBlank()
      * @Assert\Choice(callback="getCategoryList")
      */
-    private $category;
+    private $category = 'Staff';
 
     /**
      * @var string
@@ -77,7 +78,7 @@ class Role implements EntityInterface
 
     /**
      * @var string
-     * @ORM\Column(length=4, name="type", options={"default": "Core"})
+     * @ORM\Column(length=12, name="type", options={"default": "Core"})
      * @Assert\Choice(callback="getTypelist")
      */
     private $type = 'Additional';
@@ -109,7 +110,7 @@ class Role implements EntityInterface
 
     /**
      * @var Collection|Action[]|null
-     * @ORM\ManyToMany(targetEntity="Kookaburra\SystemAdmin\Entity\Action", mappedBy="roles")
+     * @ORM\ManyToMany(targetEntity="Kookaburra\SystemAdmin\Entity\Action", mappedBy="roles", cascade={"persist"})
      */
     private $actions;
 
@@ -385,7 +386,7 @@ class Role implements EntityInterface
      * @param Collection|Action[]|null $actions
      * @return Role
      */
-    public function setActions(Collection $actions)
+    public function setActions(?Collection $actions)
     {
         $this->actions = $actions;
         return $this;
@@ -433,12 +434,12 @@ class Role implements EntityInterface
     public function toArray(?string $name = NULL): array
     {
         return [
-            'category' => $this->getCategory(),
+            'category' => TranslationsHelper::translate($this->getCategory()),
             'name' => $this->getName(),
             'name_short' => $this->getNameShort(),
             'description' => $this->getDescription(),
-            'type' => $this->getType(),
-            'login_years' => $this->getLoginYearsDescription(),
+            'type' => TranslationsHelper::translate($this->getType()),
+            'login_years' => TranslationsHelper::translate($this->getLoginYearsDescription()),
             'isAdditional' => $this->getType() !== 'Core',
         ];
     }

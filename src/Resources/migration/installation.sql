@@ -42,7 +42,7 @@ CREATE TABLE `__prefix__Role` (
     `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
     `nameShort` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
     `description` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
-    `type` varchar(4) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Core',
+    `type` varchar(12) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Core',
     `canLoginRole` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Y',
     `futureYearsLogin` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Y',
     `pastYearsLogin` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Y',
@@ -60,15 +60,14 @@ CREATE TABLE __prefix__ModuleUpgrade (
     UNIQUE INDEX module_version (module, version),
     PRIMARY KEY(id)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1;
-CREATE TABLE __prefix__Permission (
-    `id` INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT,
-    `role` INT(3) UNSIGNED ZEROFILL,
-    `action` INT(7) UNSIGNED ZEROFILL,
-    INDEX `role` (`role`),
-    INDEX `action` (`action`),
-    UNIQUE INDEX `roleAction` (`role`, `action`),
-    PRIMARY KEY(`id`)
-) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1;
+CREATE TABLE  `__prefix__Permission` (
+    `role` int(3) UNSIGNED NOT NULL,
+    `action` int(7) UNSIGNED NOT NULL,
+    PRIMARY KEY (`role`,`action`) USING BTREE,
+    KEY `role` (`role`),
+    KEY `action` (`action`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `__prefix__Notification` (
     `id` INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT, 
     `status` VARCHAR(8) DEFAULT 'New' NOT NULL, 
