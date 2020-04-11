@@ -38,7 +38,7 @@ class NotificationEvent implements EntityInterface
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", columnDefinition="INT(6) UNSIGNED ZEROFILL AUTO_INCREMENT")
+     * @ORM\Column(type="integer", columnDefinition="INT(6) UNSIGNED AUTO_INCREMENT")
      * @ORM\GeneratedValue
      */
     private $id;

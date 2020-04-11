@@ -1,10 +1,10 @@
 CREATE TABLE `__prefix__Action` (
-    `id` int(7) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
-    `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The action name should be unqiue to the module that it is related to',
+    `id` int(7) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The action name should be unique to the module that it is related to',
     `precedence` int(2) DEFAULT NULL,
     `category` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
     `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-    `URLList` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'Comma seperated list of all URLs that make up this action',
+    `URLList` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'Comma separated list of all URLs that make up this action',
     `entryURL` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
     `entrySidebar` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Y',
     `menuShow` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Y',
@@ -17,13 +17,13 @@ CREATE TABLE `__prefix__Action` (
     `categoryPermissionStudent` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Y',
     `categoryPermissionParent` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Y',
     `categoryPermissionOther` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Y',
-    `module` int(4) UNSIGNED ZEROFILL DEFAULT NULL,
+    `module` int(4) UNSIGNED DEFAULT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `moduleActionName` (`name`,`module`),
     KEY `__prefix__ModuleID` (`module`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT = 1;
 CREATE TABLE `__prefix__Module` (
-    `id` int(4) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    `id` int(4) UNSIGNED NOT NULL AUTO_INCREMENT,
     `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT 'This name should be globally unique preferably, but certainly locally unique',
     `description` longtext COLLATE utf8_unicode_ci NOT NULL,
     `entryURL` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'index.php',
@@ -37,7 +37,7 @@ CREATE TABLE `__prefix__Module` (
     UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT = 1;
 CREATE TABLE `__prefix__Role` (
-    `id` int(3) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
+    `id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT,
     `category` varchar(8) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Staff',
     `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
     `nameShort` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
@@ -52,8 +52,8 @@ CREATE TABLE `__prefix__Role` (
     UNIQUE KEY `nameShort` (`nameShort`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT = 1;
 CREATE TABLE __prefix__ModuleUpgrade (
-    id INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT,
-    module INT(4) UNSIGNED ZEROFILL,
+    id INT(10) UNSIGNED AUTO_INCREMENT,
+    module INT(4) UNSIGNED,
     version VARCHAR(20) NOT NULL,
     executed_at DATETIME NOT NULL COMMENT '(DC2Type:datetime_immutable)',
     INDEX IDX_3B5BDC02C242628 (module),
@@ -67,39 +67,38 @@ CREATE TABLE  `__prefix__Permission` (
     KEY `role` (`role`),
     KEY `action` (`action`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 CREATE TABLE `__prefix__Notification` (
-    `id` INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT, 
+    `id` INT(10) UNSIGNED AUTO_INCREMENT, 
     `status` VARCHAR(8) DEFAULT 'New' NOT NULL, 
     `count` INT(4), 
     `text` LONGTEXT NOT NULL,
     `actionLink` VARCHAR(255) NOT NULL COMMENT 'Relative to absoluteURL, start with a forward slash', 
     `timestamp` DATETIME NOT NULL, 
-    `person` INT(10) UNSIGNED ZEROFILL, 
-    `module` INT(4) UNSIGNED ZEROFILL, 
+    `person` INT(10) UNSIGNED, 
+    `module` INT(4) UNSIGNED, 
     INDEX IDX_D5180450CC6782D6 (`person`), INDEX IDX_D5180450CB86AD4B (`module`), PRIMARY KEY(`id`)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1;
 CREATE TABLE `__prefix__NotificationEvent` (
-  `id` int(6) UNSIGNED ZEROFILL AUTO_INCREMENT,
+  `id` int(6) UNSIGNED AUTO_INCREMENT,
   `event` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
   `moduleName` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `actionName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `type` varchar(12) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Core',
   `scopes` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'All',
   `active` varchar(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Y',
-  `module` int(4) UNSIGNED ZEROFILL DEFAULT NULL,
-  `action` int(7) UNSIGNED ZEROFILL DEFAULT NULL,
+  `module` int(4) UNSIGNED DEFAULT NULL,
+  `action` int(7) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `event` (`event`,`moduleName`),
   KEY `FK_A364BEAD9E834449` (`module`),
   KEY `FK_A364BEADB6AA0365` (`action`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT = 1;
 CREATE TABLE `__prefix__NotificationListener` (
-    `id` INT(10) UNSIGNED ZEROFILL AUTO_INCREMENT,
+    `id` INT(10) UNSIGNED AUTO_INCREMENT,
     `scopeType` VARCHAR(30) DEFAULT NULL,
     `scopeID` INT(20) UNSIGNED,
-    `notification_event` INT(6) UNSIGNED ZEROFILL,
-    `person` INT(10) UNSIGNED ZEROFILL,
+    `notification_event` INT(6) UNSIGNED,
+    `person` INT(10) UNSIGNED,
     INDEX IDX_6313F17E26A39C71 (`notification_event`), INDEX IDX_6313F17ECC6782D6 (`person`), PRIMARY KEY(`id`)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB AUTO_INCREMENT = 1;
 CREATE TABLE `__prefix__String` (

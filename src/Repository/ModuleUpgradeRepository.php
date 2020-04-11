@@ -17,6 +17,7 @@ namespace Kookaburra\SystemAdmin\Repository;
 
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\ORMInvalidArgumentException;
 use Kookaburra\SystemAdmin\Entity\Module;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Kookaburra\SystemAdmin\Entity\ModuleUpgrade;
@@ -68,7 +69,7 @@ class ModuleUpgradeRepository extends ServiceEntityRepository
                     ->setParameters(['module' => $module, 'version' => $version])
                     ->getQuery()
                     ->getSingleScalarResult() > 0;
-        } catch (NoResultException | NonUniqueResultException $e) {
+        } catch (NoResultException | NonUniqueResultException | ORMInvalidArgumentException $e) {
             return false;
         }
     }

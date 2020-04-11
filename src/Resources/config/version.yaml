@@ -29,7 +29,7 @@ module:
             categoryPermissionStudent: 'N'
             categoryPermissionParent: 'N'
             categoryPermissionOther: 'N'
-            permissions:
+            roles:
                 - Administrator
         'Manage Modules':
             name: 'Manage Modules'
@@ -49,7 +49,7 @@ module:
             categoryPermissionStudent: 'N'
             categoryPermissionParent: 'N'
             categoryPermissionOther: 'N'
-            permissions:
+            roles:
                 - Administrator
         'Manage Languages':
             name: 'Manage Languages'
@@ -69,7 +69,7 @@ module:
             categoryPermissionStudent: 'N'
             categoryPermissionParent: 'N'
             categoryPermissionOther: 'N'
-            permissions:
+            roles:
                 - Administrator
         'Third Party Settings':
             name: 'Third Party Settings'
@@ -89,7 +89,7 @@ module:
             categoryPermissionStudent: 'N'
             categoryPermissionParent: 'N'
             categoryPermissionOther: 'N'
-            permissions:
+            roles:
                 - Administrator
         'String Replacement':
             name: 'String Replacement'
@@ -109,7 +109,7 @@ module:
             categoryPermissionStudent: 'N'
             categoryPermissionParent: 'N'
             categoryPermissionOther: 'N'
-            permissions:
+            roles:
                 - Administrator
         'Display Settings':
             name: 'Display Settings'
@@ -129,7 +129,7 @@ module:
             categoryPermissionStudent: 'N'
             categoryPermissionParent: 'N'
             categoryPermissionOther: 'N'
-            permissions:
+            roles:
                 - Administrator
         'System Check':
             name: 'System Check'
@@ -149,7 +149,7 @@ module:
             categoryPermissionStudent: 'N'
             categoryPermissionParent: 'N'
             categoryPermissionOther: 'N'
-            permissions:
+            roles:
                 - Administrator
         'Notification Events':
             name: 'Notification Events'
@@ -169,7 +169,7 @@ module:
             categoryPermissionStudent: 'N'
             categoryPermissionParent: 'N'
             categoryPermissionOther: 'N'
-            permissions:
+            roles:
                 - Administrator
         'Import From File':
             name: 'Import From File'
@@ -189,5 +189,5 @@ module:
             categoryPermissionStudent: 'N'
             categoryPermissionParent: 'N'
             categoryPermissionOther: 'N'
-            permissions:
+            roles:
                 - Administrator

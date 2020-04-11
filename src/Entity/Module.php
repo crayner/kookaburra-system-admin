@@ -35,7 +35,7 @@ class Module implements EntityInterface
     /**
      * @var integer|null
      * @ORM\Id
-     * @ORM\Column(type="integer", columnDefinition="INT(4) UNSIGNED ZEROFILL AUTO_INCREMENT", options={"comment": "This number is assigned at install, and is only unique to the installation"})
+     * @ORM\Column(type="integer", columnDefinition="INT(4) UNSIGNED AUTO_INCREMENT", options={"comment": "This number is assigned at install, and is only unique to the installation"})
      * @ORM\GeneratedValue
      */
     private $id;

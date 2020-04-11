@@ -147,4 +147,20 @@ class RoleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    private $roles = [];
+
+    /**
+     * findOneByName
+     * @param string $name
+     * @return Role
+     */
+    public function findOneByName(string $name): Role
+    {
+        if (! key_exists($name, $this->roles))
+            $this->roles[$name] = $this->findOneBy(['name' => $name]);
+        if (null === $this->roles[$name])
+            dd($name, $this->roles);
+        return $this->roles[$name];
+    }
 }

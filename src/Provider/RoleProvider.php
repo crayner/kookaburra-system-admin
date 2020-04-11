@@ -64,12 +64,11 @@ class RoleProvider implements EntityProviderInterface
     public static function getRoleCategory($roleID): ?string
     {
         $roleID = intval($roleID);
-        $provider = ProviderFactory::create(Role::class);
-        if (isset($provider::$entities[$roleID]))
-            return $provider::$entities[$roleID]->getCategory();
-        $role = $provider->find($roleID);
+        if (isset(self::$entities[$roleID]))
+            return self::$entities[$roleID]->getCategory();
+        $role = self::getRepository()->find($roleID);
         if ($role) {
-            $provider::$entities[$roleID] = $role;
+            self::$entities[$roleID] = $role;
             return $role->getCategory();
         }
         return null;
